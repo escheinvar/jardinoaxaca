@@ -1,0 +1,16 @@
+extensiones:
+1.- composer require livewire/livewire
+
+2a.- Base de datos kew: hay que copiar manualmente la BD de kew en la tabla kew_plantsoftheworld
+    para eso hay que descargar la BD de taxonomía de kew (https://powo.science.kew.org/) y sustituir todos los corchetes y paréntesis. Luego hay que copiar la BD en cat_kew_plantsoftheworld
+    (Actualmente hay copia en: BD_Wcvp_taxon.kew.csv)
+2b.- En el migration de cat_kew_plantsoftheworld, silencié el rollback.
+
+3a.- Base de datos de clavos: 
+    archivo BD_pl_clavos_categorias_241102.csv             sube a tabla pl_clavos_categorias;
+    archivo BD_pl_clavos_colectas_copy1_241102.csv         sube a tabla pl_clavos_colectas;
+    archivo BD_pl_clavos_georeferencia_copy1_241102.csv    sube a tabla pl_clavos_georeferencia_copy1;
+    archivo BD_pl_clavos_tratamiento_transporte_241102.csv sube a tabla pl_clavos_tratamiento_transporte;
+
+3b.- En el migration de , pl_clavos_categorias, pl_clavos_colectas, pl_clavos_georeferencia_copy1, 
+    pl_clavos_tratamiento_transporte silencié el rollback.
