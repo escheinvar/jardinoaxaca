@@ -6,7 +6,7 @@ Historia
 @endsection
 
 @section('meta-description')
-Propuesto en 1993, el Jardín Etnobotánico de Oaxaca nace con el objetivo de mostrar en vivo las relaciones entra la historia natural de Oaxaca y su diversidad cultural.
+Propuesto en 1993, el Jardín Etnobiológico de Oaxaca nace con el objetivo de mostrar en vivo las relaciones entra la historia natural de Oaxaca y su diversidad cultural.
 @endsection
 
 @section('banner')
@@ -24,25 +24,23 @@ Historia
             <div class="row justify-content-around text-center pb-4">
                 <div class="col-sm-12 col-md-9 col-lg-8 col-xl-7 pt-5 px-4">
                     <h2 class="subtitulo">Colección</h2>
-                    <p class="texto-principal">El Jardín Etnobotánico muestra en vivo cientos de especies de plantas,
-                        todas ellas
-                        originarias de Oaxaca. Comenzamos a plantarlas en julio de 1998, y planeamos terminar la
-                        plantación de especies perennes próximamente. </p>
+                    <p class="texto-principal">El Jardín Etnobiológico muestra en vivo cientos de especies de plantas,
+                        originarias de Oaxaca. Comenzamos a plantarlas en julio de 1998 en lo que fue un cuartel militar. </p>
                 </div>
             </div>
 
             <div class="row count-area text-center pt-3" data-diff="100">
                 <div class="col-sm-6 col-md-3">
                     <div class="count-area-content">
-                        <div class="count-icon"> <i class="fa fa-home"></i></div>
+                        <div class="count-icon"> <!--i class="fa fa-home"></i--></div>
                         <div class="count-digit">2</div>
                         <div class="count-title">Hectáreas</div>
-                        <div class="count-description">Área plantada <br> a la fecha</div>
+                        <div class="count-description">Área plantadas <br> </div>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="count-area-content">
-                        <div class="count-icon"> <i class="fa fa-graduation-cap"></i></div>
+                        <div class="count-icon"> <!--i class="fa fa-graduation-cap"></i--></div>
                         <div class="count-digit">100</div>
                         <div class="count-title">Comunidades y ejidos</div>
                         <div class="count-description">Aportaron plantas, <br> piedra y tierra al Jardín</div>
@@ -50,7 +48,7 @@ Historia
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="count-area-content">
-                        <div class="count-icon"> <i class="fa fa-user"></i></div>
+                        <div class="count-icon"> <!--i class="fa fa-user"></i--></div>
                         <div class="count-digit">950</div>
                         <div class="count-title">Especies plantadas</div>
                         <div class="count-description">10% de la flora<br>del estado</div>
@@ -58,7 +56,7 @@ Historia
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="count-area-content">
-                        <div class="count-icon"> <i class="fa fa-book"></i></div>
+                        <div class="count-icon"> <!--i class="fa fa-book"></i--></div>
                         <div class="count-digit">1300</div>
                         <div class="count-title">Especies restantes</div>
                         <div class="count-description">Para terminar<br>el Jardín</div>
@@ -79,20 +77,34 @@ Historia
                         indígenas, es también el estado donde existen más especies de plantas y animales.” </h3>
                 </div>
                 <div class="col-sm-auto col-md-6 col-lg-6 col-xl-5 text-start py-2 px-4">
-                    <p class="texto-secundario">El Jardín Etnobotánico de Oaxaca fue propuesto en 1993 por iniciativa
-                        del maestro Francisco
+                    <p class="texto-secundario">El Jardín Etnobiológico de Oaxaca es un espacio logrado por la sociedad civil
+                        en 1993 por iniciativa del maestro Francisco
                         Toledo y de la asociación civil PRO-Oaxaca (Patronato para la Defensa y Conservación del
                         Patrimonio Cultural y Natural de Oaxaca, A.C)</p>
 
                     <p class="texto-secundario">El terreno forma parte de la antigua huerta del convento de Santo
-                        Domingo de Guzmán
-                        construido en
-                        los siglos XVI y XVII para los frailes dominicos y hoy en día, además de dedicarse a
-                        recolectar,
-                        plantar, cuidar y propagar plantas nativas del estado,
+                        Domingo de Guzmán construido en los siglos XVI y XVII para los frailes dominicos.
+                        En la época colonial tuvo otros usos ligados a la vida del convento, como se puede apreciar en los vestigios 
+                        que hemos restaurado al interior del Jardín: canales de riego y drenaje, estanques, hornos de cal, lavaderos de ropa, 
+                        un horno de cerámica y una calzada empedrada para las carretas que abastecían alimento y combustible.<p>
+
+                    <p class="texto-secundario">A mediados del siglo XIX y hasta 1994 sirvió como 
+                        cuartel, con dormitorios, estacionamientos, canchas deportivas y otras 
+                        instalaciones militares.</p>
+                </div>
+            </div>
+            <div class="row justify-content-around py-5">
+                <div class="col-sm-auto col-md-6 col-lg-5 text-end px-4 mb-4">
+                    <p class="texto-secundario">Hoy en día, además de dedicarse a
+                        recolectar, plantar, cuidar y propagar plantas nativas del estado,
                         este espacio cuenta con un vivero, un banco de semillas, un herbario y una biblioteca
                         especializada, así como, recorridos diarios abiertos al público general e instituciones
                         educativas.</p>
+                        Resguardo 
+                        Etno porque tienen un sentido cultural
+                        
+
+                        
 
                     <h2 class="subtitulo">Estructura institucional</h2>
 
@@ -102,6 +114,9 @@ Historia
                         consectetur adipisicing elit. Suscipit consequuntur omnis obcaecati soluta iste perferendis
                         libero debitis pariatur asperiores! Quam reiciendis dolore error tempore incidunt, placeat
                         soluta repellendus qui nisi.</p>
+                </div>
+                <div class="col-sm-auto col-md-6 col-lg-6 col-xl-5 text-start py-2 px-4">
+
                 </div>
             </div>
         </div>

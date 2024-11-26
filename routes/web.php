@@ -15,6 +15,8 @@ use App\Livewire\Sistema\FichaParadaCompenent;
 use App\Livewire\Sistema\HomeComponent;
 use App\Livewire\Sistema\MapaComponent;
 use App\Livewire\Web\EventosController;
+use App\Livewire\Web\InicioController;
+use App\Livewire\Web\RecorridosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,14 +32,13 @@ ddleware group. Make something great!
 
 
 /* ------------------------------------ PÁGINA WEB PÚBLICA ------------------------ */
+Route::get('/', InicioController::class)->name('inicio');
+Route::get('/recorridos', RecorridosController::class)->name('recorridos');
 
 
-Route::get('/', function () {
-    return view('web.inicio');
-});
-Route::get('/recorridos', function () {
-    return view('web.Recorridos');
-});
+// Route::get('/recorridos', function () {
+//     return view('web.Recorridos');
+// });
 Route::get('/mapa', function () {
     return view('web.Mapa');
 });

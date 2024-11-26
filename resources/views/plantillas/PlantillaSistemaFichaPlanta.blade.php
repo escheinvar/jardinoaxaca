@@ -2,18 +2,22 @@
 <html lang="es">
     
 <head>
-    @include('plantillas.SistemaHead')
+    @include('plantillas.plant_Head')
 </head>
 
 <body>
     @livewireScripts
-
+    <!-- ---------------------- Menú -------------------------->    
     <header>
         <!--NAVBAR-->
-        @include('plantillas.SistemaHeader')
+        @include('plantillas.plant_MenuSist')
     </header>
 
 
+
+
+
+    <!-- ---------------------- slot de livewire  -------------------------->
     <div class="p-5" style="background-color:#efebe8;">
         @if(isset($slot))            
             <!-- ---------------------- CARGA DE LIVEWIRE ------------------------------->
@@ -25,7 +29,7 @@
 
 
     <!-- ------------------------ FOOTTER------------------------------->
-    @include('plantillas.SistemaFooter')
+    @include('plantillas.plant_Footer')
 
     <!-- ------------------------ SCRIPTS------------------------------->
     @include('plantillas.SistemaScripts')

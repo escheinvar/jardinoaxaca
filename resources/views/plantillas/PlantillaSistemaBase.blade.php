@@ -2,7 +2,7 @@
 <html lang="es">
     
 <head>
-    @include('plantillas.SistemaHead')
+    @include('plantillas.plant_Head')
 </head>
 
 <body>
@@ -10,12 +10,12 @@
     <!-- ---------------------- Menú -------------------------->
     <header>
         <!--NAVBAR-->
-        @include('plantillas.SistemaHeader')
+        @include('plantillas.plant_MenuSist')
     </header>
     
     <!-- ---------------------- Barra de sistema -------------------------->
     <div style="background-color:#CDC6B9;  padding-left:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
-        <b>Sistema del JEB Oax</b> | 
+        <b>Sistema del JEB Oax</b> |
     </div>
     
     <!-- ---------------------- slot de livewire  -------------------------->
@@ -28,7 +28,7 @@
 
 
     <!-- ------------------------ FOOTTER------------------------------->
-    @include('plantillas.SistemaFooter')
+    @include('plantillas.plant_Footer')
 
     <!-- ------------------------ SCRIPTS------------------------------->
     @include('plantillas.SistemaScripts')
