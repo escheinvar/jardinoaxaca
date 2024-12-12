@@ -239,3 +239,22 @@ colores{
     font-family: 'Roboto Condensed', sans-serif;
     font-family: 'Noto Serif JP', serif;
 }
+
+
+/* ------------ Botón de audio ---------*/
+.audio {
+    background-image: url('/iconos/voz.png') !important;
+    /* background-color:#EFEBE8; */
+    /* background-size: cover; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin:0;
+    padding:0;
+    border: none !important;
+    width:  45px;
+    height: 25px;
+    font-size: 15px;
+    /* color:#212529; */
+    
+}
+

@@ -176,6 +176,9 @@ $(document).ready(function() {
     $('.select2').select2();
 });
 
+function EscuchaAudio(soundFile){
+    $("#sound").html("<embed src=\"" + soundFile + "\" hidden=\"true\" autostart=\"true\" />");
+}
 //Inhabilitar tecla de espacio
 //function NoEspacio(e, campo){
 //		key = e.keyCode ? e.keyCode : e.which;

@@ -7,8 +7,15 @@
         Ethnobiological <br>Garden <br>of Oaxaca
     @elseif(session('locale')=='pt')
         Jardim <br>Etnobiológico <br>de Oaxaca
+    @elseif(session('locale')=='es_mix_bj') 
+        Jardîn <br>Etnobiológìcò <br>Ñuu Ndǔvá
     @else
         Jardín <br>Etnobiológico<br> de Oaxaca 
+        
+        <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','0')"></i>
+        <audio controls  id="sale_audio0" style="display:none;">                                
+            <source src="audio/es/01inicio_00.ogg" type="audio/ogg" >
+        </audio>
     @endif
 @endsection
 
@@ -29,8 +36,14 @@
                             "A space created to show live the relationships between the natural history of Oaxaca and its cultural diversity"
                         @elseif(session('locale')=='pt')
                             "Um espaço criado para mostrar ao vivo as relações entre a história natural de Oaxaca e sua diversidade cultural"
+                        @elseif(session('locale')=='es_mix_bj')
+                            "kùva’à ñà ñà kuvi kundaa ini yó nìsaa xíniñú’ú na ñuu yó Ñuu Ndǔvá ndi’í mií nùú itún ìkù xí’ín ndi’i ka ñà’a kána tiañu ikú ñuu yó"
                         @else
                             “Un espacio creado para mostrar en vivo las relaciones entre la historia natural de Oaxaca y su diversidad cultural”
+                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','1')"></i>
+                            <audio controls id="sale_audio1" style="display:none;">                                
+                                <source src="audio/es/01inicio_01.ogg" type="audio/ogg" >
+                            </audio>
                         @endif    
                     </h2>
                     <h4 class="autor-cita">Dr. Alejandro de Ávila Blomberg</h4>
@@ -41,6 +54,10 @@
                             Diretor Fundador do Jardim Etnobiológico
                         @else
                             Director Fundador del Jardín Etnobiológico
+                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','3')"></i>
+                            <audio controls id="sale_audio3" style="display:none;">                                
+                                <source src="audio/es/01inicio_03.ogg" type="audio/ogg" >
+                            </audio>
                         @endif
                     </p>
                 </div>
@@ -55,6 +72,10 @@
                         @else
                             Propuesto en 1993 como iniciativa de la sociedad civil, cuenta con cientos de especies donadas por las comunidades oaxaqueñas
                             y con las que resguardamos una pequeña parte del inmenso patrimonio biocultural del estado de Oaxaca.
+                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','2')"></i>
+                            <audio controls  id="sale_audio2" style="display:none;">                                
+                                <source src="audio/es/01inicio_02.ogg" type="audio/ogg" >
+                            </audio>
                         @endif
                     </p>
                 </div>

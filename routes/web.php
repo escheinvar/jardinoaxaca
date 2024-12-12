@@ -7,6 +7,7 @@ use App\Http\Controllers\login\loginController;
 use App\Http\Controllers\login\logoutController;
 use App\Livewire\Admin\Nuevousuario01Controller;
 use App\Livewire\Admin\NuevoUsuarioController;
+use App\Livewire\HistoriaController;
 use App\Livewire\Login\RecuperaPasswd01Controller;
 use App\Livewire\Login\RecuperaPasswdController;
 use App\Livewire\Sistema\FichaClavoComponent;
@@ -16,6 +17,7 @@ use App\Livewire\Sistema\HomeComponent;
 use App\Livewire\Sistema\MapaComponent;
 use App\Livewire\Web\EventosController;
 use App\Livewire\Web\InicioController;
+use App\Livewire\Web\MapaController;
 use App\Livewire\Web\RecorridosController;
 
 /*
@@ -34,17 +36,11 @@ ddleware group. Make something great!
 /* ------------------------------------ PÁGINA WEB PÚBLICA ------------------------ */
 Route::get('/', InicioController::class)->name('inicio');
 Route::get('/recorridos', RecorridosController::class)->name('recorridos');
+Route::get('/mapa', MapaController::class)->name('mapa');
+Route::get('/historia', HistoriaController::class)->name('historia');
 
 
-// Route::get('/recorridos', function () {
-//     return view('web.Recorridos');
-// });
-Route::get('/mapa', function () {
-    return view('web.Mapa');
-});
-Route::get('/historia', function () {
-    return view('web.Historia');
-});
+
 Route::get('/servicios', function () {
     return view('web.Servicios');
 });

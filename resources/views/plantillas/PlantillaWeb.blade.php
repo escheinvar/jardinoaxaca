@@ -28,9 +28,13 @@
                         <a href="https://www.instagram.com/jardinetnobotanicodeoaxaca/" target="_blank">
                             <img src="/imagenes/icono-instagram.png" alt="icono instagram ">
                         </a>
+                        <a href="https://www.youtube.com/@jardinetnobiologicodeoaxaca" target="_blank">
+                            <img src="/imagenes/icono-youtube.png" alt="icono mapa">
+                        </a>
                         <a href="https://goo.gl/maps/vdvcHAUMTHQaDZ676" target="_blank">
                             <img src="/imagenes/icono-mapa.png" alt="icono mapa">
                         </a>
+
                     </div>
                     <div class="col">
                         <a href="#bienvenido">

@@ -64,7 +64,7 @@
                                 @elseif(session('locale')=='pt')
                                     Mapa
                                 @else
-                                    Mapa
+                                    Mapa y atractivos
                                 @endif
                         </a></li>
                         </ul>
