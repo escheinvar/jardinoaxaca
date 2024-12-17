@@ -31,6 +31,8 @@
                                 Home
                             @elseif(session('locale')=='pt')
                                 Home
+                            @elseif(session('locale')=='es_mix_bj')
+                                Nùú kíxáá ña
                             @else
                                 Inicio
                             @endif
@@ -44,6 +46,8 @@
                                 Visit the garden
                             @elseif(session('locale')=='pt')
                                 Visite o Jardim
+                            @elseif(session('locale')=='es_mix_bj')
+                                Kixi ún kuni ún jardîn
                             @else
                                 Visita el Jardín
                             @endif
@@ -54,6 +58,8 @@
                                     Tours
                                 @elseif(session('locale')=='pt')
                                     Passeios
+                                @elseif(session('locale')=='es_mix_bj')
+                                    Ña kuvi kèe ndó  
                                 @else
                                     Recorridos
                                 @endif
@@ -63,6 +69,8 @@
                                     Map
                                 @elseif(session('locale')=='pt')
                                     Mapa
+                                @elseif(session('locale')=='es_mix_bj')
+                                    Ñá’à ñà nùú yó nùú íyo iin iin ñà’a 
                                 @else
                                     Mapa y atractivos
                                 @endif
@@ -77,6 +85,8 @@
                                 About us
                             @elseif(session('locale')=='pt')
                                 Conheça-nos
+                            @elseif(session('locale')=='es_mix_bj')
+                                Conócenos
                             @else
                                 Conócenos
                             @endif
@@ -87,17 +97,21 @@
                                     History
                                 @elseif(session('locale')=='pt')
                                     História
+                                @elseif(session('locale')=='es_mix_bj')
+                                    História
                                 @else
                                     Historia
                                 @endif
                         </a></li>
                             <li><a class="dropdown-item @if(request()->path() == 'servicios') active @endif" href="/servicios">
                                 @if(session('locale')=='en')
-                                    Services
+                                    Collections
                                 @elseif(session('locale')=='pt')
-                                    Serviços
+                                    Coleções
+                                @elseif(session('locale')=='es_mix_bj')
+                                    Colecciones
                                 @else
-                                    Servicios
+                                    Colecciones
                                 @endif
                         </a></li>
                             <li><a class="dropdown-item @if(request()->path() == 'directorio') active @endif" href="/directorio">
@@ -105,6 +119,8 @@
                                     Directory
                                 @elseif(session('locale')=='pt')
                                     Diretório
+                                @elseif(session('locale')=='es_mix_bj')
+                                    Directorio
                                 @else
                                     Directorio
                                 @endif
@@ -113,6 +129,8 @@
                                 @if(session('locale')=='en')
                                     Collaborators
                                 @elseif(session('locale')=='pt')
+                                    Colaboradores
+                                @elseif(session('locale')=='es_mix_bj')
                                     Colaboradores
                                 @else
                                     Colaboradores
@@ -127,6 +145,8 @@
                                 Education
                             @elseif(session('locale')=='pt')
                                 Educação
+                            @elseif(session('locale')=='es_mix_bj')
+                                Educación
                             @else
                                 Educación
                             @endif
@@ -138,6 +158,8 @@
                             @if(session('locale')=='en')
                                 Events
                             @elseif(session('locale')=='pt')
+                                Eventos
+                            @elseif(session('locale')=='es_mix_bj')
                                 Eventos
                             @else
                                 Eventos
@@ -153,6 +175,8 @@
                                     System
                                 @elseif(session('locale')=='pt')
                                     Sistema
+                                @elseif(session('locale')=='es_mix_bj')    
+                                    Sistema    
                                 @else
                                     Sistema
                                 @endif
@@ -168,6 +192,8 @@
                                         Out
                                     @elseif(session('locale')=='pt')
                                         Sair
+                                    @elseif(session('locale')=='es_mix_bj')
+                                        Salir
                                     @else
                                         Salir
                                     @endif
@@ -180,6 +206,8 @@
                                     @if(session('locale')=='en')
                                         System
                                     @elseif(session('locale')=='pt')
+                                        Sistema
+                                    @elseif(session('locale')=='es_mix_bj')
                                         Sistema
                                     @else
                                         Sistema

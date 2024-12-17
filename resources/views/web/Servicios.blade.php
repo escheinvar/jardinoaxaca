@@ -14,14 +14,68 @@ banner-servicios
 @endsection
 
 @section('banner-title') 
-Servicios
+Colecciones
 @endsection
 
 
 @section('main-superior')
     <!--S1 SERVICIOS-->
+
+
+
+        
+
     <section class="servicios pb-5">
         <div class="container px-4 py-5" id="bienvenido">
+
+            <div class="row justify-content-around text-center pb-4">
+                <div class="col-sm-12 col-md-9 col-lg-8 col-xl-7 pt-5 px-4">
+                    <h2 class="subtitulo">Colección</h2>
+                    <p class="texto-principal">El Jardín Etnobiológico muestra en vivo cientos de especies de plantas,
+                        originarias de Oaxaca. Comenzamos a plantarlas en julio de 1998 en lo que fue un cuartel militar. </p>
+                </div>
+            </div>
+
+            <div class="row count-area text-center pt-3" data-diff="100">
+                <div class="col-sm-6 col-md-3">
+                    <div class="count-area-content">
+                        <div class="count-icon"> <!--i class="fa fa-home"></i--></div>
+                        <div class="count-digit">2</div>
+                        <div class="count-title">Hectáreas</div>
+                        <div class="count-description">Área plantadas <br> </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="count-area-content">
+                        <div class="count-icon"> <!--i class="fa fa-graduation-cap"></i--></div>
+                        <div class="count-digit">100</div>
+                        <div class="count-title">Comunidades y ejidos</div>
+                        <div class="count-description">Aportaron plantas, <br> piedra y tierra al Jardín</div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="count-area-content">
+                        <div class="count-icon"> <!--i class="fa fa-user"></i--></div>
+                        <div class="count-digit">950</div>
+                        <div class="count-title">Especies plantadas</div>
+                        <div class="count-description">10% de la flora<br>del estado</div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div class="count-area-content">
+                        <div class="count-icon"> <!--i class="fa fa-book"></i--></div>
+                        <div class="count-digit">1300</div>
+                        <div class="count-title">Especies restantes</div>
+                        <div class="count-description">Para terminar<br>el Jardín</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
             <div class="row justify-content-end">
                 <div class="col-sm-12 col-md-9 col-lg-8 col-xl-6 pt-5 px-4">
                     <h2 class="subtitulo">Apoyo comunitario</h2>
@@ -93,4 +147,47 @@ Servicios
             </div>
         </div>
     </section>
+@endsection
+
+
+@section('scripts')
+    <!--Contador colección-->
+    <script>
+        function visible(partial) {
+            var $t = partial,
+                $w = jQuery(window),
+                viewTop = $w.scrollTop(),
+                viewBottom = viewTop + $w.height(),
+                _top = $t.offset().top,
+                _bottom = _top + $t.height(),
+                compareTop = partial === true ? _bottom : _top,
+                compareBottom = partial === true ? _top : _bottom;
+
+            return (
+                compareBottom <= viewBottom && compareTop >= viewTop && $t.is(":visible")
+            );
+        }
+
+        $(window).scroll(function () {
+            if (visible($(".count-digit"))) {
+                if ($(".count-digit").hasClass("counter-loaded")) return;
+                $(".count-digit").addClass("counter-loaded");
+
+                $(".count-digit").each(function () {
+                    var $this = $(this);
+                    jQuery({ Counter: 0 }).animate(
+                        { Counter: $this.text() },
+                        {
+                            duration: 5000,
+                            easing: "swing",
+                            step: function () {
+                                $this.text(Math.ceil(this.Counter));
+                            }
+                        }
+                    );
+                });
+            }
+        });
+
+    </script>
 @endsection

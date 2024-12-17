@@ -1,8 +1,8 @@
 <select wire:change="idiomas()" wire:model="idioma" id="MiIdioma" class="form-control lenguas" style="width:110px; display:inline-block;">
     <option value="es" {{ session('locale') == 'es' ? 'selected' : '' }}>Español</option>
     @if(isset($lenguas))
-        @if(in_array('es_mix', $lenguas))
-            <option value="es_mix_bj" {{ session('locale') == 'es_mix_bj' ? 'selected' : '' }}>Mixteco Bajo</option>
+        @if(in_array('es_mix_bj', $lenguas))
+            <option value="es_mix_bj" {{ session('locale') == 'es_mix_bj' ? 'selected' : '' }}>Tu'un Savi (Mixteco Bajo)</option>
         @endif
         
         @if(in_array('pt', $lenguas))

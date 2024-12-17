@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 
 class RecorridosController extends Component
 {
-    public $idioma, $lenguas=['pt','en'];
+    public $idioma, $lenguas=['pt','en','es_mix_bj'];
 
     public function mount(){
       $this->idioma= session('locale');

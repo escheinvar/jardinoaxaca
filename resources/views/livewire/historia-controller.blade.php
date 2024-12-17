@@ -16,12 +16,12 @@ Historia
 
 <div>
 
-    <section class="presentacion pt-4">
+    {{-- <section class="presentacion pt-4">
         <div class="container py-5 px-4" id="bienvenido">
 
             <div>
                 @include('plantillas/plant_locale')
-            </div>
+            </div>            
             
             <div class="row justify-content-around text-center pb-4">
                 <div class="col-sm-12 col-md-9 col-lg-8 col-xl-7 pt-5 px-4">
@@ -64,10 +64,9 @@ Historia
                         <div class="count-description">Para terminar<br>el Jardín</div>
                     </div>
                 </div>
-            </div>
+            </div>           
         </div>
-
-    </section>
+    </section> --}}
 
     <!--S2 HISTORIA-->
     <section class="historia">
@@ -75,55 +74,103 @@ Historia
             <div class="row justify-content-around py-5">
                 <div class="col-sm-auto col-md-6 col-lg-5 text-end px-4 mb-4">
                     <h3 class="cita">“Oaxaca no sólo es la entidad donde viven más grupos étnicos y donde se hablan más
-                        lenguas
-                        indígenas, es también el estado donde existen más especies de plantas y animales.” </h3>
+                        lenguas indígenas, es también el estado donde existen más especies de plantas y animales.” </h3>
                 </div>
                 <div class="col-sm-auto col-md-6 col-lg-6 col-xl-5 text-start py-2 px-4">
-                    <p class="texto-secundario">La historia del Jardín, inicia con la historia de Santo Domingo...</p>
-                    <p class="texto-secundario">El Jardín Etnobiológico de Oaxaca es un espacio logrado por la sociedad civil, que en
-                         1993 por iniciativa del maestro Francisco Toledo y de la asociación civil PRO-Oaxaca (Patronato para la Defensa y Conservación del
-                        Patrimonio Cultural y Natural de Oaxaca, A.C) 
-                        aprovecharon la salida lograron detener </p>
+                    <p class="texto-secundario">El Jardín Etnobiológico de Oaxaca es un espacio creado por la sociedad civil en 1994 por iniciativa del Maestro Francisco Toledo
+                         y luego de una consulta popular, bajo la idea de crear un espacio que resguarde el patrimonio cultural y natural de las comunidades Oaxaqueñas reuniendo 
+                         lo antropológico, lo biológico, lo artístico y lo histórico en contraposición a la propuesta de convertirlo en un hotel de lujo privado con amplio estacionamiento.</p>
 
-                    <p class="texto-secundario">El terreno forma parte de la antigua huerta del convento de Santo
-                        Domingo de Guzmán construido en los siglos XVI y XVII para los frailes dominicos.
-                        En la época colonial tuvo otros usos ligados a la vida del convento, como se puede apreciar en los vestigios 
-                        que hemos restaurado al interior del Jardín: canales de riego y drenaje, estanques, hornos de cal, lavaderos de ropa, 
-                        un horno de cerámica y una calzada empedrada para las carretas que abastecían alimento y combustible.<p>
+                    <p class="texto-secundario">Aunque nuestra historia inicia en 1993, su terreno tiene una historia muy antigua, ya que formaba parte del patio y antigua huerta
+                        del convento de Santo Domingo de Guzmán construido en los siglos XVI y XVII para los frailes dominicos. </p>
 
-                    <p class="texto-secundario">A mediados del siglo XIX y hasta 1994 sirvió como 
-                        cuartel, con dormitorios, estacionamientos, canchas deportivas y otras 
-                        instalaciones militares.</p>
                 </div>
             </div>
             <div class="row justify-content-around py-5">
-                <div class="col-sm-auto col-md-6 col-lg-5 text-end px-4 mb-4">
+                <div class="col-sm-auto col-md-12 col-lg-12  px-4 mb-4">
+                    <p class="texto-secundario">Luego de la promulgación de las Leyes de Reforma en 1860, el espacio del Jardín fue ocupado como cuartel del ejército. 
+                        Se construyeron instalaciones militares incluyendo barracas, campo de tiro, plaza para desfiles, estacionamiento, alberca y canchas deportivas, 
+                        por lo que varias estructuras fueron destruidas o enterradas.</p>
+                    
+                    <p class="texto-secundario">En 1994, con la salida del ejército de las instalaciones del ex-convento de Santo Domingo, se inicia el proceso de rescate 
+                        arqueológico, en el que se descubren los vestigios coloniales que hoy en día pueden ser visitados: canales de riego, sistema de drenaje, estanques, 
+                        hornos de cal, lavaderos de ropa, horno de cerámica y una calzada empedrada para las carretas que abastecían alimento y combustible al convento.</p>
+
+
+
+
+
+                        <div class="container py-5 px-4">
+                            <div class="row pb-5">
+                                <div class="col">
+                                    <h2>Construcción del Jardín</h2>
+                                    <div class="owl-carousel owl-theme">
+                                        <div>
+                                            <a href="imagenes/slider-5/img-01.jpg" data-fancybox="gallery6">
+                                                <img src="imagenes/slider-5/img-con-01.jpg" alt="Toma aérea de la construcción">
+                                                {{-- <h4 class="w-100"> Horno de cerámica del Ex Convento de Santo Domingo | Foto: Ernesto de
+                                                    los Santos Reyes</h4> --}}
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="imagenes/slider-5/img-01.jpg" data-fancybox="gallery6">
+                                                <img src="imagenes/slider-5/img-con-02.jpg" alt="Toma aérea de la construcción">
+                                                {{-- <h3 class="w-100"> Horno de cerámica del Ex Convento de Santo Domingo | Foto: Ernesto de
+                                                    los Santos Reyes</h3> --}}
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="imagenes/slider-5/img-01.jpg" data-fancybox="gallery6">
+                                                <img src="imagenes/slider-5/img-con-03.jpg" alt="Toma aérea de la construcción">
+                                                {{-- <h3 class="w-100"> Horno de cerámica del Ex Convento de Santo Domingo | Foto: Ernesto de
+                                                    los Santos Reyes</h3> --}}
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="imagenes/slider-5/img-01.jpg" data-fancybox="gallery6">
+                                                <img src="imagenes/slider-5/img-con-04.jpg" alt="Toma aérea de la construcción">
+                                                {{-- <h3 class="w-100"> Horno de cerámica del Ex Convento de Santo Domingo | Foto: Ernesto de
+                                                    los Santos Reyes</h3> --}}
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="imagenes/slider-5/img-01.jpg" data-fancybox="gallery6">
+                                                <img src="imagenes/slider-5/img-con-05.jpg" alt="Toma aérea de la construcción">
+                                                {{-- <h3 class="w-100"> Horno de cerámica del Ex Convento de Santo Domingo | Foto: Ernesto de
+                                                    los Santos Reyes</h3> --}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    <p class="texto-secundario">El diseño del Jardín es obra del Maestro Francisco Toledo, Luis Zárate (pintor oaxaqueño) diseñó los caminos y los canales ornamentales
+                        que evitan que las partes bajas se inunden durante las lluvias, la Arq. María Claudina López Morales (arquitecta oaxaqueña) y el Arq. Saúl Alcántara Onofre 
+                        (arquitecto paisajista), colaboraron en el diseño arquitectónico y paisajístico del Jardín y el Dr. Alejandro de Ávila Blomberg define el enfoque y concepto museográfico,
+                        determina la selección de especies y dirige y sostiene el Jardín Etnobiológico de Oaxaca desde entonces. </p>
+
+                    <p>Todas las plantas que conforman el Jardín fueron donadas por las comunidades que las poseían debido a que representaban algo particular para cada una. </p>
+
                     <p class="texto-secundario">Hoy en día, además de dedicarse a
                         recolectar, plantar, cuidar y propagar plantas nativas del estado,
                         este espacio cuenta con un vivero, un banco de semillas, un herbario y una biblioteca
                         especializada, así como, recorridos diarios abiertos al público general e instituciones
                         educativas.</p>
-                        Resguardo 
-                        Etno porque tienen un sentido cultural
-                        
-
-                        
-
-                    <h2 class="subtitulo">Estructura institucional</h2>
-
-                    <p class="texto-secundario">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore sit
-                        debitis, magnam, exercitationem perferendis nihil labore veniam sed eaque sunt dignissimos, iste
-                        fugit. Doloremque natus delectus id explicabo quis consectetur? Lorem ipsum dolor sit, amet
-                        consectetur adipisicing elit. Suscipit consequuntur omnis obcaecati soluta iste perferendis
-                        libero debitis pariatur asperiores! Quam reiciendis dolore error tempore incidunt, placeat
-                        soluta repellendus qui nisi.</p>
-                </div>
-                <div class="col-sm-auto col-md-6 col-lg-6 col-xl-5 text-start py-2 px-4">
-
-                </div>
-            </div>
+                </div>                       
+            </div>            
         </div>
+
+
+        
+
+       
+
     </section>
+
+    
 
 
 
@@ -165,11 +212,15 @@ Historia
                 </div>
             </div>
         </div>
+
+
+
+       
     </section>
 
 
 
-@section('scripts')
+{{-- @section('scripts')
     <!--Contador colección-->
     <script>
         function visible(partial) {
@@ -209,5 +260,5 @@ Historia
         });
 
     </script>
-@endsection
+@endsection --}}
 </div>
