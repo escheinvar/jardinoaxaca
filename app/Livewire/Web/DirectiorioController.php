@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Web;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\App;
 
-class HistoriaController extends Component
+class DirectiorioController extends Component
 {
-    public $idioma, $lenguas=['pt','en'];
+    public $idioma, $lenguas=[];
 
     public function mount(){
         $this->idioma= session('locale');
@@ -20,7 +20,7 @@ class HistoriaController extends Component
         redirect('/mapa');
     }
 
-    public function render() {
-        return view('livewire.historia-controller');
+    public function render()    {
+        return view('livewire.web.directiorio-controller');
     }
 }

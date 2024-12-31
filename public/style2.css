@@ -225,7 +225,44 @@ margin-left: -1.5em;
     font-size:1rem;
 }
 
+.boton {
+    background-color: #64383E;
+    padding: 15px 20px;
+    color: #efebe8;
+    font-size: 18px;
+    display:inline-block;
+}
 
+.boton:hover {
+    background-color: #CDC6B9;
+    color: #64383E;
+}
+
+.boton2 {
+    background-color: #CD7B34;
+    padding: 15px 20px;
+    color: #efebe8;
+    font-size: 18px;
+    display:inline-block;
+}
+
+.boton2:hover {
+    background-color: #CDC6B9;
+    color: #CD7B34;
+}
+
+.boton3 {
+    background-color: #919C1B;
+    padding: 15px 20px;
+    color: #efebe8;
+    font-size: 18px;
+    display:inline-block;
+}
+
+.boton3:hover {
+    background-color: #CDC6B9;
+    color: #919C1B;
+}
 
 colores{
     color: #64383E;
@@ -241,11 +278,12 @@ colores{
 }
 
 
+
 /* ------------ Botón de audio ---------*/
-.audio {
+/* .audio {
     background-image: url('/iconos/voz.png') !important;
-    /* background-color:#EFEBE8; */
-    /* background-size: cover; */
+    background-color:#EFEBE8;
+    background-size: cover;
     background-size: contain;
     background-repeat: no-repeat;
     margin:0;
@@ -254,7 +292,6 @@ colores{
     width:  45px;
     height: 25px;
     font-size: 15px;
-    /* color:#212529; */
+    color:#212529;
     
-}
-
+} */

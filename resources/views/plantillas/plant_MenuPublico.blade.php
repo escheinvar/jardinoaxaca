@@ -102,8 +102,19 @@
                                 @else
                                     Historia
                                 @endif
-                        </a></li>
+                            </a></li>
                             <li><a class="dropdown-item @if(request()->path() == 'servicios') active @endif" href="/servicios">
+                                @if(session('locale')=='en')
+                                    Services
+                                @elseif(session('locale')=='pt')
+                                    Serviços
+                                @elseif(session('locale')=='es_mix_bj')
+                                    Servicios
+                                @else
+                                    Servicios
+                                @endif
+                            </a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'colecciones') active @endif" href="/colecciones">
                                 @if(session('locale')=='en')
                                     Collections
                                 @elseif(session('locale')=='pt')
@@ -113,7 +124,7 @@
                                 @else
                                     Colecciones
                                 @endif
-                        </a></li>
+                            </a></li>
                             <li><a class="dropdown-item @if(request()->path() == 'directorio') active @endif" href="/directorio">
                                 @if(session('locale')=='en')
                                     Directory
@@ -124,7 +135,7 @@
                                 @else
                                     Directorio
                                 @endif
-                        </a></li>
+                            </a></li>
                             <li><a class="dropdown-item @if(request()->path() == 'colaboradores') active @endif" href="/colaboradores">
                                 @if(session('locale')=='en')
                                     Collaborators
@@ -135,10 +146,10 @@
                                 @else
                                     Colaboradores
                                 @endif
-                        </a></li>
+                            </a></li>
                         </ul>
                     </li>
-                    <!-- ----- Educación ----- -->
+                    {{-- <!-- ----- Educación ----- -->
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'educacion') active @endif" href="/educacion">
                             @if(session('locale')=='en')
@@ -151,7 +162,7 @@
                                 Educación
                             @endif
                         </a>
-                    </li>
+                    </li> --}}
                     <!-- ----- Eventos ----- -->
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/actividades">

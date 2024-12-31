@@ -124,8 +124,8 @@ banner-recorridos
                 <div class="col-sm-12 col-lg-9 ">
                     <div class=" owl-carousel owl-theme">
                         <div>
-                            <a href="imagenes/slider-2/img-01.jpg" data-fancybox="gallery1">
-                                <img src="imagenes/slider-2/img-pre-01.jpg" alt="Fachada del jardin">
+                            <a href="imagenes/slider-2_recorridos/img-01.jpg" data-fancybox="gallery1">
+                                <img src="imagenes/slider-2_recorridos/img-pre-01.jpg" alt="Fachada del jardin">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Entrance to the Ethnobotanical Garden of Oaxaca |
@@ -144,8 +144,8 @@ banner-recorridos
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-2/img-02.jpg" data-fancybox="gallery1">
-                                <img src="imagenes/slider-2/img-pre-02.jpg" alt="Inicio de recorrido">
+                            <a href="imagenes/slider-2_recorridos/img-02.jpg" data-fancybox="gallery1">
+                                <img src="imagenes/slider-2_recorridos/img-pre-02.jpg" alt="Inicio de recorrido">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Tours National Botanical Gardens Day |
@@ -164,8 +164,8 @@ banner-recorridos
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-2/img-03.jpg" data-fancybox="gallery1">
-                                <img src="imagenes/slider-2/img-pre-03.jpg" alt="Vegetación del jardin">
+                            <a href="imagenes/slider-2_recorridos/img-03.jpg" data-fancybox="gallery1">
+                                <img src="imagenes/slider-2_recorridos/img-pre-03.jpg" alt="Vegetación del jardin">
                                 <h3 class="w-100"> 
                                     @if(session('locale')=='en')
                                         Exploring the Garden, guided tour |
@@ -184,8 +184,8 @@ banner-recorridos
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-2/img-04.jpg" data-fancybox="gallery1">
-                                <img src="imagenes/slider-2/img-pre-04.jpg" alt="Visitantes cerca del espejo de agua">
+                            <a href="imagenes/slider-2_recorridos/img-04.jpg" data-fancybox="gallery1">
+                                <img src="imagenes/slider-2_recorridos/img-pre-04.jpg" alt="Visitantes cerca del espejo de agua">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Tour on National Day of Botanical Gardens |
@@ -692,8 +692,8 @@ banner-recorridos
                         <div class="col">
                             <div class="owl-carousel owl-theme">
                                 <div>
-                                    <a href="imagenes/slider-3/img-01.jpg" data-fancybox="gallery3">
-                                        <img src="imagenes/slider-3/img-pre-01.jpg" alt="Actividades del recorrido">
+                                    <a href="imagenes/slider-3_recorridos/img-01.jpg" data-fancybox="gallery3">
+                                        <img src="imagenes/slider-3_recorridos/img-pre-01.jpg" alt="Actividades del recorrido">
                                         <h3 class="w-100">
                                             @if(session('locale')=='en')
                                                 School trip to the Ethnobotanical Garden of Oaxaca
@@ -707,8 +707,8 @@ banner-recorridos
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="imagenes/slider-3/img-02.jpg" data-fancybox="gallery3">
-                                        <img src="imagenes/slider-3/img-pre-02.jpg" alt="Guía y alumnos en el Jardín Etnobotánico">
+                                    <a href="imagenes/slider-3_recorridos/img-02.jpg" data-fancybox="gallery3">
+                                        <img src="imagenes/slider-3_recorridos/img-pre-02.jpg" alt="Guía y alumnos en el Jardín Etnobotánico">
                                         <h3 class="w-100">
                                             @if(session('locale')=='en')
                                                 School trip to the Ethnobotanical Garden of Oaxaca
@@ -722,8 +722,8 @@ banner-recorridos
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="imagenes/slider-3/img-03.jpg" data-fancybox="gallery3">
-                                        <img src="imagenes/slider-3/img-pre-03.jpg" alt="Grupo recorriendo el Jardín">
+                                    <a href="imagenes/slider-3_recorridos/img-03.jpg" data-fancybox="gallery3">
+                                        <img src="imagenes/slider-3_recorridos/img-pre-03.jpg" alt="Grupo recorriendo el Jardín">
                                         <h3 class="w-100">
                                             @if(session('locale')=='en')
                                                 School trip to the Ethnobotanical Garden of Oaxaca
@@ -737,8 +737,8 @@ banner-recorridos
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="imagenes/slider-3/img-04.jpg" data-fancybox="gallery3">
-                                        <img src="imagenes/slider-3/img-pre-04.jpg" alt="Grupo recorriendo el Jardín">
+                                    <a href="imagenes/slider-3_recorridos/img-04.jpg" data-fancybox="gallery3">
+                                        <img src="imagenes/slider-3_recorridos/img-pre-04.jpg" alt="Grupo recorriendo el Jardín">
                                         <h3 class="w-100">
                                             @if(session('locale')=='en')
                                                 School tour of San Andrés Chicahuaxtla, November 2024 | Photo: Enrique Scheinvar

@@ -15,7 +15,8 @@ class CatRolesSeeder extends Seeder
     {
         $events=[
             ['crol_id'=>'1', 'crol_mod'=>'base', 'crol_rol'=>'admin', 'crol_describe'=>'Administrador General del sistema'],
-            ['crol_id'=>'2', 'crol_mod'=>'base', 'crol_rol'=>'usr', 'crol_describe'=>'Usuario general del sistema'],
+            ['crol_id'=>'2', 'crol_mod'=>'base', 'crol_rol'=>'web',   'crol_describe'=>'Web master'],
+            ['crol_id'=>'3', 'crol_mod'=>'base', 'crol_rol'=>'usr',  'crol_describe'=>'Usuario general del sistema'],
         ];
         
         foreach ($events as $event){

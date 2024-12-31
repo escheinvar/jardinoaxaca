@@ -44,7 +44,7 @@ banner-mapa
 
             <div class="row justify-content-center pb-5">
                 <div class="col-sm-12 col-md-10 col-lg-6 col-xl-6 col-xxl-5 mapa-imagen">
-                    <a href="imagenes/mapa-01.jpg" data-fancybox="gallery3">
+                    <a href="/imagenes/mapa/mapa-pre-01.png" data-fancybox="gallery3">
                         <img src={{$mapa}} alt="Mapa del Jardín Etnobotánico" class="w-100">
                     </a>
                 </div>
@@ -333,8 +333,8 @@ banner-mapa
                     </div>
 
                     <div class="image">
-                        <a href="imagenes/slider-4/img-01.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-01.jpg"
+                        <a href="imagenes/slider-4_mapa/img-01.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-01.jpg"
                                 alt="Fuente la Sangre de Mitla en el Patio huaje">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')
@@ -380,8 +380,8 @@ banner-mapa
                         </p>
                     </div>
                     <div class="image">
-                        <a href="imagenes/slider-4/img-02.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-02.jpg" alt="Invernadero de cristal">
+                        <a href="imagenes/slider-4_mapa/img-02.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-02.jpg" alt="Invernadero de cristal">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')
                                 @elseif(session('locale')=='pt')
@@ -424,8 +424,8 @@ banner-mapa
                         
                     </div>
                     <div class="image">
-                        <a href="imagenes/slider-4/img-03.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-03.jpg"
+                        <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-03.jpg"
                                 alt="Escultura Espejo de Cuanana de Luis Zárate">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')
@@ -470,8 +470,8 @@ banner-mapa
                         
                     </div>
                     <div class="image">
-                        <a href="imagenes/slider-4/img-03.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-04.jpg"
+                        <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-04.jpg"
                                 alt="Escultura Espejo de Cuanana de Luis Zárate">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')
@@ -525,8 +525,8 @@ banner-mapa
                         
                     </div>
                     <div class="image">
-                        <a href="imagenes/slider-4/img-03.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-04.jpg"
+                        <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-04.jpg"
                                 alt="Escultura Espejo de Cuanana de Luis Zárate">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')
@@ -592,8 +592,8 @@ banner-mapa
                         
                     </div>
                     <div class="image">
-                        <a href="imagenes/slider-4/img-03.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-04.jpg"
+                        <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-04.jpg"
                                 alt="Escultura Espejo de Cuanana de Luis Zárate">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')
@@ -656,8 +656,8 @@ banner-mapa
                         
                     </div>
                     <div class="image">
-                        <a href="imagenes/slider-4/img-03.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-04.jpg"
+                        <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-04.jpg"
                                 alt="Escultura Espejo de Cuanana de Luis Zárate">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')
@@ -732,8 +732,8 @@ banner-mapa
 
                     </div>
                     <div class="image">
-                        <a href="imagenes/slider-4/img-03.jpg" data-fancybox="gallery4">
-                            <img src="imagenes/slider-4/img-pre-04.jpg"
+                        <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
+                            <img src="imagenes/slider-4_mapa/img-pre-04.jpg"
                                 alt="Escultura Espejo de Cuanana de Luis Zárate">
                             <h4 class="w-100">
                                 @if(session('locale')=='en')

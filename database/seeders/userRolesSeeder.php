@@ -13,12 +13,20 @@ class userRolesSeeder extends Seeder
      */
     public function run(): void
     {
-        UserRolesModel::create([
-            'rol_id'=>'1',
-            'rol_act'=>'1',
-            'rol_usrid'=>'1',
-            'rol_crolid'=>'1',
-            'rol_describe'=>'base:admin',
-        ]);
+        UserRolesModel::create(
+            [
+                'rol_id'=>'1',
+                'rol_act'=>'1',
+                'rol_usrid'=>'1',
+                'rol_crolid'=>'1',
+                'rol_describe'=>'base:admin',
+            ],[
+                'rol_id'=>'2',
+                'rol_act'=>'1',
+                'rol_usrid'=>'1',
+                'rol_crolid'=>'2',
+                'rol_describe'=>'base:web',
+            ]
+        );
     }
 }

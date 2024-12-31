@@ -1,24 +1,27 @@
 <?php
 
-
+use App\Livewire\Web\MapaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\login\postController;
-use App\Http\Controllers\login\loginController;
-use App\Http\Controllers\login\logoutController;
-use App\Livewire\Admin\Nuevousuario01Controller;
-use App\Livewire\Admin\NuevoUsuarioController;
-use App\Livewire\HistoriaController;
-use App\Livewire\Login\RecuperaPasswd01Controller;
-use App\Livewire\Login\RecuperaPasswdController;
-use App\Livewire\Sistema\FichaClavoComponent;
-use App\Livewire\Sistema\FichaEspecieComponent;
-use App\Livewire\Sistema\FichaParadaCompenent;
+use App\Livewire\Web\InicioController;
 use App\Livewire\Sistema\HomeComponent;
 use App\Livewire\Sistema\MapaComponent;
 use App\Livewire\Web\EventosController;
-use App\Livewire\Web\InicioController;
-use App\Livewire\Web\MapaController;
+use App\Livewire\Web\HistoriaController;
+use App\Livewire\Web\ServiciosController;
 use App\Livewire\Web\RecorridosController;
+use App\Livewire\Web\ColeccionesController;
+use App\Livewire\Sistema\FichaClavoComponent;
+use App\Http\Controllers\login\postController;
+use App\Livewire\Admin\NuevoUsuarioController;
+use App\Livewire\Sistema\FichaParadaCompenent;
+use App\Http\Controllers\login\loginController;
+use App\Livewire\Sistema\FichaEspecieComponent;
+use App\Http\Controllers\login\logoutController;
+use App\Livewire\Admin\Nuevousuario01Controller;
+use App\Livewire\Login\RecuperaPasswdController;
+use App\Livewire\Login\RecuperaPasswd01Controller;
+use App\Livewire\Web\ColaboradoresController;
+use App\Livewire\Web\DirectiorioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,31 +34,15 @@ use App\Livewire\Web\RecorridosController;
 ddleware group. Make something great!
 |
 */
-
-
 /* ------------------------------------ PÁGINA WEB PÚBLICA ------------------------ */
 Route::get('/', InicioController::class)->name('inicio');
 Route::get('/recorridos', RecorridosController::class)->name('recorridos');
 Route::get('/mapa', MapaController::class)->name('mapa');
 Route::get('/historia', HistoriaController::class)->name('historia');
-
-
-
-Route::get('/servicios', function () {
-    return view('web.Servicios');
-});
-Route::get('/directorio', function () {
-    return view('web.Directorio');
-});
-Route::get('/colaboradores', function () {
-    return view('web.Colaboradores');
-});
-Route::get('/educacion', function () {
-    return view('web.Educacion');
-});
-// Route::get('/actividades2', function () {
-//     return view('web.ActividadesBAC');
-// });
+Route::get('/servicios', ServiciosController::class)->name('servicios');
+Route::get('/colecciones', ColeccionesController::class)->name('colecciones');
+Route::get('/directorio', DirectiorioController::class)->name('directorio');
+Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradores');
 Route::get('/actividades',EventosController::class)->name('actividades');
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */

@@ -12,21 +12,21 @@ class MapaController extends Component
 
     public function mount(){
       $this->idioma= session('locale');
-      $this->mapa="imagenes/mapa-pre-01.png";
+      $this->mapa="/imagenes/mapa/mapa-pre-01.png";
     }
 
     public function cambiaFoto($section){
         if($section == 'dentro'){
-            $this->mapa = "imagenes/mapa-pre-02.png";
+            $this->mapa = "/imagenes/mapa/mapa-pre-02.png";
 
         }elseif($section == 'sobresalientes'){
-            $this->mapa = "imagenes/mapa-pre-04.png";
+            $this->mapa = "/imagenes/mapa/mapa-pre-04.png";
 
         }elseif($section == 'secciones'){
-            $this->mapa = "imagenes/mapa-pre-03.png";
+            $this->mapa = "/imagenes/mapa/mapa-pre-03.png";
 
         }else{
-            $this->mapa = "imagenes/mapa-pre-01.png";
+            $this->mapa = "/imagenes/mapa/mapa-pre-01.png";
         }
         
     }

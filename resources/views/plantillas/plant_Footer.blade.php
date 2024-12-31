@@ -97,5 +97,8 @@
             </div>
 
         </div>
+        <div>
+            <img src="pleca.png" style="width:100%;">
+        </div>
     </div>
 </footer>

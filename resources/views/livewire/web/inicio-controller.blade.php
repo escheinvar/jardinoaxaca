@@ -15,6 +15,7 @@
         </audio>
     @else
         Jardín <br>Etnobiológico<br> de Oaxaca 
+        <i class="bi bi-volume-up-fill" style="cursor:pointer;" onclick="Escucha('/audio/es/01inicio_00.ogg')"></i>
     @endif
 @endsection
 
@@ -37,12 +38,10 @@
                             "Um espaço criado para mostrar ao vivo as relações entre a história natural de Oaxaca e sua diversidade cultural"
                         @elseif(session('locale')=='es_mix_bj')
                             "kùva’à ñà ñà kuvi kundaa ini yó nìsaa xíniñú’ú na ñuu yó Ñuu Ndǔvá ndi’í mií nùú itún ìkù xí’ín ndi’i ka ñà’a kána tiañu ikú ñuu yó"
-                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','1')"></i>
-                            <audio controls id="sale_audio1" style="display:none;">                                
-                                <source src="audio/es_mix_bj/01inicio_01.ogg" type="audio/ogg" >
-                            </audio>
+                            <i onclick="Escucha('/audio/es_mx_bj/01inicio_01.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
                         @else
                             “Un espacio creado para mostrar en vivo las relaciones entre la historia natural de Oaxaca y su diversidad cultural”
+                            <i onclick="Escucha('/audio/es/01inicio_01.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
                         @endif    
                     </h2>
                     <h4 class="autor-cita">Dr. Alejandro de Ávila Blomberg</h4>
@@ -53,12 +52,10 @@
                             Diretor Fundador do Jardim Etnobiológico
                         @elseif(session('locale')=='es_mix_bj')
                             Rà nìkà’àn xà’á Jardîn etnoviológìkò kùva’à ñà ta kúú ra rà ínuu kí’ín kuénda xí’ín ña.  
-                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','2')"></i>
-                            <audio controls id="sale_audio2" style="display:none;">                                
-                                <source src="audio/es_mix_bj/01inicio_02.ogg" type="audio/ogg" >
-                            </audio>
+                            <i onclick="Escucha('/audio/es_mx_bj/01inicio_03.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
                         @else
                             Director Fundador del Jardín Etnobiológico
+                            <i onclick="Escucha('/audio/es/01inicio_03.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
                         @endif
                     </p>
                 </div>
@@ -74,13 +71,11 @@
                             Ndàtǔ’ún tá’án na xà’á ña kuìyà 1993 ñà koo ña iin sociedad civil, ta vityin ra kuà’á níi nùú itún, 
                             ìkù, yaví, ita, kuà’á ka ñà’a iyo nùú ña. Ndi’i ña yó’o ra, na nda’á Ñuu Ndǔvá nìsòkó ña, saá vityin, 
                             yó’o kí’ín na jardín kuénda xí’ín ña, ndiáa nà xà kúú ra lo’o tyíín nùú ikú kuîí íyo Ñuu Ndǔvá. 
-                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','3')"></i>
-                            <audio controls  id="sale_audio3" style="display:none;">                                
-                                <source src="audio/es_mix_bj/01inicio_03.ogg" type="audio/ogg" >
-                            </audio>
+                            <i onclick="Escucha('/audio/es_mx_bj/01inicio_02.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
                         @else
                             Propuesto en 1993 como iniciativa de la sociedad civil, cuenta con cientos de especies donadas por las comunidades oaxaqueñas
                             y con las que resguardamos una pequeña parte del inmenso patrimonio biocultural del estado de Oaxaca.
+                            <i onclick="Escucha('/audio/es/01inicio_02.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
                         @endif
                     </p>
                 </div>
@@ -100,10 +95,6 @@
                             Descobrir
                         @elseif(session('locale')=='es_mix_bj')
                             Kùndàà ka ini xà’á ña
-                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4')"></i>
-                            <audio controls  id="sale_audio4" style="display:none;">                                
-                                <source src="audio/es_mix_bj/01inicio_04.ogg" type="audio/ogg" >
-                            </audio>
                         @else
                             Entérate
                         @endif
@@ -249,8 +240,8 @@
                     </h2>
                     <div class="owl-carousel owl-theme">
                         <div>
-                            <a href="imagenes/slider-1/img-01.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1/img-pre-01.jpg" alt="Árboles del Jardín">
+                            <a href="imagenes/slider-1_inicio/img-01.jpg" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-01.jpg" alt="Árboles del Jardín">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
@@ -266,8 +257,8 @@
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1/img-02.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1/img-pre-05.webp" alt="Camino de piedra">
+                            <a href="imagenes/slider-1_inicio/img-02.jpg" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-05.webp" alt="Camino de piedra">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
@@ -282,8 +273,8 @@
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1/img-03.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1/img-pre-06.webp" alt="Espejo de agua">
+                            <a href="imagenes/slider-1_inicio/img-03.jpg" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-06.webp" alt="Espejo de agua">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
@@ -298,8 +289,8 @@
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1/img-04.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1/img-pre-07.webp" alt="Cactáceas">
+                            <a href="imagenes/slider-1_inicio/img-04.jpg" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-07.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
@@ -314,8 +305,8 @@
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1/img-04.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1/img-pre-08.webp" alt="Cactáceas">
+                            <a href="imagenes/slider-1_inicio/img-04.jpg" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-08.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
@@ -330,8 +321,8 @@
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1/img-04.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1/img-pre-09.webp" alt="Cactáceas">
+                            <a href="imagenes/slider-1_inicio/img-04.jpg" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-09.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
@@ -346,8 +337,8 @@
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1/img-04.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1/img-pre-10.webp" alt="Cactáceas">
+                            <a href="imagenes/slider-1_inicio/img-04.jpg" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-10.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes

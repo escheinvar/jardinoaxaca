@@ -6,12 +6,16 @@
         Este es tu home de usuario {{auth()->user()->email}}
 
         <h4>Mis roles</h4>
+        @foreach (session('rol') as $i)
+            {{$i}}            
+        @endforeach
+        
         @if(in_array('1', session('rol')))
             base:admin,
         @endif
         
         @if(in_array('2', session('rol')))
-            base:usuario
+            base:web master
         @endif
     
     
