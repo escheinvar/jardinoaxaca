@@ -17,6 +17,17 @@
         @if(in_array('2', session('rol')))
             base:web master
         @endif
-    
-    
+    <h3>Menú sistema gral</h3>
+    <ul>
+        <li>Catálogo Instituciones</li>
+        <li>Catálogo de roles</li>
+    </ul>
+
+
+    <h3>Menú plantas</h3>
+    <ul>
+        <li> Catálogo de Jardines/Campus/Camellones</li>
+        <li> Catálogo de lenguas</li>
+        <li> Catálogo de etiquetas de foto</li>
+    </ul>
 </div>
