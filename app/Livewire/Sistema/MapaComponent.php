@@ -35,7 +35,7 @@ class MapaComponent extends Component
         $this->TamanioDelNuevo='';
     }
 
-    
+
     public function ActivaNuevaPlanta(){
         $this->lat='';
         $this->lng='';
@@ -44,7 +44,7 @@ class MapaComponent extends Component
         $this->dispatch('CapturaCoordenadas');
     }
 
-    
+
     public function ActivaMuevePlanta(){
         $this->lat='';
         $this->lng='';
@@ -58,10 +58,10 @@ class MapaComponent extends Component
         $this->MvePlanta='0';
         return redirect('/elmapa');
     }
-    
+
 
     public function BuscaEspecies(){
-        
+
         $cuentaPalabras=str_word_count($this->Genero);
         if($cuentaPalabras =='1'){
             $this->especies=CatKewModel::where('ckew_genus','ilike','%'.$this->Genero.'%')->orderBy('ckew_scientfiicname')->get();
@@ -92,14 +92,14 @@ class MapaComponent extends Component
     }
 
     public function AgregarClavo(){
-        //  
+        //
     }
 
     ///// Borra la foto especificada en el sistema
     public function BorrarFoto($foto){
         //$foto= 'FotosKobo/$foto' = nombre arch
     }
-    
+
     ///// Guarda la edición de datos del ejemplar
     public function GuardarCambios(){
         EspeciesModel::where('clave',$this->IdGanon)->update([
@@ -115,7 +115,7 @@ class MapaComponent extends Component
         ]);
         return redirect('/elmapa',['IdGanon'=>$this->IdGanon]);
     }
-  
+
     public function RegistrarMuerte(){
         $this->validate([
             'RipDate'=>'required',
@@ -139,8 +139,8 @@ class MapaComponent extends Component
         ]);
         return redirect('/elmapa');
     }
-    
-    
+
+
     public function VerModalNuevaPlanta(){
         $this->dispatch('MuestraModalPlantaNueva');
     }
@@ -183,10 +183,10 @@ class MapaComponent extends Component
             $this->foto3=$ganon->foto3;
             $this->foto4=$ganon->archivo1;
             $this->Zona=$ganon->zona;
-            if($ganon->hayclavo=='1'){ 
+            if($ganon->hayclavo=='1'){
                 $this->ClavoSiNo='1';
                 $this->Clavo=$ganon->clavofisic;
-            }else{ 
+            }else{
                 $this->ClavoSiNo='0';
                 $this->Clavo='';
             }
@@ -194,7 +194,7 @@ class MapaComponent extends Component
             $this->Observaciones=$ganon->observacio;
             $this->Forma=$ganon->forma;
             $this->Revisado=$ganon->revised;
-            
+
         }else{
             $ganon='';
         }
@@ -207,11 +207,11 @@ class MapaComponent extends Component
         return view('livewire.sistema.mapa-component',[
             'puntos'=>$puntos,
             'tipos'=>EspeciesModel::distinct('forma')->get('forma'),
-            'camellones'=>CatCamellonesModel::distinct('cam_zona')->get('cam_zona'), 
+            'camellones'=>CatCamellonesModel::distinct('cam_zona')->get('cam_zona'),
             'labels'=>CatEtiquetasImgModel::where('cimg_gral','planta')->get(),
         ]);
     }
-    
+
 }
 
 

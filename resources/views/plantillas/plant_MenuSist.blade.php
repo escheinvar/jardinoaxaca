@@ -26,31 +26,19 @@
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == '/') active @endif" href="/">Web</a>
                     </li>
-                    {{-- <!--dropdown 1-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Visita el Jardín
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item @if(request()->path() == 'recorridos') active @endif" href="/recorridos">Recorridos</a></li>
-                            <li><a class="dropdown-item @if(request()->path() == 'mapa') active @endif" href="/mapa">Mapa</a></li>
-                        </ul>
-                    </li>
-                    --}}
-            
+
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'home') active @endif" href="/home">
                             Home
                         </a>
                     </li>
-            
+
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'elmapa') active @endif" href="/elmapa">
                             Mapa
                         </a>
                     </li>
-            
+
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'laespecie') active @endif" href="/laespecie">
                             Especie
@@ -68,7 +56,18 @@
                             Parada
                         </a>
                     </li>
-            
+                    <!--dropdown 1-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item @if(request()->path() == 'importaPlantas') active @endif" href="/importaPlantas">Carga masiva</a></li>
+                            {{-- <li><a class="dropdown-item @if(request()->path() == 'mapa') active @endif" href="/mapa">Mapa</a></li> --}}
+                        </ul>
+                    </li>
+
                     <!---->
                     <li class="nav-item">
                         @if(auth()->user())

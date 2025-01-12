@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
@@ -28,12 +28,14 @@ class DatabaseSeeder extends Seeder
             userSeeder::class,
             CatRolesSeeder::class,
             userRolesSeeder::class,
-            
+
             CatJardinesCampusSeeder::class,
             CatCamellonesSeeder::class,
-            
+
             CatLenguasSeeder::class,
             webEventosSeeder::class,
+            CatIconosSeeder::class,
+            ImportPlantasSeeder::class,
         ]);
     }
 }

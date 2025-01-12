@@ -15,7 +15,12 @@ class CatLenguasModel extends Model
 	#protected $keyType = 'string';
 
     protected $fillable = [
+        'clen_nombre_esp',
+        'clen_alias',
         'clen_nombre',
+        'clen_codigo',
         'clen_region',
+        'clen_observa',
+        'clen_audio',
     ];
 }

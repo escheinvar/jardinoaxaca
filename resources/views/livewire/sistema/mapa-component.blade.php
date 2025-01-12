@@ -1,5 +1,5 @@
 <div>
-@section('title') 
+@section('title')
 Mapa
 @endsection
 
@@ -13,7 +13,7 @@ banner-actividades
 @endsection
 
 
-@section('banner-title') 
+@section('banner-title')
 Mapa
 @endsection
 
@@ -33,11 +33,11 @@ Mapa
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
 
-    
+
     <!-- Leaflet. Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    
+
     <div class="row">
         <div onclick="VerNoVerIcon('ver','mapa','bi bi-eye-slash','bi bi-eye')" style="cursor: pointer;">
             <i class="bi bi-eye-slash" id="saleicon_vermapa"></i>Ver mapa
@@ -69,13 +69,13 @@ Mapa
                         <botton data-bs-toggle="modal" data-bs-target="#ModalDeMuerte" class="btn btn-danger">
                             <div style="font-size:60%;">Planta Muerta</div>
                             <img src="{{asset('iconos/IconoPlantaMuerta.png')}}" style="height: 30px;">
-                        </botton> 
+                        </botton>
                         <!-- ----------- MOVER PLANTA  -------------->
                         <botton wire:click="ActivaMuevePlanta()" class="btn btn-warning">
                             <div style="font-size:60%;">Mover planta</div>
                             <img src="{{asset('iconos/IconoMoverPlanta.png')}}" style="height: 30px;">
-                        </botton> 
-                        
+                        </botton>
+
                         <!-- ----------- PLANTA ENFERMA-------------->
                         <botton data-bs-toggle="modal"  class="btn btn-primary" disabled>
                             <div style="font-size:60%;">Planta Enferma</div>
@@ -89,7 +89,7 @@ Mapa
                         </botton>
                     @endif
                 </div>
-                
+
                 <!-- -------------------- MOVER LA PLANTA------------------->
                 @if($MvePlanta== '1' or $NvaPlanta=='1')
                     <div id="sale_moverlugar" style="padding:10px; margin:20px; border-radius:5px; background-color:rgb(212, 224, 235);">
@@ -100,22 +100,22 @@ Mapa
                                 <input wire:model.live="lat" type="text" class="form-control @error('lat') error @enderror" id="Milat" disabled>
                                 @error('lat') <error>{{$mesagge}} @enderror
                             </div>
-    
+
                             <div class="form-group col-4">
                                 <label for="Milng">Longitud:</label>
                                 <input wire:model.live="lng" type="text" class="form-control @error('lng') error @enderror" id="Milng" disabled>
                                 @error('lng') <error>{{$mesagge}} @enderror
                             </div>
-                            
+
                             <div class="form group col-2">
                                 @if($lat > 0 AND $lng < 0)
                                     @if($MvePlanta=='1')
                                         <botton wire:click="CambiarUbicacion()" wire:confirm="Estás por cambiar la ubicación de un ejemplar del jardín.\n ¿Seguro quieres continuar?" class="btn btn-warning">
                                             <i class="bi bi-geo-alt"></i>
-                                            Mover 
+                                            Mover
                                         </botton>
                                     @endif
-                                    @if($NvaPlanta=='1') 
+                                    @if($NvaPlanta=='1')
                                         <botton wire:click="VerModalNuevaPlanta()" class="btn btn-warning">
                                             <i class="bi bi-geo-alt"></i>
                                             Agregar
@@ -134,7 +134,7 @@ Mapa
                     </div>
                 @endif
 
-            
+
 
             @if($IdGanon != '' )
                 <h3>ID: {{$IdGanon}}</h3>
@@ -163,18 +163,18 @@ Mapa
                                     <option value="">Indica la especie de {{$Genero}}</option>
                                 @endif
 
-                                @foreach ($especies as $i)        
+                                @foreach ($especies as $i)
                                     <option value="{{$i->ckew_taxonid}}">{{$i->ckew_scientfiicname}} [{{$i->ckew_family}}]</option>
                                 @endforeach
                             </select>
-                            
+
                             @if($Especie != '')
                                 <button type="button" wire:click="AsignarTaxonId()" class="btn btn-primary btn-sm">Definir</button>
                             @endif
                         </div>
                     </div>
 
-                    
+
                 @endif
 
                 <div class="row">
@@ -182,7 +182,7 @@ Mapa
                     <div class="form-group">
                         <label for="MiNomCient">Nombre científico [Familia] @if($taxonId != '') TaxonId({{$taxonId}}) @endif :</label>
                         <input wire:model="NomCient" type="text" class="form-control @error('NomCient') error @enderror" id="MiNomCient" @if($taxonId != '') disabled @endif style="width:85%;display:inline-block;">
-                        
+
 
                         @error('NomCient') <error>{{$mesagge}} @enderror
 
@@ -190,14 +190,14 @@ Mapa
                             <i class="bi bi-trash icono-simple" wire:click="BorrarTaxonID()" wire:confirm="Estás por eliminar el nombre científico de este ejemplar.\n ¿Seguro que quieres continuar?" style=""></i>
                             <div style="font-size: 70%;">
                                 <a href="{{$kew}}" target="new" class="nolink"><i class="bi bi-arrow-up-right-square"> Kew. Roy. Bot. Gard.</i></a> &nbsp;
-                                <i class="bi bi-arrow-up-right-square"> Jardin Etnobot. ...</i> &nbsp; 
+                                <i class="bi bi-arrow-up-right-square"> Jardin Etnobot. ...</i> &nbsp;
                                 <i class="bi bi-arrow-up-right-square"> Jardin Bot. UNAM</i> &nbsp;
                             </div>
                         @endif
-                        
+
                     </div>
                 </div>
-                
+
                 <!-- ---------------- Separador ------------------>
                 {{-- <  div style="margin:30px; height:2px; border-bottom:5px double gray;"></div> --}}
 
@@ -344,7 +344,7 @@ Mapa
             @endif
         </div>
     </div>
-    
+
     <!-- -------------------------------------------- MODAL DE MUERTE ---------------------------------------------->
     <!-- -------------------------------------------- MODAL DE MUERTE ---------------------------------------------->
     <!-- -------------------------------------------- MODAL DE MUERTE ---------------------------------------------->
@@ -400,7 +400,7 @@ Mapa
             </div>
         </div>
     </div>
-      
+
 
 
     <!-- -------------------------------------------- MODAL DE PLANTA NUEVA ---------------------------------------------->
@@ -483,7 +483,7 @@ Mapa
                             </div>
                         @endif
 
-                        
+
                         @if($OrigenDelNuevo != '')
                             <div class="form-group">
                                 <label>Estado del ejemplar: <red>*</red></label>
@@ -509,16 +509,16 @@ Mapa
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-danger" wire:click="IngresarNuevaPlanta()">
-                        Agregar   
+                        Agregar
                         <img src="{{asset('iconos/IconoPlantaNueva.png')}}" style="height: 30px;">
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    
-    
-      
+
+
+
 
     <!-- -------------------------------------------- JAVA SCRIPT ---------------------------------------------->
     <!-- -------------------------------------------- JAVA SCRIPT ---------------------------------------------->
@@ -556,49 +556,49 @@ Mapa
         orquideaBl = new LeafIcon({iconUrl: '/iconos/OrquideaBlanca.png', iconSize:[35,35]});
 
         ///// Carga puntos al mapa
-        @foreach ($puntos as $i) 
+        @foreach ($puntos as $i)
             @if($i->revised == '2')
                 ///// Carga íconos (marca) según tipo en cada punto
-                @if ($i->forma =='Arbol')  
+                @if ($i->forma =='Arbol')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbolBl}).addTo(mapa);
-                @elseif ($i->forma =='Maguey')  
+                @elseif ($i->forma =='Maguey')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:magueyBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea columnar')  
+                @elseif ($i->forma =='Cactacea columnar')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:columnarBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea candelabriforme')  
+                @elseif ($i->forma =='Cactacea candelabriforme')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:columnarBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea globosa')  
+                @elseif ($i->forma =='Cactacea globosa')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:globosaBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea nopal')  
+                @elseif ($i->forma =='Cactacea nopal')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
                 @elseif ($i->forma =='Cactacea rastrera')  /// cambiar icono
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
                 @elseif ($i->forma =='Cactacea epifita')  /// cambiar icono
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
-                @elseif ($i->forma =='Helecho')  
+                @elseif ($i->forma =='Helecho')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:helechoBl}).addTo(mapa);
-                @elseif ($i->forma =='Arbusto')  
+                @elseif ($i->forma =='Arbusto')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbustoBl}).addTo(mapa);
-                @elseif ($i->forma =='Herbacea')  
+                @elseif ($i->forma =='Herbacea')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:herbaceaBl}).addTo(mapa);
-                @elseif ($i->forma =='Arbusto vara')  
+                @elseif ($i->forma =='Arbusto vara')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbustoVaraBl}).addTo(mapa);
-                @elseif ($i->forma =='Cicada')  
+                @elseif ($i->forma =='Cicada')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:cicadaBl}).addTo(mapa);
-                @elseif ($i->forma =='Palma')  
+                @elseif ($i->forma =='Palma')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:palmaBl}).addTo(mapa);
-                @elseif ($i->forma =='Orquidea epifita')  
+                @elseif ($i->forma =='Orquidea epifita')
                     var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:orquideaBl}).addTo(mapa);
                 @endif
 
                 ///// Pega el popup a la marca al hacer click al ícono
                 marca.bindPopup("ID: {{$i->clave}}")
-                
+
                 ///// envía clave como variable al hacer click en el ícono
                 marca.on('click', function(event){
                     var MiId = "{{$i->clave}}";
                     @this.set('IdGanon',MiId);
-                    
+
                 });
             @elseif($i->revised=='1')
                 ///// Dibuja círculo en cada marca
@@ -608,7 +608,7 @@ Mapa
                     fillOpacity: 0.5,
                     radius: 0.2,
                 }).addTo(mapa);
-                
+
                 circle.bindPopup("ID: {{$i->clave}}");
                 circle.on('click',function(event){
                     @this.set('IdGanon',"{{$i->clave}}")
@@ -621,14 +621,14 @@ Mapa
                     fillOpacity: 0.5,
                     radius: 0.2,
                 }).addTo(mapa);
-                
+
                 circle.bindPopup("ID: {{$i->clave}}");
                 circle.on('click',function(event){
                     @this.set('IdGanon',"{{$i->clave}}")
                 })
             @endif
         @endforeach
-    
+
         // ///// Configuración de SELECT2
         // $('.select2').select2({
         //     'placeholder':'Indica un valor',
@@ -647,18 +647,18 @@ Mapa
         });
         ///// Cierra modal de muerte
         $wire.on('CierraModal', () => {
-            $('#ModalDeMuerte').modal('hide');                
+            $('#ModalDeMuerte').modal('hide');
             alert('¡ El ejemplar ha muerto !\n ¡¡ Larga vida al ejemplar !!')
         });
 
         ///// Muestra modal de planta nueva
         $wire.on('MuestraModalPlantaNueva', () => {
-            $('#ModalDeNuevaPlanta').modal('show');                
+            $('#ModalDeNuevaPlanta').modal('show');
         });
 
         ///// Cierra modal de planta nueva
         $wire.on('CierraModalPlantaNueva', () => {
-            $('#ModalDeNuevaPlanta').modal('hide');                
+            $('#ModalDeNuevaPlanta').modal('hide');
         });
 
         ///// Inicia la captura de coordenadas del mapa (evento de click en mapa)
@@ -675,8 +675,8 @@ Mapa
         });
     </script>
     @endscript
-    
-    
+
+
 </div>
 
 

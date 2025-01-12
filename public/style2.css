@@ -21,12 +21,16 @@ a:link:visited:hover:active.nolink{
 
 error, red {
     color:#CD7B34;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     font-family: 'Roboto Condensed', sans-serif;
 }
 .error {
     border:1px solid #CD7B34;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+.inactivar{
+    background-color:red;
 }
 
 colores{
@@ -293,5 +297,5 @@ colores{
     height: 25px;
     font-size: 15px;
     color:#212529;
-    
+
 } */

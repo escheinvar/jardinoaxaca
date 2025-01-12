@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    
+
 <head>
     @include('plantillas.plant_Head')
 </head>
@@ -12,12 +12,14 @@
         <!--NAVBAR-->
         @include('plantillas.plant_MenuSist')
     </header>
-    
+
     <!-- ---------------------- Barra de sistema -------------------------->
     <div style="background-color:#CDC6B9;  padding-left:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
         <b>Sistema del JEB Oax</b> |
+        @include('plantillas.plant_tamanios') |
+        @yield('cintillo')
     </div>
-    
+
     <!-- ---------------------- slot de livewire  -------------------------->
     @if(isset($slot))
         <div class="p-5" style="background-color:#efebe8;">
@@ -34,8 +36,8 @@
     @include('plantillas.SistemaScripts')
     @yield('scripts')
 
-    
-    
+
+
 </body>
 
 </html>

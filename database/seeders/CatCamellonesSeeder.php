@@ -93,107 +93,107 @@ class CatCamellonesSeeder extends Seeder
             "name": "camellones",
             "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
             "features": [';
-                
+
         $fin=']}';
 
 
         $events=[
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A1',  'cam_camellon'=>'A1a',   'cam_zonaname'=>'Entrada',  'cam_color'=>'gray', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a1a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A1',  'cam_camellon'=>'A1b',   'cam_zonaname'=>'Entrada',  'cam_color'=>'gray', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a1b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A1',  'cam_camellon'=>'A1c',   'cam_zonaname'=>'Entrada',  'cam_color'=>'gray', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a1c.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A1',  'cam_camellon'=>'A1a',   'cam_zonaname'=>'Entrada',  'cam_color'=>'gray', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a1a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A1',  'cam_camellon'=>'A1b',   'cam_zonaname'=>'Entrada',  'cam_color'=>'gray', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a1b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A1',  'cam_camellon'=>'A1c',   'cam_zonaname'=>'Entrada',  'cam_color'=>'gray', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a1c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A2',  'cam_camellon'=>'A2a',   'cam_zonaname'=>'Escaleras',  'cam_color'=>'red', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a2a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A2',  'cam_camellon'=>'A2b',   'cam_zonaname'=>'Escaleras',  'cam_color'=>'red', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a2b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A2',  'cam_camellon'=>'A2c',   'cam_zonaname'=>'Escaleras',  'cam_color'=>'red', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a2c.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A2',  'cam_camellon'=>'A2a',   'cam_zonaname'=>'Escaleras',  'cam_color'=>'red', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a2a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A2',  'cam_camellon'=>'A2b',   'cam_zonaname'=>'Escaleras',  'cam_color'=>'red', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a2b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A2',  'cam_camellon'=>'A2c',   'cam_zonaname'=>'Escaleras',  'cam_color'=>'red', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a2c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3a',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3b',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3c',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3c.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3d',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3d.$fin],
-            
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A4',  'cam_camellon'=>'A4a',   'cam_zonaname'=>'Empalizada',  'cam_color'=>'yellow', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a4a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A4',  'cam_camellon'=>'A4b',   'cam_zonaname'=>'Empalizada',  'cam_color'=>'yellow', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a4b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A4',  'cam_camellon'=>'A4c',   'cam_zonaname'=>'Empalizada',  'cam_color'=>'yellow', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a4c.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3a',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3b',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3c',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A3',  'cam_camellon'=>'A3d',   'cam_zonaname'=>'Escolar',  'cam_color'=>'blue', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$a3d.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5a',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5b',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5c',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5c.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5d',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5d.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5e',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5e.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A4',  'cam_camellon'=>'A4a',   'cam_zonaname'=>'Empalizada',  'cam_color'=>'yellow', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a4a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A4',  'cam_camellon'=>'A4b',   'cam_zonaname'=>'Empalizada',  'cam_color'=>'yellow', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a4b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A4',  'cam_camellon'=>'A4c',   'cam_zonaname'=>'Empalizada',  'cam_color'=>'yellow', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$a4c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B1',  'cam_camellon'=>'B1a',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b1a.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5a',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5b',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5c',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5d',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5d.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'A5',  'cam_camellon'=>'A5e',   'cam_zonaname'=>'Invernadero',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$a5e.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B2',  'cam_camellon'=>'B2a',   'cam_zonaname'=>'',  'cam_color'=>'brown', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b2a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B2',  'cam_camellon'=>'B2b',   'cam_zonaname'=>'',  'cam_color'=>'brown', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b2b.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B1',  'cam_camellon'=>'B1a',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b1a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3a',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3b',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3c',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3c.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3d',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3d.$fin],  
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3e',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3e.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3f',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3f.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3g',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3g.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3h',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3h.$fin],
-            
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B4',  'cam_camellon'=>'B4a',   'cam_zonaname'=>'',  'cam_color'=>'purple', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$b4a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B4',  'cam_camellon'=>'B4b',   'cam_zonaname'=>'',  'cam_color'=>'purple', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$b4b.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B2',  'cam_camellon'=>'B2a',   'cam_zonaname'=>'',  'cam_color'=>'brown', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b2a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B2',  'cam_camellon'=>'B2b',   'cam_zonaname'=>'',  'cam_color'=>'brown', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b2b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5a',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5b',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5c',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5c.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5d',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5d.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3a',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3b',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3c',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3d',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3d.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3e',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3e.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3f',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3f.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3g',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3g.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B3',  'cam_camellon'=>'B3h',   'cam_zonaname'=>'Cultivos',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$b3h.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'C3',  'cam_camellon'=>'C3a',   'cam_zonaname'=>'Calzada vieja',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$c3a.$fin],
-            
-            ['cam_ccamid'=>'1',       'cam_zona'=>'C4',  'cam_camellon'=>'C4a',   'cam_zonaname'=>'Calzada vieja',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$c4a.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B4',  'cam_camellon'=>'B4a',   'cam_zonaname'=>'',  'cam_color'=>'purple', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$b4a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B4',  'cam_camellon'=>'B4b',   'cam_zonaname'=>'',  'cam_color'=>'purple', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$b4b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'C5',  'cam_camellon'=>'C5a',   'cam_zonaname'=>'Calzada vieja',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$c5a.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5a',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5b',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5c',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'B5',  'cam_camellon'=>'B5d',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$b5d.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D3',  'cam_camellon'=>'D3a',   'cam_zonaname'=>'Plazoleta',  'cam_color'=>'orange', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$d3a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D3',  'cam_camellon'=>'D3b',   'cam_zonaname'=>'Plazoleta',  'cam_color'=>'orange', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$d3b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D3',  'cam_camellon'=>'D3c',   'cam_zonaname'=>'Plazoleta',  'cam_color'=>'orange', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$d3c.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'C3',  'cam_camellon'=>'C3a',   'cam_zonaname'=>'Calzada vieja',  'cam_color'=>'#e4007c', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$c3a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4a',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4b',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4c',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4c.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4d',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4d.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4e',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4e.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'C4',  'cam_camellon'=>'C4a',   'cam_zonaname'=>'Calzada vieja',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$c4a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D5',  'cam_camellon'=>'D5a',   'cam_zonaname'=>'',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d5a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D5',  'cam_camellon'=>'D5b',   'cam_zonaname'=>'',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d5b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'D5',  'cam_camellon'=>'D5c',   'cam_zonaname'=>'',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d5c.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'C5',  'cam_camellon'=>'C5a',   'cam_zonaname'=>'Calzada vieja',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$c5a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E3',  'cam_camellon'=>'E3a',   'cam_zonaname'=>'',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$e3a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E3',  'cam_camellon'=>'E3b',   'cam_zonaname'=>'',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$e3b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E3',  'cam_camellon'=>'E3c',   'cam_zonaname'=>'',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$e3c.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D3',  'cam_camellon'=>'D3a',   'cam_zonaname'=>'Plazoleta',  'cam_color'=>'orange', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$d3a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D3',  'cam_camellon'=>'D3b',   'cam_zonaname'=>'Plazoleta',  'cam_color'=>'orange', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$d3b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D3',  'cam_camellon'=>'D3c',   'cam_zonaname'=>'Plazoleta',  'cam_color'=>'orange', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$d3c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E4',  'cam_camellon'=>'E4a',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e4a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E4',  'cam_camellon'=>'E4b',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e4b.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4a',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4b',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4c',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4d',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4d.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D4',  'cam_camellon'=>'D4e',   'cam_zonaname'=>'Hornos cerámica',  'cam_color'=>'brown', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d4e.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5a',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5b',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5c',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5c.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5d',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5d.$fin],        
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D5',  'cam_camellon'=>'D5a',   'cam_zonaname'=>'',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d5a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D5',  'cam_camellon'=>'D5b',   'cam_zonaname'=>'',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d5b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'D5',  'cam_camellon'=>'D5c',   'cam_zonaname'=>'',  'cam_color'=>'cyan', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$d5c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'F4',  'cam_camellon'=>'F4a',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$f4a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'F4',  'cam_camellon'=>'F4b',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$f4b.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E3',  'cam_camellon'=>'E3a',   'cam_zonaname'=>'',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$e3a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E3',  'cam_camellon'=>'E3b',   'cam_zonaname'=>'',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$e3b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E3',  'cam_camellon'=>'E3c',   'cam_zonaname'=>'',  'cam_color'=>'red', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$e3c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'F5',  'cam_camellon'=>'F5a',   'cam_zonaname'=>'',  'cam_color'=>'purlple', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$f5a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'F5',  'cam_camellon'=>'F5b',   'cam_zonaname'=>'',  'cam_color'=>'purlple', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$f5b.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E4',  'cam_camellon'=>'E4a',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e4a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E4',  'cam_camellon'=>'E4b',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e4b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4a',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4b',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4b.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4c',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4c.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4d',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4d.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4e',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4e.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4f',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4f.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4g',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4g.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5a',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5b',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5c',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'E5',  'cam_camellon'=>'E5d',   'cam_zonaname'=>'',  'cam_color'=>'blue', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$e5d.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
 
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G5',  'cam_camellon'=>'G5a',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$g5a.$fin],
-            ['cam_ccamid'=>'1',       'cam_zona'=>'G5',  'cam_camellon'=>'G5b',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$g5b.$fin],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'F4',  'cam_camellon'=>'F4a',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$f4a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'F4',  'cam_camellon'=>'F4b',   'cam_zonaname'=>'',  'cam_color'=>'darkgreen', 'cam_camellonname'=>'',     'cam_mapa'=> $inicio.$f4b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+
+            ['cam_ccamid'=>'1',       'cam_zona'=>'F5',  'cam_camellon'=>'F5a',   'cam_zonaname'=>'',  'cam_color'=>'purlple', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$f5a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'F5',  'cam_camellon'=>'F5b',   'cam_zonaname'=>'',  'cam_color'=>'purlple', 'cam_camellonname'=>'',       'cam_mapa'=> $inicio.$f5b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4a',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4b',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4c',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4c.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4d',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4d.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4e',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4e.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4f',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4f.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G4',  'cam_camellon'=>'G4g',   'cam_zonaname'=>'',  'cam_color'=>'gray', 'cam_camellonname'=>'',      'cam_mapa'=> $inicio.$g4g.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G5',  'cam_camellon'=>'G5a',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$g5a.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
+            ['cam_ccamid'=>'1',       'cam_zona'=>'G5',  'cam_camellon'=>'G5b',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$g5b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
             ['cam_ccamid'=>'1',       'cam_zona'=>'G5',  'cam_camellon'=>'G5c',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$g5c.$fin]
         ];
-        
+
         foreach ($events as $event){
             CatCamellonesModel::create($event);
         }

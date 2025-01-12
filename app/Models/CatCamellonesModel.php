@@ -23,5 +23,11 @@ class CatCamellonesModel extends Model
         'cam_color',
         'cam_notas',
         'cam_mapa',
+        'cam_ctrox',
+        'cam_ctroy',
+        'cam_zoom',
     ];
+    // protected $casts = [
+    //     'cam_mapa' => 'json',
+    // ];
 }

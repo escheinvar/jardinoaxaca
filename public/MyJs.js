@@ -41,7 +41,7 @@ function VerNoVerPass(CampoPass,CampoIcono, iconoText, iconoPass){
         icono.className = iconoPass;
     }
 }
- 
+
 function VerMapaJardin(IDreceptor){
     //var mapa = L.map(IDreceptor).setView([17.0666, -96.72243], 19);
     var mapa = L.map(IDreceptor).setView([17.06588524915741, -96.72211246391984], 20);
@@ -138,7 +138,7 @@ function VerMapaJardin(IDreceptor){
                 d == 'B2' ? 'brown':
                 d == 'B3' ? 'cyan':
                 d == 'B4' ? 'purple':
-                d == 'B5' ? 'darkgreen':                        
+                d == 'B5' ? 'darkgreen':
                 d == 'C3' ? '#e4007c':
                 d == 'C4' ? 'red':
                 d == 'C5' ? 'blue':
@@ -147,12 +147,12 @@ function VerMapaJardin(IDreceptor){
                 d == 'D5' ? 'cyan':
                 d == 'E3' ? 'red':
                 d == 'E4' ? 'blue':
-                d == 'E5' ? 'yellow':                        
+                d == 'E5' ? 'yellow':
                 d == 'F4' ? 'darkgreen':
                 d == 'F5' ? 'purple':
                 d == 'G4' ? 'gray':
                 d == 'G5' ? 'orange':
-                'black';           
+                'black';
     }
     function estilo(feature){
         return{
@@ -165,7 +165,7 @@ function VerMapaJardin(IDreceptor){
             fillOpacity: 0.7
         }
     }
-    L.geoJSON(geojsonFeature,{style: estilo}).addTo(mapa); 
+    L.geoJSON(geojsonFeature,{style: estilo}).addTo(mapa);
 
     return mapa
 }
@@ -187,8 +187,8 @@ function Escucha(audio){
 //function NoEspacio(e, campo){
 //		key = e.keyCode ? e.keyCode : e.which;
 //		if (key == 32) {return false;}
-//}		
-//onkeypress="javascript: return ValidarNumero(event,this)" 
+//}
+//onkeypress="javascript: return ValidarNumero(event,this)"
 /*
 Livewire.on('alerta',function(titulo, texto){
     //Muestra ventanita de alerta con SweetAlert en Livewire
@@ -199,7 +199,7 @@ Livewire.on('alerta',function(titulo, texto){
         confirmButtonText: 'Continuar'
     })
 })
-*/   
+*/
 
 /*
 Livewire.on('alertaConfirma',function(titulo1, texto1){

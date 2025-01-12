@@ -63,7 +63,7 @@
             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-4">
                 <h5><a href="/recorridos" class="nolink">Visitas</a></h5>
                 <p>Recorridos guiados<br>de lunes a viernes 10:00, 11:00, 12:00 y 17:00 hrs.<br>Sábados 10:00, 11:00 y 12:00 hrs. <br>
-                    
+
                 </p>
                 <p>Reservaciones<br>No hay reservaciones ni venta de boletos con anticipación.</p>
             </div>
@@ -98,7 +98,7 @@
 
         </div>
         <div>
-            <img src="pleca.png" style="width:100%;">
+            <img src="/pleca.png" style="width:100%;">
         </div>
     </div>
 </footer>
