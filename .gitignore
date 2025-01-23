@@ -5,6 +5,7 @@
 /public/storage
 /public/FotosKobo/
 /public/cargaMasiva/
+/public/plantasFotos/
 /storage/*.key
 /vendor
 .env
