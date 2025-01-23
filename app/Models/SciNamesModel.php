@@ -23,7 +23,7 @@ class SciNamesModel extends Model
         'scn_gen',
         'scn_sp',
         'scn_ssp',
-        
+        'scn_nombre',
         'scn_usr',
         'scn_autoridad',
         'scn_autoridaddate',

@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\Layout;
 
 
+#[Layout('components.layouts.SistemaBase')]
 class HomeComponent extends Component
 {
     public function render(){

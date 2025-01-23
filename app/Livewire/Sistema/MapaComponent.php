@@ -200,9 +200,10 @@ class MapaComponent extends Component
         }
 
         $puntos=DB::table('especies_prueba')
-        ->where('rip','0')
-        ->OrderBy('zona')
-        ->get();
+            ->where('rip','0')
+            ->OrderBy('zona')
+            ->get();
+        #dd($puntos);
 
         return view('livewire.sistema.mapa-component',[
             'puntos'=>$puntos,

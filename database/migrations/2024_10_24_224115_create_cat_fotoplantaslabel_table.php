@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('cimg_id');
             $table->string('cimg_gral')->default('planta'); ##### Módulo sobre el cual se ejecutan las etiquetas
             $table->string('cimg_tipo');  ##### Tipo de etiquieta para foto (ejemplar, especie, uso, proceso)
-            $table->string('cimg_name');  ##### Nombre de la etiqueta
+            $table->string('cimg_name');  ##### Nombre de la etiqueta ()
             $table->string('cimg_descripcion')->nullable(); ##### descripción de la etiqueta
             $table->timestamps();
         });
@@ -24,8 +24,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
+    public function down(): void    {
         Schema::dropIfExists('cat_fotoplantaslabel');
     }
 };

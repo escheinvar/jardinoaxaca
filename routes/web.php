@@ -6,6 +6,9 @@ use App\Livewire\Admin\Nuevousuario01Controller;
 use App\Livewire\Admin\NuevoUsuarioController;
 use App\Livewire\Login\RecuperaPasswd01Controller;
 use App\Livewire\Login\RecuperaPasswdController;
+use App\Livewire\Plantas\CatalogoCamellonesYJardinesComponent;
+use App\Livewire\Plantas\CatalogoCamellonesYJardinesComponent2;
+use App\Livewire\Plantas\CatalogoJardinesYcampusComponent;
 use App\Livewire\Plantas\ImportaPlantasComponent2;
 use App\Livewire\Plantas\ImportaPlantasComponent;
 use App\Livewire\Sistema\ErrorComponent;
@@ -55,13 +58,9 @@ Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */
 Route::get('/ingreso',[loginController::class,'index'])->name('login');
 Route::post('/ingreso',[loginController::class,'store']);
-
 Route::post('/logout',[logoutController::class,'store'])->name('logout');
-
 Route::get('/recuperaAcceso', RecuperaPasswdController::class);
-
 Route::get('/recuperaContrasenia/{token}',RecuperaPasswd01Controller::class);
-
 Route::get('/erro{tipo}',ErrorComponent::class)->name('error');
 
 /* -------------------------- REGISTRO DE USUARIOS ----------------------------- */
@@ -73,12 +72,14 @@ Route::get('/nuevousr01/{token}',Nuevousuario01Controller::class);
 /* --------------------------------------------------------------------------- */
 Route::middleware(['auth.basic'])->group(function(){
     Route::get('/home',HomeComponent::class)->name('home');
+    /* -------------------------- SECCIÓN DE PLANTAS ----------------------------- */
+    /* --------------------------------------------------------------------------- */
+    Route::get('/importaPlantas',ImportaPlantasComponent::class)->name('importa');
+    Route::get('/importaPlantas_ver/{claveID}',ImportaPlantasComponent2::class)->name('importa2');
+    Route::get('/catalogo/camellones', CatalogoCamellonesYJardinesComponent::class)->name('catcamellones');
+    Route::get('/catalogo/camellon/{camID}', CatalogoCamellonesYJardinesComponent2::class)->name('catcamellones');
+    Route::get('/catalogo/campus', CatalogoJardinesYcampusComponent::class)->name('CatCampus');
 });
-/* -------------------------- SECCIÓN DE PLANTAS ----------------------------- */
-/* --------------------------------------------------------------------------- */
-Route::get('/importaPlantas',ImportaPlantasComponent::class)->name('importa');
-Route::get('/importaPlantas_ver/{claveID}',ImportaPlantasComponent2::class)->name('importa');
-
 
 
 

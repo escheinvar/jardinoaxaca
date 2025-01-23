@@ -15,6 +15,36 @@ class CatIconosSeeder extends Seeder
     {
         $events=[
             [
+                'icon_name'=>'puntoTr',
+                'icon_nombre'=>'Punto Transparente',
+                'icon_file'=>'PuntoTransparente.png',
+                'icon_coleccion'=>'plantas',
+                'icon_descripcion'=>'',
+            ],[
+                'icon_name'=>'puntoBl',
+                'icon_nombre'=>'Punto Blanco',
+                'icon_file'=>'PuntoBlanco.png',
+                'icon_coleccion'=>'plantas',
+                'icon_descripcion'=>'',
+            ],[
+                'icon_name'=>'puntoNe',
+                'icon_nombre'=>'Punto Negro',
+                'icon_file'=>'PuntoNegro.png',
+                'icon_coleccion'=>'plantas',
+                'icon_descripcion'=>'',
+            ],[
+                'icon_name'=>'puntoRo',
+                'icon_nombre'=>'Punto Rojo',
+                'icon_file'=>'PuntoRojo.png',
+                'icon_coleccion'=>'plantas',
+                'icon_descripcion'=>'',
+            ],[
+                'icon_name'=>'puntoVe',
+                'icon_nombre'=>'Punto Verde',
+                'icon_file'=>'PuntoVerde.png',
+                'icon_coleccion'=>'plantas',
+                'icon_descripcion'=>'',
+            ],[
                 'icon_name'=>'arbolBl',
                 'icon_nombre'=>'Árbol Blanco',
                 'icon_file'=>'ArbolBlanco.png',
@@ -29,7 +59,7 @@ class CatIconosSeeder extends Seeder
             ],[
                 'icon_name'=>'nopalBl',
                 'icon_nombre'=>'Nopal Blanco',
-                'icon_file'=>'Nopal1Blanco.png',
+                'icon_file'=>'NopalBlanco.png',
                 'icon_coleccion'=>'plantas',
                 'icon_descripcion'=>'',
             ],[

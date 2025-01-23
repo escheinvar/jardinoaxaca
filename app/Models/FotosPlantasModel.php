@@ -9,15 +9,15 @@ class FotosPlantasModel extends Model
 {
     use HasFactory;
 	protected $connection='pgsql';
-	protected $table = 'pl_comnames';
-	protected $primaryKey = 'comn_id';
+	protected $table = 'pl_fotos';
+	protected $primaryKey = 'img_id';
 	public $incrementing = true;
 	#protected $keyType = 'string';
 
     protected $fillable = [
         'img_plid',
         'img_act',
-        
+
         'img_file',
         'img_label',
         'img_autor',

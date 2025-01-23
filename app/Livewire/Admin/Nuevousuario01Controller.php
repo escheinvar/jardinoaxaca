@@ -18,7 +18,7 @@ class Nuevousuario01Controller extends Component
     public function mount(string $token){
         $this->token = $token;
         $this->correo=TokensModel::where('tok_token',$token)->where('tok_act','1')->where('tok_fin','>',now() )->pluck('tok_mail');
-        $this->org='0';
+        $this->org='1';
 
     }
 
@@ -33,6 +33,7 @@ class Nuevousuario01Controller extends Component
             'contrasenia2'=>'required|same:contrasenia',
         ]);
 
+
         ##### Genera registro de usuario
         $ja=User::firstOrCreate(['email'=>$this->correo],[
             'email'=>$this->correo[0],
@@ -40,15 +41,16 @@ class Nuevousuario01Controller extends Component
             'nombre'=>$this->nombre,
             'apellido'=>$this->apellido,
             'nace'=>$this->nace,
-            'org'=>$this->org,
-            'logo'=>null,
+            'cinsid'=>$this->org,
+            'avatar'=>'default.png',
             'password'=>Hash::make($this->contrasenia),
 
         ]);
 
-        
+
         ##### Otorga rol básico
         UserRolesModel::firstOrCreate(['rol_usrid'=>$ja->id,'rol_crolid'=>'2'],[
+            'rol_act'=>'1',
             'rol_usrid'=>$ja->id,
             'rol_crolid'=>'2',
             'rol_describe'=>'base:usr',

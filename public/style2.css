@@ -19,15 +19,7 @@ a:link:visited:hover:active.nolink{
     /* width: 50%; */
 }
 
-error, red {
-    color:#CD7B34;
-    font-size: 1.2rem;
-    font-family: 'Roboto Condensed', sans-serif;
-}
-.error {
-    border:1px solid #CD7B34;
-    font-family: 'Roboto Condensed', sans-serif;
-}
+/* <error> y class=error van al final
 
 .inactivar{
     background-color:red;
@@ -299,3 +291,40 @@ colores{
     color:#212529;
 
 } */
+
+
+error, red {
+    color:#CD7B34;
+    font-size: 1.2rem;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.error {
+    border: 3px solid #CD7B34;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.etiqueta{
+    font-size:10px;
+    border:1px solid #87796d;
+    display:inline-block;
+    padding:3px;
+    border-radius:4px;
+    background-color:#CDC6B9
+}
+.PaClick{
+    cursor:pointer;
+}
+/* .etiqueta:after{
+    content: '';
+    background:url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSj3XfIpf-OOJRCcWz4iN2CU3qMKVVbj0p0bRvKNGVo1U9pk_8ZIlyR8pWreA');
+    background-size:cover;
+        position:absolute;
+    width:20px;
+    height:20px;
+    margin-left:-20px;
+} */
+
+.TipoTabla{
+    display:inline-block;
+}
+

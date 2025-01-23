@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('rol_act',['0','1'])->default('1');
             $table->foreignId('rol_usrid')->constrained('users','id');
             $table->foreignId('rol_crolid')->constrained('cat_roles','crol_id')->default('2');
-            $table->string('rol_describe')->nullable()->default('base:usr');            
+            $table->string('rol_describe')->nullable()->default('base:usr');
             $table->timestamps();
         });
     }

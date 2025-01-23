@@ -23,11 +23,11 @@ class JardinSigModel extends Model
         'sig_y',
 
         'sig_identificador',
-        'sig_iconoforma',
+        'sig_iconid',
         'sig_color1',
         'sig_color2',
         'sig_notas',
-        
+
         'sig_flag1',
         'sig_flag2',
         'sig_flag3',

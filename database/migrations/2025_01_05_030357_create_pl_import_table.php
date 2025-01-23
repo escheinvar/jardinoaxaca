@@ -28,6 +28,14 @@ return new class extends Migration
             $table->string('imp_obsubica')->nullable(); ##### Texto de observaciones sobre la ubicación del ejemplar
             $table->string('imp_obscaptura')->nullable(); ##### Texto de observaciones sobre la captura de datos del ejemplar
             $table->string('imp_fotolugar')->nullable(); ##### Texto de ubicación de la foto de ubicaciòn del ejemplar
+
+            $table->integer('imp_fotolabellugar')->nullable();  ##### Texto de la etiqueta de lugar
+            $table->integer('imp_fotolabel1')->nullable();  ##### Texto de la etiqueta de la planta
+            $table->integer('imp_fotolabel2')->nullable();  ##### Texto de la etiqueta de la planta
+            $table->integer('imp_fotolabel3')->nullable();  ##### Texto de la etiqueta de la planta
+            $table->integer('imp_fotolabel4')->nullable();  ##### Texto de la etiqueta de la planta
+            $table->integer('imp_fotolabel5')->nullable();  ##### Texto de la etiqueta de la planta
+
             $table->string('imp_foto1')->nullable(); ##### Texto de ubicación de la foto del ejemplar
             $table->string('imp_foto2')->nullable(); ##### Texto de ubicación de la foto del ejemplar
             $table->string('imp_foto3')->nullable(); ##### Texto de ubicación de la foto del ejemplar

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->date('nace')->nullable();  ## Año, mes y dia de nacimiento
             // $table->string('cinsid')->nullable(); ## Organización a la que pertenece ó número id de cat_instituciones
             $table->foreignId('cinsid')->constrained('cat_instituciones','cins_id');
-            $table->string('avatar')->default('/avatar/usr.png');
-            
+            $table->string('avatar')->nullable()->default('/avatar/usr.png');
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

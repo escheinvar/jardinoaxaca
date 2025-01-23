@@ -64,6 +64,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item @if(request()->path() == 'importaPlantas') active @endif" href="/importaPlantas">Carga masiva</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/camellones') active @endif" href="/catalogo/camellones">Catálogo de Camellones</a></li>
                             {{-- <li><a class="dropdown-item @if(request()->path() == 'mapa') active @endif" href="/mapa">Mapa</a></li> --}}
                         </ul>
                     </li>

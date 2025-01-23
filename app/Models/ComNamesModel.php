@@ -19,8 +19,9 @@ class ComNamesModel extends Model
         'comn_act',
 
         'comn_nombre',
-        'comn_clencodigo',
+        'comn_clenid',
         'comn_regiones',
+        'scn_tipo',
 
         'comn_audio1',
         'comn_audio2',

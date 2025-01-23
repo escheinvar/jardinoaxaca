@@ -34,6 +34,14 @@ class ImportaPlantasModel extends Model
         'imp_foto3',
         'imp_foto4',
         'imp_foto5',
+
+        'imp_fotolabellugar',
+        'imp_fotolabel1',
+        'imp_fotolabel2',
+        'imp_fotolabel3',
+        'imp_fotolabel4',
+
+
         'imp_date',
         'imp_flag1',
         'imp_flag2',

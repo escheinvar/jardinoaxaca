@@ -140,7 +140,7 @@ class ImportaPlantasComponent extends Component
                 'imp_foto3'=>$fotoNueva3,
                 'imp_foto4'=>$fotoNueva4,
                 'imp_foto5'=>$fotoNueva5,
-                'imp_obscaptura'=>$original->imp_obscaptura.' [copia '.$num.' de original '.$original->imp_id.']',
+                'imp_obscapturaj'=>$original->imp_obscaptura.' [copia '.$num.' de original '.$original->imp_id.']',
             ]);
             $nuevo->save();
         }

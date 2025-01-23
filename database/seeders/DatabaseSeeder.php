@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             webEventosSeeder::class,
             CatIconosSeeder::class,
             ImportPlantasSeeder::class,
+            CatEtiquetasImgSeeder::class,
+            CatEntidadesSeeder::class,
         ]);
     }
 }

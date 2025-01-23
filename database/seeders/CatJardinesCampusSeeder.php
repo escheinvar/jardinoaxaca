@@ -25,7 +25,7 @@ class CatJardinesCampusSeeder extends Seeder
                 'cjar_tel'=>' 951 516 5325',
                 'cjar_mail'=>'etnobotanico@infinitummail.com',
                 'cjar_edo'=>'Oaxaca',
-                'cjar_logo'=>'/avatar/jardines/JebOax.png',
+                'cjar_logo'=>'JebOax.png',
             ]
         ];
 

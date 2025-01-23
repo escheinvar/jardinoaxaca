@@ -49,7 +49,7 @@ Mapa
         <div class="col-md-6 col-sm-12">
             <div class="row" wire:ignore>
                 <label for="exampleFormControlInput1" class="form-label">Número de id</label>
-                <select wire:model="IdGanon" class="select2 form-select" id="MiIdGanon">
+                <select wire:model="IdGanon" class="form-select" id="MiIdGanon">
                     <option value="">Selecciona</option>
                     @foreach ($puntos as $i)
                         <option value="{{$i->clave}}"> {{$i->id}} [{{$i->zona}}] &nbsp;  {{$i->clave}}</option>
@@ -152,7 +152,7 @@ Mapa
                         <!-- ---------------- Especie supuesta ------------------>
                         <div class="form-group" >
                             <label for="MiGenero">Especie:</label><br>
-                            <select wire:model.live="Especie" class="select2 form-select" id="especie" style="width:85%; display:inline-block;">
+                            <select wire:model.live="Especie" class="form-select" id="especie" style="width:85%; display:inline-block;">
                                 @if($nespecies < 1)
                                     @if($Genero == '')
                                         <option value="">Debes escribir un género antes</option>
@@ -520,7 +520,7 @@ Mapa
 
 
 
-    <!-- -------------------------------------------- JAVA SCRIPT ---------------------------------------------->
+    <!-- -------------------------------------------- aJAVA SCRIPT ---------------------------------------------->
     <!-- -------------------------------------------- JAVA SCRIPT ---------------------------------------------->
     <!-- -------------------------------------------- JAVA SCRIPT ---------------------------------------------->
     <!-- -------------------------------------------- JAVA SCRIPT ---------------------------------------------->
@@ -543,8 +543,8 @@ Mapa
             }
         });
         var arbolBl = new LeafIcon({iconUrl: '/iconos/ArbolBlanco.png'}),
-        magueyBl = new LeafIcon({iconUrl: '/iconos/Maguey3Blanco.png'}),
-        nopalBl = new LeafIcon({iconUrl: '/iconos/Nopal1Blanco.png'}),
+        magueyBl = new LeafIcon({iconUrl: '/iconos/MagueyBlanco.png'}),
+        nopalBl = new LeafIcon({iconUrl: '/iconos/NopalBlanco.png'}),
         columnarBl = new LeafIcon({iconUrl: '/iconos/Columnar1Blanco.png'}),
         globosaBl = new LeafIcon({iconUrl: '/iconos/GlobosaBlanco.png'}),
         helechoBl = new LeafIcon({iconUrl: '/iconos/HelechoBlanco.png'}),
@@ -557,76 +557,68 @@ Mapa
 
         ///// Carga puntos al mapa
         @foreach ($puntos as $i)
-            @if($i->revised == '2')
-                ///// Carga íconos (marca) según tipo en cada punto
-                @if ($i->forma =='Arbol')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbolBl}).addTo(mapa);
-                @elseif ($i->forma =='Maguey')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:magueyBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea columnar')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:columnarBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea candelabriforme')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:columnarBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea globosa')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:globosaBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea nopal')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea rastrera')  /// cambiar icono
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
-                @elseif ($i->forma =='Cactacea epifita')  /// cambiar icono
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
-                @elseif ($i->forma =='Helecho')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:helechoBl}).addTo(mapa);
-                @elseif ($i->forma =='Arbusto')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbustoBl}).addTo(mapa);
-                @elseif ($i->forma =='Herbacea')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:herbaceaBl}).addTo(mapa);
-                @elseif ($i->forma =='Arbusto vara')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbustoVaraBl}).addTo(mapa);
-                @elseif ($i->forma =='Cicada')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:cicadaBl}).addTo(mapa);
-                @elseif ($i->forma =='Palma')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:palmaBl}).addTo(mapa);
-                @elseif ($i->forma =='Orquidea epifita')
-                    var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:orquideaBl}).addTo(mapa);
-                @endif
-
-                ///// Pega el popup a la marca al hacer click al ícono
-                marca.bindPopup("ID: {{$i->clave}}")
-
-                ///// envía clave como variable al hacer click en el ícono
-                marca.on('click', function(event){
-                    var MiId = "{{$i->clave}}";
-                    @this.set('IdGanon',MiId);
-
-                });
-            @elseif($i->revised=='1')
-                ///// Dibuja círculo en cada marca
+            ///// Carga íconos (marca) según tipo en cada punto
+            @if ($i->forma =='Arbol')
+                //--punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbolBl}).addTo(mapa);
+            @elseif ($i->forma =='Maguey')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:magueyBl}).addTo(mapa);
+            @elseif ($i->forma =='Cactacea columnar')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:columnarBl}).addTo(mapa);
+            @elseif ($i->forma =='Cactacea candelabriforme')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:columnarBl}).addTo(mapa);
+            @elseif ($i->forma =='Cactacea globosa')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:globosaBl}).addTo(mapa);
+            @elseif ($i->forma =='Cactacea nopal')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
+            @elseif ($i->forma =='Cactacea rastrera')  /// cambiar icono
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
+            @elseif ($i->forma =='Cactacea epifita')  /// cambiar icono
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:nopalBl}).addTo(mapa);
+            @elseif ($i->forma =='Helecho')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:helechoBl}).addTo(mapa);
+            @elseif ($i->forma =='Arbusto')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbustoBl}).addTo(mapa);
+            @elseif ($i->forma =='Herbacea')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:herbaceaBl}).addTo(mapa);
+            @elseif ($i->forma =='Arbusto vara')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:arbustoVaraBl}).addTo(mapa);
+            @elseif ($i->forma =='Cicada')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:cicadaBl}).addTo(mapa);
+            @elseif ($i->forma =='Palma')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:palmaBl}).addTo(mapa);
+            @elseif ($i->forma =='Orquidea epifita')
+                //--Punto
+                var marca = L.marker([{{$i->y_corregid}},{{$i->x_corregid}}],{icon:orquideaBl}).addTo(mapa);
+            @else
+                //-- Dibuja círculo en cada marca
                 var circle = L.circle([{{$i->y_corregid}},{{$i->x_corregid}}], {
                     color: 'red',
                     fillColor: 'red',
                     fillOpacity: 0.5,
                     radius: 0.2,
                 }).addTo(mapa);
-
-                circle.bindPopup("ID: {{$i->clave}}");
-                circle.on('click',function(event){
-                    @this.set('IdGanon',"{{$i->clave}}")
-                })
-            @elseif($i->revised=='0')
-                ///// Dibuja círculo en cada marca
-                var circle = L.circle([{{$i->y_corregid}},{{$i->x_corregid}}], {
-                    color: 'black',
-                    fillColor: 'black',
-                    fillOpacity: 0.5,
-                    radius: 0.2,
-                }).addTo(mapa);
-
-                circle.bindPopup("ID: {{$i->clave}}");
-                circle.on('click',function(event){
-                    @this.set('IdGanon',"{{$i->clave}}")
-                })
             @endif
+
+            marca.bindPopup("ID: {{$i->clave}}")
+
+            marca.on('click', function(event){
+                var MiId = "{{$i->clave}}";
+                @this.set('IdGanon',MiId);
+            });
         @endforeach
 
         // ///// Configuración de SELECT2
@@ -640,11 +632,6 @@ Mapa
 
     @script
     <script>
-
-        ///// Envía valor de select2 a livewire
-        $('#MiIdGanon').on('change',function(){
-            @this.set('IdGanon',$(this).val());
-        });
         ///// Cierra modal de muerte
         $wire.on('CierraModal', () => {
             $('#ModalDeMuerte').modal('hide');
@@ -675,7 +662,6 @@ Mapa
         });
     </script>
     @endscript
-
 
 </div>
 

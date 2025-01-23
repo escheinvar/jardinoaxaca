@@ -14,6 +14,7 @@ class InstitucionesSeeder extends Seeder
     public function run(): void
     {
         $events =[
+            'Ninguna',
             'Jardín Etnobiológico de Oaxaca',
             'Jardín Etnobiológico de la Ciudad de México',
             'Jardín Etnobiológico de Campeche',

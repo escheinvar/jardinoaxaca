@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('comn_nombre'); ##### Texto con el nombre
             $table->foreignId('comn_clenid')->constrained('cat_lenguas','clen_id');  ##### Código del nombre de la lengua en la que está escrito el nombre de la planta
             $table->string('comn_regiones')->nullable(); ##### Array separado por punto y coma de las zonas o regiones geográficas en las que se reconoce el nombre
+            $table->integer('comn_tipo')->default('0'); ##### Número indicador de proceso de curación: 0= dato de campo, 1=corregido por técnico; 2=corregido por autoridad;
 
             $table->string('comn_audio1')->nullable(); ##### Texto con ubicación del archivo de audio con la pronunciación del nombre
             $table->string('comn_audio2')->nullable(); ##### Texto con ubicación del archivo de audio con la pronunciación del nombre
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->string('comn_autoridad')->nullable(); ##### Texto del nombre de la autoridad que determinó el nombre
             $table->date('comn_autoriddadate')->nullable();  ###### Fecha en la que la autoridad determinó el nombre
 
+            $table->timestamps();
         });
     }
 
