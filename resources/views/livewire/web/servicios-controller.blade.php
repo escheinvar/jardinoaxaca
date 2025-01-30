@@ -1,21 +1,21 @@
-@section('title') 
+@section('title')
 Servicios
 @endsection
 
 @section('meta-description')
-El Jardín apoya la formación de profesionistas en diversos temas relacionados con la etnobotánica y el manejo sostenible de los recursos naturales ¡entérate! 
+El Jardín apoya la formación de profesionistas en diversos temas relacionados con la etnobotánica y el manejo sostenible de los recursos naturales ¡entérate!
 @endsection
 
 @section('banner')
 banner-educacion
 @endsection
 
-@section('banner-title') 
-Servicios   
+@section('banner-title')
+Servicios
 @endsection
 
 <div>
-    
+
     <!--S1 PRESENTACION-->
     <section class="presentacion pb-5">
         <div class="container py-5 px-3" id="bienvenido">
@@ -31,17 +31,17 @@ Servicios
                 </div>
                 <div class="col-sm-auto col-md-6 col-lg-6 col-xl-5 text-start px-4">
                     <div class="row">
-                        {{-- <div class="col">   
+                        {{-- <div class="col">
                             <h2 class="subtitulo">Servicios comunitarios</h2>
                         </div> --}}
                     </div>
                     <div class="row">
                         <div class="col">
-                            <p class="texto-secundario">El Jardín se fundó bajo el esquema tradicional del Tequio, y desde entonces, 
-                                continuamos con esta labor de trabajo comunitario incesante, en el que la difusión y la educación 
-                                tienen un papel primordial.     
+                            <p class="texto-secundario">El Jardín se fundó bajo el esquema tradicional del Tequio, y desde entonces,
+                                continuamos con esta labor de trabajo comunitario incesante, en el que la difusión y la educación
+                                tienen un papel primordial.
                             </p>
-                            <p class="texto-secundario"> Apoyamos la formación de profesionistas en diversos temas 
+                            <p class="texto-secundario"> Apoyamos la formación de profesionistas en diversos temas
                                 relacionados con la etnobiología y el manejo sostenible de los recursos naturales.
                             </p>
                         </div>
@@ -69,7 +69,7 @@ Servicios
                             <p class="texto-secundario">
                                 Ofrecemos actividades, pláticas y talleres gratuitos de manera periódica.
                             </p>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ Servicios
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </section>
@@ -105,7 +105,7 @@ Servicios
                         <h2 class="subtitulo">Biblioteca</h2>
                         <p> Especializada en temas de ciencias naturales, etnobiología, ecología humana y conservación
                             ambiental, la biblioteca del Jardín Etnobotánico de Oaxaca tiene bajo su resguardo cerca de
-                            10,000 publicaciones en español, inglés y otras lenguas. 
+                            10,000 publicaciones en español, inglés y otras lenguas.
                         </p>
                         <p>Resguardamos el acervo de la Sociedad Botánica de México.</p>
 
@@ -132,7 +132,7 @@ Servicios
                 <div class="slide">
                     <div class="content">
                         <h2 class="subtitulo">Recorridos<br>escolares</h2>
-                        <p>Uno de los objetivos del jardín, es el resguardo y transmisión del conocimiento acerca de las 
+                        <p>Uno de los objetivos del jardín, es el resguardo y transmisión del conocimiento acerca de las
                             plantas, hongos y animales depositado por las comunidades en el Jardín.</p>
                         <p>De ahí que una de nuestras mayores prioridades es la de ofrecer recorridos gratuitos diarios
                             a todas las escuelas que nos lo soliciten y en las cuales podemos mostrar la inmensa diversidad
@@ -146,14 +146,14 @@ Servicios
                                 @elseif(session('locale')=='pt')
                                     Visitas escolares
                                 @elseif(session('locale')=='es_mix_bj')
-                                    Ñà kì’vi na kuǎlí ká’vi 
+                                    Ñà kì’vi na kuǎlí ká’vi
                                 @else
                                     Visitas escolares
                                 @endif
                             </a>
                             @if(session('locale')=='es_mix_bj')
                                 <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4')" style="color:#64383E"></i>
-                                <audio controls  id="sale_audio4" style="display:none;">                                
+                                <audio controls  id="sale_audio4" style="display:none;">
                                     <source src="audio/es_mix_bj/02_recorrido_04.ogg" type="audio/ogg">
                                 </audio>
                             @endif
@@ -178,15 +178,15 @@ Servicios
                             de Oaxaca, ofrece una vez al mes, recorridos nocturnos gratuitos a todos los visitantes que
                             deseen conocer el Jardín de noche</p>
                         <p>En estos recorridos, los visitantes podrán oler, escuchar y percibir la vida nocturna del jardín,
-                            y podrán escuchar, de parte de nuestros guías especializados, varios aspectos interesantes 
+                            y podrán escuchar, de parte de nuestros guías especializados, varios aspectos interesantes
                             sobre la vida de las plantas y animales nocturnos que habitan en el estado de Oaxaca.
                         </p>
 
                         <h3>Horarios</h3>
                         <h4 class="duracion">Duración 20 minutos</h4>
-                        <p>Último viernes de cada mes<br>a partir de las 18:00 horas 
+                        <p>Último viernes de cada mes<br>a partir de las 18:00 horas
                         </p>
-                        
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-6_servicios/img-03.jpg" data-fancybox="gallery7">
@@ -203,22 +203,25 @@ Servicios
                     <div class="content">
                         <h2 class="subtitulo">Jardines comunitarios</h2>
                         <p>
-                            Bajo solicitud expresa, apoyamos a las comunidades en el establecimiento, consolidación y mantenimiento 
+                            Bajo solicitud expresa, apoyamos a las comunidades en el establecimiento, consolidación y mantenimiento
                             de sus jardines comunitarios.
                         </p>
                         <p>En 2024 colaboramos en la creación de dos jardines comunitarios:</p>
 
+
                         <h4 class="duracion">Cuilapam de Guerrero</h4>
                         <h4 class="duracion">San Pedro Totolapan</h4>
+                        <h4 class="duracion">Guelatao</h4>
+                        <h4 class="duracion">Matatlán</h4>
 
                         <p>En 2022, apoyamos a la comunidad de Cuilapam de Guerrero y la comunidad de San Pedro Totolapam
-                            con la elaboración de su propuesta técnica, selección de especies locales, diseño y trazo del jardín y jardineras, 
+                            con la elaboración de su propuesta técnica, selección de especies locales, diseño y trazo del jardín y jardineras,
                             capacitación al personal, entrega de germoplasma y
                             apoyo en elaboración y mantenimiento de sus Jardines Comunitarios.
                         </p>
-                        
-                        
-                        
+
+
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-6_servicios/img-04_jardinescoms.png" data-fancybox="gallery7">
@@ -233,18 +236,20 @@ Servicios
             <div class="slide-container">
                 <div class="slide">
                     <div class="content">
-                        <h2 class="subtitulo">Jardinería</h2>
-                        <p>Como parte de nuestra labor comunitaria, hemos apoyado a varios gobiernos municipales 
-                            en aspectos de jardinería y paisajismo. 
-                            Desde la selección de especies adecuadas para cada ambiente, proporción de germoplasma 
+                        <h2 class="subtitulo">Apoyo a Jardines</h2>
+                        <p>Como parte de nuestra labor comunitaria, hemos apoyado a varios gobiernos municipales
+                            en aspectos de jardinería y paisajismo.
+                            Desde la selección de especies adecuadas para cada ambiente, proporción de germoplasma
                             y asesoría.
                         </p>
-                        
+
                         <h4 class="duracion">Parque Primavera Oaxaqueña</h4>
                         <h4 class="duracion">Archivo General del Estado de Oaxaca</h4>
                         <h4 class="duracion">Parque de Canteras</h4>
                         <h4 class="duracion">Plazuela del Carmen Alto</h4>
                         <h4 class="duracion">Atrio de iglesia de Santo Domingo</h4>
+                        <h4 class="duracion">Jardín de polinizadores del Cerro del Fortín</h4>
+                        <h4 class="duracion">Reforestación de Cerro del Fortín</h4>
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-6_servicios/img-03.jpg" data-fancybox="gallery7">
@@ -262,7 +267,7 @@ Servicios
                     <div class="content">
                         <h2 class="subtitulo">Cursos y Talleres</h2>
                         <p>Como parte de nuestros servicios, contamos con personal capacitado en diversos temas para
-                            la impartición de cursos y talleres al público, relacionados con temas de 
+                            la impartición de cursos y talleres al público, relacionados con temas de
                             lenguas originarias, botánica, evolución, biogeografía, jardinería, sustentabilidad, zoologia, hongos, entre otros.
                         </p>
                         <div class="col-sm-12 col-md-auto">

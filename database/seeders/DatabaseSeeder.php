@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\CatCamellonesModel;
 use App\Models\CatLenguasModel;
+use App\Models\SpTitulosModel;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,6 +39,11 @@ class DatabaseSeeder extends Seeder
             ImportPlantasSeeder::class,
             CatEtiquetasImgSeeder::class,
             CatEntidadesSeeder::class,
+            SpUrlSeeder::class,
+            SpTitulosSeeder::class,
+            SpCedulaSeeder::class,
+            SpFotosSeeder::class,
+
         ]);
     }
 }

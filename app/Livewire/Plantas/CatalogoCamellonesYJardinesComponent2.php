@@ -14,12 +14,13 @@ class CatalogoCamellonesYJardinesComponent2 extends Component
 {
     use WithFileUploads;
 
-    public $camID;
-    public $NvoJardin, $NvoCamellon, $Nvocamellonname, $Nvozona, $Nvozonaname, $Nvogeojsonfile,$NvoMapa, $Nvoctrox, $Nvoctroy, $Nvozoom;
+    public $camID, $botonCambiaCentro;
+    public $NvoJardin, $NvoCamellon, $Nvocamellonname, $Nvozona, $Nvozonaname, $Nvogeojsonfile,$NvoMapa;
+    public $Nvoctrox, $Nvoctroy, $Nvozoom, $Nvocolor, $Nvonotas;
 
     public function mount($camID){
         $this->camID=$camID; ### CamID=variable que contiene URL
-
+        $this->botonCambiaCentro='secondary';
 
         ##### Filtra url a sólo número (\D=No digitos)
         if(preg_match('/\D/',$camID)){
@@ -43,6 +44,8 @@ class CatalogoCamellonesYJardinesComponent2 extends Component
             $this->Nvoctroy='17.0658';
             $this->Nvozoom='21';
             $this->NvoMapa='';
+            $this->Nvocolor='';
+            $this->Nvonotas='';
             #$this->NvoMapa=CatCamellonesModel::where('cam_id','2')->first()->value('cam_mapa');
         }else{
             $this->NvoJardin=$camellon->ccam_id;
@@ -62,7 +65,7 @@ class CatalogoCamellonesYJardinesComponent2 extends Component
             'NvoJardin'=>'required',
             'NvoCamellon'=>'required|unique:cat_camellones,cam_camellon,'.$this->camID.',cam_id',
             'Nvocamellonname'=>'required',
-            'Nvogeojsonfile'=>'required',
+            'Nvogeojsonfile'=>'required|mimes:geojson',
         ]);
 
         $this->NvoMapa = file_get_contents($this->Nvogeojsonfile->getRealPath() );
@@ -113,6 +116,7 @@ class CatalogoCamellonesYJardinesComponent2 extends Component
 
 
     public function CambiaCentro(){
+        $this->botonCambiaCentro='danger';
         $this->dispatch('CapturaCoordenadas');
     }
 
@@ -132,15 +136,7 @@ class CatalogoCamellonesYJardinesComponent2 extends Component
 
         }else{
             ##### Genera geoJson de todos los camellones
-            $mapas=CatCamellonesModel::where('cam_ccamid',$this->NvoJardin)->OrderBy('cam_id')->get();
-            $camellones=[];
-            foreach($mapas as $i){
-                array_push($camellones, $i->cam_mapa);
-            }
-            $camellones=implode(',',$camellones);
-            ##### Lista de IDs
-            $listaDeIds=$mapas->pluck('cam_id')->toArray();
-            $key=array_keys($listaDeIds, $this->camID)[0];
+            $camellones=CatCamellonesModel::where('cam_ccamid',$this->NvoJardin)->OrderBy('cam_id')->get();
         }
 
         #dd($listaDeIds, $listaDeIds[$key+1], $listaDeIds[$key-1]);

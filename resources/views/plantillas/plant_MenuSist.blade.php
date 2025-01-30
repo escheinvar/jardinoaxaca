@@ -33,6 +33,20 @@
                         </a>
                     </li>
 
+                    <!--dropdown 1-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item @if(request()->path() == 'importaPlantas') active @endif" href="/importaPlantas">Carga masiva</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/camellones') active @endif" href="/catalogo/camellones">Catálogo de Camellones</a></li>
+                            {{-- <li><a class="dropdown-item @if(request()->path() == 'mapa') active @endif" href="/mapa">Mapa</a></li> --}}
+                        </ul>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'elmapa') active @endif" href="/elmapa">
                             Mapa
@@ -55,19 +69,6 @@
                         <a class="nav-link @if(request()->path() == 'parada') active @endif" href="/parada/inicio">
                             Parada
                         </a>
-                    </li>
-                    <!--dropdown 1-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Admin
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item @if(request()->path() == 'importaPlantas') active @endif" href="/importaPlantas">Carga masiva</a></li>
-                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
-                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/camellones') active @endif" href="/catalogo/camellones">Catálogo de Camellones</a></li>
-                            {{-- <li><a class="dropdown-item @if(request()->path() == 'mapa') active @endif" href="/mapa">Mapa</a></li> --}}
-                        </ul>
                     </li>
 
                     <!---->

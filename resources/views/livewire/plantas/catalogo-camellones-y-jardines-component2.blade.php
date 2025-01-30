@@ -17,7 +17,7 @@
     <div class="row">
         <!-- Campus y Jardín -->
         <div class="form-group col-xs-10 col-sm-10 col-md-6">
-            <label>Campus: <red>*</red></label>
+            <label class="form-label">Campus: <red>*</red></label>
             <select wire:model.live="NvoJardin" class="form-select" style="width:100%;display:inline-block;" @if($camID != '0') disabled @endif>
                 <option value="">Indicar un campus</option>
                 @foreach ($jardines as $jar)
@@ -27,13 +27,15 @@
             @error('NvoJardin')<error>{{ $message }}</error> @enderror
         </div>
 
-        <!-- logo del campus -->
+        <!-- logo y nombre del campus-->
         <div class="form-group col-xs-2 col-sm-2 col-md-6">
-            @if($jardines->where('ccam_id',$NvoJardin)->value('cjar_logo') == '' AND $NvoJardin != '')
+            <!-- logo de campus -->
+            @if($jardines->where('ccam_id',$NvoJardin)->value('cjar_logo') == '' )
                 <img src="/avatar/jardines/default.png" style="width: 70px;">
             @elseif($NvoJardin != '')
                 <img src="/avatar/jardines/{{ $jardines->where('ccam_id',$NvoJardin)->value('cjar_logo') }}" style="width: 70px;">
             @endif
+            <!-- nombre de campus -->
             <span style="font-weight: bold; font-size:150%;vertical-align:center;">
                 {{ $jardines->where('ccam_id',$NvoJardin)->value('ccam_name') }}
             </span>
@@ -52,7 +54,7 @@
     <div class="row">
         <!-- Nombre corto de camellón -->
         <div class="form-group col-xs-12 col-sm-12 col-md-4">
-            <label>Nombre corto del camellón <red>*</red> </label> <span class="PaClick" onclick="VerNoVer('Nombres','Camellones')">(ver nombres)</span>
+            <label class="form-label">Nombre corto del camellón <red>*</red> </label> <span class="PaClick" onclick="VerNoVer('Nombres','Camellones')">(ver nombres)</span>
             <input wire:model="NvoCamellon" type="text" class="form-control">
             @error('NvoCamellon')<error>{{ $message }}</error> @enderror
             <div id="sale_NombresCamellones" style="display:none">
@@ -62,7 +64,7 @@
 
         <!-- Nombre largo camellón -->
         <div class="form-group col-xs-12 col-sm-12 col-md-8">
-            <label>Nombre del camellón <red>*</red></label>
+            <label class="form-label">Nombre del camellón <red>*</red></label>
             <input wire:model="Nvocamellonname" ype="text" class="form-control">
             @error('Nvocamellonname')<error>{{ $message }}</error> @enderror
         </div>
@@ -70,14 +72,14 @@
     <div class="row">
         <!-- Nombre corto de la zona -->
         <div class="form-group col-xs-12 col-sm-12 col-md-4">
-            <label>Nombre corto de la zona</label>
+            <label class="form-label">Nombre corto de la zona</label>
             <input wire:model="Nvozona" type="text" class="form-control">
             @error('Nvozona')<error>{{ $message }}</error> @enderror
         </div>
 
         <!-- Nombre largo de la zona -->
         <div class="form-group col-xs-12 col-sm-12 col-md-8">
-            <label>Nombre de la zona</label>
+            <label class="form-label">Nombre de la zona</label>
             <input wire:model="Nvozonaname" type="text" class="form-control">
             @error('Nvozonaname')<error>{{ $message }}</error> @enderror
         </div>
@@ -86,34 +88,34 @@
 
     </div>
     <div class="row">
+        <!-- -------------------------- Izquierda del mapa --------------------------------->
         <div class="col-xs-12 col-md-4 my-2">
             <!-- carga geojson -->
             <div class="form-group">
+                <br>
                 @if($NvoMapa =='')
-                    <label>GeoJson del camellón <red>*</red></label>
+                    <label class="form-label">GeoJson del camellón <red>*</red></label>
                     <input wire:model="Nvogeojsonfile" type="file" class="form-control">
                     @error('Nvogeojsonfile')<error>{{ $message }}</error>@enderror
-                @else
-                    <button wire:click="BorrarMapa()" class="btn btn-secondary" wire:confirm="Vas a borrar un mapa de camellón. ¿Estás seguro? No se puede recuperar."> Borrar mapa</button>
                 @endif
             </div>
 
 
+            <!-- punto medio x -->
             <div class="form-group" style="width:45%; display:inline-block;">
-                <!-- punto medio x -->
-                <label>Centro X</label>
+                <label class="form-label">Centro X</label>
                 <input wire:model.live="Nvoctrox" type="number" class="form-control">
             </div>
 
+            <!-- punto medio Y -->
             <div class="form-group" style="width:45%; display:inline-block;">
-                <!-- punto medio Y -->
-                <label>Centro Y</label>
+                <label class="form-label">Centro Y</label>
                 <input wire:model.live="Nvoctroy" type="number" class="form-control">
             </div>
 
-            <div class="form-group" style="width:45%; display:inline-block;">
-                <!-- Zoom -->
-                <label>Nivel de Zoom</label>
+            <!-- Zoom -->
+            <div class="form-group" style="width:35%; display:inline-block;">
+                <label class="form-label">Nivel de Zoom</label>
                 <select wire:model.live="Nvozoom" class="form-select">
                     <option value="18">18 lejos</option>
                     <option value="19">19</option>
@@ -121,16 +123,36 @@
                     <option value="21">21</option>
                     <option value="22">22</option>
                     <option value="23">23 cerca</option>
+                    <option value="24">24</option>
+                    <option value="25">25 Muy cerca</option>
                 </select>
             </div>
+
+            <!-- Botón para cambio de centro -->
             <div class="form-group" style="width:45%; display:inline-block;">
                 @if($NvoMapa != '')
-                    <button wire:click="CambiaCentro()" class="btn btn-secondary">
+                    <button wire:click="CambiaCentro()" class="btn btn-{{ $botonCambiaCentro }}">
                         Cambiar centro
                     </button>
                 @endif
             </div>
 
+            <!-- color --->
+            <div class="form-group" style="display:inline-block;">
+                <label  class="form-label">Color</label><br>
+                <input class="form-control form-control-color" type="color" style="width:60px">
+            </div>
+
+            <!-- Notas --->
+            <div class="form-group" style=";">
+                <label class="form-label">Notas</label>
+                <textarea class="form-control"></textarea>
+            </div>
+
+
+
+
+            mapa:{{ $NvoMapa }}
 
             <div class="form-group m-4">
                 @if($NvoMapa == '')
@@ -149,11 +171,17 @@
                     </button>
                 </a>
             </div>
-            color, notas
-            <br>
-            borrar mapa
-        </div>
 
+            <br><br>
+            @if($NvoMapa !='')
+                <div>
+                    <button wire:click="BorrarMapa()" class="btn btn-secondary" wire:confirm="Vas a borrar un mapa de camellón. ¿Estás seguro? No se puede recuperar.">
+                        <i class="bi bi-trash"></i> Borrar mapa
+                    </button>
+                </div>
+            @endif
+        </div>
+<!-- ------------------------------ Mapa ------------------------------------------------ -->
         <div class="col-xs-12 col-md-8 my-4">
             @if($NvoMapa != '')
                 <div id="mapa" wire:ignore style="padding:10rem;"></div>
@@ -195,8 +223,17 @@
             }
 
             /// CARGA POLÍGONOS Y ESTILO DE CAMELLONES DEL JARDÍN
-            var geojsonFeature1 = [{!! $camellones  !!}];
-            L.geoJSON(geojsonFeature1,{style: poligonoTransp}).addTo(mapa);
+            @if($camellones !='')
+                @foreach ($camellones as $c)
+                    //-- <!-- CAMELLON -->
+                    var geojsonFeature1 = [{!! $c->cam_mapa  !!}];
+                    L.geoJSON(geojsonFeature1,{style: poligonoTransp}).addTo(mapa)
+                    .bindPopup('{{ $c->cam_id }})  {{ $c->cam_camellon }}<br><a href="/catalogo/camellon/{{ $c->cam_id }}">Editar</a>');
+                @endforeach
+            @endif
+
+
+
 
             ///// CARGA POLÍGONOS Y ESTILO DE CAMELLON DEL EJEMPLAR
             var geojsonFeature2 = [{!! $NvoMapa  !!}];

@@ -4,6 +4,7 @@ use App\Http\Controllers\login\loginController;
 use App\Http\Controllers\login\logoutController;
 use App\Livewire\Admin\Nuevousuario01Controller;
 use App\Livewire\Admin\NuevoUsuarioController;
+use App\Livewire\Cedulas\EspeciesComponent;
 use App\Livewire\Login\RecuperaPasswd01Controller;
 use App\Livewire\Login\RecuperaPasswdController;
 use App\Livewire\Plantas\CatalogoCamellonesYJardinesComponent;
@@ -80,6 +81,9 @@ Route::middleware(['auth.basic'])->group(function(){
     Route::get('/catalogo/camellon/{camID}', CatalogoCamellonesYJardinesComponent2::class)->name('catcamellones');
     Route::get('/catalogo/campus', CatalogoJardinesYcampusComponent::class)->name('CatCampus');
 });
+
+/*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
+Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
 
 
 

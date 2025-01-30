@@ -24,6 +24,7 @@ Catálogo de Campus
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Siglas</th>
                         <th>Nombre corto</th>
                         <th>Nombre largo</th>
                         <th>Campus</th>
@@ -34,6 +35,7 @@ Catálogo de Campus
                     @foreach($jardines as $jar)
                         <tr>
                             <td style="@if($HayJardin == $jar->cjar_id) background-color:#87796d;@endif"> {{ $jar->cjar_id }}</td>
+                            <td style="@if($HayJardin == $jar->cjar_id) background-color:#87796d;@endif"> {{ $jar->cjar_siglas }}</td>
                             <td style="@if($HayJardin == $jar->cjar_id) background-color:#87796d;@endif"> {{ $jar->cjar_name }}</td>
                             <td style="@if($HayJardin == $jar->cjar_id) background-color:#87796d;@endif"> {{ $jar->cjar_nombre }}</td>
                             <td style="@if($HayJardin == $jar->cjar_id) background-color:#87796d;@endif"> {{$Num=$NumDeCampus->where('ccam_cjarid', $jar->cjar_id)->value('total')}} @if($Num < '1')<error>Falta campus</error>@endif </td>
@@ -50,24 +52,28 @@ Catálogo de Campus
     <!--------------------------------------------------------------------------------------------->
     @if($HayJardin != '')
         <div class="row">
+            <!-- Nombre corto -->
             <div class="col-xs-12 col-sm-6 col-md-4" >
                 <label>Nombre corto</label>
                 <input wire:model.live="jar_name" type="text" class="form-control" @if($HayJardin > 0) readonly @endif>
                 @error('jar_name')<error>{{ $message }}</error>@enderror
             </div>
 
+            <!-- Nombre largo -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <label>Nombre completo</label>
                 <input wire:model.live="jar_nombre" type="text" class="form-control">
                 @error('jar_nombre')<error>{{ $message }}</error>@enderror
             </div>
 
+            <!-- Siglas -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <label>Siglas</label>
                 <input wire:model.live="jar_siglas" type="text" class="form-control">
                 @error('jar_siglas')<error>{{ $message }}</error>@enderror
             </div>
 
+            <!--  Tipo de jardín -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <label>Tipo de jardín</label>
                 <select wire:model.live="jar_tipo" class="form-select">
@@ -81,11 +87,13 @@ Catálogo de Campus
                 </select>
             </div>
 
+            <!-- Dirección -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <label>Dirección</label>
                 <input wire:model.live="jar_direccion" type="text" class="form-control">
             </div>
 
+            <!--  Estado -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <label>Estado</label>
                 <select class="form-select" wire:model="jar_edo">
@@ -95,23 +103,25 @@ Catálogo de Campus
                 </select>
             </div>
 
-
+            <!-- Teléfono -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <label>Teléfono</label>
                 <input wire:model.live="jar_tel" type="text" class="form-control">
             </div>
 
+            <!-- Correo -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <label>Correo</label>
                 <input wire:model.live="jar_mail" type="text" class="form-control">
             </div>
 
+            <!-- Logo -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <!-- ver logo-->
                 <label>Logo</label><br>
                 @if($jar_logo != '' )
                     <img src="/avatar/jardines/{{ $jar_logo }}" style="width:150px;">
-                    <i class="bi bi-trash PaClick" wire:click="BorraImagen('{{  $HayJardin }}')" wire:confirm="Vas a eliminar la imágen del logo. ¿Quieres continuar?"></i>
+                    <i class="bi bi-trash PaClick mx-2" wire:click="BorraLogo('{{  $HayJardin }}','{{ $jar_logo }}')" wire:confirm="Vas a eliminar el logo Y YA NO SE VA A PODER RECUPERAR. ¿Quieres continuar?"></i>
                 @else
                     <input wire:model.live="jar_logoNuevo" type="file" class="form-control">
                     @if($jar_logoNuevo != '')

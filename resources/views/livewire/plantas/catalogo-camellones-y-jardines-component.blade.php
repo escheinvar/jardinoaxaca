@@ -9,23 +9,34 @@
 
 
 <div>
-    <h2>Catálogo: camellones / Campus / Jardines</h2>
+    <h2>Catálogo de Camellones</h2>
 
     <!-- -------------------------------------------------------------------------------------->
     <!-- --------------------------------------- JARDINES/CAMPUS ------------------------------>
     <!-- -------------------------------------------------------------------------------------->
     <div class="row">
         <div class="col-xs-10 col-sm-10 col-md-6">
-            <label>Jardín / Campus :</label> {{ $jardin }}<br>
-            <select wire:model.live="jardin" class="form-select" style="width:100%;display:inline-block;">
+            <label  class="form-label">Campus :</label><br>
+            <select wire:model.live="jardin" class="form-select" style="width:90%;display:inline-block;">
                 @foreach ($jardines as $jar)
                     <option value="{{ $jar->ccam_id }}"> {{ $jar->cjar_name }} / {{ $jar->ccam_name }} </option>
                 @endforeach
             </select>
+            &nbsp;
+            <!-- Botón para agregar campus-->
+            <a href="/catalogo/campus">
+                <button class="btn btn-secondary btn-sm" style="display: inline-block;">+</button>
+            </a>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-6">
-            <img src="/avatar/jardines/{{ $jardines->where('ccam_id',$jardin)->value('cjar_logo') }}" style="width: 70px;">
+            <!-- logo del jardín -->
+            @if($jardines->where('ccam_id',$jardin)->value('cjar_logo') != '')
+                <img src="/avatar/jardines/{{ $jardines->where('ccam_id',$jardin)->value('cjar_logo') }}" style="width: 70px;">
+            @else
+                -- No logo --
+            @endif
 
+            <!-- Botón para nuevo camellón -->
             <a href="/catalogo/camellon/0" style="float: right;">
                 <button class="btn btn-secondary mx-2"> <i class="bi bi-plus-circle"> Nuevo camellón</i></button>
             </a>

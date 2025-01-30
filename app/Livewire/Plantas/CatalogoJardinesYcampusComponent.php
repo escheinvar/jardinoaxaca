@@ -97,10 +97,11 @@ class CatalogoJardinesYcampusComponent extends Component
         redirect('/catalogo/campus');
     }
 
-    public function BorraImagen($id){
-        ##### La borra en la carpeta
-        Storage::delete("/aPublic/avatar/jardines/".CatJardinesModel::where('cjar_id',$id)->first()->value('cjar_logo'));
+    public function BorraLogo($id, $archivo){
+        ##### La borra en la base
         CatJardinesModel::where('cjar_id',$id)->update(['cjar_logo'=>null,]);
+        ##### La borra en la carpeta
+        Storage::delete("/aPublic/avatar/jardines/".$archivo);
         redirect('/catalogo/campus');
     }
 

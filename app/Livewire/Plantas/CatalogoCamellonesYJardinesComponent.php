@@ -21,6 +21,8 @@ class CatalogoCamellonesYJardinesComponent extends Component
     public function render() {
 
         $jardines=CatCampusModel::join('cat_jardines','ccam_cjarid','=','cjar_id')
+            ->orderBy('cjar_name','asc')
+            ->orderBy('ccam_name','asc')
             ->get();
 
         $camellones=CatCamellonesModel::select('*')

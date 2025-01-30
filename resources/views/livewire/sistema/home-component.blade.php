@@ -24,8 +24,8 @@ Inicio
     <h3>Menú de jardines</h3>
     <ul>
         <li><a href="/importaPlantas">Carga masiva de ejemplares de jardín</a> (solo resp-jardin)</li>
-        <li><a href="/catalogo/camellones">Catálogo de camellones</a>(solo  base,admin o jardin,admin) (solo admin)</li>
         <li><a href="/catalogo/campus">Catálogo de jardines y campus</a></li>
+        <li><a href="/catalogo/camellones">Catálogo de camellones</a>(solo  base,admin o jardin,admin) (solo admin)</li>
         <li>Catálogo de íconos de mapa</li>
         <li>Catálogo de lenguas/pueblos</li>
         <li>Catálogo de etiquetas de fotos de plantas</li>

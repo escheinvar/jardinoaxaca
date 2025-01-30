@@ -20,9 +20,9 @@ class CatLenguasSeeder extends Seeder
             ['clen_id'=>'4','clen_codigo'=>'pt', 'clen_nombre'=>'Portugués', 'clen_nombre_lengua'=>'Portugues', 'clen_region'=>'Brasil'],
             ['clen_id'=>'5','clen_codigo'=>'fr', 'clen_nombre'=>'Francés',   'clen_nombre_lengua'=>'France',    'clen_region'=>'Francia'],
 
-            ['clen_id'=>'6','clen_codigo'=>'es_mix_bj', 'clen_nombre'=>'Mixteco Bajo',   'clen_nombre_lengua'=>'Tu`un Savi',    'clen_region'=>'Guerrero'],
-            ['clen_id'=>'7','clen_codigo'=>'es_zp_va', 'clen_nombre'=>'Zapoteco de Valles',   'clen_nombre_lengua'=>'',    'clen_region'=>'Valles Centrales Oaxaca'],
-            ['clen_id'=>'8','clen_codigo'=>'es_zp_is', 'clen_nombre'=>'Zapoteco del Istmo',   'clen_nombre_lengua'=>'',    'clen_region'=>'Istmo de Tehuantepec Oaxaca'],
+            ['clen_id'=>'6','clen_codigo'=>'mce', 'clen_nombre'=>'Mixteco Itundujia',    'clen_nombre_lengua'=>'Tu`un Savi',    'clen_region'=>'Guerrero'],
+            ['clen_id'=>'7','clen_codigo'=>'huv', 'clen_nombre'=>'Huave',                 'clen_nombre_lengua'=>'Ombeayiüts',    'clen_region'=>'Valles Centrales Oaxaca'],
+            ['clen_id'=>'8','clen_codigo'=>'zai', 'clen_nombre'=>'Zapoteco del Istmo',   'clen_nombre_lengua'=>'Diidxazá',    'clen_region'=>'Istmo de Tehuantepec Oaxaca'],
         ];
 
         foreach ($events as $event){
