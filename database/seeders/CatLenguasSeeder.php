@@ -21,8 +21,9 @@ class CatLenguasSeeder extends Seeder
             ['clen_id'=>'5','clen_codigo'=>'fr', 'clen_nombre'=>'Francés',   'clen_nombre_lengua'=>'France',    'clen_region'=>'Francia'],
 
             ['clen_id'=>'6','clen_codigo'=>'mce', 'clen_nombre'=>'Mixteco Itundujia',    'clen_nombre_lengua'=>'Tu`un Savi',    'clen_region'=>'Guerrero'],
-            ['clen_id'=>'7','clen_codigo'=>'huv', 'clen_nombre'=>'Huave',                 'clen_nombre_lengua'=>'Ombeayiüts',    'clen_region'=>'Valles Centrales Oaxaca'],
-            ['clen_id'=>'8','clen_codigo'=>'zai', 'clen_nombre'=>'Zapoteco del Istmo',   'clen_nombre_lengua'=>'Diidxazá',    'clen_region'=>'Istmo de Tehuantepec Oaxaca'],
+            ['clen_id'=>'7','clen_codigo'=>'huv', 'clen_nombre'=>'Huave',                'clen_nombre_lengua'=>'Ombeayiüts',    'clen_region'=>'Valles Centrales Oaxaca'],
+            ['clen_id'=>'8','clen_codigo'=>'zai', 'clen_nombre'=>'Zapoteco del Istmo',   'clen_nombre_lengua'=>'Diidxazá',      'clen_region'=>'Istmo de Tehuantepec Oaxaca'],
+            ['clen_id'=>'9','clen_codigo'=>'maa', 'clen_nombre'=>'Mazateco',             'clen_nombre_lengua'=>'Én-ná',         'clen_region'=>'San Lucas Zoquiapam'],
         ];
 
         foreach ($events as $event){

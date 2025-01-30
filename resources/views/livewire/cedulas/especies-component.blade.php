@@ -22,6 +22,8 @@
                 {{-- <option value="6">Tu`un Savi (Mixteco)</option> --}}
                 <option value="7">Ombeayiüts (Huave)</option>
                 <option value="8">Diidxazá (Zapoteco Istmo)</option>
+                <option value="6">Tu'un Savi (Mixteco)</option>
+                <option value="9">Én-ná (Mazateco)</option>
             </select>
             &nbsp; &nbsp;
             <i class="bi bi-filetype-pdf" style="cursor: pointer;"></i>

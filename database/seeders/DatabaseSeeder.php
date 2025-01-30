@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             CatEtiquetasImgSeeder::class,
             CatEntidadesSeeder::class,
             SpUrlSeeder::class,
-            SpTitulosSeeder::class,
+            #SpTitulosSeeder::class,
             SpCedulaSeeder::class,
             SpFotosSeeder::class,
 
