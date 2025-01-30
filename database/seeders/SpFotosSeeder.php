@@ -16,6 +16,7 @@ class SpFotosSeeder extends Seeder
 
 
         $events=[
+            //Huaje
             ['imgsp_url'=>'1', 'imgsp_label'=>'16', 'imgsp_file'=>'huaje_portada.webp'],
             ['imgsp_url'=>'1', 'imgsp_label'=>'17', 'imgsp_file'=>'huaje_principal_1.webp'],
             ['imgsp_url'=>'1', 'imgsp_label'=>'18', 'imgsp_file'=>'huaje_principal_2.webp'],
@@ -23,6 +24,12 @@ class SpFotosSeeder extends Seeder
             ['imgsp_url'=>'1', 'imgsp_label'=>'20', 'imgsp_file'=>'huaje_principal_4.jpeg'],
             ['imgsp_url'=>'1', 'imgsp_label'=>'24', 'imgsp_file'=>'huaje_lateral_1.webp'],
             ['imgsp_url'=>'1', 'imgsp_label'=>'25', 'imgsp_file'=>'huaje_lateral_2.jpg'],
+            //Sabino
+            ['imgsp_url'=>'2', 'imgsp_label'=>'16', 'imgsp_file'=>'sabino_portada.webp'],
+            ['imgsp_url'=>'2', 'imgsp_label'=>'17', 'imgsp_file'=>'sabino_principal_1.webp'],
+            ['imgsp_url'=>'2', 'imgsp_label'=>'18', 'imgsp_file'=>'sabino_principal_2.webp'],
+            ['imgsp_url'=>'2', 'imgsp_label'=>'24', 'imgsp_file'=>'sabino_lateral1.webp'],
+            ['imgsp_url'=>'2', 'imgsp_label'=>'25', 'imgsp_file'=>'sabino_lateral_2.jpeg'],
 
             // ['imgsp_url'=>'1', 'imgsp_label'=>'', 'imgsp_file'=>''],
             // ['imgsp_url'=>'1', 'imgsp_label'=>'', 'imgsp_file'=>''],

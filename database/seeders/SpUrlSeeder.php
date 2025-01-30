@@ -15,7 +15,7 @@ class SpUrlSeeder extends Seeder
     {
         $events=[
             ['url_reino'=>'pl', 'url_url'=>'huaje',    'url_nombrecomun'=>'Huaje',          'url_sp'=>'2346297'],
-            ['url_reino'=>'pl', 'url_url'=>'sabino',   'url_nombrecomun'=>'Sabino',         'url_sp'=>'378578'],
+            ['url_reino'=>'pl', 'url_url'=>'sabino',   'url_nombrecomun'=>'Sabino, Ahuehuete',         'url_sp'=>'378578'],
             ['url_reino'=>'an', 'url_url'=>'melipona', 'url_nombrecomun'=>'Abeja melipona', 'url_sp'=>'1'],
             ['url_reino'=>'an', 'url_url'=>'grana',    'url_nombrecomun'=>'Grana cochinilla','url_sp'=>'2'],
             // ['url_reino'=>'pl', 'url_url'=>'', 'url_nombrecomun'=>'','url_sp'=>''],

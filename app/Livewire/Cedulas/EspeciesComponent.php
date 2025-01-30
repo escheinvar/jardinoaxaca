@@ -31,9 +31,8 @@ class EspeciesComponent extends Component
     }
 
     public function render(){
-#dd(session()->all());
         $datoUrl=SpUrlModel::where('url_act','1')->where('url_url',$this->url)->first();
-        #if($datoUrl =='' or is_null($datoUrl)){redirect('/errorNo URL');}
+        if($datoUrl =='' or is_null($datoUrl)){redirect('/errorNo URL');die();}
 
         ##### Obtiene datos taxonómicos principales
         if($datoUrl->url_reino =='pl'){
@@ -53,20 +52,24 @@ class EspeciesComponent extends Component
         }
 
         $texto=SpCedulasModel::where('ced_act','1')
-            ->join('sp_titulos','ced_titulo','=','tit_id')
-            ->where('ced_lengua',$this->idioma)->orWhere('ced_lengua','1')
+            #->join('sp_titulos','ced_titulo','=','tit_id')
+            ->where(function($q){
+                return $q
+                ->where('ced_lengua',$this->idioma)
+                ->orWhere('ced_lengua','1');
+            })
             ->where('ced_url',$datoUrl->url_id)
-            ->orderBy('ced_titulo','asc')
             ->orderBy('ced_order','asc')
-            ->orderBy('ced_lengua','asc')
+            #->orderBy('ced_lengua','asc')
             ->get();
+
+        $titulos= $texto->where('ced_titulo','1');
 
         $fotos=SpFotosModel::where('imgsp_act','1')
             ->where('imgsp_url',$datoUrl->url_id)
             ->get();
 
-        $titulos=SpTitulosModel::where('tit_act','1')->orderBy('tit_orden','asc')->get();
-
+#dd($texto);
         return view('livewire.cedulas.especies-component',[
             'taxo'=>$taxo,
             'titulos'=>$titulos,

@@ -32,6 +32,14 @@ Inicio
         <li>¿Catálogo de Kew?</li>
     </ul>
 
+    <h3>Cédulas audibles</h3>
+    <ul>
+        <li><a href="/sp/huaje/0">Huaje</a></li>
+        <li><a href="/sp/sabino/0">Sabino</a></li>
+        <li><a href="/sp/melipona/0">Abejas Meliponas </a></li>
+        <li><a href="/sp/grana/0">Grana cochinilla</a></li>
+    </ul>
+
     <h3>Faltantes</h3>
     <ol>
         <li>Módulo para vaciar las imágenes de carpeta /cargaMasiva que no están en la tabla pl_import (campos de fotos)</li>

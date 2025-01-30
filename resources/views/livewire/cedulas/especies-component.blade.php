@@ -201,9 +201,9 @@
                     </div>
                     <!-- titulos -->
                     @foreach ($titulos as $titulo)
-                        <div class="px-0 pb-2" style="font-size:90%;">
-                            <a class="nolink" href="#{{ $titulo->tit_name }}">
-                                {{ $titulo->tit_titulo }}
+                        <div class="px-0 py-2" style="font-size:90%;">
+                            <a class="nolink" href="#IrA{{ $titulo->ced_id }}tit">
+                                {{ $titulo->ced_codigo}}
                             </a>
                         </div>
                     @endforeach
@@ -213,7 +213,29 @@
 
         <!-- -------------- Texto central ----------------->
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" style="background-color:#CDC6B9;">
-            @foreach ($titulos as $tit)
+            @foreach($texto as $text)
+                @if($text->ced_titulo == '1')
+                    <div style="margin-top: 30px;">
+                        <h4>
+                            <a name="IrA{{ $text->ced_id }}tit">{!! $text->ced_codigo !!}</a>
+                            @if($text->ced_audio != '')
+                                <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:middle;" onclick="Escucha('/cedulas/{{ $text->ced_audio }}')"></i>
+                            @endif
+                        </h4>
+                    </div>
+                @else
+                    <div class="my-2">
+                        {!! $text->ced_codigo !!}
+                        @if($text->ced_audio != '')
+                            <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/{{ $text->ced_audio }}')"></i>
+                        @endif
+                    </div>
+                @endif
+
+
+            @endforeach
+
+            {{-- @foreach ($titulos as $tit)
                 <div class="my-5">
                     <!-- muestra título -->
                     <a name="{{ $tit->tit_name }}">
@@ -231,7 +253,7 @@
                         </div>
                     @endforeach
                 </div>
-             @endforeach
+            @endforeach --}}
         </div>
 
 

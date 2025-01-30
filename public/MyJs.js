@@ -181,6 +181,7 @@ function EscuchaAudio(soundFile){
 }
 
 function Escucha(audio){
+
     new Audio(audio).play();
 }
 //Inhabilitar tecla de espacio
