@@ -31,7 +31,7 @@ class EspeciesComponent extends Component
     }
 
     public function render(){
-        dd(session()->all());
+        #dd(session()->all());
         $datoUrl=SpUrlModel::where('url_act','1')->where('url_url',$this->url)->first();
         if($datoUrl =='' or is_null($datoUrl)){redirect('/errorNo URL');die();}
 
