@@ -275,6 +275,13 @@
                 </a>
             @endif
 
+
+            @if($fotos->where('imgsp_label','26')->value('imgsp_file') != '')
+                <a href="/cedulas/{{ $fotos->where('imgsp_label','26')->value('imgsp_file') }}" target="new">
+                    <img src="/cedulas/{{ $fotos->where('imgsp_label','26')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
+                </a>
+            @endif
+
             {{-- <img src="/MapaTemp.png"
                 style="width:100%;  padding:15px;"> --}}
         </div>

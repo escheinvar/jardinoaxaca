@@ -20,7 +20,7 @@ class EspeciesComponent extends Component
     public function mount($url, $jardin){
         $this->url=$url;
         $this->jardin=$jardin;
-        $this->idioma=session('locale');
+        $this->idioma=session('localeid');
     }
 
     public function idiomas(){
