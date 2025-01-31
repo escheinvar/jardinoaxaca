@@ -30,10 +30,23 @@ class SpFotosSeeder extends Seeder
             ['imgsp_url'=>'2', 'imgsp_label'=>'18', 'imgsp_file'=>'sabino_principal_2.webp'],
             ['imgsp_url'=>'2', 'imgsp_label'=>'24', 'imgsp_file'=>'sabino_lateral1.webp'],
             ['imgsp_url'=>'2', 'imgsp_label'=>'25', 'imgsp_file'=>'sabino_lateral_2.jpeg'],
-
-            // ['imgsp_url'=>'1', 'imgsp_label'=>'', 'imgsp_file'=>''],
-            // ['imgsp_url'=>'1', 'imgsp_label'=>'', 'imgsp_file'=>''],
-            // ['imgsp_url'=>'1', 'imgsp_label'=>'', 'imgsp_file'=>''],
+            //Meliponas
+            ['imgsp_url'=>'3', 'imgsp_label'=>'16', 'imgsp_file'=>'melipona_portada.jpg'],
+            ['imgsp_url'=>'3', 'imgsp_label'=>'17', 'imgsp_file'=>'melipona_principal1.jpg'],
+            ['imgsp_url'=>'3', 'imgsp_label'=>'18', 'imgsp_file'=>'melipona_principal2.jpg'],
+            ['imgsp_url'=>'3', 'imgsp_label'=>'19', 'imgsp_file'=>'melipona_principal3.jpg'],
+            ['imgsp_url'=>'3', 'imgsp_label'=>'24', 'imgsp_file'=>'melipona_lateral1.jpg'],
+            ['imgsp_url'=>'3', 'imgsp_label'=>'25', 'imgsp_file'=>'melipona_lateral2.jpg'],
+            ['imgsp_url'=>'3', 'imgsp_label'=>'26', 'imgsp_file'=>'melipona_lateral3.jpg'],
+            //grana
+            ['imgsp_url'=>'4', 'imgsp_label'=>'16', 'imgsp_file'=>'grana_portada.jpg'],
+            ['imgsp_url'=>'4', 'imgsp_label'=>'17', 'imgsp_file'=>'grana_principal1.jpg'],
+            ['imgsp_url'=>'4', 'imgsp_label'=>'18', 'imgsp_file'=>'grana_principal2.jpg'],
+            ['imgsp_url'=>'4', 'imgsp_label'=>'19', 'imgsp_file'=>'grana_principal3.jpg'],
+            ['imgsp_url'=>'4', 'imgsp_label'=>'20', 'imgsp_file'=>'grana_principal4.jpg'],
+            ['imgsp_url'=>'4', 'imgsp_label'=>'24', 'imgsp_file'=>'grana_lateral1.jpg'],
+            ['imgsp_url'=>'4', 'imgsp_label'=>'25', 'imgsp_file'=>'grana_lateral2.jpg'],
+            ['imgsp_url'=>'4', 'imgsp_label'=>'26', 'imgsp_file'=>'grana_lateral3.jpg'],
 
         ];
 

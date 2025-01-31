@@ -18,6 +18,9 @@ class EspeciesComponent extends Component
     public $url, $jardin, $idioma;
 
     public function mount($url, $jardin){
+        if(session('localeid')==''){
+            session(['localeid'=>'2']);
+        }
         $this->url=$url;
         $this->jardin=$jardin;
         $this->idioma=session('localeid');
