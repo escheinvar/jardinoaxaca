@@ -215,13 +215,16 @@
 
         <!-- -------------- Texto central ----------------->
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" style="background-color:#CDC6B9;">
+            <?php $num=0; ?>
             @foreach($texto as $text)
                 @if($text->ced_titulo == '1')
                     <div style="margin-top: 30px;">
                         <h4>
+
                             <a name="IrA{{ $text->ced_id }}tit">{!! $text->ced_codigo !!}</a>
                             @if($text->ced_audio != '')
-                                <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:middle;" onclick="Escucha('/cedulas/{{ $text->ced_audio }}')"></i>
+                                <?php $num++; ?>
+                                <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:middle;" onclick="Escucha('/cedulas/audios/{{ $text->ced_audio }}')"></i><span style="font-size:10px;">{{ $num }} {{-- $text->ced_audio --}}</span>
                             @endif
                         </h4>
                     </div>
@@ -229,7 +232,8 @@
                     <div class="my-2">
                         {!! $text->ced_codigo !!}
                         @if($text->ced_audio != '')
-                            <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/{{ $text->ced_audio }}')"></i>
+                            <?php $num++; ?>
+                            <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/audios/{{ $text->ced_audio }}')"></i><span style="font-size:10px;">{{ $num }} {{-- $text->ced_audio --}}</span>
                         @endif
                     </div>
                 @endif

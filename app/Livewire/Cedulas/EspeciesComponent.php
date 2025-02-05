@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\App;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-#[Layout('components.layouts.SistemaFichasPlanta')]
+
+#[Layout('plantillas.PlantillaWebSinScroll')]
 class EspeciesComponent extends Component
 {
 

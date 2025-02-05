@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-    
+
 <head>
     @include('plantillas.plant_Head')
 </head>
 
 <body>
     @livewireScripts
-    <!-- ---------------------- Menú -------------------------->    
+    <!-- ---------------------- Menú -------------------------->
     <header>
         <!--NAVBAR-->
         @include('plantillas.plant_MenuSist')
@@ -19,7 +19,7 @@
 
     <!-- ---------------------- slot de livewire  -------------------------->
     <div class="p-5" style="background-color:#efebe8;">
-        @if(isset($slot))            
+        @if(isset($slot))
             <!-- ---------------------- CARGA DE LIVEWIRE ------------------------------->
             {{ $slot }}
         @endif
@@ -34,7 +34,7 @@
     <!-- ------------------------ SCRIPTS------------------------------->
     @include('plantillas.SistemaScripts')
     @yield('scripts')
-    
+
 </body>
 
 </html>

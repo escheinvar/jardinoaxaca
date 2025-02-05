@@ -19,5 +19,7 @@ class SpUrlModel extends Model
         'url_reino',
         'url_sp',
         'url_nombrecomun',
+        'url_sciname',
+        'url_nombre',
     ];
 }

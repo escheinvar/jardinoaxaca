@@ -1,4 +1,4 @@
-@section('title') 
+@section('title')
 Directorio
 @endsection
 
@@ -10,7 +10,7 @@ Directorio: Grupo de diseño, Director, Responsables, Auxiliares docentes, Horti
 banner-directorio
 @endsection
 
-@section('banner-title') 
+@section('banner-title')
 Directorio
 @endsection
 
@@ -45,7 +45,7 @@ Directorio
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                             <h4>Director</h4>
                             <p>Dr. Alejandro de Ávila Blomberg
-                                
+
                             <h4>Administración</h4>
                             <!--p>C. P. Bertha Canseco Ruíz</p-->
                             <p>.</p>
@@ -155,5 +155,5 @@ Directorio
             </div>
         </div>
     </section>
-    
+
 </div>

@@ -23,6 +23,7 @@ use App\Livewire\Web\CodigoQrController;
 use App\Livewire\Web\ColaboradoresController;
 use App\Livewire\Web\ColeccionesController;
 use App\Livewire\Web\DirectiorioController;
+use App\Livewire\Web\EspeciesController;
 use App\Livewire\Web\EventosController;
 use App\Livewire\Web\HistoriaController;
 use App\Livewire\Web\InicioController;
@@ -54,6 +55,7 @@ Route::get('/directorio', DirectiorioController::class)->name('directorio');
 Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradores');
 Route::get('/actividades',EventosController::class)->name('actividades');
 Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
+Route::get('/especies',EspeciesController::class)->name('plantas');
 
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */

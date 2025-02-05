@@ -59,7 +59,7 @@
                                 @elseif(session('locale')=='pt')
                                     Passeios
                                 @elseif(session('locale')=='es_mix_bj')
-                                    Ña kuvi kèe ndó  
+                                    Ña kuvi kèe ndó
                                 @else
                                     Recorridos
                                 @endif
@@ -70,7 +70,7 @@
                                 @elseif(session('locale')=='pt')
                                     Mapa
                                 @elseif(session('locale')=='es_mix_bj')
-                                    Ñá’à ñà nùú yó nùú íyo iin iin ñà’a 
+                                    Ñá’à ñà nùú yó nùú íyo iin iin ñà’a
                                 @else
                                     Mapa y atractivos
                                 @endif
@@ -163,6 +163,20 @@
                             @endif
                         </a>
                     </li> --}}
+                    <!-- ----- Las especies ----- -->
+                    <li class="nav-item">
+                        <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/especies">
+                            @if(session('locale')=='en')
+                                Events
+                            @elseif(session('locale')=='pt')
+                                Eventos
+                            @elseif(session('locale')=='es_mix_bj')
+                                Eventos
+                            @else
+                                Las especies
+                            @endif
+                        </a>
+                    </li>
                     <!-- ----- Eventos ----- -->
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/actividades">
@@ -186,14 +200,14 @@
                                     System
                                 @elseif(session('locale')=='pt')
                                     Sistema
-                                @elseif(session('locale')=='es_mix_bj')    
-                                    Sistema    
+                                @elseif(session('locale')=='es_mix_bj')
+                                    Sistema
                                 @else
                                     Sistema
                                 @endif
                             </a>
                         </li>
-                        
+
                         <!-- ----- Salir ----- -->
                         <li class="nav-item">
                             <form action="{{route('logout')}}" method="post">
@@ -226,7 +240,7 @@
                                 </a>
                         </li>
                     @endif
-                    
+
                 </ul>
 
                 <div class="col iconos-nav">

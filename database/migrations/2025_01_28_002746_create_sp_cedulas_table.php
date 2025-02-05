@@ -20,7 +20,7 @@ return new class extends Migration
 
             #$table->foreignID('ced_titulo')->constrained('sp_titulos','tit_id'); ##### Id del título de sección al que pertenece el texto
             $table->enum('ced_titulo',['0','1'])->default('0'); ##### Indica si es título (h4) ò solo es código
-            $table->integer('ced_order')->default('0');  ##### Número de orden del párrafo
+            $table->decimal('ced_order',6,2)->default('0.0');  ##### Número de orden del párrafo
             $table->longText('ced_codigo')->nullable(); ##### Código html del párrafo
             $table->string('ced_audio')->nullable();    ##### nombre del archivo de audio
             $table->string('ced_autor')->nullable();     ##### id del autor del párrafo
