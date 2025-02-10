@@ -20,7 +20,7 @@ class EspeciesComponent extends Component
 
     public function mount($url, $jardin){
         if(session('localeid')==''){
-            session(['localeid'=>'2']);
+            session(['localeid'=>'spa']);
         }
         $this->url=$url;
         $this->jardin=$jardin;
@@ -28,6 +28,7 @@ class EspeciesComponent extends Component
     }
 
     public function idiomas(){
+        session(['locale'=> $this->idioma]);
         session(['localeid'=> $this->idioma]);
         App::setLocale($this->idioma);
 
@@ -35,7 +36,6 @@ class EspeciesComponent extends Component
     }
 
     public function render(){
-        #dd(session()->all());
         $datoUrl=SpUrlModel::where('url_act','1')->where('url_url',$this->url)->first();
         if($datoUrl =='' or is_null($datoUrl)){redirect('/errorNo URL');die();}
 
@@ -57,15 +57,13 @@ class EspeciesComponent extends Component
         }
 
         $texto=SpCedulasModel::where('ced_act','1')
-            #->join('sp_titulos','ced_titulo','=','tit_id')
             ->where(function($q){
                 return $q
-                ->where('ced_lengua',$this->idioma)
-                ->orWhere('ced_lengua','1');
+                ->where('ced_clencode',$this->idioma)
+                ->orWhere('ced_clencode','none');
             })
             ->where('ced_url',$datoUrl->url_id)
             ->orderBy('ced_order','asc')
-            #->orderBy('ced_lengua','asc')
             ->get();
 
         $titulos= $texto->where('ced_titulo','1');
@@ -74,12 +72,20 @@ class EspeciesComponent extends Component
             ->where('imgsp_url',$datoUrl->url_id)
             ->get();
 
-#dd($texto);
+        $lenguas=SpCedulasModel::where('ced_act','1')
+            ->whereNot('ced_clencode','none')
+            ->where('ced_url',$datoUrl->url_id)
+            ->distinct('ced_clencode')
+            ->join('cat_lenguas','ced_clencode','=','clen_code')
+            ->select('clen_code','clen_lengua','clen_autonimias')
+            ->get();
+
         return view('livewire.cedulas.especies-component',[
             'taxo'=>$taxo,
             'titulos'=>$titulos,
             'texto'=>$texto,
             'fotos'=>$fotos,
+            'lenguas'=>$lenguas,
         ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CatLenguasModel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,10 @@ return new class extends Migration
             $table->enum('comn_act',['0','1'])->default('1'); ##### Borrado lógico
 
             $table->string('comn_nombre'); ##### Texto con el nombre
-            $table->foreignId('comn_clenid')->constrained('cat_lenguas','clen_id');  ##### Código del nombre de la lengua en la que está escrito el nombre de la planta
+
+            $table->string('comn_clencode');
+            $table->foreign('comn_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('clen_code','cat_lenguas');
+
             $table->string('comn_regiones')->nullable(); ##### Array separado por punto y coma de las zonas o regiones geográficas en las que se reconoce el nombre
             $table->integer('comn_tipo')->default('0'); ##### Número indicador de proceso de curación: 0= dato de campo, 1=corregido por técnico; 2=corregido por autoridad;
 

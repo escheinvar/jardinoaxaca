@@ -7,23 +7,21 @@
                 <b>{{ $taxo['reino'] }} &nbsp; | &nbsp;  Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; {{ $taxo['nombrecomun'] }} &nbsp;
         </div>
         <div style="display:inline-block;">
-            {{-- <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
+            <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
             <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
             <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
             <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
-            <span class="d-xs-block d-sm-none">sm Extrachico</span> --}}
+            <span class="d-xs-block d-sm-none">sm Extrachico</span>
         </div>
 
 
         <div style="float: right;">
             Idioma:
             <select wire:change="idiomas()" wire:model="idioma" id="MiIdioma" class="form-control lenguas" style="width:150px; display:inline-block;">
-                <option value="2">Español</option>
-                {{-- <option value="6">Tu`un Savi (Mixteco)</option> --}}
-                <option value="7">Ombeayiüts (Huave)</option>
-                <option value="8">Diidxazá (Zapoteco Istmo)</option>
-                <option value="6">Tu'un Savi (Mixteco)</option>
-                <option value="9">Én-ná (Mazateco)</option>
+                @foreach ($lenguas as $len)
+                    <option value="{{ $len->clen_code }}">{{ $len->clen_lengua }} @if($len->clen_autonimia != '') ({{ $len->clen_autonimias }}) @endif</option>
+                @endforeach
+
             </select>
             &nbsp; &nbsp;
             <i class="bi bi-filetype-pdf" style="cursor: pointer;"></i>
@@ -33,6 +31,8 @@
     </div>
 
 
+    <!-- -------------------------------------- BLOQUE SUPERIOR FICHA E IMAGENES ----------------------------------------------->
+    <!-- -------------------------------------- BLOQUE SUPERIOR FICHA E IMAGENES ----------------------------------------------->
     <!-- -------------------------------------- BLOQUE SUPERIOR FICHA E IMAGENES ----------------------------------------------->
     <div class="row" style="margin:5px; border-radius:8px; ">
         <!-- ------------------------- FICHA GENERAL IZQUIERDA ------------------------>
@@ -181,14 +181,21 @@
 
 
 
-    <!-- -------------------------------------- FRANJA INFO ----------------------------------------------->
+    <!-- -------------------------------------- BLOQUE MEDIO FICHA E IMAGENES ----------------------------------------------->
+    <!-- -------------------------------------- BLOQUE MEDIO FICHA E IMAGENES ----------------------------------------------->
+    <!-- -------------------------------------- BLOQUE MEDIO FICHA E IMAGENES ----------------------------------------------->
     <div class="row" style="margin:5px; border-bottom-left-radius:8px;">
 
         <!-- -------------- Menú izquierdo ----------------->
         <div class="col-2" style="color:#efebe8;padding:40px;font-size:1.3em;background-color:#CDC6B9;">
-            <nav class="navbar navbar-expand-md">
+            <H4>
+                {{ $lenguas->where('clen_code',session('localeid'))->value('clen_autonimias') }}
+                {{ $lenguas->where('clen_code',session('localeid'))->value('clen_lengua') }}
+            </H4>
+            <nav class="navbar navbar-expand-md" >
+
                 <!-- --------- Menú Hamburguesa -------------- -->
-                <button class="navbar-toggler col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                <button class="navbar-toggler"
                     data-toggle="collapse" type="button" data-bs-toggle="offcanvas" data-bs-target="#MenuEspecifico">
                     <span style="font-size:50%;">Menú</span><span class="navbar-toggler-icon"></span>
                 </button>
@@ -220,7 +227,6 @@
                 @if($text->ced_titulo == '1')
                     <div style="margin-top: 30px;">
                         <h4>
-
                             <a name="IrA{{ $text->ced_id }}tit">{!! $text->ced_codigo !!}</a>
                             @if($text->ced_audio != '')
                                 <?php $num++; ?>
@@ -295,7 +301,9 @@
 
     </div>
 
-
+    <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
+    <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
+    <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
     <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
         <div class="col-12 " style="">
             Última modificación: 2024-11-23 V 4.5<br><br>

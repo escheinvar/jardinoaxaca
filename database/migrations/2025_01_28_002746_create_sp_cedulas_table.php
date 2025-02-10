@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id('ced_id');
             $table->enum('ced_act',['0','1'])->default('1'); ##### Borrado lógico
             $table->foreignId('ced_url')->constrained('sp_url','url_id'); ##### texto de la url
-            $table->foreignId('ced_lengua')->constrained('cat_lenguas','clen_id'); ##### Id de la lengua
+
+            $table->string('ced_clencode');
+            $table->foreign('ced_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('clen_code','cat_lenguas');
+
             $table->foreignId('ced_jardin')->constrained('cat_jardines','cjar_id'); ##### Id del jardín al que pertenece la cédula
 
-            #$table->foreignID('ced_titulo')->constrained('sp_titulos','tit_id'); ##### Id del título de sección al que pertenece el texto
             $table->enum('ced_titulo',['0','1'])->default('0'); ##### Indica si es título (h4) ò solo es código
             $table->decimal('ced_order',6,2)->default('0.0');  ##### Número de orden del párrafo
             $table->longText('ced_codigo')->nullable(); ##### Código html del párrafo

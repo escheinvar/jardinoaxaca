@@ -167,11 +167,11 @@
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/especies">
                             @if(session('locale')=='en')
-                                Events
+                                The species
                             @elseif(session('locale')=='pt')
-                                Eventos
+                                As espécies
                             @elseif(session('locale')=='es_mix_bj')
-                                Eventos
+                                Las especies
                             @else
                                 Las especies
                             @endif

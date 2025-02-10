@@ -42,7 +42,7 @@ class loginController extends Controller
             session([
                 'rol'=>$roles,
                 'locale'=>'es',
-                'localeid'=>'2',
+                'localeid'=>'esp',
             ]);
 
 
