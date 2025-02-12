@@ -3,6 +3,7 @@
     <!-- -------------------------------------- FRANJA CLASIFICACIÓN ----------------------------------------------->
     <div style="overflow:auto; background-color:#CDC6B9; border-radius:8px; margin:5px; padding:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
         <div style="display:inline-block;">
+                <a href="/especies" class="nolink"><-Regresar</a> &nbsp; &nbsp;
                 {{-- Jardin: {{ $jardin }} --}}
                 <b>{{ $taxo['reino'] }} &nbsp; | &nbsp;  Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; {{ $taxo['nombrecomun'] }} &nbsp;
         </div>
@@ -81,14 +82,17 @@
             <div class="container-fluid my-4" style="color:#64383E;font-size:90%;">
                 <div class="row pb-2" style="">
                     <div class="col-12" style="text-align: center;">
-                        <B>Jardín Etnobiológico de Oaxaca</B><br>
-                        <img src="/avatar/jardines/JebOax.png" style="width:40px;"><br>
+                        <B>{{ $jardinData->cjar_nombre }}</B><br>
+                        <img src="/avatar/jardines/{{ $jardinData->cjar_logo }}" style="width:40px;"><br>
+                        {{ $jardinData->ccam_name }}
                     </div>
                     <div class="col-4" style="">
                         Id jardín:
                     </div>
                     <div class="col-8" style="">
-                        695, 698, 966, 2525
+                        @foreach ($clavos as $cla)
+                            {{ $cla }}
+                        @endforeach
                     </div>
                 </div>
                 <div class="row" style="">
@@ -96,25 +100,23 @@
                         Herbario:
                     </div>
                     <div class="col-8" style="">
-                        1050, 1099, 1085, 1045, 1398,  1765
+                        @foreach ($herbario as $her)
+                            {{ $her }}
+                        @endforeach
                     </div>
                 </div>
 
                 <div class="row" style="">
                     <div class="col-12 pb-2 my-4" style="text-align:center;">
-
-                    </div>
-                    <div class="col-12 pb-2" style="text-align:center;">
-                        <b>Jardín Comunitario de Matatlán</b>
-                        <!--img src="/avatar/jardines/Matatlan.png" style="width:30px;"-->
                         <br>
-                        3452, 654
-                    </div>
-                    <div class="col-12 pb-2" style="text-align:center;">
-                        <b>Parque Primavera</b>
-                        <!--img src="/avatar/jardines/default.png" style="width:40px;"-->
-                        <br>
-                        9923, 456
+                        <h6>Otros Jardines</h6>
+                        @foreach ($otrosJardines as $otros)
+                            <div class="col-12 pb-2" style="text-align:center;">
+                                <a href="#" class="nolink">
+                                    {{ $otros }}
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -123,9 +125,9 @@
         <!-- ------------------------- FOTO DE LA PORTADA ------------------------>
         <div class="col-sm-12 col-md-6 col-lg-7">
             <center>
-                @if($fotos->where('imgsp_label','16')->value('imgsp_file') != '')
-                    <a href="/cedulas/{{ $fotos->where('imgsp_label','16')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_label','16')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="heigth:100%; max-width:80%;center">
+                @if($fotos->where('imgsp_cimgname','portada')->value('imgsp_file') != '')
+                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">
+                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="heigth:100%; max-width:80%;center">
                     </a>
                 @endif
             </center>
@@ -139,34 +141,34 @@
             </div>
 
             <!-- img ppal1-->
-            @if($fotos->where('imgsp_label','17')->value('imgsp_file') != '' )
+            @if($fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') != '' )
                 <div class="center">
-                    <a href="/cedulas/{{ $fotos->where('imgsp_label','17')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{$fotos->where('imgsp_label','17')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
+                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') }}" target="new">
+                        <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
                 </div>
             @endif
             <!-- img ppal2 -->
-            @if($fotos->where('imgsp_label','18')->value('imgsp_file') != '' )
+            @if($fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') != '' )
                 <div class="center">
-                    <a href="/cedulas/{{ $fotos->where('imgsp_label','18')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{$fotos->where('imgsp_label','18')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
+                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') }}" target="new">
+                        <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
                 </div>
             @endif
             <!-- img ppal3 -->
-            @if($fotos->where('imgsp_label','19')->value('imgsp_file') != '' )
+            @if($fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') != '' )
                 <div class="center">
-                    <a href="/cedulas/{{ $fotos->where('imgsp_label','19')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{$fotos->where('imgsp_label','19')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
+                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') }}" target="new">
+                        <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
                 </div>
             @endif
             <!-- img ppal4-->
-            @if($fotos->where('imgsp_label','20')->value('imgsp_file') != '' )
+            @if($fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') != '' )
                 <div class="center">
-                    <a href="/cedulas/{{ $fotos->where('imgsp_label','20')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{$fotos->where('imgsp_label','20')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
+                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') }}" target="new">
+                        <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
                 </div>
             @endif
@@ -239,33 +241,19 @@
                         {!! $text->ced_codigo !!}
                         @if($text->ced_audio != '')
                             <?php $num++; ?>
-                            <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/audios/{{ $text->ced_audio }}')"></i><span style="font-size:10px;">{{ $num }} {{-- $text->ced_audio --}}</span>
+                            {{-- <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/audios/{{ $text->ced_audio }}')"></i> --}}
+                            <audio id="SpAudio{{ $text->ced_id }}">
+                                <source src='/cedulas/audios/{{ $text->ced_audio }}' type="audio/ogg">
+                                <source src='/cedulas/audios/{{ $text->ced_audio }}' type="audio/mpeg">
+                                El navegador no soporta el audio
+                            </audio>
+                            <i class="bi bi-volume-down-fill" id="IconPlay{{ $text->ced_id }}" onclick="playAudio('{{ $text->ced_id }}')" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;"></i>
+                            <i class="bi bi-volume-mute-fill" id="IconStop{{ $text->ced_id }}" onclick="pauseAudio('{{ $text->ced_id }}')" style="cursor:pointer;display:none; font-size:200%;vertical-align:top;"></i>
+                            <span style="font-size:10px;">{{ $num }} {{-- $text->ced_audio --}}</span>
                         @endif
                     </div>
                 @endif
-
-
             @endforeach
-
-            {{-- @foreach ($titulos as $tit)
-                <div class="my-5">
-                    <!-- muestra título -->
-                    <a name="{{ $tit->tit_name }}">
-                        <h5>{{ $tit->tit_titulo }}</h5>
-                    </a>
-                    <!-- apila párrafos -->
-                    @foreach ($texto as $text)
-                        <div class="my-2">
-                            @if($text->ced_titulo == $tit->tit_id)
-                                {!! $text->ced_codigo !!}
-                                @if($text->ced_audio != '')
-                                    <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/{{ $text->ced_audio }}')"></i>
-                                @endif
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach --}}
         </div>
 
 
@@ -275,22 +263,32 @@
 
         <!-- -------------- Imágenes derecha ----------------->
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="background-color:#CDC6B9;">
-            @if($fotos->where('imgsp_label','24')->value('imgsp_file') != '')
-                <a href="/cedulas/{{ $fotos->where('imgsp_label','24')->value('imgsp_file') }}" target="new">
-                    <img src="/cedulas/{{ $fotos->where('imgsp_label','24')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
+            <!-- lateralvideo1 -->
+            @if($fotos->where('imgsp_cimgname','lateralvideo1')->value('imgsp_file') != '')
+                <video width="40" height="40" controls>
+                    <source src="" type="video/ogg">
+                    Tu navegador no soporta el video
+                </video>
+
+            @endif
+
+            <!-- lateral1 -->
+            @if($fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') != '')
+                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" target="new">
+                    <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
+                </a>
+            @endif
+            <!-- lateral2 -->
+            @if($fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') != '')
+                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" target="new">
+                    <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                 </a>
             @endif
 
-            @if($fotos->where('imgsp_label','25')->value('imgsp_file') != '')
-                <a href="/cedulas/{{ $fotos->where('imgsp_label','25')->value('imgsp_file') }}" target="new">
-                    <img src="/cedulas/{{ $fotos->where('imgsp_label','25')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                </a>
-            @endif
-
-
-            @if($fotos->where('imgsp_label','26')->value('imgsp_file') != '')
-                <a href="/cedulas/{{ $fotos->where('imgsp_label','26')->value('imgsp_file') }}" target="new">
-                    <img src="/cedulas/{{ $fotos->where('imgsp_label','26')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
+            <!-- lateral3 -->
+            @if($fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') != '')
+                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" target="new">
+                    <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                 </a>
             @endif
 

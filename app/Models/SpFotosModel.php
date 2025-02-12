@@ -18,7 +18,7 @@ class SpFotosModel extends Model
         'imgsp_act',
 
         'imgsp_file',
-        'imgsp_label',
+        'imgsp_cimgname',
         'imgsp_autor',
         'imgsp_titulo',
         'imgsp_date',

@@ -56,6 +56,9 @@ Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradore
 Route::get('/actividades',EventosController::class)->name('actividades');
 Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 Route::get('/especies',EspeciesController::class)->name('plantas');
+/*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
+Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
+
 
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */
@@ -84,8 +87,6 @@ Route::middleware(['auth.basic'])->group(function(){
     Route::get('/catalogo/campus', CatalogoJardinesYcampusComponent::class)->name('CatCampus');
 });
 
-/*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
-Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
 
 
 

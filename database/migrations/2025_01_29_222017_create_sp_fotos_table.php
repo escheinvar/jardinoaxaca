@@ -16,8 +16,12 @@ return new class extends Migration
             $table->foreignId('imgsp_url')->constrained('sp_url','url_id');  ##### ID de tabla pl_plantas
             $table->enum('imgsp_act',['0','1'])->default('1'); ##### Borrado lógico
 
-            $table->string('imgsp_file');  ##### Texto con la ubicación del archivo de imágen
-            $table->foreignId('imgsp_label')->constrained('cat_fotoplantaslabel','cimg_id');  ##### ID del label de la foto
+            $table->string('imgsp_file');  ##### Texto con la ubicación del archivo de imágen con resolucion normal
+            $table->string('imgsp_filelow')->nullable();  ##### Texto con la ubicación del archivo de imágen con resolución baja
+
+            $table->string('imgsp_cimgname');   ##### texto de tabla catálogo de imagenes con nombre de label (posición de la foto)
+            $table->foreign('imgsp_cimgname')->references('cimg_name')->on('cat_fotoplantaslabel')->onDelete('cascade')->constrained('cimg_name','cat_fotoplantaslabel');
+
             $table->string('imgsp_autor')->nullable(); ##### Texto con el nombre del autor de la imagen
             $table->string('imgsp_titulo')->nullable(); ##### Texto con el nombre del tìtulo de la imagen
             $table->date('imgsp_date')->nullable(); ##### Fecha de la imagen

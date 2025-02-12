@@ -181,9 +181,26 @@ function EscuchaAudio(soundFile){
 }
 
 function Escucha(audio){
-
-    new Audio(audio).play();
+    new  Audio(audio).play();
 }
+
+
+function playAudio(IdAudio) {
+    var MyAudio = document.getElementById('SpAudio'+IdAudio);
+    document.getElementById('IconPlay'+IdAudio).style.display='none';
+    document.getElementById('IconStop'+IdAudio).style.display='inline';
+    MyAudio.play();
+}
+
+function pauseAudio(IdAudio) {
+    var MyAudio = document.getElementById('SpAudio'+IdAudio);
+    document.getElementById('IconPlay'+IdAudio).style.display='inline';
+    document.getElementById('IconStop'+IdAudio).style.display='none';
+    MyAudio.pause();
+    MyAudio.currentTime = 0;
+
+}
+
 //Inhabilitar tecla de espacio
 //function NoEspacio(e, campo){
 //		key = e.keyCode ? e.keyCode : e.which;
