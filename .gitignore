@@ -6,13 +6,13 @@
 /public/FotosKobo/
 /public/cargaMasiva/
 /public/plantasFotos/
+/public/cedulas/*.mp4
 /storage/*.key
 /vendor
 .env
 .env.backup
 .env.production
 .phpunit.result.cache
-/cedulas/*.mp4
 Homestead.json
 Homestead.yaml
 auth.json
