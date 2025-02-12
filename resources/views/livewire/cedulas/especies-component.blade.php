@@ -82,16 +82,17 @@
             <div class="container-fluid my-4" style="color:#64383E;font-size:90%;">
                 <div class="row pb-2" style="">
                     <div class="col-12" style="text-align: center;">
-                        <B>{{ $jardinData->cjar_nombre }}</B><br>
+                        <B>{{ $jardinData->cjar_nombre }},<br>
+                            {{ $jardinData->ccam_name }}</B><br>
                         <img src="/avatar/jardines/{{ $jardinData->cjar_logo }}" style="width:40px;"><br>
-                        {{ $jardinData->ccam_name }}
+
                     </div>
                     <div class="col-4" style="">
-                        Id jardín:
+                        Id {{ $jardinData->ccam_name }}:
                     </div>
                     <div class="col-8" style="">
                         @foreach ($clavos as $cla)
-                            {{ $cla }}
+                            {{ $cla }},
                         @endforeach
                     </div>
                 </div>
