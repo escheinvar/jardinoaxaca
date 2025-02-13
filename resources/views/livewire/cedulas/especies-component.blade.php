@@ -3,7 +3,7 @@
     <!-- -------------------------------------- FRANJA CLASIFICACIÓN ----------------------------------------------->
     <div style="overflow:auto; background-color:#CDC6B9; border-radius:8px; margin:5px; padding:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
         <div style="display:inline-block;">
-                <a href="/especies" class="nolink"><-Regresar</a> &nbsp; &nbsp;
+                <a href="/especies" class="nolink"> <i class="bi bi-arrow-left-short"></i>Regresar</a> &nbsp; &nbsp;
                 {{-- Jardin: {{ $jardin }} --}}
                 <b>{{ $taxo['reino'] }} &nbsp; | &nbsp;  Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; {{ $taxo['nombrecomun'] }} &nbsp;
         </div>
