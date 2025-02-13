@@ -21,8 +21,8 @@ class SpUrlSeeder extends Seeder
             // ['url_reino'=>'pl', 'url_url'=>'', 'url_nombrecomun'=>'','url_sp'=>'', 'url_nombre'=>''],
         ];
 
-    foreach ($events as $event){
-        SpUrlModel::create($event);
-    }
+        foreach ($events as $event){
+            SpUrlModel::create($event);
+        }
     }
 }
