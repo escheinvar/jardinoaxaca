@@ -9,21 +9,18 @@ class SpCedulasModel extends Model
     #use HasFactory;
 	protected $connection='pgsql';
 	protected $table = 'sp_cedulas';
-	protected $primaryKey = 'ced_id';
+	protected $primaryKey = 'txt_id';
 	public $incrementing = true;
 	#protected $keyType = 'string';
 
     protected $fillable = [
-        'ced_act',
-        'ced_url',
-        'ced_lengua',
-        'ced_jardin',
-        'ced_reino',
-        'ced_sp',
-        'ced_titulo',
-        'ced_order',
-        'ced_codigo',
-        'ced_audio',
-        'ced_autor',
+        'txt_cedid',
+        'txt_act',
+        'txt_titulo',
+        'txt_order',
+        'txt_codigo',
+        'txt_audio',
+        'txt_autor',
+        'txt_version',
     ];
 }

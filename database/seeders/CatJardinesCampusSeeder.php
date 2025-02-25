@@ -39,14 +39,14 @@ class CatJardinesCampusSeeder extends Seeder
                 'ccam_act'=>'1',
                 'ccam_cjarid'=>'1',
                 'ccam_name'=>'Santo Domingo',
-                'ccam_nombre'=>'Jardín Etnobiológico de Oaxaca',
+                'ccam_nombre'=>'Santo Domingo',
                 'ccam_direccion'=>'',
             ],[
                 'ccam_id'=>'2',
                 'ccam_act'=>'1',
                 'ccam_cjarid'=>'1',
                 'ccam_name'=>'Canteras',
-                'ccam_nombre'=>'Jardín Etnobiológico de Oaxaca',
+                'ccam_nombre'=>'Canteras',
                 'ccam_direccion'=>'',
             ]
         ];

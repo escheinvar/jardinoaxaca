@@ -14,13 +14,14 @@ class SpFotosModel extends Model
 	#protected $keyType = 'string';
 
     protected $fillable = [
-        'imgsp_url',
+        'imgsp_urlurl',
         'imgsp_act',
-
         'imgsp_file',
+        'imgsp_filelow',
         'imgsp_cimgname',
         'imgsp_autor',
         'imgsp_titulo',
+        'imgsp_pie',
         'imgsp_date',
         'imgsp_descrip',
         'imgsp_metadata',

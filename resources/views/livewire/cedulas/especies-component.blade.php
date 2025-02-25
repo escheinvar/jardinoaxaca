@@ -3,11 +3,14 @@
     <!-- -------------------------------------- FRANJA CLASIFICACIÓN ----------------------------------------------->
     <div style="overflow:auto; background-color:#CDC6B9; border-radius:8px; margin:5px; padding:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
         <div style="display:inline-block;">
-                <a href="/especies" class="nolink"> <i class="bi bi-arrow-left-short"></i>Regresar</a> &nbsp; &nbsp;
+                <b><a href="/especies" class="nolink"> <i class="bi bi-arrow-left-short"></i>Regresar</a></b> &nbsp; | &nbsp;
                 {{-- Jardin: {{ $jardin }} --}}
-                <b>{{ $taxo['reino'] }} &nbsp; | &nbsp;  Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; {{ $taxo['nombrecomun'] }} &nbsp;
+                <b> Reino {{ $taxo['reino'] }} &nbsp; | &nbsp;
+                    @if($taxo['familia']!='') Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  @endif
+                    @if($taxo['sp'] != '') <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; @endif
+                    {{ $taxo['nombrecomun'] }}
         </div>
-        <div style="display:inline-block;">
+        <div style="display:inline-block;"> &nbsp; | &nbsp;
             <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
             <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
             <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
@@ -82,13 +85,17 @@
             <div class="container-fluid my-4" style="color:#64383E;font-size:90%;">
                 <div class="row pb-2" style="">
                     <div class="col-12" style="text-align: center;">
-                        <B>{{ $jardinData->cjar_nombre }},<br>
+                        @foreach ($jardinData as $jar)
+                            <B>{{ $jar->cjar_nombre }}<br>
+                                {{ $jar->ccam_nombre }}</B><br>
+                                <img src="/avatar/jardines/{{ $jar->cjar_logo }}" style="width:40px;"><br>
+                        @endforeach
+                        {{-- <B>{{ $jardinData->cjar_nombre }},<br>
                             {{ $jardinData->ccam_name }}</B><br>
-                        <img src="/avatar/jardines/{{ $jardinData->cjar_logo }}" style="width:40px;"><br>
-
+                        <img src="/avatar/jardines/{{ $jardinData->cjar_logo }}" style="width:40px;"><br> --}}
                     </div>
                     <div class="col-4" style="">
-                        Id {{ $jardinData->ccam_name }}:
+                        Id :
                     </div>
                     <div class="col-8" style="">
                         @foreach ($clavos as $cla)
@@ -214,8 +221,8 @@
                     <!-- titulos -->
                     @foreach ($titulos as $titulo)
                         <div class="px-0 py-2" style="font-size:90%;">
-                            <a class="nolink" href="#IrA{{ $titulo->ced_id }}tit">
-                                {{ $titulo->ced_codigo}}
+                            <a class="nolink" href="#IrA{{ $titulo->txt_id }}tit">
+                                {{ $titulo->txt_codigo}}
                             </a>
                         </div>
                     @endforeach
@@ -227,30 +234,30 @@
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" style="background-color:#CDC6B9;">
             <?php $num=0; ?>
             @foreach($texto as $text)
-                @if($text->ced_titulo == '1')
+                @if($text->txt_titulo == '1')
                     <div style="margin-top: 30px;">
                         <h4>
-                            <a name="IrA{{ $text->ced_id }}tit">{!! $text->ced_codigo !!}</a>
-                            @if($text->ced_audio != '')
+                            <a name="IrA{{ $text->txt_id }}tit">{!! $text->txt_codigo !!}</a>
+                            @if($text->txt_audio != '')
                                 <?php $num++; ?>
-                                <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:middle;" onclick="Escucha('/cedulas/audios/{{ $text->ced_audio }}')"></i><span style="font-size:10px;">{{ $num }} {{-- $text->ced_audio --}}</span>
+                                <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:middle;" onclick="Escucha('/cedulas/audios/{{ $text->txt_audio }}')"></i><span style="font-size:10px;">{{ $num }} {{-- $text->txt_audio --}}</span>
                             @endif
                         </h4>
                     </div>
                 @else
                     <div class="my-2">
-                        {!! $text->ced_codigo !!}
-                        @if($text->ced_audio != '')
+                        {!! $text->txt_codigo !!}
+                        @if($text->txt_audio != '')
                             <?php $num++; ?>
-                            {{-- <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/audios/{{ $text->ced_audio }}')"></i> --}}
-                            <audio id="SpAudio{{ $text->ced_id }}">
-                                <source src='/cedulas/audios/{{ $text->ced_audio }}' type="audio/ogg">
-                                <source src='/cedulas/audios/{{ $text->ced_audio }}' type="audio/mpeg">
+                            {{-- <i class="bi bi-volume-down-fill" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;" onclick="Escucha('/cedulas/audios/{{ $text->txt_audio }}')"></i> --}}
+                            <audio id="SpAudio{{ $text->txt_id }}">
+                                <source src='/cedulas/audios/{{ $text->txt_audio }}' type="audio/ogg">
+                                <source src='/cedulas/audios/{{ $text->txt_audio }}' type="audio/mpeg">
                                 El navegador no soporta el audio
                             </audio>
-                            <i class="bi bi-volume-down-fill" id="IconPlay{{ $text->ced_id }}" onclick="playAudio('{{ $text->ced_id }}')" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;"></i>
-                            <i class="bi bi-volume-mute-fill" id="IconStop{{ $text->ced_id }}" onclick="pauseAudio('{{ $text->ced_id }}')" style="cursor:pointer;display:none; font-size:200%;vertical-align:top;"></i>
-                            <span style="font-size:10px;">{{ $num }} {{-- $text->ced_audio --}}</span>
+                            <i class="bi bi-volume-down-fill" id="IconPlay{{ $text->txt_id }}" onclick="playAudio('{{ $text->txt_id }}')" style="cursor:pointer;display:inline; font-size:200%;vertical-align:top;"></i>
+                            <i class="bi bi-volume-mute-fill" id="IconStop{{ $text->txt_id }}" onclick="pauseAudio('{{ $text->txt_id }}')" style="cursor:pointer;display:none; font-size:200%;vertical-align:top;"></i>
+                            <span style="font-size:10px;">{{ $num }} {{-- $text->txt_audio --}}</span>
                         @endif
                     </div>
                 @endif

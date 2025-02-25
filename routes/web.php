@@ -55,8 +55,9 @@ Route::get('/directorio', DirectiorioController::class)->name('directorio');
 Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradores');
 Route::get('/actividades',EventosController::class)->name('actividades');
 Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
-Route::get('/especies',EspeciesController::class)->name('plantas');
+
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
+Route::get('/especies',EspeciesController::class)->name('especies');
 Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
 
 

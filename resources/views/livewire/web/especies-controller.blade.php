@@ -33,7 +33,7 @@ Las especies<br>del Jardín
                 <div class="col-sm-12 col-md-9 col-lg-8 col-xl-6">
                     <ul>
                         @foreach ($cedulas as $i)
-                            <li><a href="/sp/{{ $i->url_url }}/1">{{ $i->url_nombrecomun }}</a></li>
+                            <li><a href="/sp/{{ $i->url_url }}/JebOax">{{ $i->url_nombre }}</a></li>
                         @endforeach
                     </ul>
                 </div>

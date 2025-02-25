@@ -16,10 +16,10 @@ class SpUrlModel extends Model
     protected $fillable = [
         'url_act',
         'url_url',
+        'url_nombre',
         'url_reino',
         'url_sp',
         'url_nombrecomun',
         'url_sciname',
-        'url_nombre',
     ];
 }

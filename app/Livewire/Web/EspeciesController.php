@@ -9,7 +9,7 @@ use Livewire\Component;
 class EspeciesController extends Component
 {
     public function render(){
-        $cedulas=SpUrlModel::where('url_act','1')->orderBy('url_nombrecomun','asc')->get();
+        $cedulas=SpUrlModel::where('url_act','1')->orderBy('url_nombre','asc')->get();
 
         return view('livewire.web.especies-controller',[
             'cedulas'=>$cedulas,
