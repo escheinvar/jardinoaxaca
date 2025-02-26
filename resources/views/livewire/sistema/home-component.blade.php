@@ -14,14 +14,14 @@ Inicio
     @endforeach
 
 
-    <h3>Menú admin sistema</h3>
+    <h3>Módulo de admin sistema</h3>
     <ul>
-        <li> Catálogo de roles </li>
+        <li> Catálogo de roles : (base: admin/web/usr)</li>
         <li> Catálogo de usuarios</li>
         <li> Catálogo de instituciones (de personas que se registran)</li>
     </ul>
 
-    <h3>Menú de jardines</h3>
+    <h3>Módulo de jardines</h3>
     <ul>
         <li><a href="/importaPlantas">Carga masiva de ejemplares de jardín</a> (solo resp-jardin)</li>
         <li><a href="/catalogo/campus">Catálogo de jardines y campus</a></li>
@@ -32,12 +32,11 @@ Inicio
         <li>¿Catálogo de Kew?</li>
     </ul>
 
-    <h3>Cédulas audibles</h3>
+    <h3>Módulo de cédulas audibles</h3>
     <ul>
-        <li><a href="/sp/huaje/0">Huaje</a></li>
-        <li><a href="/sp/sabino/0">Sabino</a></li>
-        <li><a href="/sp/melipona/0">Abejas Meliponas </a></li>
-        <li><a href="/sp/grana/0">Grana cochinilla</a></li>
+        <li>Cédulas: <a href="/sp/huaje/0">Huaje</a>,  <a href="/sp/sabino/0">Sabino</a>,  <a href="/sp/melipona/0">Abejas Meliponas </a>, <a href="/sp/grana/0">Grana cochinilla</a></li>
+        <li> Catálogo de temas/cédulas</li>
+        <li> Generador de cédulas</li>
     </ul>
 
     <h3>Faltantes</h3>
