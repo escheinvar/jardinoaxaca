@@ -20,5 +20,7 @@ class SpUrlCedulaModel extends Model
         'ced_cjarsiglas',
         'ced_edo',
         'ced_version',
+        'ced_versiondate',
+        'ced_cita',
     ];
 }

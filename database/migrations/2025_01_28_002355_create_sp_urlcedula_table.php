@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sp_urlcedula', function (Blueprint $table) {
             $table->id('ced_id');
             $table->enum('ced_act',['0','1'])->default('1');
+            $table->integer('ced_edo')->default('0'); ##### Estado de la cédula: 0=en construcción, 1=en revisión,  2=aprobado1, 3=en edicion, 4=en revisión, 5=público )
 
             $table->string('ced_urlurl');   ###### URL de la especie
             $table->foreign('ced_urlurl')->references('url_url')->on('sp_url')->onDelete('cascade')->constrained('sp_url','url_url');
@@ -24,9 +25,11 @@ return new class extends Migration
             $table->string('ced_cjarsiglas'); ##### Jardín
             $table->foreign('ced_cjarsiglas')->references('cjar_siglas')->on('cat_jardines')->onDelete('cascade')->constrained('cat_jardines','cjar_siglas');
 
-            $table->integer('ced_edo')->default('0'); ##### Estado de la cédula: 0=en construcción, 1=en revisión,  2=aprobado1, 3=en edicion, 4=en revisión, 5=público )
 
             $table->decimal('ced_version',5,2)->default('1.00'); ##### Versión de la cédula
+            $table->date('ced_versiondate')->default(date('Y-m-d'));  ##### Fecha de la última versión
+
+            $table->longText('ced_cita')->nullable(); ###### Texto de la cita de la ficha: Scheinvar GE y Gámez T, 2003. Algo....
 
             $table->timestamps();
         });

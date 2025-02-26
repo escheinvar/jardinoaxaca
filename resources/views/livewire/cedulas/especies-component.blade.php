@@ -1,14 +1,18 @@
 <div>
 <div class="container">
-    <!-- -------------------------------------- FRANJA CLASIFICACIÓN ----------------------------------------------->
+    <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
+    <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
+    <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <div style="overflow:auto; background-color:#CDC6B9; border-radius:8px; margin:5px; padding:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
         <div style="display:inline-block;">
-                <b><a href="/especies" class="nolink"> <i class="bi bi-arrow-left-short"></i>Regresar</a></b> &nbsp; | &nbsp;
+                <b><a href="/especies" class="nolink">
+                    <i class="bi bi-arrow-left-short"></i>Regresar
+                </a></b> &nbsp; | &nbsp;
                 {{-- Jardin: {{ $jardin }} --}}
                 <b> Reino {{ $taxo['reino'] }} &nbsp; | &nbsp;
                     @if($taxo['familia']!='') Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  @endif
                     @if($taxo['sp'] != '') <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; @endif
-                    {{ $taxo['nombrecomun'] }}
+                    {{ $taxo['nombrecomun'] }}</b>
         </div>
         <div style="display:inline-block;"> &nbsp; | &nbsp;
             <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
@@ -18,20 +22,17 @@
             <span class="d-xs-block d-sm-none">sm Extrachico</span>
         </div>
 
-
+        <!-- -------------------- Menú de lenguas ------------------------------------ -->
         <div style="float: right;">
             Idioma:
-            <select wire:change="idiomas()" wire:model="idioma" id="MiIdioma" class="form-control lenguas" style="width:150px; display:inline-block;">
+            <select wire:change="idiomas()" wire:model="idioma" id="MiIdioma" class="form-control lenguas" style="width:200px; display:inline-block;">
                 @foreach ($lenguas as $len)
-                    <option value="{{ $len->clen_code }}">{{ $len->clen_lengua }} @if($len->clen_autonimia != '') ({{ $len->clen_autonimias }}) @endif</option>
+                    <option value="{{ $len->clen_code }}"> @if($len->clen_autonimias != '') {{ $len->clen_autonimias }}  @endif {{ $len->clen_lengua }} </option>
                 @endforeach
-
             </select>
             &nbsp; &nbsp;
             <i class="bi bi-filetype-pdf" style="cursor: pointer;"></i>
         </div>
-
-
     </div>
 
 
@@ -84,16 +85,16 @@
             <!-- ------------------------- Ejemplares del jardín ------------------------>
             <div class="container-fluid my-4" style="color:#64383E;font-size:90%;">
                 <div class="row pb-2" style="">
-                    <div class="col-12" style="text-align: center;">
-                        @foreach ($jardinData as $jar)
-                            <B>{{ $jar->cjar_nombre }}<br>
-                                {{ $jar->ccam_nombre }}</B><br>
+                    @foreach ($jardinData as $jar)
+                        <div class="col-12 py-2" style="text-align: center;">
+                            <a href="/sp/{{ $url }}/{{ $jar->cjar_siglas }}" class="nolink">
+                                {{ $jar->cjar_nombre }}<br>
+                                {{-- {{ $jar->ccam_nombre }}<br> --}}
                                 <img src="/avatar/jardines/{{ $jar->cjar_logo }}" style="width:40px;"><br>
-                        @endforeach
-                        {{-- <B>{{ $jardinData->cjar_nombre }},<br>
-                            {{ $jardinData->ccam_name }}</B><br>
-                        <img src="/avatar/jardines/{{ $jardinData->cjar_logo }}" style="width:40px;"><br> --}}
-                    </div>
+                            </a>
+                        </div>
+                    @endforeach
+                    {{--
                     <div class="col-4" style="">
                         Id :
                     </div>
@@ -102,7 +103,9 @@
                             {{ $cla }},
                         @endforeach
                     </div>
+                    --}}
                 </div>
+                {{--
                 <div class="row" style="">
                     <div class="col-4 pb-2" style="">
                         Herbario:
@@ -113,7 +116,8 @@
                         @endforeach
                     </div>
                 </div>
-
+                --}}
+                {{--
                 <div class="row" style="">
                     <div class="col-12 pb-2 my-4" style="text-align:center;">
                         <br>
@@ -127,6 +131,7 @@
                         @endforeach
                     </div>
                 </div>
+                --}}
             </div>
         </div>
 
@@ -135,7 +140,7 @@
             <center>
                 @if($fotos->where('imgsp_cimgname','portada')->value('imgsp_file') != '')
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="heigth:100%; max-width:80%;center">
+                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="max-height:80%; max-width:80%;center">
                     </a>
                 @endif
             </center>
@@ -198,10 +203,10 @@
 
         <!-- -------------- Menú izquierdo ----------------->
         <div class="col-2" style="color:#efebe8;padding:40px;font-size:1.3em;background-color:#CDC6B9;">
-            <H4>
+            <H3>
                 {{ $lenguas->where('clen_code',session('localeid'))->value('clen_autonimias') }}
                 {{ $lenguas->where('clen_code',session('localeid'))->value('clen_lengua') }}
-            </H4>
+            </H3>
             <nav class="navbar navbar-expand-md" >
 
                 <!-- --------- Menú Hamburguesa -------------- -->
@@ -222,7 +227,7 @@
                     @foreach ($titulos as $titulo)
                         <div class="px-0 py-2" style="font-size:90%;">
                             <a class="nolink" href="#IrA{{ $titulo->txt_id }}tit">
-                                {{ $titulo->txt_codigo}}
+                                {!! $titulo->txt_codigo !!}
                             </a>
                         </div>
                     @endforeach
@@ -312,16 +317,17 @@
     <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
     <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
         <div class="col-12 " style="">
-            Última modificación: 2024-11-23 V 4.5<br><br>
-            <h4>Autores:</h4>
-            Dr. Alejandro de Ávila, correo@de.alejandro.com &nbsp; | &nbsp; Jardín Etnobiológico de Oaxaca
+            <h4>Versión</h4>
+            {{ $version['ced_id'] }}_{{ $version['cedula'] }} V. {{ $version['ced_version'] }}  &nbsp; Última modificación: {{ $version['ced_versiondate'] }} <br><br>
+            <h4>Cita:</h4>
+            {!! $version['ced_cita'] !!}
             <br><br>
-            <h4>Fuentes:</h4>
+            {{-- <h4>Fuentes:</h4>
             <ul>
                 <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </li>
                 <li>Dicta quasi consectetur quo itaque sit? Repudiandae maxime ipsam, </li>
                 <li>Eebitis eligendi, dolore animi, error necessitatibus minus hic sit ducimus corrupti!</li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 </div>

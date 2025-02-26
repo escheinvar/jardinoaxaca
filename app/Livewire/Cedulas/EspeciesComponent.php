@@ -21,6 +21,7 @@ class EspeciesComponent extends Component
     public $url, $jardin, $idioma;
 
     public function mount($url, $jardin){
+        ##### Guarda en variable la lengua, url y jardín
         if(session('localeid')==''){
             session(['localeid'=>'spa']);
         }
@@ -30,10 +31,11 @@ class EspeciesComponent extends Component
     }
 
     public function idiomas(){
+        ##### Actualiza idioma en sesión
+        ##### cuando se pica cambio de lengua
         session(['locale'=> $this->idioma]);
         session(['localeid'=> $this->idioma]);
         App::setLocale($this->idioma);
-
         redirect('/sp/'.$this->url.'/'.$this->jardin);
     }
 
@@ -41,10 +43,13 @@ class EspeciesComponent extends Component
         ##### Confirma url, lengua y jardín
         $datoUrl=SpUrlCedulaModel::join('sp_url','url_url','=','ced_urlurl')
             ->where('ced_act','1')
+            ->where('ced_edo','5')
             ->where('ced_urlurl',$this->url)
             ->where('ced_clencode',session('localeid'))
             ->where('ced_cjarsiglas',$this->jardin)
             ->first();
+
+        ##### si no hay url o jardín, redirecciona a error
         if($datoUrl =='' or is_null($datoUrl)){redirect('/errorNo URL');die();}
 
         ##### Obtiene datos taxonómicos principales de la especie
@@ -69,25 +74,29 @@ class EspeciesComponent extends Component
             ->where('txt_cedid',$datoUrl->ced_id)
             ->orderBy('txt_order','asc')             #### párrafos ordenados por campo order
             ->get();
+
         ###### De la selección de textos, extrae los títulos (para construir menú)
         $titulos= $texto->where('txt_titulo','1');
-
 
         ##### obtiene las fotos de la cédula
         $fotos=SpFotosModel::where('imgsp_act','1')
             ->where('imgsp_urlurl',$datoUrl->ced_urlurl)
             ->get();
 
+        #####  Obtiene las lenguas disponibles para esta cédula
         $lenguas = SpUrlCedulaModel::join('cat_lenguas','clen_code','=','ced_clencode')
             ->where('ced_act','1')
+            ->where('ced_edo','5')
             ->where('ced_urlurl',$this->url)
             ->where('ced_cjarsiglas',$this->jardin)
             ->get();
 
-        ##### Obtiene datos del jardín
-        $jardinData=CatCampusModel::join('cat_jardines','ccam_cjarid','=','cjar_id')
-            ->where('ccam_act','1')
-            ->where('cjar_siglas',$this->jardin)
+        ##### Obtiene datos de los jardín que cuentan con esta misma cédula
+        $jardinData=SpUrlCedulaModel::where('ced_urlurl',$this->url)
+            ->where('ced_act','1')
+            ->where('ced_edo','5')
+            ->join('cat_jardines','cjar_siglas','=','ced_cjarsiglas')
+            ->distinct('cjar_nombre')
             ->get();
 
         ##### Obtiene datos de los clavos del jardín
@@ -96,13 +105,20 @@ class EspeciesComponent extends Component
         $otrosJardines=['Jardín Comunitario de Matatlán','Parque Primavera'];
 
         ###### Redirecciona enficha caso de no existir  o url válida
-        #dd($texto);
         if(is_null($texto) OR $texto->count() < 1 OR is_null($jardinData) ){
             redirect('/error No URL');
             dd('No existe la URL');
             die();
         }
-#dd($taxo);
+        ##### Obtiene datos de versión
+        $version=[
+            'ced_id'=>$datoUrl->ced_id,
+            'cedula'=>$datoUrl->ced_urlurl.'/'.$datoUrl->ced_cjarsiglas.'/'.$datoUrl->ced_clencode,
+            'ced_version'=>$datoUrl->ced_version,
+            'ced_versiondate'=>$datoUrl->ced_versiondate,
+            'ced_cita'=>$datoUrl->ced_cita,
+        ];
+
         return view('livewire.cedulas.especies-component',[
             'taxo'=>$taxo,
             'titulos'=>$titulos,
@@ -113,6 +129,7 @@ class EspeciesComponent extends Component
             'clavos'=>$clavos,
             'herbario'=>$herbario,
             'otrosJardines'=>$otrosJardines,
+            'version'=>$version,
         ]);
     }
 }
