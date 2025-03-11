@@ -7,6 +7,18 @@ function VerNoVer(prod,tipo) {
         x.style.display = "none";
     }
 }
+function VerYocultar(prod,tipo){
+    var x = document.getElementById('sale_'+prod+tipo);
+    var y = document.getElementById('entra_'+prod+tipo);
+    if (x.style.display == "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+    } else   {
+        x.style.display = "none";
+        y.style.display = "block";
+    }
+}
+
 
 function VerNoVerIcon(Idprod,Idtipo,icono1,icono2,block) {
     // Muestra u oculta el elemento id="sale_IdprodIdtipo"

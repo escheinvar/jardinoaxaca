@@ -16,8 +16,12 @@ class UserRolesModel extends Model
 
     protected $fillable = [
         'rol_act',
-        'rol_crolid',
         'rol_usrid',
+        #'rol_crolid',
+        'rol_crolrol',
+        'rol_tipo1',
+        'rol_tipo2',
+
         'rol_describe',
     ];
 }

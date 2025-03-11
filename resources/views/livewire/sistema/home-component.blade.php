@@ -10,7 +10,8 @@ Inicio
 
     <b>Tus roles</b>:
     @foreach (session('rol') as $i)
-        {{$i}}:{{$roles->where('crol_id',$i)->value('crol_mod')}}-{{$roles->where('crol_id',$i)->value('crol_rol')}},
+        {{$i}},
+        {{-- {{$roles->where('crol_id',$i)->value('crol_mod')}}-{{$roles->where('crol_id',$i)->value('crol_rol')}}, --}}
     @endforeach
 
 
@@ -34,9 +35,9 @@ Inicio
 
     <h3>Módulo de cédulas audibles</h3>
     <ul>
-        <li>Cédulas: <a href="/sp/huaje/0">Huaje</a>,  <a href="/sp/sabino/0">Sabino</a>,  <a href="/sp/melipona/0">Abejas Meliponas </a>, <a href="/sp/grana/0">Grana cochinilla</a></li>
-        <li> Catálogo de temas/cédulas</li>
-        <li> Generador de cédulas</li>
+        <li> <a href="/catalogo/campus">Catálogo de jardines y campus =ModuJardines</a></li>
+        <li> <a href="/catCedulas">Catálogo de cédulas</a> (solo admin de cédulas)</li>
+        <li> Ver Cédulas: <a href="/sp/huaje/0">Huaje</a>,  <a href="/sp/sabino/0">Sabino</a>,  <a href="/sp/melipona/0">Abejas Meliponas </a>, <a href="/sp/grana/0">Grana cochinilla</a></li>
     </ul>
 
     <h3>Faltantes</h3>

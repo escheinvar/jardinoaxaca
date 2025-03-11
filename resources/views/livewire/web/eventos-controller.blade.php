@@ -1,8 +1,8 @@
 <div>
-    
 
 
-@section('title') 
+
+@section('title')
 Actividades
 @endsection
 
@@ -14,14 +14,14 @@ Actividades
 banner-actividades
 @endsection
 
-@section('banner-title') 
+@section('banner-title')
 Eventos
 @endsection
 
 
-          
 
-    <!--S1 PROXIMAMENTE-->    
+
+    <!--S1 PROXIMAMENTE-->
     <section class="proximamente pt-4 pb-3">
         @if(count($eventosProx) > 0)
             <div class="container px-4 py-5" id="bienvenido">
@@ -39,7 +39,7 @@ Eventos
                                 </h3>
                                 <div class="etiquetas">
                                     <ul class="tags">
-                                        <?php 
+                                        <?php
                                             $etiqs=explode(',',$i->wwevs_label)
                                         ?>
                                         @foreach ($etiqs as $e)
@@ -61,7 +61,7 @@ Eventos
                                                 <img src="imagenes/icono-reloj.png" alt="icono reloj">
                                             </div>
                                             <div class="col">
-                                                <p>{{substr($i->wwevs_timeini,-8,5)}} 
+                                                <p>{{substr($i->wwevs_timeini,-8,5)}}
                                                     @if($i->wwevs_timefin !='') - {{substr($i->wwevs_timefin,-8,5)}}  @endif horas</p>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@ Eventos
                                                 <img src="imagenes/icono-calendario.png" alt="icono calendario">
                                             </div>
                                             <div class="col">
-                                                <p>{{substr($i->wwevs_dateini,-2)}} de {{$mes[intval(substr($i->wwevs_dateini,-5,2))]}} 
+                                                <p>{{substr($i->wwevs_dateini,-2)}} de {{$mes[intval(substr($i->wwevs_dateini,-5,2))]}}
                                                     @if($i->wwevs_datefin != $i->wwevs_dateini) a<br>{{substr($i->wwevs_datefin,-2)}} de {{$mes[intval(substr($i->wwevs_datefin,-5,2))]}} @endif</p>
                                             </div>
                                         </div>
@@ -93,30 +93,30 @@ Eventos
                                         <div class="row">
                                             <h5>{{$i->wwevs_costo}}</h5>
                                         </div>
-                                        @if(auth()->user() AND in_array('2', session('rol'))) 
+                                        @if(auth()->user() AND in_array('webmaster', session('rol')))
                                             <i class="bi bi-trash" wire:click="Borrar({{$i->wwevs_id}})" wire:confirm="Estás por eliminar el evento '{{$i->wwevs_titulo}}' ¿Quieres seguir?" style="cursor: pointer;"></i>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </article>    
+                    </article>
                 @endforeach
             </div>
         @endif
 
 
         <!------------------------------- AGREGAR NUEVO EVENTO ---------------------------------  -->
-        @if(auth()->user() AND in_array('2', session('rol'))) 
+        @if(auth()->user() AND in_array('webmaster', session('rol')))
            <div class="container px-4 py-5">
-                
+
                     <div style="float: right;">
                         <botton class="boton" onclick="VerNoVer('nuevo','evento')">
                             <i class="bi bi-plus-circle"></i> Nuevo evento
                         </botton>
                     </div>
-                
-                
+
+
                 <div id="sale_nuevoevento" style="display:none">
                     <div class="row">
                         <div class="col-md-4 form-group">
@@ -140,8 +140,8 @@ Eventos
                             <label for="correo">Descripción línea 2 (opcional)</label>
                             <input wire:model="descripcion2" type="text" class="form-control">
                             @error('descripcion2')<error>{{$message}}</error>@enderror
-                        </div>                        
-                        
+                        </div>
+
                         <div class="col-md-4 form-group">
                             <label>Tipo de evento <red>*</red></label>
                             <select wire:model="tipo" multiple type="text" class="form-control">
@@ -167,7 +167,7 @@ Eventos
                             <input wire:model="horaIni" type="time"  class="form-control">
                             @error('horaIni')<error>{{$message}}</error>@enderror
                         </div>
-                   
+
                         <div class="col-md-3 col-lg-2 form-group">
                             <label>Fecha de finalización </label>
                             <input wire:model="fechaFin" min="{{date('Y-m-d')}}" type="date" class="form-control">
@@ -199,7 +199,7 @@ Eventos
                         </div>
                     </div>
                     <br>
-                    
+
                     <botton wire:click="Guardar()" class="boton3" style="display:inline-block;">
                         Guardar
                     </botton>
@@ -208,11 +208,11 @@ Eventos
                     </botton>
 
                 </div>
-                        
+
            </div>
         @endif
     </section>
-    
+
 
     <!--S2 EVENTOS ANTERIORES-->
     <a name="SeccionAnteriores"></a>
@@ -236,7 +236,7 @@ Eventos
                             </h3>
                             <div class="etiquetas">
                                 <ul class="tags">
-                                    <?php 
+                                    <?php
                                         $etiqs=explode(',',$i->wwevs_label)
                                     ?>
                                     @foreach ($etiqs as $e)
@@ -258,7 +258,7 @@ Eventos
                                             <img src="imagenes/icono-reloj.png" alt="icono reloj">
                                         </div>
                                         <div class="col">
-                                            <p>{{substr($i->wwevs_timeini,-8,5)}} 
+                                            <p>{{substr($i->wwevs_timeini,-8,5)}}
                                                 @if($i->wwevs_timefin !='') - {{substr($i->wwevs_timefin,-8,5)}}  @endif horas</p>
                                         </div>
                                     </div>
@@ -269,7 +269,7 @@ Eventos
                                             <img src="imagenes/icono-calendario.png" alt="icono calendario">
                                         </div>
                                         <div class="col">
-                                            <p>{{substr($i->wwevs_dateini,-2)}} de {{$mes[intval(substr($i->wwevs_dateini,-5,2))]}} 
+                                            <p>{{substr($i->wwevs_dateini,-2)}} de {{$mes[intval(substr($i->wwevs_dateini,-5,2))]}}
                                                 @if($i->wwevs_datefin != $i->wwevs_dateini) a<br>{{substr($i->wwevs_datefin,-2)}} de {{$mes[intval(substr($i->wwevs_datefin,-5,2))]}} @endif de {{substr($i->wwevs_dateini,-10,4)}} </p>
                                         </div>
                                     </div>
@@ -294,15 +294,15 @@ Eventos
                             </div>
                         </div>
                     </div>
-                </article>    
+                </article>
             @endforeach
 
             @if($eventosPast->hasPages())
                 <div class="paginador">
-                    @if($eventosPast->onFirstPage()) @else 
+                    @if($eventosPast->onFirstPage()) @else
                         <a href="{{$eventosPast->previousPageurl()}}#SeccionAnteriores">
                             <div class="boton abajo" style="display: inline-block;" ></div>
-                        </a> 
+                        </a>
                     @endif
 
                     @foreach (range(1,$eventosPast->lastPage()) as $page)
@@ -313,7 +313,7 @@ Eventos
 
                     @if($eventosPast->onLastPage()) @else
                         <a href="{{$eventosPast->nextPageurl()}}#SeccionAnteriores">
-                            <div class="boton arriba" style="display: inline-block;"> </div> 
+                            <div class="boton arriba" style="display: inline-block;"> </div>
                         </a>
                     @endif
 

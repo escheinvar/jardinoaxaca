@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        Schema::dropIfExists('cat_lenguas_inali');
+
         Schema::create('cat_lenguas_inali', function (Blueprint $table) {
             $table->id('clen2_id');
             $table->string('clen2_lengua'); ##### Nombre de la lengua, variante en español sensu inali, 2008
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cat_lenguas_inali');
+        Schema::dropIfExists('cat_lenguas_inali CASCADE');
     }
 };

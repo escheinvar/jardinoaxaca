@@ -21,5 +21,6 @@ class SpUrlModel extends Model
         'url_sp',
         'url_nombrecomun',
         'url_sciname',
+        'url_palabras',
     ];
 }

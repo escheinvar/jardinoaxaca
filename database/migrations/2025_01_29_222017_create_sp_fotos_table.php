@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('imgsp_urlurl'); ##### URL de la especie a la que pertenece la imagen
             $table->foreign('imgsp_urlurl')->references('url_url')->on('sp_url')->onDelete('cascade')->constrained('sp_url','url_url');  ##### ID de tabla pl_plantas
 
+            $table->string('imgsp_cjarsiglas'); ##### URL de la especie a la que pertenece la imagen
+            $table->foreign('imgsp_cjarsiglas')->references('cjar_siglas')->on('cat_jardines')->onDelete('cascade')->constrained('cat_jardines','cjar_siglas');  ##### ID de tabla pl_plantas
+
             $table->enum('imgsp_act',['0','1'])->default('1'); ##### Borrado lógico
             $table->string('imgsp_file')->nullable();  ##### Texto con la ubicación del archivo de imágen con resolucion normal
             $table->string('imgsp_filelow')->nullable();  ##### Texto con la ubicación del archivo de imágen con resolución baja

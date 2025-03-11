@@ -41,7 +41,18 @@
     <!-- -------------------------------------- BLOQUE SUPERIOR FICHA E IMAGENES ----------------------------------------------->
     <div class="row" style="margin:5px; border-radius:8px; ">
         <!-- ------------------------- FICHA GENERAL IZQUIERDA ------------------------>
-        <div class="col-sm-12 col-md-4 col-lg-3 text-wrap" style="padding:10px; border-top-left-radius:8px; background-color:#CDC6B9;">
+        <div class="col-12 col-md-4 col-lg-3 text-wrap" style="position:relative; padding:10px; border-top-left-radius:8px; background-color:#CDC6B9;">
+            <!-- ------------------------- Logo del Jardín propietario de la cédula ------------------------>
+            <div class="row pb-2" style="">
+                @foreach ($jardinData->where('cjar_siglas',$jardin) as $jar)
+                    <div class="col-12 py-2" style="text-align: center; color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center; font-size:130%; font-weigth:bold;">
+                        <a href="/sp/{{ $url }}/{{ $jar->cjar_siglas }}" class="nolink">
+                            {{ $jar->cjar_nombre }}<br>
+                            <img src="@if($jar->cjar_logo=='')/avatar/jardines/default.png @else /avatar/jardines/{{ $jar->cjar_logo }} @endif" style="width:80px;"><br>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
             <!-- ------------------------- Nombre científico ------------------------>
             <div style="color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center;font-weigth:bold;" >
                 <div class="pt-4 d-block d-md-none"          style="font-size:150%;">{{ $taxo['sp'] }}</div>
@@ -82,61 +93,39 @@
             </div>
             --}}
 
-            <!-- ------------------------- Ejemplares del jardín ------------------------>
-            <div class="container-fluid my-4" style="color:#64383E;font-size:90%;">
-                <div class="row pb-2" style="">
-                    @foreach ($jardinData as $jar)
-                        <div class="col-12 py-2" style="text-align: center;">
-                            <a href="/sp/{{ $url }}/{{ $jar->cjar_siglas }}" class="nolink">
-                                {{ $jar->cjar_nombre }}<br>
-                                {{-- {{ $jar->ccam_nombre }}<br> --}}
-                                <img src="/avatar/jardines/{{ $jar->cjar_logo }}" style="width:40px;"><br>
-                            </a>
-                        </div>
-                    @endforeach
-                    {{--
-                    <div class="col-4" style="">
-                        Id :
-                    </div>
-                    <div class="col-8" style="">
-                        @foreach ($clavos as $cla)
-                            {{ $cla }},
-                        @endforeach
-                    </div>
-                    --}}
-                </div>
-                {{--
-                <div class="row" style="">
-                    <div class="col-4 pb-2" style="">
-                        Herbario:
-                    </div>
-                    <div class="col-8" style="">
-                        @foreach ($herbario as $her)
-                            {{ $her }}
-                        @endforeach
-                    </div>
-                </div>
-                --}}
-                {{--
-                <div class="row" style="">
-                    <div class="col-12 pb-2 my-4" style="text-align:center;">
-                        <br>
-                        <h6>Otros Jardines</h6>
-                        @foreach ($otrosJardines as $otros)
-                            <div class="col-12 pb-2" style="text-align:center;">
-                                <a href="#" class="nolink">
-                                    {{ $otros }}
-                                </a>
+            <!-- ------------------------- Otras cédulas de otros jardines ------------------------>
+            @if($jardinData->where('cjar_siglas','!=',$jardin)->count() > 0)
+                <div style=" position: absolute; bottom:0; width:100%;text-align:center;">
+                    <div class="container-fluid my-4" >
+                        <h5 >Otros jardines</h5>
+                        <div class="row pb-2" style="">
+                            @foreach ($jardinData->where('cjar_siglas','!=',$jardin) as $jar)
+                                <div class="col-12 py-2" style="text-align: center; color:#64383E;font-size:90%;"">
+                                    <a href="/sp/{{ $url }}/{{ $jar->cjar_siglas }}" class="nolink">
+                                        {{ $jar->cjar_nombre }}<br>
+                                        {{-- {{ $jar->ccam_nombre }}<br> --}}
+                                        <img src="@if($jar->cjar_logo=='')/avatar/jardines/default.png @else /avatar/jardines/{{ $jar->cjar_logo }} @endif" style="width:30px;"><br>
+                                    </a>
+                                </div>
+                            @endforeach
+                            {{--
+                            <div class="col-4" style="">
+                                Id :
                             </div>
-                        @endforeach
+                            <div class="col-8" style="">
+                                @foreach ($clavos as $cla)
+                                    {{ $cla }},
+                                @endforeach
+                            </div>
+                            --}}
+                        </div>
                     </div>
                 </div>
-                --}}
-            </div>
+            @endif
         </div>
 
         <!-- ------------------------- FOTO DE LA PORTADA ------------------------>
-        <div class="col-sm-12 col-md-6 col-lg-7">
+        <div class="col-sm-12 col-md-6 col-lg-7" style="height:600px;">
             <center>
                 @if($fotos->where('imgsp_cimgname','portada')->value('imgsp_file') != '')
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">

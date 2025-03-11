@@ -26,6 +26,17 @@ class CatJardinesCampusSeeder extends Seeder
                 'cjar_mail'=>'etnobotanico@infinitummail.com',
                 'cjar_edo'=>'Oaxaca',
                 'cjar_logo'=>'JebOax.png',
+            ],[
+                'cjar_id'=>'2',
+                'cjar_name'=>'Matatlan',
+                'cjar_nombre'=>'Jardín Comunitario de Matatlán',
+                'cjar_siglas'=>'JM',
+                'cjar_tipo'=>'Etnobiológico',
+                'cjar_direccion'=>'Reforma s/n, Independencia, Centro, Oaxaca de Juárez, Oaxaca. C.P. 68000 ',
+                'cjar_tel'=>' 951 516 5325',
+                'cjar_mail'=>'etnobotanico@infinitummail.com',
+                'cjar_edo'=>'Oaxaca',
+                'cjar_logo'=>'Matatlan.png',
             ]
         ];
 
@@ -47,6 +58,13 @@ class CatJardinesCampusSeeder extends Seeder
                 'ccam_cjarid'=>'1',
                 'ccam_name'=>'Canteras',
                 'ccam_nombre'=>'Canteras',
+                'ccam_direccion'=>'',
+            ],[
+                'ccam_id'=>'3',
+                'ccam_act'=>'1',
+                'ccam_cjarid'=>'2',
+                'ccam_name'=>'Presa',
+                'ccam_nombre'=>'Presa',
                 'ccam_direccion'=>'',
             ]
         ];

@@ -14,6 +14,7 @@ class SpUrlCedulaModel extends Model
 	#protected $keyType = 'string';
 
     protected $fillable = [
+        'ced_id',
         'ced_act',
         'ced_urlurl',
         'ced_clencode',

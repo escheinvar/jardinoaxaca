@@ -13,20 +13,33 @@ class userRolesSeeder extends Seeder
      */
     public function run(): void
     {
-        UserRolesModel::create(
+
+        $events=[
             [
-                'rol_id'=>'1',
                 'rol_act'=>'1',
                 'rol_usrid'=>'1',
-                'rol_crolid'=>'1',
-                'rol_describe'=>'base:admin',
+                #'rol_crolid'=>'1',
+                'rol_crolrol'=>'admin',
+                'rol_describe'=>'Administrador del sistema',
             ],[
-                'rol_id'=>'2',
                 'rol_act'=>'1',
                 'rol_usrid'=>'1',
-                'rol_crolid'=>'2',
-                'rol_describe'=>'base:web',
+                #'rol_crolid'=>'2',
+                'rol_crolrol'=>'webmaster',
+                'rol_describe'=>'Web mastter',
+            ],[
+                'rol_act'=>'1',
+                'rol_usrid'=>'1',
+                #'rol_crolid'=>'1',
+                'rol_crolrol'=>'cedulas',
+                'rol_tipo1'=>'todas',
+                'rol_describe'=>'Administrador del sistema',
             ]
-        );
+        ];
+
+        foreach ($events as $event){
+            UserRolesModel::create($event);
+        }
+
     }
 }

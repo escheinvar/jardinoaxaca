@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('cat_lenguas');
+
         Schema::create('cat_lenguas', function (Blueprint $table) {
             $table->id('clen_id');
             $table->string('clen_lengua'); ##### Nombre de la lengua en español
@@ -36,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cat_lenguas');
+        Schema::dropIfExists('cat_lenguas CASCADE');
     }
 };

@@ -21,23 +21,26 @@ class EspeciesComponent extends Component
     public $url, $jardin, $idioma;
 
     public function mount($url, $jardin){
-        ##### Guarda en variable la lengua, url y jardín
-        if(session('localeid')==''){
-            session(['localeid'=>'spa']);
+        ##### Guarda en variable la lengua, url y el jardín
+        if(session('locale2')==''){
+            session(['locale2'=>'spa']);
         }
         $this->url=$url;
         $this->jardin=$jardin;
-        $this->idioma=session('localeid');
+        $this->idioma=session('locale2');
+#        dd($this->url,$this->jardin, $this->idioma);
     }
 
     public function idiomas(){
         ##### Actualiza idioma en sesión
         ##### cuando se pica cambio de lengua
         session(['locale'=> $this->idioma]);
-        session(['localeid'=> $this->idioma]);
+        session(['locale2'=> $this->idioma]);
         App::setLocale($this->idioma);
         redirect('/sp/'.$this->url.'/'.$this->jardin);
     }
+
+
 
     public function render(){
         ##### Confirma url, lengua y jardín
@@ -45,9 +48,27 @@ class EspeciesComponent extends Component
             ->where('ced_act','1')
             ->where('ced_edo','5')
             ->where('ced_urlurl',$this->url)
-            ->where('ced_clencode',session('localeid'))
+            ->where('ced_clencode',session('locale2'))
             ->where('ced_cjarsiglas',$this->jardin)
             ->first();
+        ##### Si no existe idioma de ficha para session(locale2),
+        ##### Cambia session(locale2)  al primer idioma o jardín existente para esa ficha
+        if(is_null($datoUrl)){
+            $CedulasExistentes=SpUrlCedulaModel::where('ced_act','1')
+                ->where('ced_edo','5')
+                ->where('ced_urlurl',$this->url)
+                ->first();
+            $datoUrl=SpUrlCedulaModel::join('sp_url','url_url','=','ced_urlurl')
+                ->where('ced_act','1')
+                ->where('ced_edo','5')
+                ->where('ced_urlurl',$this->url)
+                ->where('ced_clencode',$CedulasExistentes->ced_clencode)
+                ->where('ced_cjarsiglas',$CedulasExistentes->ced_cjarsiglas)
+                ->first();
+            session(['locale2'=>$datoUrl->ced_clencode]);
+        }
+        #dd($this->url, $this->jardin, session('locale2'), $datoUrl);
+
 
         ##### si no hay url o jardín, redirecciona a error
         if($datoUrl =='' or is_null($datoUrl)){redirect('/errorNo URL');die();}
@@ -80,9 +101,10 @@ class EspeciesComponent extends Component
 
         ##### obtiene las fotos de la cédula
         $fotos=SpFotosModel::where('imgsp_act','1')
-            ->where('imgsp_urlurl',$datoUrl->ced_urlurl)
+            ->where('imgsp_urlurl',$this->url)
+            ->where('imgsp_cjarsiglas',$this->jardin)
             ->get();
-
+#dd($fotos, $this->url,$this->jardin);
         #####  Obtiene las lenguas disponibles para esta cédula
         $lenguas = SpUrlCedulaModel::join('cat_lenguas','clen_code','=','ced_clencode')
             ->where('ced_act','1')
@@ -107,7 +129,7 @@ class EspeciesComponent extends Component
         ###### Redirecciona enficha caso de no existir  o url válida
         if(is_null($texto) OR $texto->count() < 1 OR is_null($jardinData) ){
             redirect('/error No URL');
-            dd('No existe la URL');
+            #dd('No existe la URL');
             die();
         }
         ##### Obtiene datos de versión

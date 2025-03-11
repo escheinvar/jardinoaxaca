@@ -4,6 +4,8 @@ use App\Http\Controllers\login\loginController;
 use App\Http\Controllers\login\logoutController;
 use App\Livewire\Admin\Nuevousuario01Controller;
 use App\Livewire\Admin\NuevoUsuarioController;
+use App\Livewire\Cedulas\CatalogoDeCedulasComponent;
+use App\Livewire\Cedulas\EditaCedulasComponent;
 use App\Livewire\Cedulas\EspeciesComponent;
 use App\Livewire\Login\RecuperaPasswd01Controller;
 use App\Livewire\Login\RecuperaPasswdController;
@@ -56,10 +58,6 @@ Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradore
 Route::get('/actividades',EventosController::class)->name('actividades');
 Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 
-/*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
-Route::get('/especies',EspeciesController::class)->name('especies');
-Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
-
 
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */
@@ -88,6 +86,12 @@ Route::middleware(['auth.basic'])->group(function(){
     Route::get('/catalogo/campus', CatalogoJardinesYcampusComponent::class)->name('CatCampus');
 });
 
+
+/*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
+Route::get('/especies',EspeciesController::class)->name('especies');
+Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
+Route::get('/catCedulas',CatalogoDeCedulasComponent::class)->name('catCedulas');
+Route::get('/editaCedula/{cedID}',EditaCedulasComponent::class)->name('editorCedulas');
 
 
 

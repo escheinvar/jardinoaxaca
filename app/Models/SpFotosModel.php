@@ -15,6 +15,7 @@ class SpFotosModel extends Model
 
     protected $fillable = [
         'imgsp_urlurl',
+        'imgsp_cjarsiglas',
         'imgsp_act',
         'imgsp_file',
         'imgsp_filelow',

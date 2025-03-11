@@ -84,7 +84,7 @@ class SpCedulaSeeder extends Seeder
             ['txt_cedid'=>'4', 'txt_titulo'=>'0','txt_order'=>'14', 'txt_audio'=>'huaje_tuunsavi_08.ogg',   'txt_codigo'=>'Sǔvi ñà’a kaxí kuití yó kana nda’á itún yó’o, và’a tu xíniñú’ú na sì’và nduva nú kuvà’a sìkì nda’á na, sìkì sùkún na, sìkì sò’o na, xí’ín ndiáa kà ñà’a kuálí kûnì mií na xiva’à nà xí’ín rí. Ta xà’á ña và’a sánda’à nú ñu’ú, xà’á ña và’a yáxí kití nú, xà’á ña kán xí’ín xà’á ña ndakú ini nú kòó îtyì kama nú, xà’á ña kán sava ñuu ndíkùn ndiáa Africa xí’ín Asia sándùtià tyiñu na tùndǔva yó’o, án ndiáa kà itún tá’án nú yó, ra ndátyi’i na nú nùú xà kùyǎndá, nùú ñu’ú kòó xǎ’an kà, nùú ndákù’un ñu’ú. Saá íxa na ñuu ikán, ta sana xíni ñú’ú saá asa tu yó yó’o, ndatyi’i yó itún yó’o ra kù’ùn nú ndèe nú nùú kòó xǎ’an kà, nùú ndákù’un sítií, ña kuvi nanda’à ñu’ú nùú ndéé yó.'],
             ['txt_cedid'=>'4', 'txt_titulo'=>'0','txt_order'=>'15', 'txt_audio'=>'',                        'txt_codigo'=>"<br><br><br><small>Traducción y voz tu'un savi: Juana Mendoza Ruiz</small>"],
             //Huaje1,Mazateco9
-            //['txt_cedid'=>'5', 'txt_titulo'=>'0','txt_order'=>'1',  'txt_audio'=>'',                  'txt_codigo'=>"En proceso de traduccióon a én-ná"],
+            ['txt_cedid'=>'5', 'txt_titulo'=>'0','txt_order'=>'1',  'txt_audio'=>'',                  'txt_codigo'=>"En proceso de traduccióon a én-ná"],
             //['txt_cedid'=>'5', 'txt_titulo'=>'0','txt_order'=>'16',  'txt_audio'=>'',                  'txt_codigo'=>"<br><br><br><small>Traducción y voz én-ná (mazateco): Gabriela García García</small>"],
 
             ///////////////////////////////////////////////////////////////////////////////////////
@@ -160,7 +160,7 @@ class SpCedulaSeeder extends Seeder
             ['txt_cedid'=>'9', 'txt_titulo'=>'0','txt_order'=>'14', 'txt_audio'=>'sabino_tuunsavi_08.ogg',   'txt_codigo'=>'Ñà yó’o kúú ña ndátú’ún na tá’án yó xà’á tùíkun yó’o kuìyà xìndikàà áta Porfirio Diaz ve’e tyíñu Ñuu Kǒ’yo. Su xà yàtyì kà ví íyo itún yó’o tyi xà ndàña’à nà nú ínuu nú nùú tutu naní códice <b>Yuta Tnoho</b> (án ña xìka’àn nà xí’ín Códice Vindobonense). Tutu yó’o kèe ña iin ñuu naní Ñuu Savi Ñu’u ndíkùn ndiaa Ñuu Ndǔvá, ta ndátú’ún ña xí’ín yó nìsaa kùu nìxìkòo ǐvi nùú ndéé yó yó’o nùúna ñuu ísàví xìndee xìna’á. Nùú tutu yó’o ndàña’à nà iin tùíkun yó’o ta tokó nú yó’o kàku ùvì nà ìví, iin ña’á iin tiàa. Nà yó’o kúú na nùú nùú kuití nìtùvi nùú ta sakuǐnà na ñuu ndéé ]yó vityin. '],
             ['txt_cedid'=>'9', 'txt_titulo'=>'0','txt_order'=>'15', 'txt_audio'=>'',                         'txt_codigo'=>"<br><br><br><small>Traducción y voz tu'un savi: Juana Mendoza Ruiz</small>"],
             //Sabino2, Mazateco9
-            //['txt_cedid'=>'10', 'txt_titulo'=>'0','txt_order'=>'1',  'txt_audio'=>'',                         'txt_codigo'=>"En proceso de traduccióon a én-ná"],
+            ['txt_cedid'=>'10', 'txt_titulo'=>'0','txt_order'=>'1',  'txt_audio'=>'',                         'txt_codigo'=>"En proceso de traduccióon a én-ná"],
             //['txt_cedid'=>'10', 'txt_titulo'=>'0','txt_order'=>'16',  'txt_audio'=>'',                        'txt_codigo'=>"<br><br><br><small>Traducción y voz én-ná (mazateco): Gabriela García García</small>"],
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

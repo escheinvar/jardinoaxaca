@@ -33,11 +33,25 @@
                         </a>
                     </li>
 
+                     <!--dropdown 1-->
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            AdminCeds
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catCedulas">Catálogo de Cédulas</a></li>
+
+
+                        </ul>
+                    </li>
+
                     <!--dropdown 1-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Admin
+                            AdminJards
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item @if(request()->path() == 'importaPlantas') active @endif" href="/importaPlantas">Carga masiva</a></li>

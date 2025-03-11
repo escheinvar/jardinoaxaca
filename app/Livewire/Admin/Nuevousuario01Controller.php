@@ -49,10 +49,10 @@ class Nuevousuario01Controller extends Component
 
 
         ##### Otorga rol básico
-        UserRolesModel::firstOrCreate(['rol_usrid'=>$ja->id,'rol_crolid'=>'2'],[
+        UserRolesModel::firstOrCreate(['rol_usrid'=>$ja->id,'rol_crolrol'=>'web'],[
             'rol_act'=>'1',
             'rol_usrid'=>$ja->id,
-            'rol_crolid'=>'2',
+            'rol_crolrol'=>'web',
             'rol_describe'=>'base:usr',
         ]);
 

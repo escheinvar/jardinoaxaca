@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\CatCamellonesModel;
+use App\Models\CatLenguasInaliModel;
 use App\Models\CatLenguasModel;
 use App\Models\SpTitulosModel;
 use App\Models\SpUrlCedulaModel;
@@ -35,6 +36,8 @@ class DatabaseSeeder extends Seeder
             CatCamellonesSeeder::class,
 
             CatLenguasSeeder::class,
+            CatLenguasInaliSeeder::class,
+
             webEventosSeeder::class,
             CatIconosSeeder::class,
             ImportPlantasSeeder::class,
@@ -44,7 +47,6 @@ class DatabaseSeeder extends Seeder
             SpUrlCedulaSeeder::class,
             SpCedulaSeeder::class,
             SpFotosSeeder::class,
-
         ]);
     }
 }
