@@ -1,4 +1,4 @@
-@section('title') 
+@section('title')
 Colaboradores
 @endsection
 
@@ -10,8 +10,8 @@ Las labores de conservación en Jardín Botánico de Oaxaca son posibles gracias
 banner-colaboradores
 @endsection
 
-@section('banner-title') 
-Colaboradores
+@section('banner-title')
+Colaborador@s
 @endsection
 
 
@@ -22,7 +22,7 @@ Colaboradores
             <div>
                 @include('plantillas/plant_locale')
             </div>
-            
+
             <div class="row subtitulo justify-content-end px-4">
                 <div class="col-sm-12 col-md-9 col-lg-8 col-xl-6">
                     <h2 class="subtitulo">Organizaciones</h2>

@@ -2,20 +2,26 @@
 
 @section('meta-description') "Somos un espacio cultural dedicado a la conservación y propagación de plantas nativas de Oaxaca. ¡Ven y conoce parte de la gran diversidad e historia del estado!" @endsection
 
-@section('banner-title') 
+@section('banner-title')
     @if(session('locale')=='en')
         Ethnobiological <br>Garden <br>of Oaxaca
     @elseif(session('locale')=='pt')
         Jardim <br>Etnobiológico <br>de Oaxaca
-    @elseif(session('locale')=='es_mix_bj') 
+    @elseif(session('locale')=='es_mix_bj')
         Jardîn <br>Etnoviológìkò <br>Ñuu Ndǔvá
-        <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','0')"></i>
-        <audio controls  id="sale_audio0" style="display:none;">                                
-            <source src="audio/es_mix_bj/01inicio_00.ogg" type="audio/ogg" >
+        {{-- <audio id="SpAudio01">
+            <source src='audio/es_mix_bj/01inicio_00.ogg' type="audio/ogg"> El navegador no soporta el audio
         </audio>
+        <i class="bi bi-volume-down-fill" id="IconPlay01" onclick="playAudio('01')" style="cursor:pointer;display:inline;vertical-align:top;"></i>
+        <i class="bi bi-volume-mute-fill" id="IconStop01" onclick="pauseAudio('01')" style="cursor:pointer;display:none; vertical-align:top;"></i> --}}
+
     @else
-        Jardín <br>Etnobiológico<br> de Oaxaca 
-        <i class="bi bi-volume-up-fill" style="cursor:pointer;" onclick="Escucha('/audio/es/01inicio_00.ogg')"></i>
+        Jardín <br>Etnobiológico<br> de Oaxaca
+        {{-- <audio id="SpAudio01">
+            <source src='/audio/es/01inicio_00.ogg' type="audio/ogg"> El navegador no soporta el audio
+        </audio>
+        <i class="bi bi-volume-down-fill" id="IconPlay01" onclick="playAudio('01')" style="cursor:pointer;display:inline;vertical-align:top;"></i>
+        <i class="bi bi-volume-mute-fill" id="IconStop01" onclick="pauseAudio('01')" style="cursor:pointer;display:none; vertical-align:top;"></i> --}}
     @endif
 @endsection
 
@@ -38,11 +44,14 @@
                             "Um espaço criado para mostrar ao vivo as relações entre a história natural de Oaxaca e sua diversidade cultural"
                         @elseif(session('locale')=='es_mix_bj')
                             "kùva’à ñà ñà kuvi kundaa ini yó nìsaa xíniñú’ú na ñuu yó Ñuu Ndǔvá ndi’í mií nùú itún ìkù xí’ín ndi’i ka ñà’a kána tiañu ikú ñuu yó"
-                            <i onclick="Escucha('/audio/es_mx_bj/01inicio_01.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
                         @else
                             “Un espacio creado para mostrar en vivo las relaciones entre la historia natural de Oaxaca y su diversidad cultural”
-                            <i onclick="Escucha('/audio/es/01inicio_01.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
-                        @endif    
+                            <audio id="SpAudio_UnEspacioCreado">
+                                <source src='/audio/es/01inicio_01.ogg' type="audio/ogg"> El navegador no soporta el audio
+                            </audio>
+                            <i class="bi bi-volume-down-fill" id="IconPlay_UnEspacioCreado" onclick="playAudio('_UnEspacioCreado')" style="cursor:pointer;display:inline; ;vertical-align:top;"></i>
+                            <i class="bi bi-volume-mute-fill" id="IconStop_UnEspacioCreado" onclick="pauseAudio('_UnEspacioCreado')" style="cursor:pointer;display:none; ;vertical-align:top;"></i>
+                        @endif
                     </h2>
                     <h4 class="autor-cita">Dr. Alejandro de Ávila Blomberg</h4>
                     <p class="autor-cita">
@@ -51,16 +60,21 @@
                         @elseif(session('locale')=='pt')
                             Diretor Fundador do Jardim Etnobiológico
                         @elseif(session('locale')=='es_mix_bj')
-                            Rà nìkà’àn xà’á Jardîn etnoviológìkò kùva’à ñà ta kúú ra rà ínuu kí’ín kuénda xí’ín ña.  
-                            <i onclick="Escucha('/audio/es_mx_bj/01inicio_03.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
+                            Rà nìkà’àn xà’á Jardîn etnoviológìkò kùva’à ñà ta kúú ra rà ínuu kí’ín kuénda xí’ín ña.
                         @else
                             Director Fundador del Jardín Etnobiológico
-                            <i onclick="Escucha('/audio/es/01inicio_03.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
+                            <audio id="SpAudio_DrAle">
+                                <source src='/audio/es/01inicio_03.ogg' type="audio/ogg"> El navegador no soporta el audio
+                            </audio>
+                            <i class="bi bi-volume-down-fill" id="IconPlay_DrAle" onclick="playAudio('_DrAle')" style="cursor:pointer;display:inline; ;vertical-align:top;"></i>
+                            <i class="bi bi-volume-mute-fill" id="IconStop_DrAle" onclick="pauseAudio('_DrAle')" style="cursor:pointer;display:none; ;vertical-align:top;"></i>
+
+
                         @endif
                     </p>
                 </div>
                 <div class="col-sm-auto col-md-6 col-lg-6 col-xl-5 text-start py-2 px-4">
-                    <p class="texto-principal">  
+                    <p class="texto-principal">
                         @if(session('locale')=='en')
                             Proposed in 1993 as a civil society initiative, it has hundreds of species donated by Oaxacan communities
                             and with which we safeguard a small part of the immense biocultural heritage of the state of Oaxaca.
@@ -68,14 +82,19 @@
                             Proposto em 1993 como uma iniciativa da sociedade civil, conta com centenas de espécies doadas por comunidades de Oaxaca
                             e com a qual protegemos uma pequena parte do imenso patrimônio biocultural do estado de Oaxaca.
                         @elseif(session('locale')=='es_mix_bj')
-                            Ndàtǔ’ún tá’án na xà’á ña kuìyà 1993 ñà koo ña iin sociedad civil, ta vityin ra kuà’á níi nùú itún, 
-                            ìkù, yaví, ita, kuà’á ka ñà’a iyo nùú ña. Ndi’i ña yó’o ra, na nda’á Ñuu Ndǔvá nìsòkó ña, saá vityin, 
-                            yó’o kí’ín na jardín kuénda xí’ín ña, ndiáa nà xà kúú ra lo’o tyíín nùú ikú kuîí íyo Ñuu Ndǔvá. 
-                            <i onclick="Escucha('/audio/es_mx_bj/01inicio_02.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
+                            Ndàtǔ’ún tá’án na xà’á ña kuìyà 1993 ñà koo ña iin sociedad civil, ta vityin ra kuà’á níi nùú itún,
+                            ìkù, yaví, ita, kuà’á ka ñà’a iyo nùú ña. Ndi’i ña yó’o ra, na nda’á Ñuu Ndǔvá nìsòkó ña, saá vityin,
+                            yó’o kí’ín na jardín kuénda xí’ín ña, ndiáa nà xà kúú ra lo’o tyíín nùú ikú kuîí íyo Ñuu Ndǔvá.
                         @else
                             Propuesto en 1993 como iniciativa de la sociedad civil, cuenta con cientos de especies donadas por las comunidades oaxaqueñas
                             y con las que resguardamos una pequeña parte del inmenso patrimonio biocultural del estado de Oaxaca.
-                            <i onclick="Escucha('/audio/es/01inicio_02.ogg')" class="bi bi-volume-up-fill" style="cursor:pointer;"></i>
+                            <audio id="SpAudio_PropuestoEn">
+                                <source src='/audio/es/01inicio_02.ogg' type="audio/ogg"> El navegador no soporta el audio
+                            </audio>
+                            <i class="bi bi-volume-down-fill" id="IconPlay_PropuestoEn" onclick="playAudio('_PropuestoEn')" style="cursor:pointer;display:inline; ;vertical-align:top;"></i>
+                            <i class="bi bi-volume-mute-fill" id="IconStop_PropuestoEn" onclick="pauseAudio('_PropuestoEn')" style="cursor:pointer;display:none; ;vertical-align:top;"></i>
+
+
                         @endif
                     </p>
                 </div>
@@ -98,7 +117,7 @@
                         @else
                             Entérate
                         @endif
-                    </h3>                 
+                    </h3>
                 </div>
             </div>
             <div class="row pb-5" >
@@ -107,23 +126,23 @@
                         <span style="text-align: left; display:inline-block; width:50%;">
                             <!-- Recorridos-->
                             @if(session('locale')=='es_mix_bj')
-                                <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4a')"></i>
-                                <audio controls  id="sale_audio4a" style="display:none;">                                
+                                {{-- <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4a')"></i>
+                                <audio controls  id="sale_audio4a" style="display:none;">
                                     <source src="audio/es_mix_bj/01inicio_04a.ogg" type="audio/ogg" >
-                                </audio>
-                            @endif  
+                                </audio> --}}
+                            @endif
                         </span>
                         <span style="text-align:right; float: right; width:50%;">
                             <!-- Mapa -->
                             @if(session('locale')=='es_mix_bj')
-                                <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4b')"></i>
-                                <audio controls  id="sale_audio4b" style="display:none;">                                
+                                {{-- <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4b')"></i>
+                                <audio controls  id="sale_audio4b" style="display:none;">
                                     <source src="audio/es_mix_bj/01inicio_04b.ogg" type="audio/ogg" >
-                                </audio><br>
-                            @endif 
+                                </audio><br> --}}
+                            @endif
                         </span>
                     </div>
-                    <div class="home-hero">                        
+                    <div class="home-hero">
                         <a href="/recorridos" class="recorridos-menu">
                             @if(session('locale')=='en')
                                 <h3>Tours</h3>
@@ -172,18 +191,18 @@
                             @endif
                         </a>
 
-                        <a href="/educacion" class="educacion-menu">
+                        <a href="/servicios" class="educacion-menu">
                             @if(session('locale')=='en')
-                                <h3>Education</h3>
+                                <h3>Services</h3>
                                 <p>Library | Herbarium </p>
                             @elseif(session('locale')=='pt')
-                                <h3>Educação</h3>
+                                <h3>Serviços</h3>
                                 <p>Biblioteca | Herbário </p>
                             @elseif(session('locale')=='es_mix_bj')
                                 <h3>ñà kùtu’va na </h3>
                                 <p>nùú íyo tutu ka’vi na | nùú íyo ndi’i ìkù nda’á itún ká’vi na </p>
                             @else
-                                <h3>Educación</h3>
+                                <h3>Servicios</h3>
                                 <p>Biblioteca | Herbario </p>
                             @endif
                         </a>
@@ -192,20 +211,20 @@
                         <span style="text-align: left; display:inline-block; width:50%;">
                             <!-- Actividades-->
                             @if(session('locale')=='es_mix_bj')
-                                <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4c')"></i>
-                                <audio controls  id="sale_audio4c" style="display:none;">                                
+                                {{-- <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4c')"></i>
+                                <audio controls  id="sale_audio4c" style="display:none;">
                                     <source src="audio/es_mix_bj/01inicio_04c.ogg" type="audio/ogg" >
-                                </audio>
-                            @endif  
+                                </audio> --}}
+                            @endif
                         </span>
                         <span style="text-align:right; float: right; width:50%;">
                             <!-- Educación -->
                             @if(session('locale')=='es_mix_bj')
-                                <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4d')"></i>
-                                <audio controls  id="sale_audio4d" style="display:none;">                                
+                                {{-- <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4d')"></i>
+                                <audio controls  id="sale_audio4d" style="display:none;">
                                     <source src="audio/es_mix_bj/01inicio_04d.ogg" type="audio/ogg" >
-                                </audio><br>
-                            @endif 
+                                </audio><br> --}}
+                            @endif
                         </span>
                     </div>
                 </div>
@@ -230,76 +249,76 @@
                             Visite o Jardim Etnobiológico de Oaxaca
                         @elseif(session('locale')=='es_mix_bj')
                             Kixi ún kotondiě’é ún Jardîn Etnoviológìkò Ñuu Ndǔvá
-                            <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','5')"></i>
-                            <audio controls  id="sale_audio5" style="display:none;">                                
+                            {{-- <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','5')"></i>
+                            <audio controls  id="sale_audio5" style="display:none;">
                                 <source src="audio/es_mix_bj/01inicio_05.ogg" type="audio/ogg" >
-                            </audio>
+                            </audio> --}}
                         @else
                             Visita el Jardín Etnobiológico de Oaxaca
                         @endif
                     </h2>
                     <div class="owl-carousel owl-theme">
                         <div>
-                            <a href="imagenes/slider-1_inicio/img-01.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1_inicio/img-pre-01.jpg" alt="Árboles del Jardín">
+                            <a href="/imagenes/slider-1_inicio/img-01.jpg" data-fancybox="gallery">
+                                <img src="/imagenes/slider-1_inicio/img-pre-01.jpg" alt="Árboles del Jardín">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
-                                        Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
+                                        Inside the Ethnobiological Garden of Oaxaca1 | Photo: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='pt')
                                         Interior do Jardim Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
                                         So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Ernesto de los Santos Reyes
-                                        
+
                                     @else
-                                        Interior del Jardín Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
+                                        Vista de columnares desde un copal | Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1_inicio/img-02.jpg" data-fancybox="gallery">
+                            <a href="imagenes/slider-1_inicio/img-05.webp" data-fancybox="gallery">
                                 <img src="imagenes/slider-1_inicio/img-pre-05.webp" alt="Camino de piedra">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
-                                        Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
+                                        Inside the Ethnobiological Garden of Oaxaca2 | Photo: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='pt')
                                         Interior do Jardim Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
                                         So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Interior del Jardín Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
-                                    @endif                                   
-                                </h3>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="imagenes/slider-1_inicio/img-03.jpg" data-fancybox="gallery">
-                                <img src="imagenes/slider-1_inicio/img-pre-06.webp" alt="Espejo de agua">
-                                <h3 class="w-100">
-                                    @if(session('locale')=='en')
-                                        Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
-                                    @elseif(session('locale')=='pt')
-                                        Interior do Jardim Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
-                                    @elseif(session('locale')=='es_mix_bj')
-                                        So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Ernesto de los Santos Reyes
-                                    @else
-                                        Interior del Jardín Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
+                                        El Espejo de Agua  | Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1_inicio/img-04.jpg" data-fancybox="gallery">
+                            <a href="imagenes/slider-1_inicio/img-pre-06.webp" data-fancybox="gallery">
+                                <img src="imagenes/slider-1_inicio/img-pre-06.webp" alt="Espejo de agua">
+                                <h3 class="w-100">
+                                    @if(session('locale')=='en')
+                                        Inside the Ethnobiological Garden of Oaxaca3 | Photo: Geovanny Martínez Guerra
+                                    @elseif(session('locale')=='pt')
+                                        Interior do Jardim Etnobiológico de Oaxaca | Foto: Geovanny Martínez Guerra
+                                    @elseif(session('locale')=='es_mix_bj')
+                                        So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Geovanny Martínez Guerra
+                                    @else
+                                        Hongos en el Jardín Etnobiológico | Foto: Geovanny Martínez Guerra
+                                    @endif
+                                </h3>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="imagenes/slider-1_inicio/img-pre-07.webp" data-fancybox="gallery">
                                 <img src="imagenes/slider-1_inicio/img-pre-07.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
-                                        Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
+                                        Inside the Ethnobiological Garden of Oaxaca4 | Photo: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='pt')
                                         Interior do Jardim Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
                                         So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Interior del Jardín Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
+                                        Agaves del Jardín | Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
                             </a>
@@ -309,45 +328,45 @@
                                 <img src="imagenes/slider-1_inicio/img-pre-08.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
-                                        Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
+                                        Inside the Ethnobiological Garden of Oaxaca5 | Photo: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='pt')
                                         Interior do Jardim Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
                                         So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Interior del Jardín Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
+                                        Vista desde los baños | Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1_inicio/img-04.jpg" data-fancybox="gallery">
+                            <a href="imagenes/slider-1_inicio/img-pre-09.webp" data-fancybox="gallery">
                                 <img src="imagenes/slider-1_inicio/img-pre-09.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
-                                        Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
+                                        Inside the Ethnobiological Garden of Oaxaca 6 | Photo: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='pt')
                                         Interior do Jardim Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
                                         So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Interior del Jardín Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
+                                        El jardín de piedras | Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
                             </a>
                         </div>
                         <div>
-                            <a href="imagenes/slider-1_inicio/img-04.jpg" data-fancybox="gallery">
+                            <a href="imagenes/slider-1_inicio/img-pre-10.webp" data-fancybox="gallery">
                                 <img src="imagenes/slider-1_inicio/img-pre-10.webp" alt="Cactáceas">
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
-                                        Inside the Ethnobiological Garden of Oaxaca | Photo: Ernesto de los Santos Reyes
+                                        Inside the Ethnobiological Garden of Oaxaca 7 | Photo: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='pt')
                                         Interior do Jardim Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
                                         So’o káá ini jardîn Etnoviológìkò Ñuu Ndǔvá | Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Interior del Jardín Etnobiológico de Oaxaca | Foto: Ernesto de los Santos Reyes
+                                        Agaves guiengola y amate amarillo | Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
                             </a>
@@ -359,10 +378,10 @@
         <div style="padding:10px;font-size:80%;"><i>
             @if(session('locale')=='es_mix_bj')
                 Traducción Tu'un Savi: Juana Mendoza Ruiz.
-                <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','6')"></i>
-                <audio controls  id="sale_audio6" style="display:none;">                                
+                {{-- <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','6')"></i>
+                <audio controls  id="sale_audio6" style="display:none;">
                     <source src="audio/es_mix_bj/01inicio_06.ogg" type="audio/ogg" >
-                </audio>
+                </audio> --}}
             @endif
         </i></div>
     </section>

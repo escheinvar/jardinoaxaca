@@ -29,7 +29,7 @@ Directorio
                     <p>
                         Maestro Francisco Toledo (†) <br>
                         Luis Zárate <br>
-                        Dr. Alejandro de Ávila Blomberg
+                        Dr. Alejandro de Ávila Blomberg (Director fundador)
                     </p>
                 </div>
             </div>
@@ -43,16 +43,14 @@ Directorio
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                            <h4>Director</h4>
+                            <h4>Dirección</h4>
                             <p>Dr. Alejandro de Ávila Blomberg
 
                             <h4>Administración</h4>
-                            <!--p>C. P. Bertha Canseco Ruíz</p-->
-                            <p>.</p>
+                            <p>Lic. Guadalupe Ortega Aguilar</p>
 
                             <h4>Biblioteca</h4>
-                            <!--p>Biól. Ana Ruiz Velasco</p-->
-                            <p>.</p>
+                            <p> Sra. Mariana Hortencia Muñoz Herrera</p>
 
                         </div>
 
@@ -80,6 +78,7 @@ Directorio
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                             <ul>
                                 <li>Ing. Vianney Hernández Gómez</li>
+                                <li>Biol. David Alejandro Velasco Filio</li>
                                 <!--li>Lic. Tania Araliz Hernández Velasco</li-->
                                 <!--li>Biól. Issis Quetzali Moreno López</li-->
                                 <li>.</li>
@@ -88,8 +87,9 @@ Directorio
 
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                             <ul>
-                                <li>Arq. Valeria Rubio García</li>
-                                <li>Biól. Geovanni Martínez Guerra</li>
+                                {{-- <li>Arq. Valeria Rubio García</li> --}}
+                                <li>Biol. Geovanni Martínez Guerra</li>
+                                <li>Biol. Jacqueline Itzel Jiménez López</li>
                             </ul>
                         </div>
                     </div>
@@ -100,28 +100,31 @@ Directorio
                 <div class="col">
                     <div class="row subtitulo justify-content-end">
                         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-                            <h3 class="subtitulo">Horticultores</h3>
+                            <h3 class="subtitulo">Horticultor@s</h3>
                         </div>
                     </div>
 
                     <div class="row justify-content-end">
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                             <ul>
-                                <li>Sra. Gabriela Navarro Reyes</li>
-                                <li>Sra. Mariela Pérez López</li>
-                                <li>Srita. Gabriela Talledos Robles</li>
-                                <li>Sr. Roberto Avendaño Rendón</li>
-                                <li>Sr. Jesús Cruz Cruz</li>
+                                <li>Gabriela Herlinda Navarro Reyes</li>
+                                <li>Mariela Pérez López</li>
+                                <li>Gabriela Talledos Robles</li>
+                                <li>Jesús Santiago Fernandez Silva</li>
+                                <li>Jesús Cruz Cruz</li>
+                                <li>Benjamín Gálvez Aguilar</li>
+                                <li>Abdiel Mizraim Rodríguez Ramírez</li>
                             </ul>
                         </div>
 
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                             <ul>
-                                <li>Sr. Alfonso Flores Santiago</li>
-                                <li>Sr. Saúl Hernández Santiago</li>
-                                <li>Sr. Daniel Ramírez Pérez</li>
-                                <li>Sr. Norberto Rodríguez Ramírez</li>
-                                <li>Sr. Lucio Ruíz Velasco</li>
+                                <li>Mauro Daniel Ramírez Pérez</li>
+                                <li>Norberto Esteban Rodríguez Ramírez</li>
+                                <li>Lucio Ruíz Velasco</li>
+                                <li>Abad Morales Bernardo</li>
+                                <li>Erika Isabel Castellanos Zavaleta</li>
+                                <li>Carlos Miguel Ruiz Camacho</li>
                             </ul>
                         </div>
                     </div>
@@ -132,7 +135,7 @@ Directorio
                 <div class="col">
                     <div class="row subtitulo justify-content-end">
                         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6">
-                            <h3 class="subtitulo">Investigadores por México</h3>
+                            <h3 class="subtitulo">Investigador@s por México</h3>
                         </div>
                     </div>
 

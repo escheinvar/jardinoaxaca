@@ -617,7 +617,7 @@ banner-recorridos
                                     We are pleased to offer free school tours for national public and private educational mexican institutions.
                                     These require reservations and are offered at the following times.
                                 @elseif(session('locale')=='pt')
-                                    Estamos muito satisfeitos em poder oferecer passeios escolares gratuitos para instituições de ensino público e privado do mexico.
+                                    Estamos muito satisfeitos em poder oferecer passeios escolares gratuitos para instituições mexicanas de ensino público e privado do mexico.
                                     Estes requerem reserva e são ministrados nos seguintes horários.
                                 @elseif(session('locale')=='es_mix_bj')
                                     Kúsìí níi va ini nà jardín yó’o ñà vàxi na kuǎlí ká’vi kuto’ni na mí jardín yó’o, nà yó’o ra,
@@ -630,8 +630,9 @@ banner-recorridos
                                         <source src="audio/es_mix_bj/02_recorrido_26.ogg" type="audio/ogg">
                                     </audio>
                                 @else
-                                    Nos da mucho gusto poder ofrecer recorridos escolares gratuitos para instituciones de educación pública privada nacionales.
-                                    Estos requieren de reservación y se imparten en los siguientes horarios.
+                                    Nos da mucho gusto poder ofrecer recorridos escolares gratuitos para instituciones de educación pública y privada nacionales.
+                                    Para poder agendar un recorrido escolar, requerimos de reservación previa. Loss recorridos tienen una duración aproximada de una
+                                    una hora en grupos de 30 personas cada uno. Los recorridos escoares se imparten en los siguientes horarios.
                                 @endif
                             </p>
                         </div>
@@ -656,8 +657,8 @@ banner-recorridos
                             @else
                                 <h3>Horarios</h3>
                                 <h4>Duración 1 hora</h4>
-                                <p>Lunes a viernes<br>8:00 a 10:00 horas <br> 13:00 a 15:00 horas <br>
-                                <br>Sábados<br>8:00 a 10:00 horas</p>
+                                <p>Lunes a viernes<br>8:00 hrs, 9:00 hrs <br> 13:00 hrs y 14:00 hrs<br>
+                                <br>Sábados<br>8:00 hrs y 9:00 hrs </p>
                             @endif
                         </div>
                     </div>
@@ -674,16 +675,23 @@ banner-recorridos
                             </h3>
                             <p>
                                 @if(session('locale')=='en')
-                                    To schedule a tour on the date and time of your preference, we ask that you send us, at least 3 weeks in advance,
-                                    a signed request on school letterhead to the following email:
+                                    To schedule a school tour, please send an email to <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
+                                    attaching the request letter on letterhead addressed to Dr. Alejandro de Ávila Blomberg, General Director of JEBOax,
+                                    indicating the total number of attendees and suggesting the date and time for the tour(s).
+                                    We recommend sending the request letter at least three weeks in advance, due to the high demand for requests.
                                 @elseif(session('locale')=='pt')
-                                    Para agendar um passeio na data e horário de sua preferência, solicitamos que você nos direcione,
-                                    Com pelo menos 3 semanas de antecedência, uma solicitação assinada em papel timbrado da escola para:
+                                Para agendar uma visita escolar, envie um e-mail para <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
+                                anexando a carta de solicitação em papel timbrado e endereçada ao Dr. Alejandro de Ávila Blomberg, Diretor Geral da JEBOax,
+                                indicando o número total de participantes e sugerindo a data e a hora em que eles solicitam o(s) passeio(s).
+                                Recomendamos que você envie sua inscrição com pelo menos três semanas de antecedência devido à alta demanda.
                                 @elseif(session('locale')=='es_mix_bj')
                                 @else
-                                    Para agendar un recorrido en la fecha y horario de su preferencia, solicitamos nos dirijan,
-                                    con al menos 3 semanas de anticipación, una solicitud firmada en papel membretado de la escuela, al correo:
+                                    Para agendar un recorrido escolar, envía un correo a <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
+                                    adjuntando el oficio de solicitud en papel membretado y dirigido al Dr. Alejandro de Ávila Blomberg, Director General del JEBOax,
+                                    indicando el número total de asistentes y sugiriendo la fecha y hora en la que solicitan el o los recorridos.
+                                    Recomendamos enviar el oficio con al menos 3 semanas de anticipación, debido a la alta demanda de solicitudes.
                                 @endif
+                                <br>
                                 <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>.
                             </p>
                         </div>

@@ -144,7 +144,7 @@
                                 @elseif(session('locale')=='es_mix_bj')
                                     Colaboradores
                                 @else
-                                    Colaboradores
+                                    Colaborador@s
                                 @endif
                             </a></li>
                         </ul>
