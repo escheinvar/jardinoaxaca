@@ -1,4 +1,4 @@
-@section('title') 
+@section('title')
 Recorridos en el Jardín
 @endsection
 
@@ -18,11 +18,11 @@ banner-recorridos
     @elseif(session('locale')=='es_mix_bj')
         Ndasa ndúví<br> ún ra kixi ún
         <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','0')"></i>
-        <audio controls  id="sale_audio0" style="display:none;">                                
+        <audio controls  id="sale_audio0" style="display:none;">
             <source src="audio/es_mix_bj/02_recorrido_00.ogg" type="audio/ogg">
         </audio>
     @else
-        Planea<br>tu visita 
+        Planea<br>tu visita
     @endif
 @endsection
 
@@ -45,7 +45,7 @@ banner-recorridos
                         @elseif(session('locale')=='es_mix_bj')
                             Ña kuvi kèe ndó kotondi’é ndó
                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','1')"></i>
-                            <audio controls  id="sale_audio1" style="display:none;">                                
+                            <audio controls  id="sale_audio1" style="display:none;">
                                 <source src="audio/es_mix_bj/02_recorrido_01.ogg" type="audio/ogg">
                             </audio>
                         @else
@@ -62,12 +62,12 @@ banner-recorridos
                             Para segurança dos visitantes e das plantas, o Jardim só pode ser visitado em visitas guiadas.
                             Não temos reservas nem venda antecipada de ingressos.
                         @elseif(session('locale')=='es_mix_bj')
-                            Tíxà’vi ndó vàxi ndó jardîn yó’o saá táxi ndó ndieé nda’á na jardín yó’o xí’ín tyiñu ké’én na. 
-                            Ñà ná kòó tàxìn ndó án ndiáa ñà kundo’o ndó saá tu itún kuálí iyo yó’o ná kòó kundivà’a nú, 
-                            xà’á ña yó’o, íyo iin na ìví kunúú nùú ndó kù’ùn ndó. Saá, ndátú’ún tu na xí’ín ndó, mí kìví kuàkèe 
-                            ndó jardîn yó’o mí kìví yó’o tyá’vi ndó, kòó xíni ñú’ú tya’vi yàtyì ndó.   
+                            Tíxà’vi ndó vàxi ndó jardîn yó’o saá táxi ndó ndieé nda’á na jardín yó’o xí’ín tyiñu ké’én na.
+                            Ñà ná kòó tàxìn ndó án ndiáa ñà kundo’o ndó saá tu itún kuálí iyo yó’o ná kòó kundivà’a nú,
+                            xà’á ña yó’o, íyo iin na ìví kunúú nùú ndó kù’ùn ndó. Saá, ndátú’ún tu na xí’ín ndó, mí kìví kuàkèe
+                            ndó jardîn yó’o mí kìví yó’o tyá’vi ndó, kòó xíni ñú’ú tya’vi yàtyì ndó.
                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','2')"></i>
-                            <audio controls  id="sale_audio2" style="display:none;">                                
+                            <audio controls  id="sale_audio2" style="display:none;">
                                 <source src="audio/es_mix_bj/02_recorrido_02.ogg" type="audio/ogg">
                             </audio>
                         @else
@@ -94,7 +94,7 @@ banner-recorridos
                     </a>
                     @if(session('locale')=='es_mix_bj')
                         <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','3')" style="color:#64383E"></i>
-                        <audio controls  id="sale_audio3" style="display:none;">                                
+                        <audio controls  id="sale_audio3" style="display:none;">
                             <source src="audio/es_mix_bj/02_recorrido_03.ogg" type="audio/ogg">
                         </audio>
                     @endif
@@ -106,14 +106,14 @@ banner-recorridos
                         @elseif(session('locale')=='pt')
                             Visitas escolares
                         @elseif(session('locale')=='es_mix_bj')
-                            Ñà kì’vi na kuǎlí ká’vi 
+                            Ñà kì’vi na kuǎlí ká’vi
                         @else
                             Visitas escolares
                         @endif
                     </a>
                     @if(session('locale')=='es_mix_bj')
                         <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','4')" style="color:#64383E"></i>
-                        <audio controls  id="sale_audio4" style="display:none;">                                
+                        <audio controls  id="sale_audio4" style="display:none;">
                             <source src="audio/es_mix_bj/02_recorrido_04.ogg" type="audio/ogg">
                         </audio>
                     @endif
@@ -134,10 +134,10 @@ banner-recorridos
                                         Entrada no Jardim Etnobotânico de Oaxaca |
                                         Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
-                                        Entrada del Jardín Etnobotánico de Oaxaca | 
+                                        Entrada del Jardín Etnobotánico de Oaxaca |
                                         Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Entrada del Jardín Etnobotánico de Oaxaca | 
+                                        Entrada del Jardín Etnobotánico de Oaxaca |
                                         Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
@@ -149,15 +149,15 @@ banner-recorridos
                                 <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Tours National Botanical Gardens Day |
-                                        Photo: Alma Pérez Bautista  
+                                        Photo: Alma Pérez Bautista
                                     @elseif(session('locale')=='pt')
                                         Passeios de um dia no Jardim Botânico Nacional |
                                         Foto de : Alma Pérez Bautista
                                     @elseif(session('locale')=='es_mix_bj')
-                                        Entrada del Jardín Etnobotánico de Oaxaca | 
+                                        Entrada del Jardín Etnobotánico de Oaxaca |
                                         Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Recorridos Día Nacional de los Jardínes Botánicos | 
+                                        Recorridos Día Nacional de los Jardínes Botánicos |
                                         Foto: Alma Pérez Bautista
                                     @endif
                                 </h3>
@@ -166,7 +166,7 @@ banner-recorridos
                         <div>
                             <a href="imagenes/slider-2_recorridos/img-03.jpg" data-fancybox="gallery1">
                                 <img src="imagenes/slider-2_recorridos/img-pre-03.jpg" alt="Vegetación del jardin">
-                                <h3 class="w-100"> 
+                                <h3 class="w-100">
                                     @if(session('locale')=='en')
                                         Exploring the Garden, guided tour |
                                         Photo: Ernesto de los Santos Reyes
@@ -174,10 +174,10 @@ banner-recorridos
                                         Exploração do Jardim, visita guiada |
                                         Foto: Ernesto de los Santos Reyes
                                     @elseif(session('locale')=='es_mix_bj')
-                                        Entrada del Jardín Etnobotánico de Oaxaca | 
+                                        Entrada del Jardín Etnobotánico de Oaxaca |
                                         Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Explorando el Jardín, recorrido guiado | 
+                                        Explorando el Jardín, recorrido guiado |
                                         Foto: Ernesto de los Santos Reyes
                                     @endif
                                 </h3>
@@ -194,10 +194,10 @@ banner-recorridos
                                         Tour no Dia do Jardim Botânico Nacional |
                                         Foto de : Alma Pérez Bautista
                                     @elseif(session('locale')=='es_mix_bj')
-                                        Entrada del Jardín Etnobotánico de Oaxaca | 
+                                        Entrada del Jardín Etnobotánico de Oaxaca |
                                         Foto: Ernesto de los Santos Reyes
                                     @else
-                                        Recorrido en el Día Nacional de los Jardínes Botnánicos | 
+                                        Recorrido en el Día Nacional de los Jardínes Botnánicos |
                                         Foto: Alma Pérez Bautista
                                     @endif
                                 </h3>
@@ -215,6 +215,8 @@ banner-recorridos
             <div class="row justify-content-between py-5 px-4">
                 <div class="col-md-12 col-xl-6 info-horarios">
                     <div class="row idiomas">
+                        <!-- --------------------------------------------------------------- -->
+                        <!-- ----------------- Horarios de Recorridos ---------------------- -->
                         <div class="col">
                             <div class="row justify-content-center">
                                 <div class="col-lg-10 col-xl-12">
@@ -226,7 +228,7 @@ banner-recorridos
                                         @elseif(session('locale')=='es_mix_bj')
                                             Ora kuvi kèe ndó
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','5')"></i>
-                                            <audio controls  id="sale_audio5" style="display:none;">                                
+                                            <audio controls  id="sale_audio5" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_05.ogg" type="audio/ogg">
                                             </audio>
                                         @else
@@ -240,54 +242,54 @@ banner-recorridos
                                     @if(session('locale')=='en')
                                         <h3>Guided tours in Spanish</h3>
                                         <h4>Duration: 1 hour</h4>
-                                        <p>Monday - Friday<br>10:00, 11:00, 12:00 and 17:00 hours</p>
-                                        <p>Saturdays<br>10:00, 11:00 and 12:00 hours</p>
+                                        <p>Monday - Friday<br>10:30, 11:00, 11:30, 12:00 and 17:00 hours</p>
+                                        <p>Saturdays<br>10:30, 11:00, 11:30 and 12:00  hours</p>
                                         <p>At the moment we only offer tours in Spanish</p>
                                     @elseif(session('locale')=='pt')
                                         <h3>Visitas guiadas em espanhol</h3>
                                         <h4>Duração: 1 hora</h4>
-                                        <p>Segunda a sexta<br>10h, 11h, 12h e 17h</p>
-                                        <p>Sábados<br>10h, 11h e 12h</p>
+                                        <p>Segunda a sexta<br>10:30h, 11:00h, 11:30h, 12:00h e 17h</p>
+                                        <p>Sábados<br>10:30h, 11:00h, 11:30h y 12:00h</p>
                                         <p>No momento oferecemos passeios apenas em espanhol</p>
                                     @elseif(session('locale')=='es_mix_bj')
-                                        <h3>ñà kèe ndó ra koo iin na kunúú kù’ùn xí’ín ndó 
+                                        <h3>ñà kèe ndó ra koo iin na kunúú kù’ùn xí’ín ndó
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','6')"></i>
-                                            <audio controls  id="sale_audio6" style="display:none;">                                
+                                            <audio controls  id="sale_audio6" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_06.ogg" type="audio/ogg">
                                             </audio>
                                         </h3>
-                                        <h4>Iin ora kúú ña kuátyìndó kuñu’u ndó 
+                                        <h4>Iin ora kúú ña kuátyìndó kuñu’u ndó
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','7')"></i>
-                                            <audio controls  id="sale_audio7" style="display:none;">                                
+                                            <audio controls  id="sale_audio7" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_07.ogg" type="audio/ogg">
                                             </audio>
                                         </h4>
-                                        <p>Lúne saá ndià viérne <br>kàa ùxì, kàa ùxì iin, kàa xuvì xí’ín kàa ù’ùn xìkuaá 
+                                        <p>Lúne saá ndià viérne <br>10:30h, 11:00h, 11:30h, 12:00h, 17:00h<!--kàa ùxì, kàa ùxì iin, kàa xuvì xí’ín kàa ù’ùn xìkuaá-->
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','8')"></i>
-                                            <audio controls  id="sale_audio8" style="display:none;">                                
+                                            <audio controls  id="sale_audio8" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_08.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        <p>Sávàdò<br>kàa ùxì, kàa ùxì iin xí’ín kàa xuvì ká’ñu
+                                        <p>Sávàdò<br>10:30h, 11:00h, 11:30h, 12:00h<!--kàa ùxì, kàa ùxì iin xí’ín kàa xuvì ká’ñu-->
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','9')"></i>
-                                            <audio controls  id="sale_audio9" style="display:none;">                                
+                                            <audio controls  id="sale_audio9" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_09.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        <p>Vityin ra, kuití tù’un sá’án kúú na ndákani na nùú ndó, kòó ka inka tù’un 
+                                        <p>Vityin ra, kuití tù’un sá’án kúú na ndákani na nùú ndó, kòó ka inka tù’un
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','10')"></i>
-                                            <audio controls  id="sale_audio10" style="display:none;">                                
+                                            <audio controls  id="sale_audio10" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_10.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        
+
                                     @else
                                         <h3>Recorridos guiados</h3>
                                         <h4>Duración: 1 hora</h4>
-                                        <p>Lunes - viernes<br>10:00, 11:00, 12:00 y 17:00 horas</p>
-                                        <p>Sábados<br>10:00, 11:00 y 12:00 horas</p>
+                                        <p>Lunes - viernes<br>10:30, 11:00, 11:30, 12:00 y 17:00 horas</p>
+                                        <p>Sábados<br>10:30, 11:00, 11:30 y 12:00 horas</p>
                                         <p>Por el momento, los recorridos solo son en español</p>
-                                        
+
                                     @endif
                                     {{-- <h3>Recorridos en inglés</h3>
                                     <h4>Duración: 2 horas</h4>
@@ -314,7 +316,7 @@ banner-recorridos
                                         @elseif(session('locale')=='es_mix_bj')
                                             Ñà tyá’vi ndó
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','11')"></i>
-                                            <audio controls  id="sale_audio11" style="display:none;">                                
+                                            <audio controls  id="sale_audio11" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_11.ogg" type="audio/ogg">
                                             </audio>
                                         @else
@@ -338,38 +340,38 @@ banner-recorridos
                                         <p>Estudantes, professores, idosos - Gratuito <br>(com credencial mexicana)</p>
                                         <p>Pessoas com deficiência - Gratuito<br>(Com credencial mexicana)</p>
                                     @elseif(session('locale')=='es_mix_bj')
-                                        <h3>Ñà kèe ndó ra koo iin na kunúú kù’ùn xí’ín ndó 
+                                        <h3>Ñà kèe ndó ra koo iin na kunúú kù’ùn xí’ín ndó
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','12')"></i>
-                                            <audio controls  id="sale_audio12" style="display:none;">                                
+                                            <audio controls  id="sale_audio12" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_12.ogg" type="audio/ogg">
                                             </audio>
                                         </h3>
                                         <p>Ùvì xiko ùxì tyá’vi na ná’nu
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','13')"></i>
-                                            <audio controls  id="sale_audio13" style="display:none;">                                
+                                            <audio controls  id="sale_audio13" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_13.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        <p>Kî’vi uun nà kuǎlí, nà sakán kāku iin saá ndià ùxì ùvì kuìyà. 
+                                        <p>Kî’vi uun nà kuǎlí, nà sakán kāku iin saá ndià ùxì ùvì kuìyà.
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','14')"></i>
-                                            <audio controls  id="sale_audio14" style="display:none;">                                
+                                            <audio controls  id="sale_audio14" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_14.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        <p>Nà ká’vi, nà sáñà’à xí’ín nà xìkuà’á kî’vi uun tu na kán va (xíni ñú’ú kuni’i na nǎ’na ñà 
+                                        <p>Nà ká’vi, nà sáñà’à xí’ín nà xìkuà’á kî’vi uun tu na kán va (xíni ñú’ú kuni’i na nǎ’na ñà
                                             ká’àn xà’á na kúú na na Ñuu kǒ’yo ká’nu).
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','15')"></i>
-                                            <audio controls  id="sale_audio15" style="display:none;">                                
+                                            <audio controls  id="sale_audio15" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_15.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        <p>Nà kû’vì, nà kǔvi kaka, nà tǔvi nùú kî’vi uun tu na kán va (xíni ñú’ú kuni’i na nǎ’na ñà 
-                                            ká’àn xà’á na kúú na na Ñuu kǒ’yo ká’nu). 
+                                        <p>Nà kû’vì, nà kǔvi kaka, nà tǔvi nùú kî’vi uun tu na kán va (xíni ñú’ú kuni’i na nǎ’na ñà
+                                            ká’àn xà’á na kúú na na Ñuu kǒ’yo ká’nu).
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','16')"></i>
-                                            <audio controls  id="sale_audio16" style="display:none;">                                
+                                            <audio controls  id="sale_audio16" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_16.ogg" type="audio/ogg">
                                             </audio>
-                                        </p> 
+                                        </p>
                                     @else
                                         <h3>Recorridos guiados</h3>
                                         <p>Adultos - $50.00 pesos</p>
@@ -400,7 +402,7 @@ banner-recorridos
                                         @elseif(session('locale')=='es_mix_bj')
                                             Nùú ndíkàà jardîn yó’o
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','17')"></i>
-                                            <audio controls  id="sale_audio17" style="display:none;">                                
+                                            <audio controls  id="sale_audio17" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_17.ogg" type="audio/ogg">
                                             </audio>
                                         @else
@@ -430,7 +432,7 @@ banner-recorridos
                                 @elseif(session('locale')=='es_mix_bj')
                                     Nèkée kúú ñà ndákatǔ’un sava na
                                     <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','18')"></i>
-                                    <audio controls  id="sale_audio18" style="display:none;">                                
+                                    <audio controls  id="sale_audio18" style="display:none;">
                                         <source src="audio/es_mix_bj/02_recorrido_18.ogg" type="audio/ogg">
                                     </audio>
                                 @else
@@ -451,7 +453,7 @@ banner-recorridos
                                             @elseif(session('locale')=='es_mix_bj')
                                                 ¿Ndiáa satá yu voléto yù?
                                                 <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','19')"></i>
-                                                <audio controls  id="sale_audio19" style="display:none;">                                
+                                                <audio controls  id="sale_audio19" style="display:none;">
                                                     <source src="audio/es_mix_bj/02_recorrido_19.ogg" type="audio/ogg">
                                                 </audio>
                                             @else
@@ -469,14 +471,14 @@ banner-recorridos
                                                 Você pode adquirir seu ingresso assim que entrar no Jardim e antes do início de cada passeio.
                                                 De momento não temos pontos de venda externos, reservas ou venda antecipada de bilhetes.
                                             @elseif(session('locale')=='es_mix_bj')
-                                                Ná xàà ún kì’vi ún ini jardîn yó’o saá ví tyá’vi ún ra taxi na voléto ún nda’á ún. 
-                                                Kòó íxǐko na voléto yó’o ndiáa inka ña’ñu, ta nii kǔvi satá ndó ña vityin ta kì’vi ndó xí’ín ña inka kìví. 
+                                                Ná xàà ún kì’vi ún ini jardîn yó’o saá ví tyá’vi ún ra taxi na voléto ún nda’á ún.
+                                                Kòó íxǐko na voléto yó’o ndiáa inka ña’ñu, ta nii kǔvi satá ndó ña vityin ta kì’vi ndó xí’ín ña inka kìví.
                                                 <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','20')"></i>
-                                                <audio controls  id="sale_audio20" style="display:none;">                                
+                                                <audio controls  id="sale_audio20" style="display:none;">
                                                     <source src="audio/es_mix_bj/02_recorrido_20.ogg" type="audio/ogg">
                                                 </audio>
                                             @else
-                                                Puede conseguir su boleto una vez ingrese al Jardín y previo al inicio de cada recorrido. 
+                                                Puede conseguir su boleto una vez ingrese al Jardín y previo al inicio de cada recorrido.
                                                 Por el momento no contamos con puntos de venta externos, reservaciones o venta de boletos con anticipación.
                                             @endif
                                         </div>
@@ -495,7 +497,7 @@ banner-recorridos
                                             @elseif(session('locale')=='es_mix_bj')
                                                 ¿Án kuvi ndukún yu iin na kátyiñu jardîn yó’o ra kù’ùn na xí’ín indàá saá mií yu koto ndiě’é yu?
                                                 <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','21')"></i>
-                                                <audio controls  id="sale_audio21" style="display:none;">                                
+                                                <audio controls  id="sale_audio21" style="display:none;">
                                                     <source src="audio/es_mix_bj/02_recorrido_21.ogg" type="audio/ogg">
                                                 </audio>
                                             @else
@@ -515,18 +517,18 @@ banner-recorridos
                                                 Sabemos que muitas pessoas que gostariam de visitar este jardim não podem esperar.
                                                 Lamentamos sinceramente e pedimos sua compreensão.
                                             @elseif(session('locale')=='es_mix_bj')
-                                                Kǔvi kèe ndó tée kòó iin mí na jardín yó’o kunúú nùú ndó kù’ùn ndó, nii kòó kúvi kì’vi ndó tée 
-                                                sǔvi ora kúú ña. Kúndàà ini nà jardín yó’o kûnì ndó kèe ndó tée xà kìxaà ndó tyi kǔvi ka ndikó ndó 
-                                                inka kìví, ñà kán ndúkún ndi ñà ká’nu ini nùú ndó su tée xà nìyà’a óra ra kǔvi ka.  
+                                                Kǔvi kèe ndó tée kòó iin mí na jardín yó’o kunúú nùú ndó kù’ùn ndó, nii kòó kúvi kì’vi ndó tée
+                                                sǔvi ora kúú ña. Kúndàà ini nà jardín yó’o kûnì ndó kèe ndó tée xà kìxaà ndó tyi kǔvi ka ndikó ndó
+                                                inka kìví, ñà kán ndúkún ndi ñà ká’nu ini nùú ndó su tée xà nìyà’a óra ra kǔvi ka.
                                                 <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','22')"></i>
-                                                <audio controls  id="sale_audio22" style="display:none;">                                
+                                                <audio controls  id="sale_audio22" style="display:none;">
                                                     <source src="audio/es_mix_bj/02_recorrido_22.ogg" type="audio/ogg">
                                                 </audio>
                                             @else
-                                                No ofrecemos acceso sin guía del Jardín, ni a recorridos privados. 
-                                                Estamos conscientes de que muchas personas que quisieran visitar este jardín no pueden esperar. 
+                                                No ofrecemos acceso sin guía del Jardín, ni a recorridos privados.
+                                                Estamos conscientes de que muchas personas que quisieran visitar este jardín no pueden esperar.
                                                 Lo lamentamos sinceramente y pedimos su comprensión.
-                                            @endif        
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -543,7 +545,7 @@ banner-recorridos
                                             @elseif(session('locale')=='es_mix_bj')
                                                 ¿Natyun iin tàkà lo’o kúú na táxi na kuàkèe?
                                                 <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','23')"></i>
-                                                <audio controls  id="sale_audio23" style="display:none;">                                
+                                                <audio controls  id="sale_audio23" style="display:none;">
                                                     <source src="audio/es_mix_bj/02_recorrido_23.ogg" type="audio/ogg">
                                                 </audio>
                                             @else
@@ -561,16 +563,16 @@ banner-recorridos
                                                 Para segurança dos nossos visitantes e das plantas, o Jardim só pode ser visitado em visitas guiadas.
                                                 Cada grupo é formado por 30 pessoas e é oferecido de segunda a sábado em horários diferentes.
                                             @elseif(session('locale')=='es_mix_bj')
-                                                Ñà ná kòó kundo’o ndó iin tùndí’ni saá tu itún kuálí íyo jardîn yó’o ná kòó tàxìn nú, ná kòó kundivà’a 
-                                                nú xíniñú’ún kunúú iin na kátyíñu jardîn yó’o nùú ndó kù’un ndó, kòó táxi na kèe mítú’ún ndó. 
-                                                Iin tàkà iin tàkà koo ndó kèe ndó, kū’vā òkò ùxì káá kúú na kêe. Kìví và’a kèe ndó kúú lúne iin saá ndià 
-                                                sávàdò, kuvi kèe ndó ña’a ta sáa kuvi tu kèe ndó xìkuaá. 
+                                                Ñà ná kòó kundo’o ndó iin tùndí’ni saá tu itún kuálí íyo jardîn yó’o ná kòó tàxìn nú, ná kòó kundivà’a
+                                                nú xíniñú’ún kunúú iin na kátyíñu jardîn yó’o nùú ndó kù’un ndó, kòó táxi na kèe mítú’ún ndó.
+                                                Iin tàkà iin tàkà koo ndó kèe ndó, kū’vā òkò ùxì káá kúú na kêe. Kìví và’a kèe ndó kúú lúne iin saá ndià
+                                                sávàdò, kuvi kèe ndó ña’a ta sáa kuvi tu kèe ndó xìkuaá.
                                                 <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','24')"></i>
-                                                <audio controls  id="sale_audio24" style="display:none;">                                
+                                                <audio controls  id="sale_audio24" style="display:none;">
                                                     <source src="audio/es_mix_bj/02_recorrido_24.ogg" type="audio/ogg">
                                                 </audio>
                                             @else
-                                                Por seguridad de nuestr@s visitantes y de las plantas, el Jardín sólo puede ser visitado en recorridos guiados. 
+                                                Por seguridad de nuestr@s visitantes y de las plantas, el Jardín sólo puede ser visitado en recorridos guiados.
                                                 Cada grupo se conforma de 30 personas y se ofrecen de lunes a sábado en diferentes horarios.
                                             @endif
                                         </div>
@@ -601,9 +603,9 @@ banner-recorridos
                                 @elseif(session('locale')=='pt')
                                     Passeios<br>escolares
                                 @elseif(session('locale')=='es_mix_bj')
-                                    Ñà kì’vi na kuǎlí ká’vi 
+                                    Ñà kì’vi na kuǎlí ká’vi
                                     <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','25')"></i>
-                                    <audio controls  id="sale_audio25" style="display:none;">                                
+                                    <audio controls  id="sale_audio25" style="display:none;">
                                         <source src="audio/es_mix_bj/02_recorrido_25.ogg" type="audio/ogg">
                                     </audio>
                                 @else
@@ -618,17 +620,17 @@ banner-recorridos
                                     Estamos muito satisfeitos em poder oferecer passeios escolares gratuitos para instituições de ensino público e privado do mexico.
                                     Estes requerem reserva e são ministrados nos seguintes horários.
                                 @elseif(session('locale')=='es_mix_bj')
-                                    Kúsìí níi va ini nà jardín yó’o ñà vàxi na kuǎlí ká’vi kuto’ni na mí jardín yó’o, nà yó’o ra, 
-                                    nà kuàkèe uun va kúú na, kòó xíniñú’ú tyá’vi na. Kòó tyá’vi na nii na ká’vi ve’e sákua’a kuénta gobierno, 
-                                    ni na ká’vi ve’e sákuá’a kuénda nà mitú’ún. Ñà kuvi kèe na xíniñú’ú yàtyì kà ndatú’ún na xí’ín mí na jardîn 
-                                    yó’o ñà kán kuvi kundàà ini na ndiáa kìví kúú ña kúñà’à nà ndiki’in ña’á na. Saá kuvi kìndòo na kixi na 
+                                    Kúsìí níi va ini nà jardín yó’o ñà vàxi na kuǎlí ká’vi kuto’ni na mí jardín yó’o, nà yó’o ra,
+                                    nà kuàkèe uun va kúú na, kòó xíniñú’ú tyá’vi na. Kòó tyá’vi na nii na ká’vi ve’e sákua’a kuénta gobierno,
+                                    ni na ká’vi ve’e sákuá’a kuénda nà mitú’ún. Ñà kuvi kèe na xíniñú’ú yàtyì kà ndatú’ún na xí’ín mí na jardîn
+                                    yó’o ñà kán kuvi kundàà ini na ndiáa kìví kúú ña kúñà’à nà ndiki’in ña’á na. Saá kuvi kìndòo na kixi na
                                     iin kìví xí’ín óra ñà ndósó tìxín yó’o:
                                     <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','26')"></i>
-                                    <audio controls  id="sale_audio26" style="display:none;">                                
+                                    <audio controls  id="sale_audio26" style="display:none;">
                                         <source src="audio/es_mix_bj/02_recorrido_26.ogg" type="audio/ogg">
                                     </audio>
                                 @else
-                                    Nos da mucho gusto poder ofrecer recorridos escolares gratuitos para instituciones de educación pública privada nacionales. 
+                                    Nos da mucho gusto poder ofrecer recorridos escolares gratuitos para instituciones de educación pública privada nacionales.
                                     Estos requieren de reservación y se imparten en los siguientes horarios.
                                 @endif
                             </p>
@@ -672,7 +674,7 @@ banner-recorridos
                             </h3>
                             <p>
                                 @if(session('locale')=='en')
-                                    To schedule a tour on the date and time of your preference, we ask that you send us, at least 3 weeks in advance, 
+                                    To schedule a tour on the date and time of your preference, we ask that you send us, at least 3 weeks in advance,
                                     a signed request on school letterhead to the following email:
                                 @elseif(session('locale')=='pt')
                                     Para agendar um passeio na data e horário de sua preferência, solicitamos que você nos direcione,
@@ -680,9 +682,9 @@ banner-recorridos
                                 @elseif(session('locale')=='es_mix_bj')
                                 @else
                                     Para agendar un recorrido en la fecha y horario de su preferencia, solicitamos nos dirijan,
-                                    con al menos 3 semanas de anticipación, una solicitud firmada en papel membretado de la escuela, al correo: 
+                                    con al menos 3 semanas de anticipación, una solicitud firmada en papel membretado de la escuela, al correo:
                                 @endif
-                                <a href="mailto:etnobotanico@infinitummail.com" class="nolink">etnobotanico@infinitummail.com</a>.
+                                <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>.
                             </p>
                         </div>
                     </div>
