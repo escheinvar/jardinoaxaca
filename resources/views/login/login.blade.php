@@ -2,7 +2,7 @@
 
 @extends('plantillas.PlantillaWeb')
 
-@section('title') 
+@section('title')
 Ingreso al sistema
 @endsection
 
@@ -14,7 +14,7 @@ Ingreso al sistema
 banner-historia
 @endsection
 
-@section('banner-title') 
+@section('banner-title')
 Acceso al sistema
 @endsection
 
@@ -30,23 +30,23 @@ Acceso al sistema
                         @csrf
                         <div class="form-group">
                             <label for="correo">Correo eletrónico</label>
-                            <input name="correo" value="admin@mail.com" type="email" class="form-control" id="correo" placeholder="Ingresa tu correo">
+                            <input name="correo" type="email" class="form-control" id="correo" placeholder="Ingresa tu correo">
                             @error('correo')<error>{{$message}}</error>@enderror
-                            
+
                         </div>
 
                         <div class="form-group form-con-icono">
                             <label for="contrasenia">Contraseña</label>
-                            <input name="contrasenia" value="admin" type="password" class="form-control" id="passfield" placeholder="Ingresa tu contraseña">
-                            <i class="bi bi-eye-slash form-icon" id='passicon' onclick="VerNoVerPass('passfield','passicon','bi bi-eye form-icon', 'bi bi-eye-slash form-icon')" style="padding:10px; cursor:pointer;"></i>            
+                            <input name="contrasenia" type="password" class="form-control" id="passfield" placeholder="Ingresa tu contraseña">
+                            <i class="bi bi-eye-slash form-icon" id='passicon' onclick="VerNoVerPass('passfield','passicon','bi bi-eye form-icon', 'bi bi-eye-slash form-icon')" style="padding:10px; cursor:pointer;"></i>
                             @error('contrasenia')<error>{{$message}}</error>@enderror
                         </div>
-        
+
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="sesionActiva" name="dejarActiva" value=TRUE>
                             <label class="form-check-label" for="sesionActiva" style="float: left;"> &nbsp; Dejar sesión activa</label>
                         </div>
-        
+
                         <br>
                         <div>
                             <error>{{$mensaje}}</error>
@@ -54,8 +54,8 @@ Acceso al sistema
                         <div class="col-sm-12 col-md-auto pb-5">
                             <button type="submit" class="btn btn-primary">Ingresar</button>
                         </div>
-                        
-                    
+
+
                         <div>
                             <small>
                             <a class="nolink" href="/recuperaAcceso">Recuperar/Cambiar contraseña</button></a>

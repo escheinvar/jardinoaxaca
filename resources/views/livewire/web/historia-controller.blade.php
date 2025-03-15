@@ -1,4 +1,4 @@
-@section('title') 
+@section('title')
 Historia
 @endsection
 
@@ -10,7 +10,7 @@ Propuesto en 1993, el Jardín Etnobiológico de Oaxaca nace con el objetivo de m
 banner-historia
 @endsection
 
-@section('banner-title') 
+@section('banner-title')
 Historia
 @endsection
 
@@ -19,7 +19,7 @@ Historia
     <!--S2 HISTORIA-->
     <section class="historia">
         <div class="container py-5 px-3">
-            
+
             <div>
                 @include('plantillas/plant_locale')
             </div>
@@ -32,7 +32,7 @@ Historia
                 </div>
                 <div class="col-sm-auto col-md-6 col-lg-6 col-xl-5 text-start py-2 px-4">
                     <p class="texto-secundario">El Jardín Etnobiológico de Oaxaca es un espacio creado por la sociedad civil en 1994 por iniciativa del Maestro Francisco Toledo
-                        luego de una consulta popular, bajo la idea de crear un espacio que resguarde el patrimonio cultural y natural de las comunidades oaxaqueñas reuniendo 
+                        luego de una consulta popular, bajo la idea de crear un espacio que resguarde el patrimonio cultural y natural de las comunidades oaxaqueñas reuniendo
                         lo antropológico, lo biológico, lo artístico y lo histórico en contraposición a la propuesta que había de de convertirlo en un hotel de lujo privado
                         con amplio estacionamiento.</p>
 
@@ -44,10 +44,10 @@ Historia
                 <div class="col-sm-auto col-md-12 col-lg-12  px-4 mb-4">
                     <p class="texto-secundario">Luego de la promulgación de las Leyes de Reforma en 1860, el espacio del Jardín fue ocupado como cuartel del ejército mexicano y
                         se construyeron instalaciones militares incluyendo barracas, campo de tiro, plaza para desfiles, estacionamiento, alberca y canchas deportivas.</p>
-                    
-                    <p class="texto-secundario">En 1994 con la salida del ejército de las instalaciones del ex-convento de Santo Domingo, se inicia el proceso de rescate 
-                        arqueológico, en el que se descubren los vestigios coloniales que hoy en día pueden ser visitados: canales de riego, sistema de drenaje, estanques, 
-                        hornos de cal, lavaderos de ropa, horno de cerámica y una calzada empedrada para las carretas que abastecían alimento y combustible al convento y se 
+
+                    <p class="texto-secundario">En 1994 con la salida del ejército de las instalaciones del ex-convento de Santo Domingo, se inicia el proceso de rescate
+                        arqueológico, en el que se descubren los vestigios coloniales que hoy en día pueden ser visitados: canales de riego, sistema de drenaje, estanques,
+                        hornos de cal, lavaderos de ropa, horno de cerámica y una calzada empedrada para las carretas que abastecían alimento y combustible al convento y se
                         inicia la construcción, desde el suelo, del jardín.</p>
 
 
@@ -101,24 +101,24 @@ Historia
 
 
 
-                    <p class="texto-secundario">La idea y concepto inicial del Jardín es obra del Maestro Francisco Toledo quien dirigió, supervisó y veló por el Jardín hasta el final de sus días. 
-                        El Dr. Alejandro de Ávila Blomberg define el concepto y propuesta museográfica, determina la selección de especies, 
-                        genera la propuesta educativa y dirige y sostiene el Jardín Etnobiológico de Oaxaca desde entonces, 
+                    <p class="texto-secundario">La idea y concepto inicial del Jardín es obra del Maestro Francisco Toledo quien dirigió, supervisó y veló por el Jardín hasta el final de sus días.
+                        El Dr. Alejandro de Ávila Blomberg define el concepto y propuesta museográfica, determina la selección de especies,
+                        genera la propuesta educativa y dirige y sostiene el Jardín Etnobiológico de Oaxaca desde entonces,
                         el pintor oaxaqueño Luis Zárate tomó las decisioes estéticas, diseñó los caminos y canales ornamentales
-                        que evitan que las partes bajas se inunden durante las lluvias 
-                        y la Aquitecta María Claudina López Morales y el Arquitecto paisajista Saúl Alcántara Onofre, 
+                        que evitan que las partes bajas se inunden durante las lluvias
+                        y la Aquitecta María Claudina López Morales y el Arquitecto paisajista Saúl Alcántara Onofre,
                         colaboraron en la ejecución arquitectónica y paisajística del Jardín.
                     </p>
 
-                    <p class="texto-secundario">En julio de 1998 sembramos la primer planta del jardín. Todas las plantas que conforman el Jardín, incluso aquellas 
+                    <p class="texto-secundario">En julio de 1998 sembramos la primer planta del jardín. Todas las plantas que conforman el Jardín, incluso aquellas
                         que tienen más de 60 o 100 años, fueron donadas por las comunidades oaxaqueñas y fueron transportadas y
                          transplantadas por el personal del Jardín.
                         Actualmente contamos con más 5000 plantas pertenecientes a más de 1000 especies vegetales diferentes.
                     </p>
 
-                    <p class="texto-secundario">Con el objeto de incorporar aspectos importantes del conocimiento de las comunidades originarias oaxaqueñas sobre los animales, 
-                        los hongos, las algas o las bacterias, es que desde 2019, el Jardín Etnobotánico de Oaxaca se incorpora a la red de jardines del Conahcyt 
-                        y pasamos a nombrarnos "Jardín Etnobiológico de Oaxaca", con la incorporación de varios investigadores que fortalecen la labor de
+                    <p class="texto-secundario">Con el objeto de incorporar aspectos importantes del conocimiento de las comunidades originarias oaxaqueñas sobre los animales,
+                        los hongos, las algas o las bacterias, es que desde 2019, el Jardín Etnobotánico de Oaxaca se incorpora a la Red Nacional de Jardines Etnobotanicos de la
+                        Secretaría de Ciencias , Humanidades, Tencología e Innovación federal y pasamos a nombrarnos "Jardín Etnobiológico de Oaxaca", con la incorporación de varios investigadores que fortalecen la labor de
                         documentación, visibilización, resguardo, recuperación, intercambio y difusión del conocimiento etnobiológico y de la riqueza biocultural del estado de Oaxaca.
                     </p>
 
@@ -128,20 +128,20 @@ Historia
                     <p class="texto-secundario">
                         Rechazamos como una infamia histórica la política imperial y nacional que buscó dividir en las comunidades indígenas para dominarlas, por eso apoyamos y nos solidarizamos con la reivindicaciones lingüísticas y culturales de los pueblos originarios.
                     </p>
-                    
-            
-                </div>                       
-            </div>            
+
+
+                </div>
+            </div>
         </div>
 
 
-        
 
-       
+
+
 
     </section>
 
-    
+
 
 
 
@@ -186,7 +186,7 @@ Historia
 
 
 
-       
+
     </section>
 
 

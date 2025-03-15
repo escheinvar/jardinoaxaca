@@ -78,8 +78,10 @@ class EventosController extends Component
     public function render() {
         // $eventos=WebEventosModel::where('wwevs_act','1')->OrderBy('wwevs_dateini')->get();
         $mes=['no','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-        $prox=WebEventosModel::where('wwevs_act','1')->OrderBy('wwevs_dateini','asc')->where('wwevs_datefin','>=',now())->get();
-        $past=WebEventosModel::where('wwevs_act','1')->OrderBy('wwevs_dateini','desc')->where('wwevs_datefin','<',now())->paginate($this->Cantidad);
+        $prox=WebEventosModel::where('wwevs_act','1')
+            ->OrderBy('wwevs_dateini','asc')->where('wwevs_datefin','>=',now())->get();
+        $past=WebEventosModel::where('wwevs_act','1')
+            ->OrderBy('wwevs_dateini','desc')->where('wwevs_datefin','<',now())->paginate($this->Cantidad);
         #dd($prox);
         return view('livewire.web.eventos-controller',[
             'eventosProx'=>$prox,

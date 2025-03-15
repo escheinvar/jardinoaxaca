@@ -631,8 +631,8 @@ banner-recorridos
                                     </audio>
                                 @else
                                     Nos da mucho gusto poder ofrecer recorridos escolares gratuitos para instituciones de educación pública y privada nacionales.
-                                    Para poder agendar un recorrido escolar, requerimos de reservación previa. Loss recorridos tienen una duración aproximada de una
-                                    una hora en grupos de 30 personas cada uno. Los recorridos escoares se imparten en los siguientes horarios.
+                                    Para poder agendar un recorrido escolar, requerimos de reservación previa. Los recorridos tienen una duración aproximada de una
+                                    hora en grupos de 30 personas cada uno. Los recorridos escolares se inician en los siguientes horarios.
                                 @endif
                             </p>
                         </div>

@@ -174,17 +174,17 @@ Servicios
                 <div class="slide">
                     <div class="content">
                         <h2 class="subtitulo">Recorridos<br>nocturnos</h2>
-                        <p>Como parte del programa "Noches de museo", el Jardín Etnobiológico
-                            de Oaxaca, ofrece una vez al mes, recorridos nocturnos gratuitos a todos los visitantes que
+                        <p>Como parte del programa "Noches de museo" y "Fines culturales", el Jardín Etnobiológico
+                            de Oaxaca, ofrece de manera periódica, recorridos nocturnos gratuitos a todos los visitantes que
                             deseen conocer el Jardín de noche</p>
-                        <p>En estos recorridos, los visitantes podrán oler, escuchar y percibir la vida nocturna del jardín,
+                        <p>En estos recorridos, los visitantes podrán oler, sentir y percibir la vida nocturna del jardín,
                             y podrán escuchar, de parte de nuestros guías especializados, varios aspectos interesantes
                             sobre la vida de las plantas y animales nocturnos que habitan en el estado de Oaxaca.
                         </p>
 
                         <h3>Horarios</h3>
                         <h4 class="duracion">Duración 20 minutos</h4>
-                        <p>Último viernes de cada mes<br>a partir de las 18:00 horas
+                        <p>Último viernes, de cada tres meses<br>a partir de las 18:00 horas
                         </p>
 
                     </div>
@@ -206,13 +206,11 @@ Servicios
                             Bajo solicitud expresa, apoyamos a las comunidades en el establecimiento, consolidación y mantenimiento
                             de sus jardines comunitarios.
                         </p>
-                        <p>En 2024 colaboramos en la creación de dos jardines comunitarios:</p>
+                        <p>En 2024 iniciamos labores para la creación de jardines comunitarios:</p>
 
 
-                        <h4 class="duracion">Cuilapam de Guerrero</h4>
-                        <h4 class="duracion">San Pedro Totolapan</h4>
                         <h4 class="duracion">Guelatao</h4>
-                        <h4 class="duracion">Matatlán</h4>
+                        <h4 class="duracion">Santiago Matatlán</h4>
 
                         <p>En 2022, apoyamos a la comunidad de Cuilapam de Guerrero y la comunidad de San Pedro Totolapam
                             con la elaboración de su propuesta técnica, selección de especies locales, diseño y trazo del jardín y jardineras,
@@ -220,6 +218,8 @@ Servicios
                             apoyo en elaboración y mantenimiento de sus Jardines Comunitarios.
                         </p>
 
+                        <h4 class="duracion">Cuilapam de Guerrero</h4>
+                        <h4 class="duracion">San Pedro Totolapan</h4>
 
 
                     </div>
