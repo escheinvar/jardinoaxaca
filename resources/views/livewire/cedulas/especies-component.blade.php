@@ -4,26 +4,25 @@
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <div style="overflow:auto; background-color:#CDC6B9; border-radius:8px; margin:5px; padding:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
-        <div style="display:inline-block;">
-                <b><a href="/especies" class="nolink">
-                    <i class="bi bi-arrow-left-short"></i>Regresar
-                </a></b> &nbsp; | &nbsp;
-                {{-- Jardin: {{ $jardin }} --}}
-                <b> Reino {{ $taxo['reino'] }} &nbsp; | &nbsp;
-                    @if($taxo['familia']!='') Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  @endif
-                    @if($taxo['sp'] != '') <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; @endif
-                    {{ $taxo['nombrecomun'] }}</b>
+        <div class="d-none d-sm-none d-md-inline-block" style="display:inline-block;">
+            <b><a href="/especies" class="nolink">
+                <i class="bi bi-arrow-left-short"></i>Regresar
+            </a></b> &nbsp; | &nbsp;
+            {{-- Jardin: {{ $jardin }} --}}
+            <b> Reino {{ $taxo['reino'] }} &nbsp; | &nbsp;
+                @if($taxo['familia']!='') Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  @endif
+                @if($taxo['sp'] != '') <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; @endif
+                {{ $taxo['nombrecomun'] }}</b>
         </div>
-        <div style="display:inline-block;"> &nbsp; | &nbsp;
-            <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
-            <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
-            <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
-            <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
-            <span class="d-xs-block d-sm-none">sm Extrachico</span>
-        </div>
+
 
         <!-- -------------------- Menú de lenguas ------------------------------------ -->
         <div style="float: right;">
+            <!-- regresar -->
+            <b><a href="/especies" class="nolink">
+                <i class="bi bi-arrow-left-short"></i>Regresar
+            </a></b> &nbsp; &nbsp;
+            <!-- selector de idioma -->
             Idioma:
             <select wire:change="idiomas()" wire:model="idioma" id="MiIdioma" class="form-control lenguas" style="width:200px; display:inline-block;">
                 @foreach ($lenguas as $len)
@@ -31,7 +30,8 @@
                 @endforeach
             </select>
             &nbsp; &nbsp;
-            <i class="bi bi-filetype-pdf" style="cursor: pointer;"></i>
+            <!-- Ícono de pdf -->
+            {{-- <i class="bi bi-filetype-pdf" style="cursor: pointer;"></i> --}}
         </div>
     </div>
 
@@ -92,6 +92,13 @@
                 </button>
             </div>
             --}}
+            <div style="display:inline-block;"> &nbsp; | &nbsp;
+                <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
+                <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
+                <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
+                <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
+                <span class="d-xs-block d-sm-none">xs Extrachico</span>
+            </div>
 
             <!-- ------------------------- Otras cédulas de otros jardines ------------------------>
             @if($jardinData->where('cjar_siglas','!=',$jardin)->count() > 0)
@@ -136,49 +143,49 @@
         </div>
 
         <!-- ------------------------- GALERÍA DE FOTOGRAFÍAS ------------------------>
-        <div class="col-sm-12 col-md-2 col-lg-2 center">
-            <!-- flecha -->
+        <div class="col-6 col-md-2 col-lg-2 center">
+            {{-- <!-- flecha -->
             <div class="center" style="text-align: center;">
                 <i class="bi bi-arrow-up-circle" style="font-size: 170%; color:#87796d;; cursor: pointer;"></i>
-            </div>
+            </div> --}}
 
             <!-- img ppal1-->
             @if($fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') != '' )
-                <div class="center">
+                <div class="center"><center>
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
-                </div>
+                </center></div>
             @endif
             <!-- img ppal2 -->
             @if($fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') != '' )
-                <div class="center">
+                <div class="center"><center>
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
-                </div>
+                </center></div>
             @endif
             <!-- img ppal3 -->
             @if($fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') != '' )
-                <div class="center">
+                <div class="center"><center>
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
-                </div>
+                </center></div>
             @endif
             <!-- img ppal4-->
             @if($fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') != '' )
-                <div class="center">
+                <div class="center"><center>
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
-                </div>
+                </center></div>
             @endif
 
             <!-- flecha -->
-            <div class="center" style="text-align: center;">
+            {{-- <div class="center" style="text-align: center;">
                 <i class="bi bi-arrow-down-circle" style="font-size: 170%; color:#87796d;; cursor: pointer;"></i>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -191,7 +198,7 @@
     <div class="row" style="margin:5px; border-bottom-left-radius:8px;">
 
         <!-- -------------- Menú izquierdo ----------------->
-        <div class="col-2" style="color:#efebe8;padding:40px;font-size:1.3em;background-color:#CDC6B9;">
+        <div class="col-12 col-sm-12 col-md-2" style="color:#efebe8;padding:40px;font-size:1.3em;background-color:#CDC6B9;">
             <H3>
                 {{ $lenguas->where('clen_code',session('localeid'))->value('clen_autonimias') }}
                 {{ $lenguas->where('clen_code',session('localeid'))->value('clen_lengua') }}

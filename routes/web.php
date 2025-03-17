@@ -49,6 +49,7 @@ ddleware group. Make something great!
 /* ------------------------------------ PÁGINA WEB PÚBLICA ------------------------ */
 Route::get('/', InicioController::class)->name('inicio');
 Route::get('/recorridos', RecorridosController::class)->name('recorridos');
+Route::get('/informes', RecorridosController::class)->name('recorridos');
 Route::get('/mapa', MapaController::class)->name('mapa');
 Route::get('/historia', HistoriaController::class)->name('historia');
 Route::get('/servicios', ServiciosController::class)->name('servicios');
@@ -56,7 +57,7 @@ Route::get('/colecciones', ColeccionesController::class)->name('colecciones');
 Route::get('/directorio', DirectiorioController::class)->name('directorio');
 Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradores');
 Route::get('/actividades',EventosController::class)->name('actividades');
-Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
+#Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 
 
 

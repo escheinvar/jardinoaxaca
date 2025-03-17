@@ -39,7 +39,7 @@
 
             <!--Segunda columna-->
 
-            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-4">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-4">
                 <div class="row">
                     <div class="col">
                         <div class="col pb-2">
@@ -60,20 +60,20 @@
 
             <!--Tercera columna-->
 
-            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-4">
+            {{-- <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 mt-4">
                 <h5><a href="/recorridos" class="nolink">Visitas</a></h5>
                 <p>Recorridos guiados<br>de lunes a viernes 10:00, 11:00, 12:00 y 17:00 hrs.<br>Sábados 10:00, 11:00 y 12:00 hrs. <br>
 
                 </p>
                 <p>Reservaciones<br>No hay reservaciones ni venta de boletos con anticipación.</p>
-            </div>
+            </div> --}}
 
             <!--Cuarta columna-->
 
-            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3 col-xxl-2 mt-4">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 mt-4">
                 <div class="row">
                     <div class="col">
-                        <h5>Horario de atención</h5>
+                        <h5>Horario de oficinas</h5>
                         <p>Oficina<br>Lunes - Viernes: 10:00 a 17:00 horas<br>Sábados: 10:00 a 12:00
                             horas</p>
                     </div>
