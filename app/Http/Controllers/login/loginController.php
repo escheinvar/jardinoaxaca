@@ -35,7 +35,7 @@ class loginController extends Controller
 
         ##### Autentica contra directorio activo
         if(Auth::attempt($credentials, $remember)) {
-            $roles=UserRolesModel::where('rol_act','1')->where('rol_usrid',auth()->user()->id)->pluck('rol_crolrol')->toArray();
+            $roles=UserRolesModel::where('rol_act','1')->where('rol_usrid',Auth::user()->id)->pluck('rol_crolrol')->toArray();
             #$roles2=implode(',',$roles);
 
             ##### Guarda variables de usuario,
