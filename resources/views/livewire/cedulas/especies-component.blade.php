@@ -5,9 +5,9 @@
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <div style="overflow:auto; background-color:#CDC6B9; border-radius:8px; margin:5px; padding:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
         <div class="d-none d-sm-none d-md-inline-block" style="display:inline-block;">
-            <b><a href="/especies" class="nolink">
+            {{-- <b><a href="/especies" class="nolink">
                 <i class="bi bi-arrow-left-short"></i>Regresar
-            </a></b> &nbsp; | &nbsp;
+            </a></b> &nbsp; | &nbsp; --}}
             {{-- Jardin: {{ $jardin }} --}}
             <b> Reino {{ $taxo['reino'] }} &nbsp; | &nbsp;
                 @if($taxo['familia']!='') Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  @endif
@@ -200,9 +200,10 @@
         <!-- -------------- Menú izquierdo ----------------->
         <div class="col-12 col-sm-12 col-md-2" style="color:#efebe8;padding:40px;font-size:1.3em;background-color:#CDC6B9;">
             <H3>
-                {{ $lenguas->where('clen_code',session('localeid'))->value('clen_autonimias') }}
-                {{ $lenguas->where('clen_code',session('localeid'))->value('clen_lengua') }}
+                {{ $lenguas->where('clen_code',session('locale2'))->value('clen_autonimias') }}
+                {{-- $lenguas->where('clen_code',session('locale2'))->value('clen_lengua') --}}
             </H3>
+
             <nav class="navbar navbar-expand-md" >
 
                 <!-- --------- Menú Hamburguesa -------------- -->
