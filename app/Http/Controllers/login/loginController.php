@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class loginController extends Controller
 {
     public function index(){
+
         if(Auth::user()){
             return redirect('home');
         }else{
@@ -35,8 +36,7 @@ class loginController extends Controller
 
         ##### Autentica contra directorio activo
         if(Auth::attempt($credentials, $remember)) {
-            $roles=UserRolesModel::where('rol_act','1')->where('rol_usrid',Auth::user()->id)->pluck('rol_crolrol')->toArray();
-            #$roles2=implode(',',$roles);
+            $roles=UserRolesModel::where('rol_act','1')->where('rol_usrid',Auth::id())->pluck('rol_crolrol')->toArray();
 
             ##### Guarda variables de usuario,
             session([
