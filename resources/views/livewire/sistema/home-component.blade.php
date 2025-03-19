@@ -42,7 +42,8 @@ Inicio
 
     <h3>Faltantes</h3>
     <ol>
-        <li>Módulo para vaciar las imágenes de carpeta /cargaMasiva que no están en la tabla pl_import (campos de fotos)</li>
+        <li>Jardines: Módulo para vaciar las imágenes de carpeta /cargaMasiva que no están en la tabla pl_import (campos de fotos)</li>
+        <li>Cédulas: Módulo para vaciar imágenes que no estan en sp_cedulas (txt_audio, txt_img1-3, txt_video) o en sp_fotos
     </ol>
 
 </div>

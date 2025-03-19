@@ -43,10 +43,10 @@ class DatabaseSeeder extends Seeder
             ImportPlantasSeeder::class,
             CatEtiquetasImgSeeder::class,
             CatEntidadesSeeder::class,
-            #SpUrlSeeder::class,
-            #SpUrlCedulaSeeder::class,
-            #SpCedulaSeeder::class,
-            #SpFotosSeeder::class,
+            SpUrlSeeder::class,
+            SpUrlCedulaSeeder::class,
+            SpCedulaSeeder::class,
+            SpFotosSeeder::class,
         ]);
     }
 }

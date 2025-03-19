@@ -41,7 +41,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
-                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catCedulas">Catálogo de Cédulas</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'catCedulas') active @endif" href="/catCedulas">Catálogo de Cédulas</a></li>
 
 
                         </ul>

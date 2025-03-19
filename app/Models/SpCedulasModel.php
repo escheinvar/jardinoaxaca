@@ -22,5 +22,10 @@ class SpCedulasModel extends Model
         'txt_audio',
         'txt_autor',
         'txt_version',
+        'txt_img1',
+        'txt_img2',
+        'txt_img3',
+        'txt_video',
+        'txt_resp',
     ];
 }

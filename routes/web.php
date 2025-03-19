@@ -58,7 +58,7 @@ Route::get('/directorio', DirectiorioController::class)->name('directorio');
 Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradores');
 Route::get('/actividades',EventosController::class)->name('actividades');
 #Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
-
+Route::get('/pruebillas_php',function(){ dd(phpinfo());});
 
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */

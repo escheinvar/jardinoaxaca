@@ -11,28 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('sp_urlcedula', function (Blueprint $table) {
-        //     $table->id('ced_id');
-        //     $table->enum('ced_act',['0','1'])->default('1');
-        //     $table->integer('ced_edo')->default('0'); ##### Estado de la cédula: 0=en construcción, 1=en revisión,  2=aprobado1, 3=en edicion, 4=en revisión, 5=público )
+        Schema::create('sp_urlcedula', function (Blueprint $table) {
+            $table->id('ced_id');
+            $table->enum('ced_act',['0','1'])->default('1');
+            $table->integer('ced_edo')->default('0'); ##### Estado de la cédula: 0=en construcción, 1=en revisión,  2=aprobado1, 3=en edicion, 4=en revisión, 5=público )
 
-        //     $table->string('ced_urlurl');   ###### URL de la especie
-        //     $table->foreign('ced_urlurl')->references('url_url')->on('sp_url')->onDelete('cascade')->constrained('sp_url','url_url');
+            $table->string('ced_urlurl');   ###### URL de la especie
+            $table->foreign('ced_urlurl')->references('url_url')->on('sp_url')->onDelete('cascade')->constrained('sp_url','url_url');
 
-        //     $table->string('ced_clencode'); ##### lengua
-        //     $table->foreign('ced_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('cat_lenguas','clen_code');
+            $table->string('ced_clencode'); ##### lengua
+            $table->foreign('ced_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('cat_lenguas','clen_code');
 
-        //     $table->string('ced_cjarsiglas'); ##### Jardín
-        //     $table->foreign('ced_cjarsiglas')->references('cjar_siglas')->on('cat_jardines')->onDelete('cascade')->constrained('cat_jardines','cjar_siglas');
+            $table->string('ced_cjarsiglas'); ##### Jardín
+            $table->foreign('ced_cjarsiglas')->references('cjar_siglas')->on('cat_jardines')->onDelete('cascade')->constrained('cat_jardines','cjar_siglas');
 
 
-        //     $table->decimal('ced_version',5,2)->default('1.00'); ##### Versión de la cédula
-        //     $table->date('ced_versiondate')->default(date('Y-m-d'));  ##### Fecha de la última versión
+            $table->decimal('ced_version',5,2)->default('1.00'); ##### Versión de la cédula
+            $table->date('ced_versiondate')->default(date('Y-m-d'));  ##### Fecha de la última versión
 
-        //     $table->longText('ced_cita')->nullable(); ###### Texto de la cita de la ficha: Scheinvar GE y Gámez T, 2003. Algo....
+            $table->longText('ced_cita')->nullable(); ###### Texto de la cita de la ficha: Scheinvar GE y Gámez T, 2003. Algo....
 
-        //     $table->timestamps();
-        // });
+            $table->timestamps();
+        });
     }
 
     /**
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('sp_urlcedula');
+        Schema::dropIfExists('sp_urlcedula');
     }
 };

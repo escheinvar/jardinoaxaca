@@ -259,6 +259,7 @@
                                                         @elseif($c->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorizacion</i>
                                                         @elseif($c->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>
                                                         @endif
+                                                        ID {{ $c->ced_id }}
                                                     </div>
                                                     <!-- url, lengua y siglas de jardin -->
                                                     <div>
@@ -277,10 +278,15 @@
                                                         </div>
                                                         <!-- botón de ver-->
                                                         <div style="display:inline-block;margin:10px;">
-                                                            @if($c->ced_edo=='5')
-                                                                <i class="bi bi-box-arrow-up-right" wire:click="IrConLengua('{{ $c->ced_clencode }}','{{ $c->ced_urlurl }}', '{{ $c->ced_cjarsiglas }}')" style="padding:7px; cursor: pointer;" class="PaClick">ver</i>
-                                                            @endif
+                                                            <i class="bi bi-box-arrow-up-right" wire:click="IrConLengua('{{ $c->ced_clencode }}','{{ $c->ced_urlurl }}', '{{ $c->ced_cjarsiglas }}')" style="padding:7px; cursor: pointer;" class="PaClick">ver</i>
                                                         </div>
+                                                        <!-- botón de borrar-->
+                                                        <div style="display:inline-block;margin:10px;" onclick="VerNoVer('Borrar','{{ $c->ced_id }}')" wire:click="" wire:confirm="Estás por eliminar PERMANENTEMENTE la cédula, sus textos, imágenes y videos. ¿Seguro que quieres continuar?">
+                                                            <i class="bi bi-trash" style="padding:7px; cursor: pointer;" class="PaClick">eliminar</i>
+                                                        </div>
+                                                    </div>
+                                                    <div id="sale_Borrar{{ $c->ced_id }}" style="display: none;">
+                                                        <button wire:click="BorrarCedula('{{ $c->ced_id }}')" wire:confirm="Nuevamente, ¿estas seguro? Si picas continuar, esta cédula será eliminada." class="btn btn-danger btn-sm">Si, Borrar</button>
                                                     </div>
                                                 </div>
                                             @endforeach

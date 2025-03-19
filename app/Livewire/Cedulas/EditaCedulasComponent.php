@@ -21,6 +21,7 @@ class EditaCedulasComponent extends Component
 
     public $cedID, $TxtIdEnEdicion, $codedit;
     public $NvoTitulo, $NvoOrder, $NvoCodigo,$NvoAudio, $NvaImagen, $NvaImagenTipo;
+    public $NvoImg1, $NvoImg2, $NvoImg3, $NvoVideo;
 
     public function mount($cedID){
         $this->cedID=$cedID;
@@ -73,12 +74,20 @@ class EditaCedulasComponent extends Component
         #dd($this->NvaImagen->getClientOriginalName(),$nombre);
     }
 
+    public function BorrarElemento($elemento){
+        dd('Borrar '.$elemento,$this->TxtIdEnEdicion);
+    }
+
     public function DeterminaParrafoAeditar($id){
         $this->TxtIdEnEdicion=$id;
         $this->codedit=SpCedulasModel::where('txt_id',$id)->first();
         $this->NvoTitulo= $this->codedit->txt_titulo;
         $this->NvoOrder= $this->codedit->txt_order;
         $this->NvoCodigo= $this->codedit->txt_codigo;
+        $this->NvoImg1=$this->codedit->txt_img1;
+        $this->NvoImg2=$this->codedit->txt_img2;
+        $this->NvoImg3=$this->codedit->txt_img3;
+        $this->NvoVideo=$this->codedit->txt_Video;
     }
 
     public function CancelaCambio(){

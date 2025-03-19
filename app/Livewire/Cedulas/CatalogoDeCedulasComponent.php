@@ -78,6 +78,7 @@ class CatalogoDeCedulasComponent extends Component
                 'txt_order'=>'1',
                 'txt_codigo'=>'Titulo',
             ]);
+
         ##### Copia cédula (en caso de)
         } elseif ($this->NvoCopia=='1'){
             ##### copia texto
@@ -96,16 +97,56 @@ class CatalogoDeCedulasComponent extends Component
                     'txt_audio'=>$o->txt_audio,
                     'txt_autor'=>$o->txt_autor,
                     'txt_version'=>$o->txt_version,
+                    'txt_resp'=>Auth::id(),
                 ]);
-                ##### copia audios
+                ##### copia audios del texto
                 if($o->txt_audio != '' ){
                     $datos=SpUrlCedulaModel::where('ced_id',$o->txt_cedid)->first();
-                    $NvoNombre=$datos->ced_urlurl."_".$this->NvoJardin."_".$this->NvoLengua."_".$nvo->txt_id.".".preg_replace('/^.*\./','',$o->txt_audio);
-                    Storage::copy('/aPublic/cedulas/audios/'.$o->txt_audio,  '/aPublic/cedulas/audios/'.$NvoNombre);
-                    SpCedulasModel::where('txt_id',$nvo->txt_id)->update([
-                        'txt_audio'=>$NvoNombre,
-                    ]);
+                    $NvoNombreAudio=$datos->ced_urlurl."_".$this->NvoJardin."_".$this->NvoLengua."_".$nvo->txt_id.".".preg_replace('/^.*\./','',$o->txt_audio);
+                    Storage::copy('/aPublic/cedulas/audios/'.$o->txt_audio,  '/aPublic/cedulas/audios/'.$NvoNombreAudio);
+                }else{
+                    $NvoNombreAudio=null;
                 }
+                ##### copia img1 del texto
+                if($o->txt_img1 != '' ){
+                    $datos=SpUrlCedulaModel::where('ced_id',$o->txt_cedid)->first();
+                    $NvoNombreImg1=$datos->ced_urlurl."_".$this->NvoJardin."_".$this->NvoLengua."_".$nvo->txt_id."_img1.".preg_replace('/^.*\./','',$o->txt_img1);
+                    Storage::copy('/aPublic/cedulas/'.$o->txt_img1,  '/aPublic/cedulas/'.$NvoNombreImg1);
+                }else{
+                    $NvoNombreImg1=null;
+                }
+                ##### copia img2 del texto
+                if($o->txt_img2 != '' ){
+                    $datos=SpUrlCedulaModel::where('ced_id',$o->txt_cedid)->first();
+                    $NvoNombreImg2=$datos->ced_urlurl."_".$this->NvoJardin."_".$this->NvoLengua."_".$nvo->txt_id."_img2.".preg_replace('/^.*\./','',$o->txt_img2);
+                    Storage::copy('/aPublic/cedulas/'.$o->txt_img2,  '/aPublic/cedulas/'.$NvoNombreImg2);
+                }else{
+                    $NvoNombreImg2=null;
+                }
+                ##### copia img3 del texto
+                if($o->txt_img3 != '' ){
+                    $datos=SpUrlCedulaModel::where('ced_id',$o->txt_cedid)->first();
+                    $NvoNombreImg3=$datos->ced_urlurl."_".$this->NvoJardin."_".$this->NvoLengua."_".$nvo->txt_id."_img3.".preg_replace('/^.*\./','',$o->txt_img3);
+                    Storage::copy('/aPublic/cedulas/'.$o->txt_img3,  '/aPublic/cedulas/'.$NvoNombreImg3);
+                }else{
+                    $NvoNombreImg3=null;
+                }
+                ##### copia video del texto
+                if($o->txt_video != '' ){
+                    $datos=SpUrlCedulaModel::where('ced_id',$o->txt_cedid)->first();
+                    $NvoNombreVideo=$datos->ced_urlurl."_".$this->NvoJardin."_".$this->NvoLengua."_".$nvo->txt_id."_video.".preg_replace('/^.*\./','',$o->txt_video);
+                    Storage::copy('/aPublic/cedulas/'.$o->txt_video,  '/aPublic/cedulas/'.$NvoNombreVideo);
+                }else{
+                    $NvoNombreVideo=null;
+                }
+                ##### Cambia BD
+                SpCedulasModel::where('txt_id',$nvo->txt_id)->update([
+                    'txt_audio'=>$NvoNombreAudio,
+                    'txt_img1'=>$NvoNombreImg1,
+                    'txt_img2'=>$NvoNombreImg2,
+                    'txt_img3'=>$NvoNombreImg3,
+                    'txt_video'=>$NvoNombreVideo,
+                ]);
             }
 
             ##### Revisa si hay imágenes para esa url-jardin
@@ -122,8 +163,8 @@ class CatalogoDeCedulasComponent extends Component
                     ->where('imgsp_urlurl',$idOrigen->ced_urlurl)
                     ->where('imgsp_cjarsiglas',$idOrigen->ced_cjarsiglas)
                     ->get();
-                ##### Copia las imágenes
 
+                ##### Copia las imágenes (dado que no hay)
                 foreach($origen3 as $o){
                     ##### Si hay imagen, copia el archivo
                     if($o->imgsp_file != ''){
@@ -157,6 +198,56 @@ class CatalogoDeCedulasComponent extends Component
         }
         #######
 
+    }
+
+    public function BorrarCedula($id){
+
+        ##### Genera lista de archivos
+        $textos=SpCedulasModel::where('txt_cedid',$id)->get();
+        $audios=$textos->where('txt_audio','!=','')->pluck('txt_audio');
+        $img1=$textos->where('txt_img1','!=','')->pluck('txt_img1');
+        $img2=$textos->where('txt_img2','!=','')->pluck('txt_img2');
+        $img3=$textos->where('txt_img3','!=','')->pluck('txt_img3');
+        $videos=$textos->where('txt_video','!=','')->pluck('txt_video');
+        ##### Borra audios
+        if($audios->count() > 0 ){
+            foreach($audios as $i){
+                Storage::delete('/aPublic/cedulas/audios/'.$i);
+            }
+        }
+        ##### Borra imagenes y videos
+        if($img1->count() > 0 ){
+            foreach($img1 as $i){
+                Storage::delete('/aPublic/cedulas/'.$i);
+            }
+        }
+        if($img2->count() > 0 ){
+            foreach($img2 as $i){
+                Storage::delete('/aPublic/cedulas/'.$i);
+            }
+        }
+        if($img3->count() > 0 ){
+            foreach($img3 as $i){
+                Storage::delete('/aPublic/cedulas/'.$i);
+            }
+        }
+        if($videos->count() > 0 ){
+            foreach($videos as $i){
+                Storage::delete('/aPublic/cedulas/'.$i);
+            }
+        }
+
+        ##### Inactiva textos de cédula
+        SpCedulasModel::where('txt_cedid',$id)->update([
+            'txt_act'=>'0',
+            'txt_resp'=>Auth::id(),
+        ]);
+
+        ##### Inactiva cedula
+        SpUrlCedulaModel::where('ced_id',$id)->update([
+            'ced_act'=>'0',
+        ]);
+        redirect('/catCedulas');
     }
 
     public function IrConLengua($lengua,$url,$jardin){

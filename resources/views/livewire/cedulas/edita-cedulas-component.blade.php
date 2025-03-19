@@ -303,7 +303,7 @@
                                             @endif
                                         </div>
                                         <!-- audio -->
-                                        <div class="col-12 form-group">
+                                        <div class="col-12 col-md-6 form-group">
                                             <label class="form-label">Audio</label> &nbsp; <span style="font-size:80%;">{{$text->txt_audio}}</span><br>
                                             @if($text->txt_audio != '')
                                                 <audio controls>
@@ -320,6 +320,61 @@
                                             @endif
                                             @if($NvoTitulo=='1') <br>Se sugiere no crear audios en los títulos y leer el título como parte del primer párrafo siguiente @endif
                                         </div>
+                                        <!-- video -->
+                                        <div class="col-12 col-md-6 form-group">
+                                            <label class="form-label">Video</label>
+                                            @if($text->txt_video != '')
+                                                <video width='70%' controls wire:ignore>
+                                                    <source src='/cedulas/{{ $text->txt_video }}' type='video/mp4'>
+                                                </video>
+                                                <botton wire:click="BorrarElemento('video')" wire:confirm="Estás por eliminar PERMANENTEMENTE este video. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </botton>
+                                            @else
+                                                <input type="file" wire:model="NvoVideo" class="form-control">
+                                            @endif
+                                        </div>
+                                        <!-- img1 -->
+                                        <div class="col-12 col-md-4">
+                                            <label class="form-label">Imagen 1</label>
+                                            @if($text->txt_img1 != '')
+                                                <img src="/cedulas/{{ $text->txt_img1 }}" style="width:80%;">
+                                                <botton wire:click="BorrarElemento('img1')" wire:confirm="Estás por eliminar PERMANENTEMENTE esta imagen. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </botton>
+                                            @else
+                                                <input type="file" wire:model="NvoImg1" class="form-control">
+                                            @endif
+                                        </div>
+
+                                        <!-- img2 -->
+                                        <div class="col-12 col-md-4">
+                                            <label class="form-label">Imagen 2</label>
+                                            @if($text->txt_img2 != '')
+                                                <img src="/cedulas/{{ $text->txt_img2 }}" style="width:80%;">
+                                                <botton wire:click="BorrarElemento('img2')" wire:confirm="Estás por eliminar PERMANENTEMENTE esta imagen. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </botton>
+                                            @else
+                                                <input type="file" wire:model="NvoImg2" class="form-control">
+                                            @endif
+                                        </div>
+
+                                        <!-- img -->
+                                        <div class="col-12 col-md-4">
+                                            <label class="form-label">Imagen 3</label>
+                                            @if($text->txt_img3 != '')
+                                                <img src="/cedulas/{{ $text->txt_img3 }}" style="width:80%;">
+                                                <botton wire:click="BorrarElemento('img3')" wire:confirm="Estás por eliminar PERMANENTEMENTE esta imagen. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </botton>
+                                            @else
+                                                <input type="file" wire:model="NvoImg3" class="form-control">
+                                            @endif
+                                        </div>
+
+
+                                        <!-- botón de guardar-->
                                         <div class="col-4 my-4">
                                             <button wire:click="GuardarCambios()" class="btn btn-primary"><i class="bi bi-save"></i>
                                                 Guardar cambios
