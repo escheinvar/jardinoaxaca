@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('crol_mod')->default('base');     ### nombre del módulo al que pertenece el rol
             $table->string('crol_rol')->unique()->key();     ### nombre del rol
             $table->string('crol_describe')->nullable(); ### texto descriptivo modulo:rol
+            $table->string('crol_notas')->nullable(); ### notas sobre el rol
             $table->timestamps();
         });
     }

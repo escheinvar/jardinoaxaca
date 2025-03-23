@@ -24,12 +24,12 @@
                             <h3>{{ $urlced->url_nombre }}</h3>
                             <h3>{{ $urlced->clen_lengua }} ({{ $urlced->ced_clencode }})</h3>
                             <h3>
-                                <div style="">
+                                <div style="" c>
                                     @if($urlced->ced_edo=='0')
-
-                                            <i class="bi bi-0-circle-fill" style="color:red;"> En elaboración</i>
-                                            <button wire:click="EnviarCedula()" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary">Finalizar e<br>iniciar a publicación</button>
+                                        <i class="bi bi-0-circle-fill" style="color:red;"> En edición</i>
+                                        <button wire:click="EnviarCedula('0')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">Terminar edición</button>
                                     @elseif($urlced->ced_edo=='1') <i class="bi bi-1-circle-fill" style="color:orange;">En corrección</i>
+
                                     @elseif($urlced->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:yellow;">En autorizacion</i>
                                     @elseif($urlced->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:pink;">En autorizacion</i>
                                     @elseif($urlced->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorizacion</i>
@@ -40,44 +40,32 @@
                         </center>
                     </div>
                 </div>
-                {{--
-                <!-- ------------------------- Nombre científico ------------------------>
-                <div style="color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center;font-weigth:bold;" >
-                    <div class="pt-4 d-block d-md-none"          style="font-size:150%;">{{ $taxo['sp'] }}</div>
-                    <div class="pt-4 d-none d-md-block d-lg-none"style="font-size:120%;">{{ $taxo['sp'] }}</div>
-                    <div class="pt-4 d-none d-lg-block"          style="font-size:140%;">{{ $taxo['sp'] }}</div>
-                </div>
 
-                <!-- ------------------------- Nombre Común ------------------------>
-                <div style="color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center; font-weight:100;" >
-                    <div class="py-4 d-block d-md-none"          style="font-size:120%;">{{ $taxo['nombrecomun'] }}</div>
-                    <div class="py-4 d-none d-md-block d-lg-none"style="font-size:80%;"><b>{{ $taxo['nombrecomun'] }}</b></div>
-                    <div class="py-4 d-none d-lg-block"          style="font-size:110%;"><b>{{ $taxo['nombrecomun'] }}</b></div>
-                </div>
-                --}}
                 <div class="row">
-                    <div class="col-12 ">
-                        <h5>Imágenes</h5>
-                        <input type="file" wire:model="NvaImagen" class="form-control" style="width:100%;" accept="image/*, video/*"  enctype="multipart/form-data" >
-                        @error('NvaImagen')<error>{{ $message }}</error>@enderror
-                    </div>
-                    <div class="col-9">
-                        <select wire:model="NvaImagenTipo" class="form-select">
-                            <option value="">Indica el lugar en el que va la imágen</option>
-                            @foreach ($tipoImgs as $img)
-                                <option value="{{ $img->cimg_name }}">{{ $img->cimg_name }}</option>
-                            @endforeach
-                        </select>
-                        @error('NvaImagenTipo')<error>{{ $message }}</error>@enderror
-                    </div>
-                    <div class="col-3">
-                        <button wire:click="SubirFoto()" wire:loadding.attr="disabled" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button>
-                    </div>
-                    <div class="col-12">
-                        <div wire:loading.attr="block" wire:target="NvaImagen" style="display: none;">
-                            Cargando imágen...
+                    @if($cedulas=='1')
+                        <div class="col-12 ">
+                            <h5>Imágenes</h5>
+                            <input type="file" wire:model="NvaImagen" class="form-control my-2" style="width:100%;" accept="image/*, video/*"  enctype="multipart/form-data" >
+                            @error('NvaImagen')<error>{{ $message }}</error>@enderror
                         </div>
-                    </div>
+                        <div class="col-9">
+                            <select wire:model="NvaImagenTipo" class="form-select">
+                                <option value="">Indica el lugar en el que va la imágen</option>
+                                @foreach ($tipoImgs as $img)
+                                    <option value="{{ $img->cimg_name }}">{{ $img->cimg_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('NvaImagenTipo')<error>{{ $message }}</error>@enderror
+                        </div>
+                        <div class="col-3">
+                            <button wire:click="SubirFoto()" wire:loadding.attr="disabled" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button>
+                        </div>
+                        <div class="col-12">
+                            <div wire:loading.attr="block" wire:target="NvaImagen" style="display: none;">
+                                Cargando imágen...
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -90,16 +78,16 @@
                             <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}"
                             class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="height:580px; center">
                         </a>
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('portada')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
-                        </div>
+                        @if($cedulas=='1')
+                            <!-- botón borrar -->
+                            <div class="PaClick" wire:click="BorraFoto('portada')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline;vertical-align:bottom;">
+                                <i class="bi bi-trash"></i>
+                            </div>
+                        @endif
                     @else
                         <!-- subir nueva imagen -->
                         <div class="form-group">
                             <label class="form-label">Imagen portada</label>
-                            {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:300px; display:inline;">
-                            <button wire:click="SubirFoto('portada')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                         </div>
                     @endif
                 </center>
@@ -114,15 +102,15 @@
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
                     </div>
-                    <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('ppal1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    @if($cedulas=='1')
+                        <!-- botón borrar -->
+                        <div class="PaClick" wire:click="BorraFoto('ppal1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Imagen ppal1</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('ppal1')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
                 <!-- img ppal2 -->
@@ -132,15 +120,15 @@
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
                     </div>
-                    <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('ppal2')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    @if($cedulas=='1')
+                        <!-- botón borrar -->
+                        <div class="PaClick" wire:click="BorraFoto('ppal2')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Imagen ppal2</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('ppal2')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
                 <!-- img ppal3 -->
@@ -150,15 +138,15 @@
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
                     </div>
-                    <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('ppal3')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    @if($cedulas=='1')
+                        <!-- botón borrar -->
+                        <div class="PaClick" wire:click="BorraFoto('ppal3')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Imagen ppal3</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('ppal3')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
                 <!-- img ppal4-->
@@ -167,22 +155,18 @@
                         <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') }}" target="new">
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
+                    </div>
+                    @if($cedulas=='1')
                         <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('ppal4')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                   </div>
+                        <div class="PaClick" wire:click="BorraFoto('ppal4')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Imagen ppal4</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('ppal4')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
-
-                <!-- flecha -->
-                {{-- <div class="center" style="text-align: center;">
-                    <i class="bi bi-arrow-down-circle" style="font-size: 170%; color:#87796d;; cursor: pointer;"></i>
-                </div> --}}
             </div>
         </div>
 
@@ -291,87 +275,133 @@
                                         </div>
                                         <!-- Orden -->
                                         <div class="col-6 col-md-4 form-group">
-                                            <label class="form-label">Orden:</label>
-                                            <input wire:model="NvoOrder" type="number" class="form-control" style="width:120px;">
+                                            <label class="form-label">Orden:</label><br>
+                                            <input wire:model="NvoOrder" type="number" class="form-control" style="width:120px; display:inline-block;">
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            <small onclick="VerNoVer('ver','Manual')" class="PaClick"><i class="bi bi-info-circle"></i> Manual HTML</small>
+                                        </div>
+                                        <!-- manual HTML -->
+                                        <div id="sale_verManual" class="col-12 my-2" style="display:none;">
+                                            <center><b>Manual Rápido de HTML:</b></center><br>                                            <div style="display:inline-block; width:45%;">
+                                                Negritas: &#60;b&#62;<b>negritas</b>&#60;/b&#62;<br>
+                                                Cursivas: &#60;i&#62;<i>cursiva</i>&#60;/i&#62;<br>
+                                                Subrayado: &#60;u&#62;<u>subrayado</u>&#60;/u&#62;<br>
+                                            </div>
+                                            <div style="display:inline-block; width:45%;">
+                                                Tachado: &#60;s&#62;<s>subrayado</s>&#60;/s&#62;<br>
+                                                Superíndice: A&#60;sup&#62;<sup>superí.</sup>&#60;/sup&#62;<br>
+                                                Subíndice: A&#60;sub&#62;<sub>subí.</sub>&#60;/sub&#62;<br>
+                                                Salto de línea: &#60;br&#62;<br>
+                                            </div>
                                         </div>
                                         <!-- editor del texto de título o de párrafo -->
-                                        <div class="col-12 my-2">
+                                        <div class="col-12 my-2 form-group">
+                                            <label class="form-label">Texto html:</label><br>
                                             @if($NvoTitulo=='1')
                                                 <input wire:model="NvoCodigo" type="text" class="form-control">
                                             @else
                                                 <textarea rows="7" wire:model="NvoCodigo" class="form-control"></textarea>
                                             @endif
+                                            <hr>
                                         </div>
                                         <!-- audio -->
                                         <div class="col-12 col-md-6 form-group">
-                                            <label class="form-label">Audio</label> &nbsp; <span style="font-size:80%;">{{$text->txt_audio}}</span><br>
                                             @if($text->txt_audio != '')
                                                 <audio controls>
                                                     <source src='/cedulas/audios/{{ $text->txt_audio }}' type="audio/ogg">
                                                     <source src='/cedulas/audios/{{ $text->txt_audio }}' type="audio/mpeg">
                                                     Your browser does not support the audio element.
                                                 </audio>
-                                                <!-- botón tirar audio -->
-                                                <botton wire:click="BorrarAudio('{{ $text->txt_id }}')" wire:confirm="Estás por eliminar PERMANENTEMENTE este audio. ¿Deseas continuar?." class="btn btn-secondary" >
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </botton>
+                                                <!-- borrar audio -->
+                                                <div class="form-check" style="display:inline-block;">
+                                                    <input wire:model="DelAudio" class="form-check-input" type="checkbox" value="false">
+                                                    <label class="form-check-label"> Eliminar audio</label>
+                                                </div>
+                                                <!-- oir audio -->
                                             @else
+                                                <!-- nuevo audio -->
+                                                <label class="form-label">Audio</label>
                                                 <input type="file" wire:model="NvoAudio" class="form-control">
                                             @endif
-                                            @if($NvoTitulo=='1') <br>Se sugiere no crear audios en los títulos y leer el título como parte del primer párrafo siguiente @endif
-                                        </div>
-                                        <!-- video -->
-                                        <div class="col-12 col-md-6 form-group">
-                                            <label class="form-label">Video</label>
-                                            @if($text->txt_video != '')
-                                                <video width='70%' controls wire:ignore>
-                                                    <source src='/cedulas/{{ $text->txt_video }}' type='video/mp4'>
-                                                </video>
-                                                <botton wire:click="BorrarElemento('video')" wire:confirm="Estás por eliminar PERMANENTEMENTE este video. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </botton>
-                                            @else
-                                                <input type="file" wire:model="NvoVideo" class="form-control">
-                                            @endif
-                                        </div>
-                                        <!-- img1 -->
-                                        <div class="col-12 col-md-4">
-                                            <label class="form-label">Imagen 1</label>
-                                            @if($text->txt_img1 != '')
-                                                <img src="/cedulas/{{ $text->txt_img1 }}" style="width:80%;">
-                                                <botton wire:click="BorrarElemento('img1')" wire:confirm="Estás por eliminar PERMANENTEMENTE esta imagen. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </botton>
-                                            @else
-                                                <input type="file" wire:model="NvoImg1" class="form-control">
-                                            @endif
+                                            {{-- @if($NvoTitulo=='1') <br>Se sugiere no crear audios en los títulos y leer el título como parte del primer párrafo siguiente @endif --}}
                                         </div>
 
-                                        <!-- img2 -->
-                                        <div class="col-12 col-md-4">
-                                            <label class="form-label">Imagen 2</label>
-                                            @if($text->txt_img2 != '')
-                                                <img src="/cedulas/{{ $text->txt_img2 }}" style="width:80%;">
-                                                <botton wire:click="BorrarElemento('img2')" wire:confirm="Estás por eliminar PERMANENTEMENTE esta imagen. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </botton>
-                                            @else
-                                                <input type="file" wire:model="NvoImg2" class="form-control">
-                                            @endif
-                                        </div>
+                                        @if($cedulas=='1')
+                                            <!-- video -->
+                                            <div class="col-12 col-md-6 form-group">
+                                                @if($text->txt_video != '')
+                                                    <!-- ver video-->
+                                                    <label class="label">{{ $text->txt_video }}</label>
+                                                    <video width='95%' controls wire:ignore>
+                                                        <source src='/cedulas/{{ $text->txt_video }}' type='video/mp4'>
+                                                    </video>
+                                                    <!-- eliminar video-->
+                                                    <div class="form-check" style="display:inline-block;">
+                                                        <input wire:model="DelVideo" class="form-check-input" type="checkbox" value="false">
+                                                        <label class="form-check-label">Eliminar video</label>
+                                                    </div>
+                                                @else
+                                                    <!-- nuevo video-->
+                                                    <label class="form-label">Video</label>
+                                                    <input type="file" wire:model="NvoVideo" class="form-control">
+                                                @endif
+                                            </div>
 
-                                        <!-- img -->
-                                        <div class="col-12 col-md-4">
-                                            <label class="form-label">Imagen 3</label>
-                                            @if($text->txt_img3 != '')
-                                                <img src="/cedulas/{{ $text->txt_img3 }}" style="width:80%;">
-                                                <botton wire:click="BorrarElemento('img3')" wire:confirm="Estás por eliminar PERMANENTEMENTE esta imagen. ¿Deseas continuar?." class="btn btn-secondary" style="display:inline-block;">
-                                                    <i class="bi bi-trash-fill"></i>
-                                                </botton>
-                                            @else
-                                                <input type="file" wire:model="NvoImg3" class="form-control">
-                                            @endif
-                                        </div>
+                                            <!-- img1 -->
+                                            <div class="col-12 col-md-4 form-group">
+                                                @if($text->txt_img1 != '')
+                                                    <!-- ver img1 -->
+                                                    <label class="label">{{ $text->txt_img1 }}</label>
+                                                    <img src="/cedulas/{{ $text->txt_img1 }}" style="width:95%;">
+                                                    <!-- eliminar img1-->
+                                                    <div class="form-check" style="display:inline-block;">
+                                                        <input wire:model="DelImg1" class="form-check-input" type="checkbox" value="false">
+                                                        <label class="form-check-label">Eliminar img1</label>
+                                                    </div>
+                                                @else
+                                                    <!-- nuevo img1 -->
+                                                    <label class="form-label">Imagen 1</label>
+                                                    <input type="file" wire:model="NvoImg1" class="form-control">
+                                                @endif
+                                            </div>
+
+                                            <!-- img2 -->
+                                            <div class="col-12 col-md-4 form-group">
+                                                @if($text->txt_img2 != '')
+                                                    <!-- ver img2 -->
+                                                    <label class="form-label">{{ $text->txt_img2 }}</label>
+                                                    <img src="/cedulas/{{ $text->txt_img2 }}" style="width:95%;">
+                                                    <!-- eliminar img2-->
+                                                    <div class="form-check" style="display:inline-block;">
+                                                        <input wire:model="DelImg2" class="form-check-input" type="checkbox" value="false">
+                                                        <label class="form-check-label">Eliminar img2</label>
+                                                    </div>
+                                                @else
+                                                    <!-- nuevo img2 -->
+                                                    <label class="form-label">Imagen 2</label>
+                                                    <input type="file" wire:model="NvoImg2" class="form-control">
+                                                @endif
+                                            </div>
+
+                                            <!-- img3 -->
+                                            <div class="col-12 col-md-4 form-group">
+                                                @if($text->txt_img3 != '')
+                                                    <!-- ver img3 -->
+                                                    <label class="form-label">{{ $text->txt_img3 }}</label>
+                                                    <img src="/cedulas/{{ $text->txt_img3 }}" style="width:95%;">
+                                                    <!-- eliminar img3 -->
+                                                    <div class="form-check" style="display:inline-block;">
+                                                        <input wire:model="DelImg3" class="form-check-input" type="checkbox" value="false">
+                                                        <label class="form-check-label">Eliminar img3</label>
+                                                    </div>
+                                                @else
+                                                    <!-- nueva img3 -->
+                                                    <label class="form-label">Imagen 3</label>
+                                                    <input type="file" wire:model="NvoImg3" class="form-control">
+                                                @endif
+                                            </div>
+                                        @endif
 
 
                                         <!-- botón de guardar-->
@@ -390,7 +420,12 @@
                                                 <i class="bi bi-trash"></i> Eliminar párrafo
                                             </button>
                                         </div>
-                                        <span style="font-size: 80%;">Versión del párrafo: {{ $text->txt_version }}</span>
+                                        <span style="font-size: 80%;">Versión del párrafo: {{ $text->txt_version }} &nbsp; &nbsp;
+                                        <div class="form-check" style="display:inline-block;">
+                                            <input class="form-check-input" type="checkbox" value="false" wire:model="NvaVersion">
+                                            <label class="form-check-label">Avanzar versión</label>
+                                        </div>
+                                        </span>
                                     </div>
                                 </div>
                             @endif
@@ -409,19 +444,19 @@
             <div class="col-12 col-sm-12 col-md-3 col-lg-3" style="background-color:#CDC6B9;">
                 <!-- lateralvideo1 -->
                 @if($fotos->where('imgsp_cimgname','lateralvideo1')->value('imgsp_file') != '')
-                    <video width="40" height="40" controls>
-                        <source src="" type="video/ogg">
+                    <video width="100%"  controls wire:ignore>
+                        <source src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateralvideo1')->value('imgsp_file') }} }}" type="video/ogg">
                         Tu navegador no soporta el video
                     </video>
-                    <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('lateralvideo1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    @if($cedulas=='1')
+                        <!-- botón borrar -->
+                        <div class="PaClick" wire:click="BorraFoto('lateralvideo1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Video lateralvideo1</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('lateralvideo1')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
 
@@ -430,15 +465,15 @@
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                     </a>
-                    <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('lateral1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    @if($cedulas=='1')
+                        <!-- botón borrar -->
+                        <div class="PaClick" wire:click="BorraFoto('lateral1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Imagen lateral1</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('lateral1')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
 
@@ -447,15 +482,15 @@
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                     </a>
-                    <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('lateral2')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    @if($cedulas=='1')
+                        <!-- botón borrar -->
+                        <div class="PaClick" wire:click="BorraFoto('lateral2')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Imagen lateral2</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('lateral2')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
 
@@ -464,15 +499,15 @@
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                     </a>
-                    <!-- botón borrar -->
-                    <div class="PaClick" wire:click="BorraFoto('lateral3')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                        <i class="bi bi-trash"></i>
-                    </div>
+                    @if($cedulas=='1')
+                        <!-- botón borrar -->
+                        <div class="PaClick" wire:click="BorraFoto('lateral3')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
+                            <i class="bi bi-trash"></i>
+                        </div>
+                    @endif
                 @else
                     <div class="form-group">
                         <label class="form-label">Imagen lateral3</label>
-                        {{-- <input type="file" wire:model="NuevaImagen" class="form-control" style="width:200px;display:inline;">
-                        <button wire:click="SubirFoto('lateral3')" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button> --}}
                     </div>
                 @endif
             </div>
@@ -484,16 +519,31 @@
         <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
             <div class="col-12 " style="">
                 <h4>Versión</h4>
-                {{ $version['ced_id'] }}_{{ $version['cedula'] }} V. {{ $version['ced_version'] }}  &nbsp; Última modificación: {{ $version['ced_versiondate'] }} <br><br>
-                <h4>Cita:</h4>
-                {!! $version['ced_cita'] !!}
+                id {{ $version['ced_id'] }} {{ $version['cedula'] }} <b>V. {{ $version['ced_version'] }}</b>  &nbsp; Última modificación: {{ $version['ced_versiondate'] }}
+                &nbsp; &nbsp;
+                @if($cedulas=='1')
+                    <span onclick="VerNoVer('ver','Versionar')" class="PaClick">Versionar</span>
+                    <button wire:click="NuevaVersion()" class="btn btn-primary" id="sale_verVersionar" style="display:none;">
+                        Avanzar versión
+                    </button>
+                @endif
                 <br><br>
-                {{-- <h4>Fuentes:</h4>
-                <ul>
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </li>
-                    <li>Dicta quasi consectetur quo itaque sit? Repudiandae maxime ipsam, </li>
-                    <li>Eebitis eligendi, dolore animi, error necessitatibus minus hic sit ducimus corrupti!</li>
-                </ul> --}}
+
+
+                <h4>Cita @if($cedulas=='1')<span class="PaClick" onclick="VerNoVer('ver','cita')"><i class="bi bi-pencil-square"></i></span> @endif :</h4>
+                {!! $version['ced_cita'] !!}
+                @if($cedulas=='1')
+                    <div id="sale_vercita" style="display: none;">
+                        <textarea wire:model="NvaCita" class="form-control" style="width:100%;"></textarea>
+                        <div style="font-size: 90%;">
+                            Apellido, A.,  &nbsp;  Apellido, B.,  &nbsp;  y  &nbsp;  Apellido, C.  &nbsp;  Título del artículo de la página web,  &nbsp;  lengua,  &nbsp;  Versión.  Nombre del sitio web. {{ url('/') }}/sp/{{ $urlced->ced_urlurl }}/{{ $urlced->ced_cjarsiglas }}
+                        </div>
+                        <button wire:click="NuevaCita()" class="btn btn-primary">
+                            Guardar nueva cita
+                        </button>
+                    </div>
+                @endif
+                <br><br>
             </div>
         </div>
     </div>

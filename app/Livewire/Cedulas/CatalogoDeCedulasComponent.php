@@ -26,7 +26,9 @@ class CatalogoDeCedulasComponent extends Component
     public $urlUrl, $urlNombre, $urlReino, $urlSp, $urlNombrecomun, $urlSciname, $urlpalabras;
     public $urlGenero, $urlGeneros;
 
+
     public function mount(){
+        #dd(session()->all());
         $this->NvoCopia='0';
         $this->VerCrearCedula='0';
         $this->VerNuevoTema='0';
@@ -77,6 +79,7 @@ class CatalogoDeCedulasComponent extends Component
                 'txt_titulo'=>'1',
                 'txt_order'=>'1',
                 'txt_codigo'=>'Titulo',
+                'txt_resp'=>Auth::id(),
             ]);
 
         ##### Copia cédula (en caso de)
@@ -146,6 +149,7 @@ class CatalogoDeCedulasComponent extends Component
                     'txt_img2'=>$NvoNombreImg2,
                     'txt_img3'=>$NvoNombreImg3,
                     'txt_video'=>$NvoNombreVideo,
+                    'txt_resp'=>Auth::id(),
                 ]);
             }
 
@@ -197,7 +201,9 @@ class CatalogoDeCedulasComponent extends Component
             $this->VerCrearCedula='0';
         }
         #######
-
+        $this->NvoTema="";
+        $this->NvoJardin="";
+        $this->NvoLengua="";
     }
 
     public function BorrarCedula($id){
@@ -316,30 +322,18 @@ class CatalogoDeCedulasComponent extends Component
     public function render(){
         ####### Obtiene listado de Jardines al que tiene acceso el admon,. de cedulas
         $Autorizados=UserRolesModel::where('rol_act','1')
-            ->where('rol_crolrol','cedulas')
-            ->where('rol_usrid',Auth::user()->id)
+            ->where('rol_usrid',Auth::id())
+            ->where(function($q){
+                return $q
+                ->where('rol_crolrol','cedulas')
+                ->orWhere('rol_crolrol','traduce');
+            })
             ->pluck('rol_tipo1')
             ->toArray();
+
         if(in_array('todas',$Autorizados)){
             $Autorizados=CatJardinesModel::pluck('cjar_siglas')->toArray();
         }
-
-        ##### Obtiene catálogo de temas y de jardines
-        $temas=SpUrlModel::all();
-        $jardines=CatJardinesModel::all();
-
-        ##### Obtiene catálogo de lenguas
-        $lenguas=CatLenguasModel::select('clen_code','clen_lengua')
-            ->orderBy('clen_lengua')
-            ->get();
-
-        ##### Obtiene listado de cédulas a las que tiene acceso el admon de cédulas
-        $cedulas=SpUrlCedulaModel::where('ced_act','1')
-            ->join('cat_jardines','ced_cjarsiglas','=','cjar_siglas')
-            ->whereIn('ced_cjarsiglas',$Autorizados)
-            ->orderBy('ced_urlurl','asc')
-            ->orderBy('ced_cjarsiglas','asc')
-            ->get();
 
         ##### Preescribe ejemplo de url
         if($this->urlUrl != ''){
@@ -349,12 +343,56 @@ class CatalogoDeCedulasComponent extends Component
             $this->urlUrl=$ja;
         }
 
+        ##### Obtiene catálogo de temas disponibles (al crear cédulas)
+        $temas=SpUrlModel::all();
+
+        ##### Obtiene listado de jardines sobre los cuales se puede actuar (al crear cédulas)
+        $jardinesUsr=UserRolesModel::where('rol_act','1')
+            ->where('rol_usrid',Auth::id())
+            ->where('rol_crolrol','cedulas')
+            ->pluck('rol_tipo1')
+            ->toArray();
+
+        if(in_array('todas',$jardinesUsr)){
+            $jardines=CatJardinesModel::all();
+        }else{
+            $jardines=CatJardinesModel::whereIn('cjar_siglas',$jardinesUsr)->get();
+        }
+
+
+        ##### Obtiene catálogo de lenguas
+        $CatLenguas=CatLenguasModel::select('clen_code','clen_lengua')
+            ->orderBy('clen_lengua')
+            ->get();
+
+        ##### Obtiene listado de cédulas a las que tiene acceso el admon de cédulas
+        $cedulas=SpUrlCedulaModel::where('ced_act','1')
+            ->join('cat_jardines','ced_cjarsiglas','=','cjar_siglas')
+            ->whereIn('ced_cjarsiglas',$Autorizados)
+            ->orderBy('ced_urlurl','asc')
+            ->orderBy('ced_cjarsiglas','asc')
+            ->orderBy('ced_clencode','asc')
+            ->get();
+
+        ##### Obtiene roles
+        $roles_ced=UserRolesModel::where('rol_act','1')
+            ->where('rol_usrid',Auth::id())
+            ->where('rol_crolrol','cedulas')
+            ->orderBy('rol_tipo1','asc')
+            ->get();
+        $roles_tra=UserRolesModel::where('rol_act','1')
+            ->where('rol_usrid',Auth::id())
+            ->where('rol_crolrol','traduce')
+            ->orderBy('rol_tipo1','asc')
+            ->get();
+
         return view('livewire.cedulas.catalogo-de-cedulas-component',[
             'temas'=>$temas,
             'cedulas'=>$cedulas,
-            'autorizados'=>$Autorizados,
             'jardines'=>$jardines,
-            'lenguas'=>$lenguas,
+            'CatLenguas'=>$CatLenguas,
+            'roles_ced'=>$roles_ced,
+            'roles_tra'=>$roles_tra,
         ]);
     }
 }

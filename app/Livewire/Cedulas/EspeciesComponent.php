@@ -55,12 +55,12 @@ class EspeciesComponent extends Component
         ##### Cambia session(locale2)  al primer idioma o jardín existente para esa ficha
         if(is_null($datoUrl)){
             $CedulasExistentes=SpUrlCedulaModel::where('ced_act','1')
-                ->where('ced_edo','5')
+                #->where('ced_edo','5')  ###oJO: SE SILENCÍA PARA VER CÉDULAS EN CONSTRUCCIÓN
                 ->where('ced_urlurl',$this->url)
                 ->first();
             $datoUrl=SpUrlCedulaModel::join('sp_url','url_url','=','ced_urlurl')
                 ->where('ced_act','1')
-                ->where('ced_edo','5')
+                #->where('ced_edo','5') ###oJO: SE SILENCÍA PARA VER CÉDULAS EN CONSTRUCCIÓN
                 ->where('ced_urlurl',$this->url)
                 ->where('ced_clencode',$CedulasExistentes->ced_clencode)
                 ->where('ced_cjarsiglas',$CedulasExistentes->ced_cjarsiglas)

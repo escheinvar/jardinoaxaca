@@ -18,22 +18,26 @@ class userRolesSeeder extends Seeder
             [
                 'rol_act'=>'1',
                 'rol_usrid'=>'1',
-                #'rol_crolid'=>'1',
                 'rol_crolrol'=>'admin',
                 'rol_describe'=>'Administrador del sistema',
             ],[
                 'rol_act'=>'1',
                 'rol_usrid'=>'1',
-                #'rol_crolid'=>'2',
                 'rol_crolrol'=>'webmaster',
                 'rol_describe'=>'Web mastter',
             ],[
                 'rol_act'=>'1',
                 'rol_usrid'=>'1',
-                #'rol_crolid'=>'1',
                 'rol_crolrol'=>'cedulas',
                 'rol_tipo1'=>'todas',
-                'rol_describe'=>'Administrador del sistema',
+                'rol_describe'=>'Administrador de cédulas de un jardín (tipo1)',
+            ],[
+                'rol_act'=>'1',
+                'rol_usrid'=>'1',
+                'rol_crolrol'=>'traduce',
+                'rol_tipo1'=>'todas',
+                'rol_tipo2'=>'todas',
+                'rol_describe'=>'Traductor de una lengua (tipo2), en un jardin (tipo1)',
             ]
         ];
 

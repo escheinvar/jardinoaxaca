@@ -46,4 +46,5 @@ Inicio
         <li>Cédulas: Módulo para vaciar imágenes que no estan en sp_cedulas (txt_audio, txt_img1-3, txt_video) o en sp_fotos
     </ol>
 
+    <a href="/pruebillas_php">Php info</a>
 </div>

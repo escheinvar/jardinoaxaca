@@ -18,5 +18,6 @@ class CatRolesModel extends Model
         'crol_rol',
         'crol_mod',
         'crol_describe',
+        'crol_notas',
     ];
 }

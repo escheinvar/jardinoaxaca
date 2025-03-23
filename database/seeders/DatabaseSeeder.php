@@ -44,9 +44,9 @@ class DatabaseSeeder extends Seeder
             CatEtiquetasImgSeeder::class,
             CatEntidadesSeeder::class,
             SpUrlSeeder::class,
-            SpUrlCedulaSeeder::class,
-            SpCedulaSeeder::class,
-            SpFotosSeeder::class,
+            #SpUrlCedulaSeeder::class,
+            #SpCedulaSeeder::class,
+            #SpFotosSeeder::class,
         ]);
     }
 }

@@ -7,6 +7,7 @@ use App\Models\CatJardinesModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
+use App\Models\UserRolesModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
@@ -21,11 +22,64 @@ class EditaCedulasComponent extends Component
 
     public $cedID, $TxtIdEnEdicion, $codedit;
     public $NvoTitulo, $NvoOrder, $NvoCodigo,$NvoAudio, $NvaImagen, $NvaImagenTipo;
-    public $NvoImg1, $NvoImg2, $NvoImg3, $NvoVideo;
+    public $NvoVideo, $NvoImg1, $NvoImg2, $NvoImg3, $NvaVersion;
+    public $DelAudio, $DelVideo, $DelImg1, $DelImg2, $DelImg3;
+    public $cedulas, $traductor, $NvaVersionCedula,$NvaCita;
 
     public function mount($cedID){
         $this->cedID=$cedID;
         $this->TxtIdEnEdicion='0';
+        $this->NvaVersion=false;
+        $this->NvaVersionCedula=false;
+        $this->NvaCita=SpUrlCedulaModel::where('ced_id',$cedID)->first()->value('ced_cita');
+
+        ###################################################
+        ###### Determina permisos. Atn: esta página puede tener permisos por 2 vías:
+        ###### admin le brinda privilegios de edición sobre uno o más jardines
+        ###### traduce le brinda privilegios (solo de edición de texto) a un jardín y una lengua
+        ###################################################
+        ##### Obtiene jardines a los que tiene permiso el editor
+        $JardinesQueEdita=UserRolesModel::where('rol_act','1')
+            ->where('rol_usrid',Auth::id())
+            ->where('rol_crolrol','cedulas')
+            ->pluck('rol_tipo1')
+            ->toArray();
+
+        ##### Obtiene array de lenguas por jardín a los que tiene permiso el traductor
+        $LenguasQueTraduce=UserRolesModel::where('rol_act','1')
+            ->where('rol_usrid',Auth::id())
+            ->where('rol_crolrol','traduce')
+            ->select('rol_tipo1','rol_tipo2')
+            ->get();
+
+        ##### Obtiene jardín de la cédula
+        $JardinDeCedula=SpUrlCedulaModel::where('ced_act','1')
+            ->where('ced_id',$cedID)
+            ->value('ced_cjarsiglas');
+
+        ##### Obtiene lengua de la cédula
+        $LenguaDeCedula=SpUrlCedulaModel::where('ced_act','1')
+            ->where('ced_id',$cedID)
+            ->value('ced_clencode');
+
+        ##### Revisa si otorga permiso de editor
+        if( (in_Array('cedulas',session('rol')) AND (in_array($JardinDeCedula,$JardinesQueEdita) OR in_array('todas',$JardinesQueEdita) ) ) ){
+            $this->cedulas='1';
+        }else{
+            $this->cedulas='0';
+        }
+
+        ##### Revisa si otorga permiso de traductor
+        if(in_array('traduce',session('rol'))  AND $LenguasQueTraduce->where('rol_tipo1', $JardinDeCedula)->where('rol_tipo2',$LenguaDeCedula)->count() > 0   ){
+            $this->traductor='1';
+
+        }else{
+            $this->traductor='0';
+        }
+        if( $this->cedulas=='0' AND $this->traductor == '0'){
+            dd('no autorizado');
+        }
+        #dd(session('rol'), $JardinesQueEdita, $LenguasQueTraduce,'Editor: '.$this->cedulas,'Traductor: '.$this->traductor, $this->cedulas + $this->traductor);
     }
 
     public function BorraFoto($foto){
@@ -74,25 +128,16 @@ class EditaCedulasComponent extends Component
         #dd($this->NvaImagen->getClientOriginalName(),$nombre);
     }
 
-    public function BorrarElemento($elemento){
-        dd('Borrar '.$elemento,$this->TxtIdEnEdicion);
-    }
-
     public function DeterminaParrafoAeditar($id){
         $this->TxtIdEnEdicion=$id;
-        $this->codedit=SpCedulasModel::where('txt_id',$id)->first();
-        $this->NvoTitulo= $this->codedit->txt_titulo;
-        $this->NvoOrder= $this->codedit->txt_order;
-        $this->NvoCodigo= $this->codedit->txt_codigo;
-        $this->NvoImg1=$this->codedit->txt_img1;
-        $this->NvoImg2=$this->codedit->txt_img2;
-        $this->NvoImg3=$this->codedit->txt_img3;
-        $this->NvoVideo=$this->codedit->txt_Video;
+        $codedit=SpCedulasModel::where('txt_id',$id)->first();
+        $this->NvoTitulo= $codedit->txt_titulo;
+        $this->NvoOrder= $codedit->txt_order;
+        $this->NvoCodigo= $codedit->txt_codigo;
     }
 
     public function CancelaCambio(){
         $this->TxtIdEnEdicion=null;
-        $this->codedit=null;
         $this->NvoTitulo=null;
         $this->NvoOrder=null;
         $this->NvoCodigo=null;
@@ -105,17 +150,95 @@ class EditaCedulasComponent extends Component
         ]);
         ##### Obtiene datos
         $datos=SpCedulasModel::where('txt_id',$this->TxtIdEnEdicion)->first();
-        if($this->NvoAudio !=''){$audio=$this->NvoAudio;}else{$audio=$datos->txt_audio;}
-        SpCedulasModel::create([
-            'txt_cedid'=>$this->cedID,
+        $datosCedula=SpUrlCedulaModel::where('ced_id',$datos->txt_cedid)->first();
+        ###### Crea nombre de archivos: especie_jardin_lengua_
+        $nombre=$datosCedula->ced_urlurl."_".$datosCedula->ced_cjarsiglas."_".$datosCedula->ced_clencode;
+
+        ##### Calcula versión
+        if($this->NvaVersion==true){
+            $version=SpCedulasModel::where('txt_id',$this->TxtIdEnEdicion)->value('txt_version') + 0.01;
+        }else{
+            $version=SpCedulasModel::where('txt_id',$this->TxtIdEnEdicion)->value('txt_version');
+        }
+
+        ###### Guarda nueva cédula (sin arhivos)
+        $nuevo=SpCedulasModel::create([
+            'txt_cedid'=>$datos->txt_cedid,
             'txt_titulo'=>$this->NvoTitulo,
             'txt_order'=>$this->NvoOrder,
             'txt_codigo'=>$this->NvoCodigo,
-            'txt_audio'=>$audio,
-            'txt_autor'=>Auth::user()->id,
-            'txt_version'=> SpCedulasModel::where('txt_id',$this->TxtIdEnEdicion)->value('txt_version') + 0.01,
+            'txt_autor'=>$datos->txt_autor,
+            'txt_version'=>$version,
+            'txt_resp'=>Auth::id(),
         ]);
-        #redirect('/editaCedula/'.$this->cedID);
+
+        ##### Genera nombre de audio y guarda el archivo Y bd
+        if($this->NvoAudio !=''){
+            $nombre2=$nombre."_".$nuevo->txt_id."_audio.".$this->NvoAudio->getClientOriginalExtension();
+            $this->NvoAudio->storeAs('/aPublic/cedulas/audios/', $nombre2);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_audio'=>$nombre2]);
+        }else{
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_audio'=>$datos->txt_audio]);
+        }
+        ##### Genera nombre de video y guarda el archivo Y bd
+        if($this->NvoVideo !=''){
+            $nombre2=$nombre."_".$nuevo->txt_id."_video.".$this->NvoVideo->getClientOriginalExtension();
+            $this->NvoVideo->storeAs('/aPublic/cedulas/', $nombre2);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_video'=>$nombre2]);
+        }else{
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_video'=>$datos->txt_video]);
+        }
+        ##### Genera nombre de img1 y guarda el archivo Y bd
+        if($this->NvoImg1 !=''){
+            $nombre2=$nombre."_".$nuevo->txt_id."_img1.".$this->NvoImg1->getClientOriginalExtension();
+            $this->NvoImg1->storeAs('/aPublic/cedulas/', $nombre2);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img1'=>$nombre2]);
+        }else{
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img1'=>$datos->txt_img1]);
+        }
+        ##### Genera nombre de img1 y guarda el archivo Y bd
+        if($this->NvoImg2 !=''){
+            $nombre2=$nombre."_".$nuevo->txt_id."_img2.".$this->NvoImg2->getClientOriginalExtension();
+            $this->NvoImg2->storeAs('/aPublic/cedulas/', $nombre2);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img2'=>$nombre2]);
+        }else{
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img2'=>$datos->txt_img2]);
+        }
+        ##### Genera nombre de img1 y guarda el archivo Y bd
+        if($this->NvoImg3 !=''){
+            $nombre2=$nombre."_".$nuevo->txt_id."_img3.".$this->NvoImg3->getClientOriginalExtension();
+            $this->NvoImg3->storeAs('/aPublic/cedulas/', $nombre2);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img3'=>$nombre2]);
+        }else{
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img3'=>$datos->txt_img3]);
+        }
+        ###### Si hay que borrar audio, lo borra:
+        if($this->DelAudio==true){
+            Storage::delete('/aPublic/cedulas/audios/'.$datos->txt_audio);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_audio'=>null]);
+        }
+        ###### Si hay que borrar video, lo borra:
+        if($this->DelVideo==true){
+            Storage::delete('/aPublic/cedulas/'.$datos->txt_video);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_video'=>null]);
+        }
+        ###### Si hay que borrar img1, lo borra:
+        if($this->DelImg1==true){
+            Storage::delete('/aPublic/cedulas/'.$datos->txt_img1);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img1'=>null]);
+        }
+        ###### Si hay que borrar img2, lo borra:
+        if($this->DelImg2==true){
+            Storage::delete('/aPublic/cedulas/'.$datos->txt_img2);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img2'=>null]);
+        }
+        ###### Si hay que borrar img3, lo borra:
+        if($this->DelImg3==true){
+            Storage::delete('/aPublic/cedulas/'.$datos->txt_img3);
+            SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_img3'=>null]);
+        }
+        $this->NvoAudio=$this->NvoVideo=$this->NvoImg1=$this->NvoImg2=$this->NvoImg3=null;
+        redirect('/editaCedula/'.$this->cedID);
     }
 
     public function NuevoParrafo(){
@@ -125,8 +248,9 @@ class EditaCedulasComponent extends Component
         'txt_order'=>SpCedulasModel::where('txt_cedid',$this->cedID)->max('txt_order') + 1,
         'txt_codigo'=>'Lorem Ipsum...',
         #'txt_audio'=>null,
-        'txt_autor'=>Auth::user()->id,
+        'txt_autor'=>Auth::id(),
         'txt_version'=>'0.01',
+        'txt_resp'=>Auth::id(),
       ]);
     }
 
@@ -134,48 +258,40 @@ class EditaCedulasComponent extends Component
         ##### Busdca archivo de audio y lo borra (en su caso)
         $origen=SpCedulasModel::where('txt_id',$id)->first();
         #dd($id,$origen);
-        if($origen->txt_audio != ''){
-            Storage::delete('/aPublic/cedulas/audios/'.$origen->txt_audio);
+        if($origen->txt_audio != ''){ Storage::delete('/aPublic/cedulas/audios/'.$origen->txt_audio);}
+        if($origen->txt_video != ''){ Storage::delete('/aPublic/cedulas/'.$origen->txt_video);}
+        if($origen->txt_img1 != ''){ Storage::delete('/aPublic/cedulas/'.$origen->txt_img1);}
+        if($origen->txt_img2 != ''){ Storage::delete('/aPublic/cedulas/'.$origen->txt_img2);}
+        if($origen->txt_img3 != ''){ Storage::delete('/aPublic/cedulas/'.$origen->txt_img3);}
+
+        SpCedulasModel::where('txt_id',$id)->update([
+            'txt_act'=>'0',
+            'txt_resp'=>Auth::id(),
+        ]);
+    }
+
+    public function EnviarCedula($valor){
+        if($valor=='0'){
+            $nvo='2';
         }
+        SpUrlCedulaModel::where('ced_id',$this->cedID)->update([
+            'ced_edo'=>$nvo,
+        ]);
+        redirect('/catCedulas');
+    }
 
-        SpCedulasModel::where('txt_id',$id)->update([
-            'txt_act'=>'0',
+    public function NuevaCita(){
+        SpUrlCedulaModel::where('ced_id',$this->cedID)->update([
+            'ced_cita'=>$this->NvaCita,
         ]);
     }
 
-    public function BorrarAudio($id){
-        #### copia el registro
-        $viejo=SpCedulasModel::where('txt_id',$id)->first();
-        $nuevo= $viejo->replicate();
-        $nuevo->save();
+    public function NuevaVersion(){
+        $vieja=SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_version');
 
-        ##### inactiva el viejo
-        SpCedulasModel::where('txt_id',$id)->update([
-            'txt_act'=>'0',
+        SpUrlCedulaModel::where('ced_id',$this->cedID)->update([
+            'ced_version'=> $vieja + 0.1,
         ]);
-        ##### Borra el archivo
-        Storage::delete('/aPublic/cedulas/audios/'.$viejo->txt_audio);
-
-        ##### Borra en BD el nuevo
-        SpCedulasModel::where('txt_audio',$viejo->txt_audio)
-            ->where('txt_codigo',$viejo->txt_codigo)
-            ->where('txt_order',$viejo->txt_order)
-            ->where('txt_id','!=',$viejo->txt_id)
-            ->update([
-                'txt_audio'=>null,
-                'txt_autor'=>Auth::user()->id,
-            ]);
-
-        ##### Cambia la vista al nuevo
-        $this->TxtIdEnEdicion=SpCedulasModel::where('txt_audio',null)
-            ->where('txt_codigo',$viejo->txt_codigo)
-            ->where('txt_order',$viejo->txt_order)
-            ->where('txt_act','1')
-            ->value('txt_id');
-    }
-
-    public function EnviarCedula(){
-        dd('Finalizar: pasar de estado 0 a estado 2.');
     }
 
     public function render() {
