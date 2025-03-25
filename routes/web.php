@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\login\loginController;
 use App\Http\Controllers\login\logoutController;
+use App\Http\Middleware\EditaCedulasMiddle;
+use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\UsuarioLogeadoConRolMiddle;
 use App\Livewire\Admin\Nuevousuario01Controller;
 use App\Livewire\Admin\NuevoUsuarioController;
 use App\Livewire\Cedulas\CatalogoDeCedulasComponent;
@@ -20,8 +23,7 @@ use App\Livewire\Sistema\FichaEspecieComponent;
 use App\Livewire\Sistema\FichaParadaCompenent;
 use App\Livewire\Sistema\HomeComponent;
 use App\Livewire\Sistema\MapaComponent;
-use App\Livewire\Web\CodigoQr;
-use App\Livewire\Web\CodigoQrController;
+use App\Livewire\Sistema\UsuariosComponent;
 use App\Livewire\Web\ColaboradoresController;
 use App\Livewire\Web\ColeccionesController;
 use App\Livewire\Web\DirectiorioController;
@@ -76,8 +78,10 @@ Route::get('/nuevousr01/{token}',Nuevousuario01Controller::class);
 
 /* -------------------------- SECCIÓN AUTORIZADA ----------------------------- */
 /* --------------------------------------------------------------------------- */
-Route::middleware(['auth.basic'])->group(function(){
+#Route::middleware(['auth.basic'])->group(function(){
+Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->group(function(){
     Route::get('/home',HomeComponent::class)->name('home');
+    Route::get('/usuarios',UsuariosComponent::class)->name('usuarios');
     /* -------------------------- SECCIÓN DE PLANTAS ----------------------------- */
     /* --------------------------------------------------------------------------- */
     Route::get('/importaPlantas',ImportaPlantasComponent::class)->name('importa');
@@ -85,15 +89,16 @@ Route::middleware(['auth.basic'])->group(function(){
     Route::get('/catalogo/camellones', CatalogoCamellonesYJardinesComponent::class)->name('catcamellones');
     Route::get('/catalogo/camellon/{camID}', CatalogoCamellonesYJardinesComponent2::class)->name('catcamellones');
     Route::get('/catalogo/campus', CatalogoJardinesYcampusComponent::class)->name('CatCampus');
-});
 
+    /* --------------------------- SECCION CÉDULAS -------------------------------- */
+    /* ---------------------------------------------------------------------------- */
+    Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
+    Route::get('/catCedulas',CatalogoDeCedulasComponent::class)->name('catCedulas');
+    Route::get('/editaCedula/{cedID}',EditaCedulasComponent::class)->name('editorCedulas')->middleware(([EditaCedulasMiddle::class]));
+});
 
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
 Route::get('/especies',EspeciesController::class)->name('especies');
-Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
-Route::get('/catCedulas',CatalogoDeCedulasComponent::class)->name('catCedulas');
-Route::get('/editaCedula/{cedID}',EditaCedulasComponent::class)->name('editorCedulas');
-
 
 
 /*---------- temps --------------*/

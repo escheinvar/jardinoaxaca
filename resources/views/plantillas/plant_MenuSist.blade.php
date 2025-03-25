@@ -33,57 +33,65 @@
                         </a>
                     </li>
 
-                     <!--dropdown 1-->
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            AdminCeds
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
-                            <li><a class="dropdown-item @if(request()->path() == 'catCedulas') active @endif" href="/catCedulas">Catálogo de Cédulas</a></li>
-
-
-                        </ul>
-                    </li>
+                    <!--dropdown 1-->
+                    @if(in_array('admin',session('rol')))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item @if(request()->path() == 'usuarios') active @endif" href="/usuarios">Usuarios y roles</a></li>
+                                <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
+                            </ul>
+                        </li>
+                    @endif
 
                     <!--dropdown 1-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            AdminJards
+                            Cédulas
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item @if(request()->path() == 'importaPlantas') active @endif" href="/importaPlantas">Carga masiva</a></li>
-                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/campus') active @endif" href="/catalogo/campus">Catálogo de Jardines y Campus</a></li>
-                            <li><a class="dropdown-item @if(request()->path() == 'catalogo/camellones') active @endif" href="/catalogo/camellones">Catálogo de Camellones</a></li>
-                            {{-- <li><a class="dropdown-item @if(request()->path() == 'mapa') active @endif" href="/mapa">Mapa</a></li> --}}
+                            <li><a class="dropdown-item @if(request()->path() == 'catCedulas') active @endif" href="/catCedulas">Catálogo de Cédulas</a></li>
                         </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link @if(request()->path() == 'elmapa') active @endif" href="/elmapa">
-                            Mapa
+                    @if(in_array('admin',session('rol')))
+                        <!--dropdown 1-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                AdminJards
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item @if(request()->path() == 'importaPlantas') active @endif" href="/importaPlantas">Carga masiva</a></li>
+                                <li><a class="dropdown-item @if(request()->path() == 'catalogo/camellones') active @endif" href="/catalogo/camellones">Catálogo de Camellones</a></li>
+                                {{-- <li><a class="dropdown-item @if(request()->path() == 'mapa') active @endif" href="/mapa">Mapa</a></li> --}}
+                            </ul>
+                        </li>
+                    @endif
+
+                    <!--dropdown 1-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Ejemplos
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item @if(request()->path() == 'elmapa') active @endif" href="/elmapa">Mapa</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'laespecie') active @endif" href="/laespecie">Especie</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'elclavo/busca') active @endif" href="/elclavo/busca">Clavo</a></li>
+                        </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link @if(request()->path() == 'laespecie') active @endif" href="/laespecie">
-                            Especie
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'elclavo') active @endif" href="/elclavo/busca">
                             Clavo
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li class="nav-item">
-                        <a class="nav-link @if(request()->path() == 'parada') active @endif" href="/parada/inicio">
-                            Parada
-                        </a>
-                    </li>
 
                     <!---->
                     <li class="nav-item">

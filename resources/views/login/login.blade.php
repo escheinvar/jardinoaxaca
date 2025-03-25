@@ -25,6 +25,7 @@ Acceso al sistema
         <div class="row justify-content-around text-center pb-4">
             <div class="col-sm-12 col-md-10 col-lg-7 col-xl-7 pt-5 px-4">
                 <div class="center" style="width:50%;">
+
                     <h2 class="subtitulo">Ingreso al sistema</h2>
                     <form action="{{route('login')}}" method="POST">
                         @csrf
@@ -56,10 +57,13 @@ Acceso al sistema
                         </div>
 
 
-                        <div>
+                        <div class="my-3">
                             <small>
                             <a class="nolink" href="/recuperaAcceso">Recuperar/Cambiar contraseña</button></a>
-                            &nbsp; &nbsp;
+                            &nbsp; &nbsp;</small>
+                        </div>
+                        <div>
+                            <small>
                             <a class="nolink" href="/nuevousr">Crear una cuenta</button></a>
                             </small>
                         </div>

@@ -15,7 +15,7 @@ class loginController extends Controller
         if(Auth::user()){
             return redirect('home');
         }else{
-            return view('login/login',['mensaje'=>'',]);
+            return view('login/login',['mensaje'=>'']);
         }
     }
 
@@ -45,16 +45,14 @@ class loginController extends Controller
                 'locale2'=>'spa',
             ]);
 
-
-
             #### Redirecciona
             return redirect('/home');
 
         }else{
-            return view('login/login',['mensaje'=>'Credenciales erróneas']);
+            return view('login/login',['mensaje'=>'Credenciales erróneas','mensaje1'=>'']);
 
         }
-        return view('login/login',['mensaje'=>'Error']);
+        return view('login/login',['mensaje'=>'Error','mensaje1'=>'']);
 
     }
 }

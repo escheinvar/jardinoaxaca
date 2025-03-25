@@ -26,15 +26,34 @@
                             <h3>
                                 <div style="" c>
                                     @if($urlced->ced_edo=='0')
-                                        <i class="bi bi-0-circle-fill" style="color:red;"> En edición</i>
-                                        <button wire:click="EnviarCedula('0')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">Terminar edición</button>
-                                    @elseif($urlced->ced_edo=='1') <i class="bi bi-1-circle-fill" style="color:orange;">En corrección</i>
-
-                                    @elseif($urlced->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:yellow;">En autorizacion</i>
-                                    @elseif($urlced->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:pink;">En autorizacion</i>
-                                    @elseif($urlced->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorizacion</i>
+                                        <i class="bi bi-0-circle-fill" style="color:red;"> En edición</i><br>
+                                        <button wire:click="EnviarCedula('2')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
+                                            Terminar edición
+                                        </button>
+                                    @elseif($urlced->ced_edo=='1') <i class="bi bi-1-circle-fill" style="color: #CD7B34;;">En corrección</i><br>
+                                        <button wire:click="EnviarCedula('2')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
+                                            Terminar corrección
+                                        </button>
+                                    @elseif($urlced->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:yellow;">En revisión</i><br>
+                                        <button wire:click="EnviarCedula('5')" wire:confirm="Estás por liberar al público esta cédula. ¿Deseas continuar?" class="btn btn-primary my-2">
+                                            Publicar
+                                        </button>
+                                        <button onclick="VerNoVer('Notas','Correccion')" class="btn btn-primary my-2">
+                                            Corregir
+                                        </button>
+                                    @elseif($urlced->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:pink;">Pausada</i>
+                                    @elseif($urlced->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">Pausada</i>
                                     @elseif($urlced->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>
                                     @endif
+
+                                    <!-- notas de correccion-->
+                                    <div id="sale_NotasCorreccion" style="display:none;">
+                                        <span style="font-size: 80%">Describe las correcciones solicitadas</span><br>
+                                        <textarea wire:model="NotasDeCorreccion" class="form-control"></textarea>
+                                        <button wire:click="EnviarCedula('1')"  class="btn btn-primary my-2">
+                                            Solicitar corrección
+                                        </button>
+                                    </div>
                                 </div>
                             </h3>
                         </center>

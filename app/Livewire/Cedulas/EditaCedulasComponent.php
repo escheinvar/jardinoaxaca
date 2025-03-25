@@ -4,6 +4,7 @@ namespace App\Livewire\Cedulas;
 
 use App\Models\CatEtiquetasImgModel;
 use App\Models\CatJardinesModel;
+use App\Models\SistBuzonMensajesModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
@@ -24,7 +25,7 @@ class EditaCedulasComponent extends Component
     public $NvoTitulo, $NvoOrder, $NvoCodigo,$NvoAudio, $NvaImagen, $NvaImagenTipo;
     public $NvoVideo, $NvoImg1, $NvoImg2, $NvoImg3, $NvaVersion;
     public $DelAudio, $DelVideo, $DelImg1, $DelImg2, $DelImg3;
-    public $cedulas, $traductor, $NvaVersionCedula,$NvaCita;
+    public $cedulas, $traductor, $NvaVersionCedula,$NvaCita, $NotasDeCorreccion;
 
     public function mount($cedID){
         $this->cedID=$cedID;
@@ -44,6 +45,10 @@ class EditaCedulasComponent extends Component
             ->where('rol_crolrol','cedulas')
             ->pluck('rol_tipo1')
             ->toArray();
+        if(in_array('todas',$JardinesQueEdita)){
+            $JardinesQueEdita=CatJardinesModel::pluck('cjar_siglas')->toArray();
+        }
+
 
         ##### Obtiene array de lenguas por jardín a los que tiene permiso el traductor
         $LenguasQueTraduce=UserRolesModel::where('rol_act','1')
@@ -77,9 +82,8 @@ class EditaCedulasComponent extends Component
             $this->traductor='0';
         }
         if( $this->cedulas=='0' AND $this->traductor == '0'){
-            dd('no autorizado');
+            return redirect('/error No cuentas con las credenciales necesarias');
         }
-        #dd(session('rol'), $JardinesQueEdita, $LenguasQueTraduce,'Editor: '.$this->cedulas,'Traductor: '.$this->traductor, $this->cedulas + $this->traductor);
     }
 
     public function BorraFoto($foto){
@@ -271,12 +275,67 @@ class EditaCedulasComponent extends Component
     }
 
     public function EnviarCedula($valor){
-        if($valor=='0'){
-            $nvo='2';
+        ##### Obtiene datos para el mensaje
+        $jardin=SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_cjarsiglas');
+        $cedula=SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_urlurl');
+        $lengua=SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_clencode');
+
+        ##### Prepara variables
+        if($valor=='2'){
+            $asunto='Revisar cédula';
+            $mensaje="La Cédula ".$cedula." del jardín ".$jardin." en lengua ".$lengua." fue enviada para ser liberada al público.";
+            ##### Obtiene lista de revisores a los que se envía mensaje
+            $revisores=UserRolesModel::where('rol_act','1')
+                ->where('rol_crolrol','cedulas')
+                ->where(function($q){
+                    return $q
+                    ->where('rol_tipo1','todas')
+                    ->orWhere('rol_tipo1', SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_cjarsiglas'));
+                })
+                ->pluck('rol_usrid')
+                ->toArray();
+
+        }elseif($valor=='1'){
+            $asunto='Corregir cédula';
+            $mensaje="Se solicitaron correcciones a la cédula ".$cedula." del jardín ".$jardin." en lengua ".$lengua;
+            ##### Obtiene lista de revisores a los que se envía mensaje
+            $revisores=UserRolesModel::where('rol_act','1')
+                ->where('rol_crolrol','traduce')
+                ->where('rol_tipo1', SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_cjarsiglas'))
+                ->where('rol_tipo2', SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_clencode'))
+                ->pluck('rol_usrid')
+                ->toArray();
+
+        }elseif($valor=='5'){
+            $asunto="Cédula publicada";
+            $mensaje="La cédula ".$cedula." del jardín ".$jardin." en lengua ".$lengua." ya fue publicada";
+            ##### Obtiene lista de revisores a los que se envía mensaje
+            $revisores=UserRolesModel::where('rol_act','1')
+                ->where('rol_crolrol','traduce')
+                ->where('rol_tipo1', SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_cjarsiglas'))
+                ->where('rol_tipo2', SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_clencode'))
+                ->pluck('rol_usrid')
+                ->toArray();
         }
+        ##### Cambia estado de cédula en BD
         SpUrlCedulaModel::where('ced_id',$this->cedID)->update([
-            'ced_edo'=>$nvo,
+            'ced_edo'=>$valor,
         ]);
+
+
+        ##### Envía mensaje a buzón
+        foreach($revisores as $r){
+            SistBuzonMensajesModel::create([
+                'buz_modulo'=>'cedulas',
+                'buz_usr_origen'=>Auth::id(),
+                'buz_destino_usr'=>$r,
+                'buz_notas'=>$this->NotasDeCorreccion,
+                'buz_asunto'=>$asunto,
+                'buz_mensaje'=>$mensaje,
+                'buz_date_origen'=>date('Y-m-d H:i:s'),
+            ]);
+        }
+
         redirect('/catCedulas');
     }
 

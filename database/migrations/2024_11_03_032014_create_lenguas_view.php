@@ -19,13 +19,13 @@ return new class extends Migration
         DB::statement("
             CREATE VIEW lenguas_view AS (
                 SELECT
-                'ethnologue' as base, clen_id as id, clen_lengua as lengua, clen_code as code, clen_localidad as localidad, clen_altnames as nombres, clen_autonimias as autonimia
+                'ethnologue' as clen_base,   clen_id as clen_id,   clen_lengua as clen_lengua, clen_code as clen_code, clen_localidad as clen_localidad, clen_altnames as clen_nombres, clen_autonimias as clen_autonimia
                 FROM cat_lenguas
 
                 UNION
 
                 SELECT
-                'Inali' as base, clen2_id as id, clen2_lengua as lengua, clen2_code as code, clen2_localidad as localidad, clen2_lengua as nombres, clen2_autonimia as autonimia
+                'Inali' as clen_base, clen2_id as clen_id, clen2_lengua as clen_lengua, clen2_code as clen_code, clen2_localidad as clen_localidad, clen2_lengua as clen_nombres, clen2_autonimia as clen_autonimia
                 FROM cat_lenguas_inali
             )
         ");

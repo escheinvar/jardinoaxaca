@@ -195,7 +195,7 @@
                     </li>
 
                     <!-- ----- Home ----- -->
-{{--
+
                     @if(auth()->user())
                         <li class="nav-item">
                             <a class="nav-link @if(request()->path() == 'home') active @endif" href="/home">
@@ -229,7 +229,7 @@
                                 </button>
                             </form>
                         </li>
-                    @else
+                    {{-- @else
                         <li class="nav-item">
                                 <a class="nav-link @if(request()->path() == 'ingreso') active @endif" href="/ingreso">
                                     @if(session('locale')=='en')
@@ -242,9 +242,9 @@
                                         Sistema
                                     @endif
                                 </a>
-                        </li>
-                        @endif
---}}
+                        </li> --}}
+                    @endif
+
 
                 </ul>
 
