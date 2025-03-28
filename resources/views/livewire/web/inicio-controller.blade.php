@@ -16,7 +16,7 @@
         <i class="bi bi-volume-mute-fill" id="IconStop01" onclick="pauseAudio('01')" style="cursor:pointer;display:none; vertical-align:top;"></i> --}}
 
     @else
-        Jardín <br>Etnobiológico<br> de Oaxaca
+        Amigos del Jardín <br>Etnobiológico<br> de Oaxaca
         {{-- <audio id="SpAudio01">
             <source src='/audio/es/01inicio_00.ogg' type="audio/ogg"> El navegador no soporta el audio
         </audio>

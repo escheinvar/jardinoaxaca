@@ -1,4 +1,4 @@
-@section('title') 
+@section('title')
 Mapa del Jardín
 @endsection
 
@@ -16,7 +16,7 @@ banner-mapa
     @elseif(session('locale')=='pt')
         Mapa do jardim<br>Etnobiológico
     @else
-        Mapa del jardín<br>Etnobiológico 
+        Mapa del jardín<br>Etnobiológico
     @endif
 @endsection
 
@@ -36,7 +36,7 @@ banner-mapa
                         @elseif(session('locale')=='pt')
                             Mapa do jardim<br>Etnobiológico
                         @else
-                            Mapa del jardín<br>Etnobiológico 
+                            Mapa del jardín<br>Etnobiológico
                         @endif
                     </h2>
                 </div>
@@ -48,7 +48,7 @@ banner-mapa
                         <img src={{$mapa}} alt="Mapa del Jardín Etnobotánico" class="w-100">
                     </a>
                 </div>
-                <div class="col-sm-12 col-md-10 col-lg-5 col-xl-5 col-xxl-5 mapa-lugares py-5">
+                <div class="col-sm-12 col-md-10 col-lg-5 col-xl-5 col-xxl-5 mapa-lugares py-5" wire:ignore>
                     <div class="accordion accordion-flush-mapa" id="accordionFlushExample">
                         <!--ITEM 1-->
                         <div class="accordion-item-mapa">
@@ -68,7 +68,7 @@ banner-mapa
                             <div id="flush-collapseOne" class="accordion-collapse collapse"
                                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="row accordion-body pt-4">
-                                    <div class="col-sm-6 col-md-5 col-lg-12 col-xl-6">                                                                                                                                                                                                                                                                       
+                                    <div class="col-sm-6 col-md-5 col-lg-12 col-xl-6">
                                         <ol>
                                             @if(session('locale')=='en')
                                                 <li>Entry </li>
@@ -98,27 +98,27 @@ banner-mapa
                                     <div class="col-sm-6 col-md-5 col-lg-12 col-xl-6">
                                         <ol start="7">
                                             @if(session('locale')=='en')
-                                                
+
                                                 <li>Greenhouse</li>
                                                 <li>Plazuela</li>
                                                 <li>Sanitary</li>
                                                 <li>The Huaje Coutyard</li>
                                                 <li>Atrium</li>
-                                            @elseif(session('locale')=='pt')  
-                                                
+                                            @elseif(session('locale')=='pt')
+
                                                 <li>Estufa</li>
                                                 <li>Plazuela</li>
                                                 <li>Sanitário</li>
                                                 <li>Pátio El Guaje</li>
                                                 <li>Átrio</li>
                                             @else
-                                                
+
                                                 <li>Invernadero</li>
                                                 <li>Plazuela</li>
                                                 <li>Sanitario</li>
                                                 <li>Patio El Huaje</li>
                                                 <li>Atrio</li>
-                                                
+
                                             @endif
                                         </ol>
                                     </div>
@@ -151,21 +151,21 @@ banner-mapa
                                                 <li>Sculpture by JorgeYáspick</li>
                                                 <li>Sculpture by Francisco Toledo: The blood of Mitla </li>
                                                 <li>Sculptural benches</li>
-                                                
+
                                             @elseif(session('locale')=='pt')
                                                 <li>Escultura de Jorge Dubón</li>
                                                 <li>Escultura de Luis Zárate: Espelho Cuanana</li>
                                                 <li>Escultura de JorgeYáspick</li>
                                                 <li>Escultura de Francisco Toledo: O sangue de Mitla </li>
                                                 <li>Bancos esculturais</li>
-                                                
+
                                             @else
                                                 <li>Escultura de Jorge Du Bón</li>
                                                 <li>Escultura de Luis Zárate: Espejo de Cuanana</li>
                                                 <li>Escultura de Jorge Yáspick</li>
                                                 <li>Escultura de Francisco Toledo: La Sangre de Mitla </li>
                                                 <li>Bancas escultóricas</li>
-                                                
+
                                             @endif
                                         </ol>
                                     </div>
@@ -177,21 +177,21 @@ banner-mapa
                                                 <li>Ceramic kiln</li>
                                                 <li>Lime kilns</li>
                                                 <li>Washrooms</li>
-                                                
+
                                             @elseif(session('locale')=='pt')
                                                 <li>Estrada antiga</li>
                                                 <li>Lago do século XVI</li>
                                                 <li>Forno de cerâmica</li>
                                                 <li>Fornos de cal</li>
                                                 <li>Lavanderias</li>
-                                                
+
                                             @else
                                                 <li>Calzada antigua </li>
                                                 <li>Estanque del siglo XVI</li>
                                                 <li>Horno de cerámica</li>
                                                 <li>Horno de cal</li>
                                                 <li>Lavaderos</li>
-                                                
+
                                             @endif
                                         </ol>
                                     </div>
@@ -266,7 +266,7 @@ banner-mapa
                                             @else
                                                 <li>Bosque de montaña</li>
                                                 <li>Plantas de las artes</li>
-                                                <li>Nopaleras</li> 
+                                                <li>Nopaleras</li>
                                                 <li>Vegetación de Guilá Naquítz</li>
                                                 <li>Bosque tropical seco</li>
                                                 <li>Matorral Xerófilo</li>
@@ -306,7 +306,7 @@ banner-mapa
                         {{-- <h3>
                             Patio del Huaje y Fuente de la Sangre de Mitla
                         </h3> --}}
-                        
+
                         @if(session('locale')=='en')
                             <p>Located on the street of Macedonio Alcalá, on the side of the former convent of Santo Domingo in what was the reading patio for Dominican novices,
                                 The Patio "El Huaje" is a beautiful space designed by Maestro Francisco Toledo and planned as the entrance to the Garden.</p>
@@ -324,12 +324,12 @@ banner-mapa
                         @else
                             <p>Ubicado sobre la calle de Macedonio Alcalá, a un costado del ex convento de Santo Domingo en lo que fuera el patio de lectura de novicios dominicos,
                                 el Patio "El Huaje" es un hermoso espacio diseñado por el Maestro Francisco Toledo y que se planeó como entrada del Jardín.</p>
-                            <p>Cubierto con baldosas de barro rojo presenta dos importantes elementos en sus extremos: un gran árbol del Huaje, 
+                            <p>Cubierto con baldosas de barro rojo presenta dos importantes elementos en sus extremos: un gran árbol del Huaje,
                                 majestuosa leguminosa que da su nombre a la ciudad de Oaxaca y la grandiosa escultura "La Sangre de Mitla" obra también del Maestro Toledo.</p>
                             <p>"La Sangre de Mitla", es una fuente elaborada con árbol de sabino cubierto de mica volcánica que llora sangre de agua teñida de rojo por grana conchinilla,
                                 que corre sobre las grecas que evocan a la legendaria ciudad de la que proviene su nombre.</p>
                         @endif
-                        
+
                     </div>
 
                     <div class="image">
@@ -409,8 +409,8 @@ banner-mapa
                                 Espejo de Cuanana
                             @endif
                         </h2>
-                        
-                        
+
+
                             @if(session('locale')=='en')
                                 <p>The Cuanana Mirror, is a sculptural drinking fountain for birds made by the Oaxaqueño sculptor Luis Zárate.</p>
                                 <p>This work is located at the northern end of the garden and can be seen from the window in the garden located on the street of C. de Berriozábal.</p>
@@ -421,7 +421,7 @@ banner-mapa
                                 <p>El Espejo de Cuanana, es un bebedero escultórico para aves realizada por el escultor oaxaqueño Luis Zárate.</p>
                                 <p>Esta obra se encuentra en el extremo norte del jardín y puede ser contemplada desde la ventana al jardín que se ubica en la calle de C. de Berriozábal.</p>
                             @endif
-                        
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
@@ -464,10 +464,10 @@ banner-mapa
                             <p>Esta escultura monumental realizada na madeira de Ahuehuete, foi realizada por el
                                 Escultor Chiapaneco Jorge Du Bon e se encontra localizado na porta do Jardín.</p>
                         @else
-                            <p>Esta escultura monumental realizada en madera de Ahuehuete, fue realizada por el 
+                            <p>Esta escultura monumental realizada en madera de Ahuehuete, fue realizada por el
                                 escultor chiapaneco Jorge Du Bon y se encuentra ubicado en la puerta sur del Jardín.</p>
                         @endif
-                        
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
@@ -477,7 +477,7 @@ banner-mapa
                                 @if(session('locale')=='en')
                                 @elseif(session('locale')=='pt')
                                 @else
-                                    Escultura de Jorge Dubón | Foto: 
+                                    Escultura de Jorge Dubón | Foto:
                                 @endif
                             </h4>
                         </a>
@@ -499,7 +499,7 @@ banner-mapa
                                 Cruz del Maíz
                             @endif
                         </h2>
-                         
+
                         @if(session('locale')=='en')
                             <p>Located in its geographic center and considered one of the most important spaces in the Garden,
                                 la Cruz de Maíz holds and guards what has been considered the unifying element
@@ -518,11 +518,11 @@ banner-mapa
                             <p>Ubicado en su centro geográfico y considerado como uno de los espacios más importantes del Jardín,
                                 la Cruz de Maíz enarbola y custodia lo que se ha considerado como el elemento unificador
                                 de la cultura e identidad mesoamericana, el maíz y sus ancestros directos, Tripsacum y el Teocintle</p>
-                            <p>Con sus caminos quebrados y hermosas greca Mixtecas, los ancestros del maíz, se rodean de sus 
-                                eternos acompañantes: calabazas, chiles, frijoles, amarantos y quelites, así como de muchas otras especies, 
+                            <p>Con sus caminos quebrados y hermosas greca Mixtecas, los ancestros del maíz, se rodean de sus
+                                eternos acompañantes: calabazas, chiles, frijoles, amarantos y quelites, así como de muchas otras especies,
                                 que pueden ser apreciadas en este espacio del jardín.</p>
                         @endif
-                        
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
@@ -532,7 +532,7 @@ banner-mapa
                                 @if(session('locale')=='en')
                                 @elseif(session('locale')=='pt')
                                 @else
-                                    La cruz del maíz | Foto: 
+                                    La cruz del maíz | Foto:
                                 @endif
                             </h4>
                         </a>
@@ -554,7 +554,7 @@ banner-mapa
                                 Hornos de cal
                             @endif
                         </h2>
-                        
+
                         @if(session('locale')=='en')
                             <p>In the archaeological rescue process carried out during the construction of the Garden in 1994,
                                 whether they were hallaron of the horns of lime or caleras that are estimated to have been
@@ -579,17 +579,17 @@ banner-mapa
                                 a palma de soyate, las jarrillas, los sotolines, las gallinitas y otras plantas.</p>
                         @else
                             <p>En el proceso de rescate arqueológico realizado durante la construcción del Jardín en 1994,
-                                se hallaron dos hornos de cal o caleras que se estima debieron haber sido 
-                                construidos previo a la edificación del convento en 1570, ya que pudieron haber sido utilizados 
+                                se hallaron dos hornos de cal o caleras que se estima debieron haber sido
+                                construidos previo a la edificación del convento en 1570, ya que pudieron haber sido utilizados
                                 para la elaboración de mortero utilizado en su construcción.</p>
-                            <p>Este espacio consta de dos grandes hornos en los que se introducía piedra caliza traída 
-                                desde el cerro de San Antonio de la Cal y que se calcinaba a altas temperaturas usando grandes 
+                            <p>Este espacio consta de dos grandes hornos en los que se introducía piedra caliza traída
+                                desde el cerro de San Antonio de la Cal y que se calcinaba a altas temperaturas usando grandes
                                 cantidades de leña hasta formar la llamada cal viva, que era apagada con agua de las piletas adyacentes
                                 para formar el mortero.</p>
-                            <p>En este espacio, podrás observar especies que crecen sobre roca caliza como el hermoso <i>Agave guiengola</i>, 
+                            <p>En este espacio, podrás observar especies que crecen sobre roca caliza como el hermoso <i>Agave guiengola</i>,
                                 las palmas de soyate, las jarrillas, los sotolines, las gallinitas y otras plantas.</p>
                         @endif
-                        
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
@@ -599,7 +599,7 @@ banner-mapa
                                 @if(session('locale')=='en')
                                 @elseif(session('locale')=='pt')
                                 @else
-                                    Hornos de cal | Foto: 
+                                    Hornos de cal | Foto:
                                 @endif
                             </h4>
                         </a>
@@ -643,17 +643,17 @@ banner-mapa
                                     com as artes de Oaxaca, como as fibras de algodão "coyuchi" e o ixtle, assim como seus corantes naturais:
                                     a grana cochinilla no nopal, o añil, a hoja de tinta, o órgão, o cuautle, entre outros.</p>
                             @else
-                                <p>Este horno fue hayado en el rescate arqueológico durante la construcción del Jardín Botánico 
+                                <p>Este horno fue hayado en el rescate arqueológico durante la construcción del Jardín Botánico
                                     en 1994 junto con diversos tiestos (pedazos) de cerámica mayólica.</p>
-                                <p>La mayólica es una cerámica vidriada con colores brillantes creada por los angiguos ejipcios y babilonios 
+                                <p>La mayólica es una cerámica vidriada con colores brillantes creada por los angiguos ejipcios y babilonios
                                     y que llega a nosotros gracias a la civilización islámica que la llevó al sur de España, desde donde llegó a Oaxaca.</p>
-                                <p> A juicio de los arqueólogos, existe evidencia para considerar que este horno también pudo haber sido utilizado 
+                                <p> A juicio de los arqueólogos, existe evidencia para considerar que este horno también pudo haber sido utilizado
                                     para hacer tabiques de barro utilizados en las bóvedas de Santo Domingo.</p>
-                                <p> Esta compleja maquinaria del arte de alfarería colonial, está acompañada de especies relacionadas 
-                                    con las artes de Oaxaca, como las fibras de algodón coyuchi e ixtle,  así como de sus colorantes naturales: 
-                                    la grana cochinilla en el nopal, el añil, la hoja de tinta, el órgano, el cuautle, entre otros.</p>                            
+                                <p> Esta compleja maquinaria del arte de alfarería colonial, está acompañada de especies relacionadas
+                                    con las artes de Oaxaca, como las fibras de algodón coyuchi e ixtle,  así como de sus colorantes naturales:
+                                    la grana cochinilla en el nopal, el añil, la hoja de tinta, el órgano, el cuautle, entre otros.</p>
                             @endif
-                        
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-4_mapa/img-03.jpg" data-fancybox="gallery4">
@@ -663,7 +663,7 @@ banner-mapa
                                 @if(session('locale')=='en')
                                 @elseif(session('locale')=='pt')
                                 @else
-                                    Hornos de cerámica | Foto: 
+                                    Hornos de cerámica | Foto:
                                 @endif
                             </h4>
                         </a>
@@ -691,7 +691,7 @@ banner-mapa
                             <p>During the archaeological recovery, in the northern part of the Garden, next to what was the reading patio of the Dominican novices,
                                 three small brick ponds were unearthed where the novices washed their clothes, a stone pond and a round basin covered with Talavera tiles from Puebla
                                 where the novices bathed.</p>
-                                
+
                             <p style="padding-left:3rem;"><i>"...then at the end of the dormitory (of the novitiate) there is a passage by a staircase to a large,
                                 very spacious patio where there is a very wide water pond, and in front a stable, where there are large washbasins
                                 a yard high like tables and basins to overflow the water, and wash
@@ -704,7 +704,7 @@ banner-mapa
                             <p>Durante a recuperação arqueológica, na parte norte do Jardim, de um lado do que era o pátio de leitura dos noviços dominicos,
                                 Foram desenterrados três pequenos lagoas de tijolos onde os noviços lavavam a roupa, um lago de pedra e uma bacia redonda coberta com telhas de Talavera de Puebla.
                                 onde os noviços se banhavam.</p>
-                            
+
                             <p style="padding-left:3rem;"><i>"...então no final do dormitório (do noviciado) há uma passagem por uma escada que leva a um pátio
                                 grande e muito espaçoso onde há uma grande piscina de água
                                 de largura, e na frente um bloco, onde há grandes lavatórios de
@@ -718,7 +718,7 @@ banner-mapa
                             <p>Durante la recuperación arqueológica, en la parte norte del Jardín, a un costado de lo que fuera el patio de lectura de los novicios dominicos,
                                 se desenterraron tres estanques pequeños de ladrillo donde los novicios lavaban su ropa, un estanque de piedra y una pila redonda revestida de azulejo de talavera de Puebla
                                 donde los novicios se bañaban.</p>
-                           
+
                             <p style="padding-left:3rem;"><i>"...luego en el fin del dormitorio (del noviciado) hay un paso por una escalera a un patio
                                 grande, y muy espacioso donde está un estanque de agua muy
                                 anchuroso, y enfrente una cuadra, donde hay lavatorios grandes de
@@ -739,7 +739,7 @@ banner-mapa
                                 @if(session('locale')=='en')
                                 @elseif(session('locale')=='pt')
                                 @else
-                                    Lavaderos | Foto: 
+                                    Lavaderos | Foto:
                                 @endif
                             </h4>
                         </a>
