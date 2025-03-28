@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CatLenguasEthnologueModel;
 use App\Models\CatLenguasModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -341,7 +342,7 @@ class CatLenguasSeeder extends Seeder
         ];
 
         foreach ($events as $event){
-            CatLenguasModel::create($event);
+            CatLenguasEthnologueModel::create($event);
         }
     }
 }
