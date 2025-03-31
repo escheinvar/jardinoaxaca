@@ -546,8 +546,11 @@ class SpCedulaSeeder extends Seeder
             ['txt_cedid'=>'20', 'txt_titulo'=>'0','txt_order'=>'34',   'txt_audio'=>'',                     'txt_codigo'=>"<br><br><br><small>Kisíkatoya ènná, ko énla chjonri Gabriela García García mí.<br>Traducción y voz. Gabriela García García</small>",'txt_resp'=>'1'],
         ];
 
-    foreach ($events as $event){
-        SpCedulasModel::create($event);
-    }
+        if(SpCedulasModel::count()=='0'){
+            foreach ($events as $event){
+                ##### En producción
+                SpCedulasModel::create($event);
+            }
+        }
     }
 }

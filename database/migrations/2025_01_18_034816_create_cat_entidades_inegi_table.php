@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cat_entidades_inegi', function (Blueprint $table) {
-            $table->id('cedo_id');
-            $table->string('cedo_nombre');
-            $table->string('cedo_abrevia');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('cat_entidades_inegi')){
+            Schema::create('cat_entidades_inegi', function (Blueprint $table) {
+                $table->id('cedo_id');
+                $table->string('cedo_nombre');
+                $table->string('cedo_abrevia');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

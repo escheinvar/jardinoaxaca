@@ -41,8 +41,11 @@ class userRolesSeeder extends Seeder
             ]
         ];
 
-        foreach ($events as $event){
-            UserRolesModel::create($event);
+        if(UserRolesModel::count()=='0'){
+            foreach ($events as $event){
+                ##### En producción
+                UserRolesModel::create($event);
+            }
         }
 
     }

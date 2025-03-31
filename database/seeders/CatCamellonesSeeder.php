@@ -193,9 +193,10 @@ class CatCamellonesSeeder extends Seeder
             ['cam_ccamid'=>'1',       'cam_zona'=>'G5',  'cam_camellon'=>'G5b',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$g5b.$fin, 'cam_ctrox'=>'-96.72211246391984', 'cam_ctroy'=>'17.06588524915741', 'cam_zoom'=>'20'],
             ['cam_ccamid'=>'1',       'cam_zona'=>'G5',  'cam_camellon'=>'G5c',   'cam_zonaname'=>'',  'cam_color'=>'orange', 'cam_camellonname'=>'',        'cam_mapa'=> $inicio.$g5c.$fin]
         ];
-
-        foreach ($events as $event){
-            CatCamellonesModel::create($event);
+        if(CatCamellonesModel::count() ==0){
+            foreach ($events as $event){
+                CatCamellonesModel::create($event);
+            }
         }
     }
 }

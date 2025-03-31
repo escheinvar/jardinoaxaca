@@ -341,8 +341,10 @@ class CatLenguasSeeder extends Seeder
 
         ];
 
-        foreach ($events as $event){
-            CatLenguasEthnologueModel::create($event);
+        if(CatLenguasEthnologueModel::count()=='0'){
+            foreach ($events as $event){
+                CatLenguasEthnologueModel::create($event);
+            }
         }
     }
 }

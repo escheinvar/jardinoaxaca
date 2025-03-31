@@ -11,19 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cat_iconos', function (Blueprint $table) {
-            $table->id('icon_id');
-            $table->string('icon_name');
-            $table->string('icon_nombre');
-            $table->string('icon_coleccion')->default('web'); ##### colección a la que pertenece (planta, web, etcc)
-            $table->string('icon_file');
-            $table->string('icon_sizex')->nullable();
-            $table->string('icon_sizey')->nullable();
-            $table->string('icon_col1')->nullable();
-            $table->string('icon_col2')->nullable();
-            $table->string('icon_descripcion')->nullable();
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('cat_iconos')){
+            Schema::create('cat_iconos', function (Blueprint $table) {
+                $table->id('icon_id');
+                $table->string('icon_name');
+                $table->string('icon_nombre');
+                $table->string('icon_coleccion')->default('web'); ##### colección a la que pertenece (planta, web, etcc)
+                $table->string('icon_file');
+                $table->string('icon_sizex')->nullable();
+                $table->string('icon_sizey')->nullable();
+                $table->string('icon_col1')->nullable();
+                $table->string('icon_col2')->nullable();
+                $table->string('icon_descripcion')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**

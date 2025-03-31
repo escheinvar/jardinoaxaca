@@ -47,8 +47,10 @@ class CatEntidadesSeeder extends Seeder
             ['cedo_nombre'=>'Yucatán','cedo_abrevia'=>'Yuc.'],
             ['cedo_nombre'=>'Zacatecas','cedo_abrevia'=>'Zac.']
         ];
-        foreach ($events as $event){
-            CatEntidadesInegiModel::create($event);
+        if(CatEntidadesInegiModel::count()=='0'){
+            foreach ($events as $event){
+                CatEntidadesInegiModel::create($event);
+            }
         }
     }
 }

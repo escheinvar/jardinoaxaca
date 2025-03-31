@@ -50,8 +50,11 @@ class SpFotosSeeder extends Seeder
 
         ];
 
-        foreach ($events as $event){
-            SpFotosModel::create($event);
+        if(SpFotosModel::count()=='0'){
+            foreach ($events as $event){
+                ##### En producción
+                SpFotosModel::create($event);
+            }
         }
     }
 }

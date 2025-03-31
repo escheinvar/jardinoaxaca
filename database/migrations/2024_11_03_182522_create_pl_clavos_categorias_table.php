@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pl_clavos_categorias', function (Blueprint $table) {
-            $table->id('cl_id4');
-            $table->string('cl_nombre_campo');
-            $table->string('cl_dato');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('pl_clavos_categorias')){
+            Schema::create('pl_clavos_categorias', function (Blueprint $table) {
+                $table->id('cl_id4');
+                $table->string('cl_nombre_campo');
+                $table->string('cl_dato');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

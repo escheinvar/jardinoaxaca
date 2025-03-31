@@ -39,9 +39,10 @@ class CatJardinesCampusSeeder extends Seeder
                 'cjar_logo'=>'Matatlan.png',
             ]
         ];
-
-        foreach ($events as $event){
-            CatJardinesModel::create($event);
+        if(CatJardinesModel::count()=='0'){
+            foreach ($events as $event){
+                CatJardinesModel::create($event);
+            }
         }
 
         $events=[
@@ -68,9 +69,10 @@ class CatJardinesCampusSeeder extends Seeder
                 'ccam_direccion'=>'',
             ]
         ];
-
-        foreach ($events as $event){
-            CatCampusModel::create($event);
+        if(CatCampusModel::count()=='0'){
+            foreach ($events as $event){
+                CatCampusModel::create($event);
+            }
         }
     }
 }

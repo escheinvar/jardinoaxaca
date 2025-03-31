@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (Schema::hasTable('cat_kew_plantsoftheworld')) {
-            //
-        }else{
+        if (!Schema::hasTable('cat_kew_plantsoftheworld')) {
             Schema::create('cat_kew_plantsoftheworld', function (Blueprint $table) {
                 $table->id('ckew_taxonid');
                 $table->string('ckew_family')->nullable();
@@ -34,7 +32,7 @@ return new class extends Migration
                 $table->string('ckew_dynamicproperties')->nullable();
                 $table->string('ckew_reference')->nullable();
                 //$table->string('Version')->default('Kew_2024-06-12');
-                
+
                 $table->timestamps();
             });
         }
@@ -45,6 +43,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        #Schema::dropIfExists('cat_kew_plantsoftheworld');
+        // --- no borrar, porque cuesta mucho levantarla (está muy grande) y se carga desde archivo
+        // Schema::dropIfExists('cat_kew_plantsoftheworld');
     }
 };

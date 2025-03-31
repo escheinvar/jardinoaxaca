@@ -122,9 +122,10 @@ class CatIconosSeeder extends Seeder
                 'icon_descripcion'=>'',
             ]
         ];
-
-        foreach ($events as $event){
-            CatIconosModel::create($event);
+        if (CatIconosModel::count()=='0'){
+            foreach ($events as $event){
+                CatIconosModel::create($event);
+            }
         }
     }
 }

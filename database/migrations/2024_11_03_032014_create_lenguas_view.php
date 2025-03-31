@@ -16,19 +16,21 @@ return new class extends Migration
         //     $table->id();
         //     $table->timestamps();
         // });
-        DB::statement("
-            CREATE VIEW lenguas_view AS (
-                SELECT
-                'ethnologue' as clen_base,   clen_id as clen_id,   clen_lengua as clen_lengua, clen_code as clen_code, clen_localidad as clen_localidad, clen_altnames as clen_nombres, clen_autonimias as clen_autonimia
-                FROM cat_lenguas
+        if(!Schema::hasTable('lenguas_view')){
+            DB::statement("
+                CREATE VIEW lenguas_view AS (
+                    SELECT
+                    'ethnologue' as clen_base,   clen_id as clen_id,   clen_lengua as clen_lengua, clen_code as clen_code, clen_localidad as clen_localidad, clen_altnames as clen_nombres, clen_autonimias as clen_autonimia
+                    FROM cat_lenguas
 
-                UNION
+                    UNION
 
-                SELECT
-                'Inali' as clen_base, clen2_id as clen_id, clen2_lengua as clen_lengua, clen2_code as clen_code, clen2_localidad as clen_localidad, clen2_lengua as clen_nombres, clen2_autonimia as clen_autonimia
-                FROM cat_lenguas_inali
-            )
-        ");
+                    SELECT
+                    'Inali' as clen_base, clen2_id as clen_id, clen2_lengua as clen_lengua, clen2_code as clen_code, clen2_localidad as clen_localidad, clen2_lengua as clen_nombres, clen2_autonimia as clen_autonimia
+                    FROM cat_lenguas_inali
+                )
+            ");
+        }
     }
 
     /**

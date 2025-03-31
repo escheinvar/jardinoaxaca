@@ -59,8 +59,10 @@ class InstitucionesSeeder extends Seeder
             'Jardín Botánico Efraín Hernandez Xolocotzi',
         ];
 
-        foreach ($events as $event){
-            InstitucionesModel::create(['cins_institucion'=>$event]);
+        if(InstitucionesModel::count()=='0'){
+            foreach ($events as $event){
+                InstitucionesModel::create(['cins_institucion'=>$event]);
+            }
         }
     }
 }

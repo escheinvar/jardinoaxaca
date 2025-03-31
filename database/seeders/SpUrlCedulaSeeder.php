@@ -41,8 +41,11 @@ class SpUrlCedulaSeeder extends Seeder
 
         ];
 
-        foreach ($events as $event){
-            SpUrlCedulaModel::create($event);
+        if(SpUrlCedulaModel::count()=='0'){
+            foreach ($events as $event){
+                ##### En producción
+                SpUrlCedulaModel::create($event);
+            }
         }
     }
 }

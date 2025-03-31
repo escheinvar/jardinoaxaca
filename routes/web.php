@@ -92,10 +92,13 @@ Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->grou
 
     /* --------------------------- SECCION CÉDULAS -------------------------------- */
     /* ---------------------------------------------------------------------------- */
-    Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
     Route::get('/catCedulas',CatalogoDeCedulasComponent::class)->name('catCedulas');
     Route::get('/editaCedula/{cedID}',EditaCedulasComponent::class)->name('editorCedulas')->middleware(([EditaCedulasMiddle::class]));
 });
+
+/* --------------------------- SECCION CÉDULAS -------------------------------- */
+/* ---------------------------------------------------------------------------- */
+Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
 
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
 Route::get('/especies',EspeciesController::class)->name('especies');

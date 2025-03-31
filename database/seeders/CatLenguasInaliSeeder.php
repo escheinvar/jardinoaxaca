@@ -379,12 +379,14 @@ class CatLenguasInaliSeeder extends Seeder
             ['clen2_lengua'=>"huave, huave del oeste", 'clen2_autonimia'=>"ombeayiüts", 'clen2_usuarios'=>"19", 'clen2_code'=>"huv", 'clen2_fam'=>"1875", 'clen2_rama'=>"1875", 'clen2_subgroup'=>"1875", 'clen2_localidad'=>"Oaxaca: Juchitán de Zaragoza, San Mateo del Mar;"],
             ['clen2_lengua'=>"huave, huave del este", 'clen2_autonimia'=>"ombeyajsts", 'clen2_usuarios'=>"14", 'clen2_code'=>"hue", 'clen2_fam'=>"1875", 'clen2_rama'=>"1875", 'clen2_subgroup'=>"1875", 'clen2_localidad'=>"Oaxaca: San Dionisio del Mar, San Francisco del Mar;"],
         ];
-        foreach ($events as $event){
-            $nvo=CatLenguasInaliModel::create($event);
-            if($nvo->clen2_code ==''){
-                CatLenguasInaliModel::where('clen2_id',$nvo->clen2_id)->update([
-                    'clen2_code'=>'inali'.$nvo->clen2_id,
-                ]);
+        if(CatLenguasInaliModel::count()=='0'){
+            foreach ($events as $event){
+                $nvo=CatLenguasInaliModel::create($event);
+                if($nvo->clen2_code ==''){
+                    CatLenguasInaliModel::where('clen2_id',$nvo->clen2_id)->update([
+                        'clen2_code'=>'inali'.$nvo->clen2_id,
+                    ]);
+                }
             }
         }
 

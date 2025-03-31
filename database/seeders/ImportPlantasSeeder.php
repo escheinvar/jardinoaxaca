@@ -14,17 +14,19 @@ class ImportPlantasSeeder extends Seeder
      */
     public function run(): void
     {
-        $hoy=date('Y-m-d');
-        Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey.png');
-        Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey1.png');
-        Storage::copy('aPublic/iconos/ArbustoVaraBlanco.png','aPublic/cargaMasiva/00_EjemploVara.png');
-        Storage::copy('aPublic/iconos/ArbustoVaraBlanco.png','aPublic/cargaMasiva/00_EjemploVara1.png');
-        Storage::copy('aPublic/iconos/GlobosaBlanco.png','aPublic/cargaMasiva/00_EjemploGlobosa.png');
-        Storage::copy('aPublic/iconos/GlobosaBlanco.png','aPublic/cargaMasiva/00_EjemploGlobosa1.png');
+        if(ImportaPlantasModel::count()=='0'){
+            $hoy=date('Y-m-d');
+            Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey.png');
+            Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey1.png');
+            Storage::copy('aPublic/iconos/ArbustoVaraBlanco.png','aPublic/cargaMasiva/00_EjemploVara.png');
+            Storage::copy('aPublic/iconos/ArbustoVaraBlanco.png','aPublic/cargaMasiva/00_EjemploVara1.png');
+            Storage::copy('aPublic/iconos/GlobosaBlanco.png','aPublic/cargaMasiva/00_EjemploGlobosa.png');
+            Storage::copy('aPublic/iconos/GlobosaBlanco.png','aPublic/cargaMasiva/00_EjemploGlobosa1.png');
 
-        Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey2.png');
-        Storage::copy('aPublic/iconos/GlobosaBlanco.png','aPublic/cargaMasiva/00_EjemploGlobosa2.png');
-        Storage::copy('aPublic/iconos/NopalBlanco.png','aPublic/cargaMasiva/00_EjemploNopal.png');
+            Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey2.png');
+            Storage::copy('aPublic/iconos/GlobosaBlanco.png','aPublic/cargaMasiva/00_EjemploGlobosa2.png');
+            Storage::copy('aPublic/iconos/NopalBlanco.png','aPublic/cargaMasiva/00_EjemploNopal.png');
+        }
 
         $events=[
             [
@@ -95,8 +97,10 @@ class ImportPlantasSeeder extends Seeder
             ],
         ];
 
-        foreach ($events as $event){
-            ImportaPlantasModel::create($event);
+        if(ImportaPlantasModel::count()=='0'){
+            foreach ($events as $event){
+                ImportaPlantasModel::create($event);
+            }
         }
     }
 }

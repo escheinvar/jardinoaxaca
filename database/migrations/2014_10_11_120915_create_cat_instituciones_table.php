@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cat_instituciones', function (Blueprint $table) {
-            $table->id('cins_id');
-            $table->string('cins_institucion');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('cat_instituciones')){
+            Schema::create('cat_instituciones', function (Blueprint $table) {
+                $table->id('cins_id');
+                $table->string('cins_institucion');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -23,6 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cat_instituciones');
+        ##### No se puede tirar porque está asociado a tabla en producción (cédulas) que no se puede borrar
+        // Schema::dropIfExists('cat_instituciones');
     }
 };

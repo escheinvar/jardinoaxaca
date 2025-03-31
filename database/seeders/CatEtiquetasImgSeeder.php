@@ -72,9 +72,10 @@ class CatEtiquetasImgSeeder extends Seeder
             // ['cimg_gral'=>'planta', 'cimg_tipo'=>'uso',      'cimg_name'=>'',            'cimg_descripcion'=>''],
             // ['cimg_gral'=>'planta', 'cimg_tipo'=>'uso',      'cimg_name'=>'',            'cimg_descripcion'=>''],
         ];
-
-        foreach ($events as $event){
-            CatEtiquetasImgModel::create($event);
+        if(CatEtiquetasImgModel::count()=='0'){
+            foreach ($events as $event){
+                CatEtiquetasImgModel::create($event);
+            }
         }
     }
 }

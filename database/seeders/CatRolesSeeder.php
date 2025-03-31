@@ -21,8 +21,10 @@ class CatRolesSeeder extends Seeder
             ['crol_mod'=>'cedulas', 'crol_rol'=>'traduce',   'crol_describe'=>'Traductor de una lengua (tipo2), en un jardin (tipo1)', 'crol_notas'=>'un permiso es solo para una lengua en un jardín. (no existe opción "todos")'],
         ];
 
-        foreach ($events as $event){
-            CatRolesModel::create($event);
+        if (CatRolesModel::count() == 0 ) {
+            foreach ($events as $event){
+                CatRolesModel::create($event);
+            }
         }
     }
 }

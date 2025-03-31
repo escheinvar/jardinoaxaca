@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cat_roles', function (Blueprint $table) {
-            $table->id('crol_id');
-            $table->string('crol_mod')->default('base');     ### nombre del módulo al que pertenece el rol
-            $table->string('crol_rol')->unique()->key();     ### nombre del rol
-            $table->string('crol_describe')->nullable(); ### texto descriptivo modulo:rol
-            $table->string('crol_notas')->nullable(); ### notas sobre el rol
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('cat_roles')){
+            Schema::create('cat_roles', function (Blueprint $table) {
+                $table->id('crol_id');
+                $table->string('crol_mod')->default('base');     ### nombre del módulo al que pertenece el rol
+                $table->string('crol_rol')->unique()->key();     ### nombre del rol
+                $table->string('crol_describe')->nullable(); ### texto descriptivo modulo:rol
+                $table->string('crol_notas')->nullable(); ### notas sobre el rol
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -26,6 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cat_roles');
+        ##### No borrar porque se utiliza en las tablas de usuario en producción.
+        // Schema::dropIfExists('cat_roles');
     }
 };

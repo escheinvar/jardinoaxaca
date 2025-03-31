@@ -20,8 +20,11 @@ class SpUrlSeeder extends Seeder
             ['url_url'=>'grana',             'url_nombre'=>'Grana cochinilla',   'url_reino'=>'an',  'url_sp'=>'2',       'url_nombrecomun'=>'Grana cochinilla',   'url_sciname'=>'' ],
         ];
 
-        foreach ($events as $event){
-            SpUrlModel::create($event);
+        if(SpUrlModel::count()=='0'){
+            foreach ($events as $event){
+                ##### En producción
+                SpUrlModel::create($event);
+            }
         }
     }
 }

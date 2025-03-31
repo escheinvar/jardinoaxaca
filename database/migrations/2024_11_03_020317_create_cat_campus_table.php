@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cat_campus', function (Blueprint $table) {
-            $table->id('ccam_id');
-            $table->enum('ccam_act',['0','1'])->default('1');  ##### borrado lógico
-            $table->foreignId('ccam_cjarid')->constrained('cat_jardines','cjar_id'); ##### Id del jardín al que  pertenece
-            $table->string('ccam_name');  ##### Nombre corto del campus (ej: Jardín ó Canteras)
-            $table->string('ccam_nombre');  ##### Nombre completo del campus (ej: Jardín Etnobotánico ó Parque de Canteras en Archivo)
-            $table->string('ccam_direccion')->nullable();  ##### Dirección del jardín
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('cat_campus')){
+            Schema::create('cat_campus', function (Blueprint $table) {
+                $table->id('ccam_id');
+                $table->enum('ccam_act',['0','1'])->default('1');  ##### borrado lógico
+                $table->foreignId('ccam_cjarid')->constrained('cat_jardines','cjar_id'); ##### Id del jardín al que  pertenece
+                $table->string('ccam_name');  ##### Nombre corto del campus (ej: Jardín ó Canteras)
+                $table->string('ccam_nombre');  ##### Nombre completo del campus (ej: Jardín Etnobotánico ó Parque de Canteras en Archivo)
+                $table->string('ccam_direccion')->nullable();  ##### Dirección del jardín
+                $table->timestamps();
+            });
+        }
     }
 
     /**
