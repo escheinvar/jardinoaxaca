@@ -13,12 +13,22 @@ class Nuevousuario01Controller extends Component
 {
     public $token,$correo,$nombre,$apellido,$usrname,$nace;
     public $org,$contrasenia,$contrasenia2;
+    public $finalizado;
 
 
     public function mount(string $token){
         $this->token = $token;
         $this->correo=TokensModel::where('tok_token',$token)->where('tok_act','1')->where('tok_fin','>',now() )->pluck('tok_mail');
         $this->org='1';
+        $this->finalizado='0';
+        if($this->correo->count() > 0){
+            $revisaUser=User::where('email',$this->correo)->where('act','1')->count();
+            if($revisaUser > 0){
+                $this->finalizado='1';
+            }
+        }else{
+            redirect('/ingreso');
+        }
 
     }
 
@@ -36,6 +46,7 @@ class Nuevousuario01Controller extends Component
 
         ##### Genera registro de usuario
         $ja=User::firstOrCreate(['email'=>$this->correo],[
+            'id'=>User::max('id') + 1,
             'email'=>$this->correo[0],
             'usrname'=>$this->usrname,
             'nombre'=>$this->nombre,
@@ -47,16 +58,20 @@ class Nuevousuario01Controller extends Component
 
         ]);
 
-
         ##### Otorga rol básico
         UserRolesModel::firstOrCreate(['rol_usrid'=>$ja->id,'rol_crolrol'=>'web'],[
             'rol_act'=>'1',
             'rol_usrid'=>$ja->id,
-            'rol_crolrol'=>'web',
-            'rol_describe'=>'base:usr',
+            'rol_crolrol'=>'usr',
+            'rol_describe'=>'Usuario del sistama',
         ]);
 
-        return redirect('/ingreso');
+        ##### Elimina tockens
+        TokensModel::where('tok_mail',$this->correo[0])->where('tok_act','1')->update([
+            'tok_act'=>'0',
+        ]);
+
+        $this->finalizado='1';
     }
 
     public function render(){

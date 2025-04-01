@@ -69,16 +69,26 @@
         </div>
 
         <div class="row">
-            <div class="col-12">
-                <br>
-                <button wire:click="enviar" type="submit" class="btn btn-primary" @if($correo->count()=='0') disabled @endif>Crear cuenta</button>
-            </div>
+            @if($finalizado =='0')
+                <div class="col-12 my-3">
+                    <br>
+                    <button wire:click="enviar" wire:loadding.attr="disabled" type="submit" class="btn btn-primary" @if($correo->count()=='0') disabled @endif>Crear cuenta</button>
+                    <div wire:loading  style="display:none;">
+                        <error>Espera. Estoy realizando el registro</error>
+                    </div>
+                </div>
+            @elseif($finalizado=='1')
+                <div class="alert alert-success my-4" role="alert">
+                    La cuenta fue creada correctamente<br>
+                    Puedes ingresar <a href="/ingreso"> aquí</a>
+                </div>
+            @endif
         </div>
 
         @script
             <script>
                 $('.Select2').select2({
-                    placeholder:'selecciona',
+                    placeholder:'selecciona',">
                     tags: true,
                     width: '100%',
                 });

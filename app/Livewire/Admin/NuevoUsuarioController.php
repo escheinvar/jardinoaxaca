@@ -18,27 +18,28 @@ class NuevoUsuarioController extends Component
     }
 
     public function validador(){
+
         ########## LEE EL CORREO ENVIADO
         $this->validate([
             'correo'=>'email|required',
         ]);
-        
+
+        ######### Revisa si ya existe el correo en la base
         $celda=User::where('email',$this->correo)->get();
 
+        ######### Clasifica la respuesta para decidir el mensaje a mostrar
         if($celda->count() == '0' or is_null($celda)){
             $this->mensaje='1';
             $this->ver='0';
         }else{
             if($celda->where('act','1')->count() == 1 ){
                 $this->mensaje='0';
-                
             }else{
                 $this->mensaje='2';
             }
         }
-       
-        
-        ###### ELIMINA POSIBLES REGISTROS PREEXISTENTES
+
+        ###### ELIMINA POSIBLES REGISTROS PREEXISTENTES de token
         TokensModel::where('tok_mail',$this->correo)->update([
             'tok_act'=>'0',
         ]);
@@ -46,7 +47,7 @@ class NuevoUsuarioController extends Component
         ######## GENERA TOCKEN Y LO GUARDA EN BASE DE DATOS
         function GeneraTocken($n) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $randomString = '';            
+            $randomString = '';
             for ($i = 0; $i < $n; $i++) {
                 $index = rand(0, strlen($characters) - 1);
                 $randomString .= $characters[$index];
@@ -65,17 +66,11 @@ class NuevoUsuarioController extends Component
                 'tok_ini'=>$hoy,
                 'tok_fin'=>$fin,
             ]);
-
             ##### ENVÍA CORREO ELECTRÓNICO CON TOCKEN
             $Datos=['correo'=>$this->correo,'token'=>$token, 'fin'=>$fin];
             Mail::to($this->correo)->send(new NuevoUserMail($Datos));
         }
-
-        
-        
     }
-
-
 
     public function render(){
         return view('livewire.admin.nuevo-usuario-controller');
