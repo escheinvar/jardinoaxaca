@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             #### Genera catálogos
             InstitucionesSeeder::class,
-            userSeeder::class, ##### En producción
+            // userSeeder::class, ##### En producción
             CatRolesSeeder::class,
-            userRolesSeeder::class, ##### En producción
+            // userRolesSeeder::class, ##### En producción
 
             CatJardinesCampusSeeder::class,
             CatCamellonesSeeder::class,
@@ -38,17 +38,17 @@ class DatabaseSeeder extends Seeder
             CatLenguasSeeder::class,
             CatLenguasInaliSeeder::class,
 
-            webEventosSeeder::class, ##### En producción
+            // webEventosSeeder::class, ##### En producción
             CatIconosSeeder::class,
             ImportPlantasSeeder::class,
             CatEtiquetasImgSeeder::class,
             CatEntidadesSeeder::class,
 
 
-            SpUrlSeeder::class, ##### En producción
-            SpUrlCedulaSeeder::class, ##### En producción
-            SpCedulaSeeder::class, ##### En producción
-            SpFotosSeeder::class, ##### En producción
+            // SpUrlSeeder::class, ##### En producción
+            // SpUrlCedulaSeeder::class, ##### En producción
+            // SpCedulaSeeder::class, ##### En producción
+            // SpFotosSeeder::class, ##### En producción
         ]);
     }
 }
