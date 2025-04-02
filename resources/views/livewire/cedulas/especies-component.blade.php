@@ -24,7 +24,7 @@
             </a></b> &nbsp; &nbsp;
             <!-- selector de idioma -->
             Idioma:
-            <select wire:change="idiomas()" wire:model="idioma" id="MiIdioma" class="form-control lenguas" style="width:200px; display:inline-block;">
+            <select wire:change="idiomas()" wire:model="idioma" id="MiIdioma" class="form-control lenguas" style="width:200px; display:inline-block; background-color:#efebe8;;">
                 @foreach ($lenguas as $len)
                     <option value="{{ $len->clen_code }}"> @if($len->clen_autonimias != '') {{ $len->clen_autonimias }}  @endif {{ $len->clen_lengua }} </option>
                 @endforeach
@@ -92,13 +92,15 @@
                 </button>
             </div>
             --}}
-            <div style="display:inline-block;"> &nbsp; | &nbsp;
-                <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
-                <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
-                <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
-                <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
-                <span class="d-xs-block d-sm-none">xs Extrachico</span>
-            </div>
+            @if(Auth::user() )
+                <div style="display:inline-block;"> &nbsp; | &nbsp;
+                    <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
+                    <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
+                    <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
+                    <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
+                    <span class="d-xs-block d-sm-none">xs Extrachico</span>
+                </div>
+            @endif
 
             <!-- ------------------------- Otras cédulas de otros jardines ------------------------>
             @if($jardinData->where('cjar_siglas','!=',$jardin)->count() > 0)

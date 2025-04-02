@@ -34,56 +34,55 @@ class EditaCedulasComponent extends Component
         $this->NvaVersionCedula=false;
         $this->NvaCita=SpUrlCedulaModel::where('ced_id',$cedID)->first()->value('ced_cita');
 
-        ###################################################
-        ###### Determina permisos. Atn: esta página puede tener permisos por 2 vías:
-        ###### admin le brinda privilegios de edición sobre uno o más jardines
-        ###### traduce le brinda privilegios (solo de edición de texto) a un jardín y una lengua
-        ###################################################
-        ##### Obtiene jardines a los que tiene permiso el editor
-        $JardinesQueEdita=UserRolesModel::where('rol_act','1')
-            ->where('rol_usrid',Auth::id())
-            ->where('rol_crolrol','cedulas')
-            ->pluck('rol_tipo1')
-            ->toArray();
-        if(in_array('todas',$JardinesQueEdita)){
-            $JardinesQueEdita=CatJardinesModel::pluck('cjar_siglas')->toArray();
-        }
+        // ###################################################
+        // ###### Determina permisos. Atn: esta página puede tener permisos por 2 vías:
+        // ###### admin le brinda privilegios de edición sobre uno o más jardines
+        // ###### traduce le brinda privilegios (solo de edición de texto) a un jardín y una lengua
+        // ###################################################
+        // ##### Obtiene jardines a los que tiene permiso el editor
+        // $JardinesQueEdita=UserRolesModel::where('rol_act','1')
+        //     ->where('rol_usrid',Auth::id())
+        //     ->where('rol_crolrol','cedulas')
+        //     ->pluck('rol_tipo1')
+        //     ->toArray();
+        // if(in_array('todas',$JardinesQueEdita)){
+        //     $JardinesQueEdita=CatJardinesModel::pluck('cjar_siglas')->toArray();
+        // }
 
+        // ##### Obtiene array de lenguas por jardín a los que tiene permiso el traductor
+        // $LenguasQueTraduce=UserRolesModel::where('rol_act','1')
+        //     ->where('rol_usrid',Auth::id())
+        //     ->where('rol_crolrol','traduce')
+        //     ->select('rol_tipo1','rol_tipo2')
+        //     ->get();
 
-        ##### Obtiene array de lenguas por jardín a los que tiene permiso el traductor
-        $LenguasQueTraduce=UserRolesModel::where('rol_act','1')
-            ->where('rol_usrid',Auth::id())
-            ->where('rol_crolrol','traduce')
-            ->select('rol_tipo1','rol_tipo2')
-            ->get();
+        // ##### Obtiene jardín de la cédula
+        // $JardinDeCedula=SpUrlCedulaModel::where('ced_act','1')
+        //     ->where('ced_id',$cedID)
+        //     ->value('ced_cjarsiglas');
 
-        ##### Obtiene jardín de la cédula
-        $JardinDeCedula=SpUrlCedulaModel::where('ced_act','1')
-            ->where('ced_id',$cedID)
-            ->value('ced_cjarsiglas');
+        // ##### Obtiene lengua de la cédula
+        // $LenguaDeCedula=SpUrlCedulaModel::where('ced_act','1')
+        //     ->where('ced_id',$cedID)
+        //     ->value('ced_clencode');
 
-        ##### Obtiene lengua de la cédula
-        $LenguaDeCedula=SpUrlCedulaModel::where('ced_act','1')
-            ->where('ced_id',$cedID)
-            ->value('ced_clencode');
+        // ##### Revisa si otorga permiso de editor
+        // if( (in_Array('cedulas',session('rol')) AND (in_array($JardinDeCedula,$JardinesQueEdita) OR in_array('todas',$JardinesQueEdita) ) ) ){
+        //     $this->cedulas='1';
+        // }else{
+        //     $this->cedulas='0';
+        // }
 
-        ##### Revisa si otorga permiso de editor
-        if( (in_Array('cedulas',session('rol')) AND (in_array($JardinDeCedula,$JardinesQueEdita) OR in_array('todas',$JardinesQueEdita) ) ) ){
-            $this->cedulas='1';
-        }else{
-            $this->cedulas='0';
-        }
+        // ##### Revisa si otorga permiso de traductor
+        // if(in_array('traduce',session('rol'))  AND $LenguasQueTraduce->where('rol_tipo1', $JardinDeCedula)->where('rol_tipo2',$LenguaDeCedula)->count() > 0   ){
+        //     $this->traductor='1';
 
-        ##### Revisa si otorga permiso de traductor
-        if(in_array('traduce',session('rol'))  AND $LenguasQueTraduce->where('rol_tipo1', $JardinDeCedula)->where('rol_tipo2',$LenguaDeCedula)->count() > 0   ){
-            $this->traductor='1';
-
-        }else{
-            $this->traductor='0';
-        }
-        if( $this->cedulas=='0' AND $this->traductor == '0'){
-            return redirect('/error No cuentas con las credenciales necesarias');
-        }
+        // }else{
+        //     $this->traductor='0';
+        // }
+        // if( $this->cedulas=='0' AND $this->traductor == '0'){
+        //     return redirect('/error No cuentas con las credenciales necesarias');
+        // }
     }
 
     public function BorraFoto($foto){

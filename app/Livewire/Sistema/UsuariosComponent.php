@@ -122,13 +122,15 @@ class UsuariosComponent extends Component{
             ->orderBy('rol_tipo2','asc')
             ->get();
 
+        $catLenguas=CatLenguasModel::orderBy('clen_lengua','asc')->get();
+
         return view('livewire.sistema.usuarios-component',[
             'usuarios'=>$usuarios,
             'roles'=>$roles,
             'orgs'=>InstitucionesModel::orderBy('cins_institucion')->get(),
             'catRoles'=>CatRolesModel::select('crol_rol','crol_describe')->get(),
             'catJards'=>CatJardinesModel::OrderBy('cjar_nombre')->get(),
-            'catLenguas'=>CatLenguasModel::orderBy('clen_lengua','asc')->get(),
+            'catLenguas'=>$catLenguas,
         ]);
     }
 }

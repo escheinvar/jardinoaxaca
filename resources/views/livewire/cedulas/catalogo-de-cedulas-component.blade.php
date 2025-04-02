@@ -266,12 +266,12 @@
                                                 <div class="py-2" style="display: inline-block;width:300px;background-color:#CDC6B9;padding:5px;margin:3px;">
                                                     <!-- estado de la cédula -->
                                                     <div style="">
-                                                        @if($c->ced_edo=='0')     <i class="bi bi-0-circle-fill" style="color:red;"> En elaboración</i>
-                                                        @elseif($c->ced_edo=='1') <i class="bi bi-1-circle-fill" style="color:orange;">En corrección</i>
-                                                        @elseif($c->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:yellow;">En autorizacion</i>
-                                                        @elseif($c->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:pink;">En autorizacion</i>
-                                                        @elseif($c->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorizacion</i>
-                                                        @elseif($c->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>
+                                                        @if($c->ced_edo=='0')     <i class="bi bi-0-circle-fill" style="color:red;"> En elaboración</i>    <!-- 0 -->
+                                                        @elseif($c->ced_edo=='1') <i class="bi bi-1-circle-fill" style="color:#CD7B34;">En corrección</i>   <!-- 1 -->
+                                                        @elseif($c->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:purple;;">En autorizacion</i> <!-- 2 -->
+                                                        @elseif($c->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:#CD7B34;">En edición</i>        <!-- 3 -->
+                                                        @elseif($c->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorización</i> <!-- 4 -->
+                                                        @elseif($c->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>   <!-- 5 -->
                                                         @endif
                                                         ID {{ $c->ced_id }}
                                                     </div>
@@ -285,7 +285,10 @@
                                                     </div>
                                                     <div>
                                                         <!-- botón de editar-->
-                                                        @if(   in_array($c->ced_cjarsiglas, $roles_ced->pluck('rol_tipo1')->toArray())  OR   in_array('todas',  $roles_ced->pluck('rol_tipo1')->toArray())   OR   ($roles_tra->where('rol_tipo1', $c->ced_cjarsiglas)->where('rol_tipo2',$c->ced_clencode)->count() > 0 AND $c->ced_edo < 2)   )
+                                                        @if(
+                                                            in_array($c->ced_cjarsiglas, $roles_ced->pluck('rol_tipo1')->toArray())
+                                                            OR    in_array('todas',  $roles_ced->pluck('rol_tipo1')->toArray())
+                                                            OR   ($roles_tra->where('rol_tipo1', $c->ced_cjarsiglas)->where('rol_tipo2',$c->ced_clencode)->count() > 0 AND ($c->ced_edo < 2 OR $c->ced_edo == 3) )   )
                                                             <div style="display:inline-block;margin:10px;">
                                                                 <a href="/editaCedula/{{ $c->ced_id }}" class="nolink">
                                                                     <i class="bi bi-pencil-square" style="margin:7px;" class="PaClick">editar</i>
@@ -293,6 +296,12 @@
                                                             </div>
                                                         @endif
 
+                                                        <!-- botón iniciar edición -->
+                                                        @if($c->ced_edo =='5' AND ($roles_tra->where('rol_tipo1', $c->ced_cjarsiglas)->where('rol_tipo2',$c->ced_clencode)->count() > 0) )
+                                                        <div style="display:inline-block;margin:10px;">
+                                                            <i  wire:click="IniciarEdicion('{{ $c->ced_id }}')" wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" class="bi bi-pencil-square PaClick" style="margin:7px;" class="PaClick">Iniciar edición</i>
+                                                        </div>
+                                                        @endif
                                                         <!-- botón de ver-->
                                                         <div style="display:inline-block;margin:10px;">
                                                             <i class="bi bi-box-arrow-up-right" wire:click="IrConLengua('{{ $c->ced_clencode }}','{{ $c->ced_urlurl }}', '{{ $c->ced_cjarsiglas }}')" style="padding:7px; cursor: pointer;" class="PaClick">ver</i>

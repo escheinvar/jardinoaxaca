@@ -317,6 +317,11 @@ class CatalogoDeCedulasComponent extends Component
         $this->VerCrearCedula='0';
     }
 
+    public function IniciarEdicion($cedId){
+        SpUrlCedulaModel::where('ced_id',$cedId)->update(['ced_edo'=>'3']);
+        redirect('/editaCedula/'.$cedId);
+    }
+
     public function render(){
         ####### Obtiene listado de Jardines al que tiene acceso el admon,. de cedulas
         $Autorizados=UserRolesModel::where('rol_act','1')

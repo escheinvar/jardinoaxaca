@@ -62,7 +62,7 @@ class EditaCedulasMiddle
         }else{
             $cedulas='0';
         }
-
+#dd('no auto',$cedID,$LenguasQueTraduce,$JardinDeCedula, $LenguaDeCedula, $EstadoDeCedula);
         ##### Revisa si otorga permiso de traductor
         if(in_array('traduce',session('rol'))  AND $LenguasQueTraduce->where('rol_tipo1', $JardinDeCedula)->where('rol_tipo2',$LenguaDeCedula)->count() > 0   ){
             $traductor='1';
@@ -75,7 +75,7 @@ class EditaCedulasMiddle
 
         if(
             ($cedulas=='0' AND $traductor == '0') OR
-            ($cedulas=='0' AND $traductor=='1' AND $EstadoDeCedula >= '2' AND $EstadoDeCedula <='4')
+            ($cedulas=='0' AND $traductor=='1' AND in_array($EstadoDeCedula, ['2','4']) )
         ){
             return redirect('/error No estás autorizado a este recurso');
         }
