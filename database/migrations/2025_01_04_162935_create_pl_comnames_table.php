@@ -21,7 +21,8 @@ return new class extends Migration
                 $table->string('comn_nombre'); ##### Texto con el nombre
 
                 $table->string('comn_clencode');
-                $table->foreign('comn_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('clen_code','cat_lenguas');
+                ###### ojo, tuve que silenciar el foreign porque en la vista, clen_code no es key (se repiten base inali y base ethnologue)
+                // $table->foreign('comn_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('clen_code','cat_lenguas');
 
                 $table->string('comn_regiones')->nullable(); ##### Array separado por punto y coma de las zonas o regiones geográficas en las que se reconoce el nombre
                 $table->integer('comn_tipo')->default('0'); ##### Número indicador de proceso de curación: 0= dato de campo, 1=corregido por técnico; 2=corregido por autoridad;

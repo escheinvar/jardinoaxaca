@@ -22,10 +22,13 @@ return new class extends Migration
                 $table->foreign('ced_urlurl')->references('url_url')->on('sp_url')->onDelete('cascade')->constrained('sp_url','url_url');
 
                 $table->string('ced_clencode'); ##### lengua
-                $table->foreign('ced_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('cat_lenguas','clen_code');
+                ###### ojo, tuve que silenciar el foreign porque en la vista, clen_code no es key (se repiten base inali y base ethnologue)
+                #$table->foreign('ced_clencode')->references('clen_code')->on('cat_lenguas')->onDelete('cascade')->constrained('cat_lenguas','clen_code');
+
 
                 $table->string('ced_cjarsiglas'); ##### Jardín
                 $table->foreign('ced_cjarsiglas')->references('cjar_siglas')->on('cat_jardines')->onDelete('cascade')->constrained('cat_jardines','cjar_siglas');
+
 
 
                 $table->decimal('ced_version',5,2)->default('1.00'); ##### Versión de la cédula

@@ -18,6 +18,8 @@
     @if(isset($slot))
         <!-- ---------------------- CARGA DE LIVEWIRE ------------------------------->
         {{ $slot }}
+    @else
+        @yield('main-contenidoSinLivewire')
     @endif
 
 

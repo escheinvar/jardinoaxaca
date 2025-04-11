@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\cedulas\especies_pdf_controller;
 use App\Http\Controllers\login\loginController;
 use App\Http\Controllers\login\logoutController;
 use App\Http\Middleware\EditaCedulasMiddle;
@@ -63,6 +64,8 @@ Route::get('/actividades',EventosController::class)->name('actividades');
 Route::get('/pruebillas_php',function(){ dd(phpinfo());});
 
 
+
+
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */
 Route::get('/ingreso',[loginController::class,'index'])->name('login');
 Route::post('/ingreso',[loginController::class,'store']);
@@ -99,10 +102,10 @@ Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->grou
 /* --------------------------- SECCION CÉDULAS -------------------------------- */
 /* ---------------------------------------------------------------------------- */
 Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
+Route::get('/sppdf/{cedID}/{tipo}',[especies_pdf_controller::class, 'index']);
 
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
 Route::get('/especies',EspeciesController::class)->name('especies');
-
 
 /*---------- temps --------------*/
 Route::get('/elmapa',MapaComponent::class)->name('elmapa');

@@ -14,8 +14,8 @@ class ImportPlantasSeeder extends Seeder
      */
     public function run(): void
     {
+        $hoy=date('Y-m-d');
         if(ImportaPlantasModel::count()=='0'){
-            $hoy=date('Y-m-d');
             Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey.png');
             Storage::copy('aPublic/iconos/MagueyBlanco.png','aPublic/cargaMasiva/00_EjemploMaguey1.png');
             Storage::copy('aPublic/iconos/ArbustoVaraBlanco.png','aPublic/cargaMasiva/00_EjemploVara.png');

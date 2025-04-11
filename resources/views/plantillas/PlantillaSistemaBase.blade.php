@@ -3,6 +3,7 @@
 
 <head>
     @include('plantillas.plant_Head')
+    @livewireStyles
 </head>
 
 <body>

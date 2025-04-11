@@ -14,8 +14,15 @@ use Livewire\Component;
 class HomeComponent extends Component
 {
     public function LeerMensaje($id){
+        $estado=SistBuzonMensajesModel::where('buz_id',$id)->value('buz_leido');
+
+        if($estado=='1'){
+            $nuevo='0';
+        }else{
+            $nuevo='1';
+        }
         SistBuzonMensajesModel::where('buz_id',$id)->update([
-            'buz_leido'=>'1',
+            'buz_leido'=>$nuevo,
         ]);
         redirect('/home');
     }
@@ -47,7 +54,7 @@ class HomeComponent extends Component
                 ->where('buz_destino_usr',Auth::id())
                 ->orWhereIn('buz_destino_rol',session('rol'));
             })
-            ->orderBy('buz_date_origen','asc')
+            ->orderBy('buz_date_origen','desc')
             ->get();
 
         return view('livewire.sistema.home-component',[

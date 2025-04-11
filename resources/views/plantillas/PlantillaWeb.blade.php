@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    
+
 <head>
     @include('plantillas.plant_Head')
 </head>
@@ -52,11 +52,13 @@
     @if(isset($slot))
         <!-- ---------------------- CARGA DE LIVEWIRE ------------------------------->
         {{ $slot }}
+    @else
+        @yield('main-contenidoSinLivewire')
     @endif
 
 
 
-    
+
     <!-- ---------------------- MAIN SUP ------------------------------->
     @yield('main-superior')
 

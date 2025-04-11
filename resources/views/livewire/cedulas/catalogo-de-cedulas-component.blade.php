@@ -33,7 +33,9 @@
                 @endif
             </div>
 
-            <!-- FORMULARIO DE NUEVA CÉDULA -->
+            <!-- --------------------- FORMULARIO DE NUEVA CÉDULA -------------------------- -->
+            <!-- --------------------- FORMULARIO DE NUEVA CÉDULA -------------------------- -->
+            <!-- --------------------- FORMULARIO DE NUEVA CÉDULA -------------------------- -->
             @if($VerCrearCedula=='1')
                 <div id="sale_nvacedula" style="">
                     <div class="row py-4"  >
@@ -62,10 +64,12 @@
                             </select>
 
                             <!-- botón agregar nuevo Jardin-->
-                            <a href="/catalogo/campus" class="nolink">
-                                <i class="bi bi-plus-circle PaClick" style="padding:5px;"></i>
-                            </a>
-                            @error('NvoJardin')<br><error>{{ $message }}</error>@enderror
+                            @if(in_array('admin',session('rol')) )
+                                <a href="/catalogo/campus" class="nolink">
+                                    <i class="bi bi-plus-circle PaClick" style="padding:5px;"></i>
+                                </a>
+                                @error('NvoJardin')<br><error>{{ $message }}</error>@enderror
+                            @endif
                         </div>
 
                         <!-- Selector de Lengua -->
@@ -74,7 +78,7 @@
                             <select wire:model="NvoLengua" class="form-select" style="width:80%; display:inline;">
                                 <option value="">Indicar una lengua</option>
                                 @foreach ($CatLenguas as $l)
-                                    <option value="{{ $l->clen_code }}">{{ $l->clen_lengua }} ({{ $l->clen_code }})</option>
+                                    <option value="{{ $l->clen_code }}">{{ strtolower($l->clen_lengua) }} ({{ strtolower($l->clen_code) }})</option>
                                 @endforeach
                             </select>
                             @error('NvoLengua')<br><error>{{ $message }}</error>@enderror
@@ -116,7 +120,8 @@
                         </div>
 
                         <div class="col-4 form-group my-3">
-                            <button wire:click="GeneraCedula()" wire:model="Valida" class="btn btn-primary">Generar nueva cédula</button>
+                            <button wire:click="GeneraCedula()" wire:model="Valida" class="btn btn-primary">
+                                Generar nueva cédula</button>
                             @error('Valida')<br><error>{{ $message }}</error>@enderror
                         </div>
 
@@ -129,20 +134,21 @@
             <!-- --------------------- Nuevo tema -------------------------- -->
             <!-- --------------------- Nuevo tema -------------------------- -->
             <!-- --------------------- Nuevo tema -------------------------- -->
+            <a name="nuevotema"> </a>
             @if($VerNuevoTema=='1')
                 <div class="row">
                     <h3>Crear nuevo tema</h3>
                     <div class="col-12 col-sm-6 col-md-4 form-group">
-                        <label class="form-label">Nombre de la cédula <red>*</red> </label>
+                        <label class="form-label">Nombre del tema <red>*</red> </label>
                         <input wire:model="urlNombre" type="text" class="form-control">
-                        <div style="font-size:80%; color:rgb(78, 78, 78)">Nombre corto de la cédula. No más de 5 palabras. Ej: Abejas sin aguijón</div>
+                        <div style="font-size:80%; color:rgb(78, 78, 78)">Nombre corto del tema. No más de 5 palabras. Ej: Abejas sin aguijón</div>
                         @error('urlNombre')<error>{{ $message }}</error>@enderror
                     </div>
 
                     <div class="col-12 col-sm-6 col-md-4 form-group">
                         <label class="form-label">Dirección URL <red>*</red> </label>
                         <input wire:model.live="urlUrl" type="text" class="form-control">
-                        <div style="font-size:80%; color:rgb(78, 78, 78)">Nombre de la cédula en minúsculas, sin espacios, acentos, eñes o caracteres. El nombre no debe estar registrado previamente. Ej: abejasinaguijon</div>
+                        <div style="font-size:80%; color:rgb(78, 78, 78)">Nombre del tema en minúsculas, sin espacios, acentos, eñes o caracteres. El nombre no debe estar registrado previamente. Ej: abejasinaguijon</div>
                         @error('urlUrl')<error>{{ $message }}</error>@enderror
                     </div>
 
@@ -157,9 +163,10 @@
                             <option value="mo">Bacterias eucariotas (Reino Monera)</option>
                             <option value="ar">Arqueas (Bacterias)</option>
                             <option value="lu">Lugar</option>
-                            <option value="po">Proceso</option>
+                            <option value="pr">Proceso</option>
                             <option value="us">Uso</option>
                             <option value="le">Lengua</option>
+                            <option value="none">Otro</option>
                         </select>
                         <div style="font-size:80%; color:rgb(78, 78, 78)">Seleccionar una de las opciones de tipo de cédula. </div>
                         @error('urlReino')<error>{{ $message }}</error>@enderror
@@ -169,7 +176,8 @@
                         <div class="col-12 col-sm-6 col-md-4 form-group">
                             <label class="form-label">Genero</label><br>
                             <input wire:model="urlGenero" type="text" class="form-control" style="width:70%; display:inline;">
-                            <button wire:click="BuscaSpPlanta()" class="btn btn-sm btn-primary">Buscar</button>
+                            <button wire:click="BuscaSpPlanta()" wire:loading.attr="disabled" class="btn btn-sm btn-primary">Buscar</button>
+                            <div style="display:none;" wire:loading> <error>Cargando género...Espera.</error> </div>
                             <div style="font-size:80%; color:rgb(78, 78, 78)"> Escribe el género (o parte de él) y pica en Buscar.</div>
                             @error('urlGenero')<error>{{ $message }}</error>@enderror
                         </div>
@@ -216,12 +224,24 @@
                     </div>
 
                     <div class="col-12 form-group my-3">
-                        <button wire:click="GuardarNuevoTema()" class="btn btn-primary"   style="margin:5px;">Crear nuevo tema</button>
-                        <button wire:click="CancelarNuevoTema()" class="btn btn-secondary" style="margin:5px;">Cancelar nuevo tema</button>
+                        @if($roles_ced->where('rol_tipo1','todas')->count() == 0)
+                            <div>
+                                <error>
+                                    El tema quedará como borrador hasta que el administrador lo autorice.
+                                </error>
+                            </div>
+                        @endif
+
+                        <button wire:click="GuardarNuevoTema()" class="btn btn-primary"   style="margin:5px;">@if($urlId=='0')Crear @else Autorizar @endif nuevo tema</button>
+                        @if($urlId == '0')
+                            <button wire:click="CancelarNuevoTema()" class="btn btn-secondary" style="margin:5px;">Cancelar nuevo tema</button>
+                        @else
+                            <button wire:click="EliminarNuevoTema('{{ $urlId }}')" wire:confirm="Esta acción borrará definitivamente el tema, sus cédulas e información definitivamente de la base de datos y NO SE PODRÁ RECUPERAR. ¿Deseas continuar?" class="btn btn-secondary" style="margin:5px;"> <i class="bi bi-trash"></i>Eliminar el tema</button>
+                        @endif
                     </div>
 
-                </div>
 
+                </div>
             @endif
         @endif
 
@@ -237,9 +257,24 @@
                         <tr>
                             <td>
                                 <div  style="">
-                                    {{ $tema->url_id }}
-                                    {{ $tema->url_nombre }}
-                                    @if($tema->url_act =='1') <i class="bi bi-eye"></i> @else <i class="bi bi-eye-slash-fill"></i> @endif
+                                    {{-- {{ $tema->url_id }} --}}
+                                    <span style="font-size:125%; @if($tema->url_act =='1') font-weight:bold; @else color:gray; @endif">
+                                        {{ $tema->url_nombre }}
+                                    </span>
+                                    <span style="@if($tema->url_act =='0') color:gray; @endif">
+                                        &nbsp; [/{{ $tema->url_url }}]
+                                    </span>
+                                    @if($tema->url_act =='0')
+                                        <br><error> -- Esperando autorización --</error>
+                                        @if($roles_ced->where('rol_tipo1','todas')->count()>0)
+                                        <a href="#nuevotema" class="nolink">
+                                            <div wire:click="EditarNuevoTema('{{ $tema->url_id }}')" class="PaClick">
+                                                <i class="bi bi-pencil-square"></i> Revisar Tema
+                                            </div>
+                                        </a>
+                                        @endif
+                                    @endif
+
                                 </div>
                                 <div style="vertical-align: top;">
                                     @foreach ($cedulas->where('ced_urlurl',$tema->url_url)->unique('ced_cjarsiglas') as $jardin)
@@ -254,10 +289,8 @@
                                         <!-- --------------------------- SECCIÓN OCULTA DE CÉDULAS DEL JARDÍN --------------------------- -->
                                         <!-- --------------------------- SECCIÓN OCULTA DE CÉDULAS DEL JARDÍN --------------------------- -->
                                         <div id="sale_Cedula{{ $tema->url_url }}{{ $jardin->ced_cjarsiglas }}" style="display:none" class="m-d mx-4">
-
-                                            <div>
-                                                <img src="@if($jardin->cjar_logo=='')/avatar/jardines/default.png @else /avatar/jardines/{{ $jardin->cjar_logo }}@endif"
-                                                    onclick="VerYocultar('Cedula','{{ $tema->url_url }}{{ $jardin->ced_cjarsiglas }}')" class="PaClick" style="width:30px;">
+                                            <div onclick="VerYocultar('Cedula','{{ $tema->url_url }}{{ $jardin->ced_cjarsiglas }}')" class="PaClick">
+                                                <img src="@if($jardin->cjar_logo=='')/avatar/jardines/default.png @else /avatar/jardines/{{ $jardin->cjar_logo }}@endif" style="width:30px;">
                                                 {{ $jardin->ced_cjarsiglas }}
                                             </div>
                                             <!-- --------------------------- MUESTRA CADA CÉDULA DE CADA JARDÍN --------------------------- -->
@@ -268,39 +301,41 @@
                                                     <div style="">
                                                         @if($c->ced_edo=='0')     <i class="bi bi-0-circle-fill" style="color:red;"> En elaboración</i>    <!-- 0 -->
                                                         @elseif($c->ced_edo=='1') <i class="bi bi-1-circle-fill" style="color:#CD7B34;">En corrección</i>   <!-- 1 -->
-                                                        @elseif($c->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:purple;;">En autorizacion</i> <!-- 2 -->
+                                                        @elseif($c->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:purple;;">En revisión</i> <!-- 2 -->
                                                         @elseif($c->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:#CD7B34;">En edición</i>        <!-- 3 -->
-                                                        @elseif($c->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorización</i> <!-- 4 -->
+                                                        @elseif($c->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En revisión</i> <!-- 4 -->
                                                         @elseif($c->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>   <!-- 5 -->
                                                         @endif
-                                                        ID {{ $c->ced_id }}
+
                                                     </div>
                                                     <!-- url, lengua y siglas de jardin -->
                                                     <div>
-                                                        {{ $c->ced_urlurl }} /  {{ $c->ced_cjarsiglas }}  /  {{ $c->ced_clencode }}
+                                                        ID {{ $c->ced_id }}: &nbsp; {{ $c->ced_urlurl }} /  {{ $c->ced_cjarsiglas }}  /  {{ $c->ced_clencode }}
                                                     </div>
                                                     <!-- nombre de la lengua -->
                                                     <div>
                                                         {{ $CatLenguas->where('clen_code',$c->ced_clencode)->value('clen_lengua') }}
                                                     </div>
                                                     <div>
-                                                        <!-- botón de editar-->
+                                                        <!-- botón de editar para rol cedula -->
                                                         @if(
                                                             in_array($c->ced_cjarsiglas, $roles_ced->pluck('rol_tipo1')->toArray())
                                                             OR    in_array('todas',  $roles_ced->pluck('rol_tipo1')->toArray())
                                                             OR   ($roles_tra->where('rol_tipo1', $c->ced_cjarsiglas)->where('rol_tipo2',$c->ced_clencode)->count() > 0 AND ($c->ced_edo < 2 OR $c->ced_edo == 3) )   )
                                                             <div style="display:inline-block;margin:10px;">
-                                                                <a href="/editaCedula/{{ $c->ced_id }}" class="nolink">
-                                                                    <i class="bi bi-pencil-square" style="margin:7px;" class="PaClick">editar</i>
-                                                                </a>
+                                                                <i wire:click="IniciarEdicion('{{ $c->ced_id }}')" @if($c->ced_edo == '5') wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" @endif class="bi bi-pencil-square PaClick" style="margin:7px;">
+                                                                    editar
+                                                                </i>
                                                             </div>
                                                         @endif
 
-                                                        <!-- botón iniciar edición -->
+                                                        <!-- botón iniciar edición para rol traduce -->
                                                         @if($c->ced_edo =='5' AND ($roles_tra->where('rol_tipo1', $c->ced_cjarsiglas)->where('rol_tipo2',$c->ced_clencode)->count() > 0) )
-                                                        <div style="display:inline-block;margin:10px;">
-                                                            <i  wire:click="IniciarEdicion('{{ $c->ced_id }}')" wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" class="bi bi-pencil-square PaClick" style="margin:7px;" class="PaClick">Iniciar edición</i>
-                                                        </div>
+                                                            <div style="display:inline-block;margin:10px;">
+                                                                <i  wire:click="IniciarEdicion('{{ $c->ced_id }}')" wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" class="bi bi-pencil-square PaClick" style="margin:7px;" class="PaClick">
+                                                                    Iniciar edición
+                                                                </i>
+                                                            </div>
                                                         @endif
                                                         <!-- botón de ver-->
                                                         <div style="display:inline-block;margin:10px;">

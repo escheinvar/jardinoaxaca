@@ -72,9 +72,9 @@ return [
 
     'timezone' => 'UTC',
     #'timezone' => 'GMT-6',
-    
 
-    
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -172,6 +172,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        ##### Mpdf lo puse yo:
+        // Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class
     ])->toArray(),
 
     /*
@@ -187,6 +189,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        ##### Mpdf lo puse yo:
+        // 'PDFbla' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class
     ])->toArray(),
 
 ];

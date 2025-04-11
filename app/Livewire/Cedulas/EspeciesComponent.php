@@ -6,9 +6,7 @@ use App\Models\CatCampusModel;
 use App\Models\CatKewModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
-use App\Models\SpTitulosModel;
 use App\Models\SpUrlCedulaModel;
-use App\Models\SpUrlModel;
 use Illuminate\Support\Facades\App;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -18,7 +16,7 @@ use Livewire\Component;
 class EspeciesComponent extends Component
 {
 
-    public $url, $jardin, $idioma;
+    public $url, $jardin, $idioma, $CedId;
 
     public function mount($url, $jardin){
         ##### Guarda en variable la lengua, url y el jardín
@@ -28,8 +26,13 @@ class EspeciesComponent extends Component
         $this->url=$url;
         $this->jardin=$jardin;
         $this->idioma=session('locale2');
-#        dd($this->url,$this->jardin, $this->idioma);
+        $this->CedId=SpUrlCedulaModel::where('ced_act','1')
+            ->where('ced_urlurl',$url)
+            ->where('ced_cjarsiglas',$jardin)
+            ->where('ced_clencode',$this->idioma)
+            ->value('ced_id');
     }
+
 
     public function idiomas(){
         ##### Actualiza idioma en sesión
@@ -88,6 +91,13 @@ class EspeciesComponent extends Component
             $taxo['familia']='';
             $taxo['sp']='';
             $taxo['autor']='';
+        }else{
+            $taxo['id']='0';
+            $taxo['nombrecomun']=$datoUrl->url_nombrecomun;
+            $taxo['reino']=$datoUrl->url_reino;
+            $taxo['familia']='';
+            $taxo['sp']='';
+            $taxo['autor']='';
         }
 
         ###### Obtiene todo el texto de la especie, en el idioma y para el jardín seleccionado
@@ -104,7 +114,7 @@ class EspeciesComponent extends Component
             ->where('imgsp_urlurl',$this->url)
             ->where('imgsp_cjarsiglas',$this->jardin)
             ->get();
-#dd($fotos, $this->url,$this->jardin);
+
         #####  Obtiene las lenguas disponibles para esta cédula
         $lenguas = SpUrlCedulaModel::join('cat_lenguas','clen_code','=','ced_clencode')
             ->where('ced_act','1')

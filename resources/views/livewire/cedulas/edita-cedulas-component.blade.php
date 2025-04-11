@@ -7,7 +7,8 @@
             <!-- ------------------------- FICHA GENERAL IZQUIERDA ------------------------>
             <div class="col-12 col-md-4 col-lg-3 text-wrap" style="position:relative; padding:10px; border-top-left-radius:8px; background-color:#CDC6B9;">
                 <center>
-                    <h1>Editor de cédulas</h1>
+                    <a href="/catCedulas" class="nolink"> <i class="bi bi-arrow-left"></i> Catálogo </a>
+                    <h1>Editor de cédulas</a></h1>
                 </center>
                 <!-- ------------------------- Logo del Jardín propietario de la cédula ------------------------>
                 <div class="row pb-2" style="">
@@ -21,10 +22,12 @@
                 <div class="row pb-2">
                     <div class="col-12">
                         <center>
+                            <!-- Datos de cédlula: nombre y lengua -->
                             <h3>{{ $urlced->url_nombre }}</h3>
                             <h3>{{ $urlced->clen_lengua }} ({{ $urlced->ced_clencode }})</h3>
+                            <!-- Datos y botón de estado -->
                             <h3>
-                                <div style="" c>
+                                <div style="">
                                     @if($urlced->ced_edo=='0')
                                         <i class="bi bi-0-circle-fill" style="color:red;"> En elaboración</i><br>
                                         <button wire:click="EnviarCedula('2')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
@@ -34,35 +37,36 @@
                                         <button wire:click="EnviarCedula('2')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Terminar corrección
                                         </button>
-                                    @elseif($urlced->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:purple;">En autorización</i><br>
+                                    @elseif($urlced->ced_edo=='2'  OR $urlced->ced_edo=='4') <i class="bi bi-2-circle-fill" style="color:purple;">En revisión</i><br>
                                         <button wire:click="EnviarCedula('5')" wire:confirm="Estás por liberar al público esta cédula. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Publicar
                                         </button>
                                         <button onclick="VerNoVer('Notas','Correccion')" class="btn btn-primary my-2">
                                             Corregir
                                         </button>
+                                        <!-- notas de correccion-->
+                                        <div id="sale_NotasCorreccion" style="display:none;">
+                                            <span style="font-size: 80%">Describe las correcciones solicitadas</span><br>
+                                            <textarea wire:model="NotasDeCorreccion" class="form-control"></textarea>
+                                            <button wire:click="EnviarCedula('1')"  class="btn btn-primary my-2">
+                                                Solicitar corrección
+                                            </button>
+                                        </div>
                                     @elseif($urlced->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:#CD7B34;">En edición</i>
                                         <button wire:click="EnviarCedula('4')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Terminar edición
                                         </button>
-                                    @elseif($urlced->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorización</i>
+                                    {{-- @elseif($urlced->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorización</i>
                                         <button wire:click="EnviarCedula('5')" wire:confirm="Estás por liberar al público esta cédula. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Publicar
                                         </button>
                                         <button onclick="VerNoVer('Notas','Correccion')" class="btn btn-primary my-2">
                                             Corregir
-                                        </button>
+                                        </button> --}}
                                     @elseif($urlced->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>
                                     @endif
 
-                                    <!-- notas de correccion-->
-                                    <div id="sale_NotasCorreccion" style="display:none;">
-                                        <span style="font-size: 80%">Describe las correcciones solicitadas</span><br>
-                                        <textarea wire:model="NotasDeCorreccion" class="form-control"></textarea>
-                                        <button wire:click="EnviarCedula('1')"  class="btn btn-primary my-2">
-                                            Solicitar corrección
-                                        </button>
-                                    </div>
+
                                 </div>
                             </h3>
                         </center>
@@ -249,7 +253,8 @@
                             <div wire:click="DeterminaParrafoAeditar('{{ $text->txt_id }}')" class="PaClick" style="color:#CD7B34;">
                                 <i class="bi bi-arrow-90deg-down"></i>
                                 Orden {{ $text->txt_order }} &nbsp; | &nbsp;
-                                ID: {{ $text->txt_id}}
+                                ID: {{ $text->txt_id}} &nbsp; | &nbsp;
+                                V: {{ $text->txt_version }}
                                     <i class="bi bi-pencil-square"></i>
                                     <i class="bi bi-arrow-down"></i>
                             </div>
@@ -450,8 +455,8 @@
                                         </div>
                                         <span style="font-size: 80%;">Versión del párrafo: {{ $text->txt_version }} &nbsp; &nbsp;
                                         <div class="form-check" style="display:inline-block;">
-                                            <input class="form-check-input" type="checkbox" value="false" wire:model="NvaVersion">
-                                            <label class="form-check-label">Avanzar versión</label>
+                                            <!-- input class="form-check-input" type="checkbox" value="false" wire:model="NvaVersion">
+                                            <label class="form-check-label">Avanzar versión</label -->
                                         </div>
                                         </span>
                                     </div>
@@ -550,7 +555,8 @@
                 id {{ $version['ced_id'] }} {{ $version['cedula'] }} <b>V. {{ $version['ced_version'] }}</b>  &nbsp; Última modificación: {{ $version['ced_versiondate'] }}
                 &nbsp; &nbsp;
                 @if($cedulas=='1')
-                    <span onclick="VerNoVer('ver','Versionar')" class="PaClick">Versionar</span>
+                    <span onclick="VerNoVer('ver','Versionar')" class="PaClick"><i class="bi bi-git"></i> Versionar</span>  &nbsp;
+                    <span wire:click="CreaPdf()" class="PaClick">pdf</span>
                     <button wire:click="NuevaVersion()" class="btn btn-primary" id="sale_verVersionar" style="display:none;">
                         Avanzar versión
                     </button>

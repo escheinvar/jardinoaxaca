@@ -1,14 +1,11 @@
 <div>
+
 <div class="container">
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <div style="overflow:auto; background-color:#CDC6B9; border-radius:8px; margin:5px; padding:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
         <div class="d-none d-sm-none d-md-inline-block" style="display:inline-block;">
-            {{-- <b><a href="/especies" class="nolink">
-                <i class="bi bi-arrow-left-short"></i>Regresar
-            </a></b> &nbsp; | &nbsp; --}}
-            {{-- Jardin: {{ $jardin }} --}}
             <b> Reino {{ $taxo['reino'] }} &nbsp; | &nbsp;
                 @if($taxo['familia']!='') Familia {{ $taxo['familia'] }} &nbsp; | &nbsp;  @endif
                 @if($taxo['sp'] != '') <i>{{ $taxo['sp'] }}</i></b> &nbsp; &nbsp; @endif
@@ -31,7 +28,9 @@
             </select>
             &nbsp; &nbsp;
             <!-- Ícono de pdf -->
-            {{-- <i class="bi bi-filetype-pdf" style="cursor: pointer;"></i> --}}
+            <a href="/sppdf/{{ $CedId }}/pdf" target="new" class="nolink">
+                <i class="bi bi-filetype-pdf PaClick"></i>
+            </a>
         </div>
     </div>
 

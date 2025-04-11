@@ -5,10 +5,12 @@ namespace App\Livewire\Cedulas;
 use App\Models\CatJardinesModel;
 use App\Models\CatKewModel;
 use App\Models\CatLenguasModel;
+use App\Models\SistBuzonMensajesModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
 use App\Models\SpUrlModel;
+use App\Models\User;
 use App\Models\UserRolesModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +23,7 @@ class CatalogoDeCedulasComponent extends Component
 
     public $NvoTema, $NvoJardin,$NvoLengua, $NvoCopia, $NvoCopia2, $Valida;
     public $VerCrearCedula, $VerNuevoTema;
-    public $urlUrl, $urlNombre, $urlReino, $urlSp, $urlNombrecomun, $urlSciname, $urlpalabras;
+    public $urlId, $urlUrl, $urlNombre, $urlReino, $urlSp, $urlNombrecomun, $urlSciname, $urlpalabras;
     public $urlGenero, $urlGeneros;
 
 
@@ -198,7 +200,40 @@ class CatalogoDeCedulasComponent extends Component
             }
             $this->VerCrearCedula='0';
         }
-        #######
+        ###### Envía mensaje a buzón (cedula del jardín y traductores de lengua en jardín)
+        $revisores=UserRolesModel::where('rol_act','1')
+            ->where(function ($q){
+                return $q
+                ->where('rol_crolrol','cedulas')
+                ->where('rol_tipo1',$this->NvoJardin)
+                ->orWhere('rol_tipo1','todas');
+            })
+            ->orWhere(function ($r){
+                return $r
+                ->where('rol_crolrol','traduce')
+                ->where('rol_tipo1',$this->NvoJardin)
+                ->where('rol_tipo2',$this->NvoLengua);
+            })
+            ->pluck('rol_usrid')
+            ->toArray();
+
+
+        $asunto='Se creó una nueva cédula';
+        $mensaje="El usuario \"".Auth::user()->email."\" creó la nueva cédula \"".$this->NvoTema."\" del jardín \"".$this->NvoJardin."\" en lengua \"".$this->NvoLengua."\".";
+
+        foreach($revisores as $r){
+            SistBuzonMensajesModel::create([
+                'buz_modulo'=>'cedulas',
+                'buz_usr_origen'=>Auth::id(),
+                'buz_destino_usr'=>$r,
+                'buz_notas'=>'',
+                'buz_asunto'=>$asunto,
+                'buz_mensaje'=>$mensaje,
+                'buz_date_origen'=>date('Y-m-d H:i:s'),
+            ]);
+        }
+
+        ###### Regresa valores a cero
         $this->NvoTema="";
         $this->NvoJardin="";
         $this->NvoLengua="";
@@ -259,6 +294,48 @@ class CatalogoDeCedulasComponent extends Component
         redirect('/sp/'.$url.'/'.$jardin);
     }
 
+    public function BuscaSpPlanta(){
+        $this->urlGeneros=CatKewModel::where('ckew_genus','ilike','%'.$this->urlGenero.'%')
+            ->select('ckew_taxonid','ckew_scientfiicname')
+            ->orderBy('ckew_scientfiicname','asc')
+            ->get();
+    }
+
+    public function IniciarEdicion($cedId){
+        $estado=SpUrlCedulaModel::where('ced_id',$cedId)->value('ced_edo');
+        if($estado=='5'){
+            $nuevo='3';
+            ###### Envía mensaje a buzón de  odos los que sean cedula del jardin o cedula/todas
+            $revisores=UserRolesModel::where('rol_act','1')
+                ->where('rol_crolrol','cedulas')
+                ->where(function($q) use($cedId){
+                    return $q
+
+                    ->where('rol_tipo1','todas')
+                    ->orWhere('rol_tipo1', SpUrlCedulaModel::where('ced_id',$cedId)->value('ced_cjarsiglas'));
+                })
+                ->pluck('rol_usrid')
+                ->toArray();
+            $data=SpUrlCedulaModel::where('ced_id',$cedId)->first();
+            $mensaje='El usuario "'.Auth::user()->email.'" inició la edición de la cédula del tema "'.$data->ced_urlurl.'" en lengua "'.$data->ced_clencode.'" del jardín "' .$data->ced_cjarsiglas.'".';
+            foreach($revisores as $r){
+                SistBuzonMensajesModel::create([
+                    'buz_modulo'=>'cedulas',
+                    'buz_usr_origen'=>Auth::id(),
+                    'buz_destino_usr'=>$r,
+                    'buz_notas'=>'',
+                    'buz_asunto'=>'Suspensión de URL activa',
+                    'buz_mensaje'=>$mensaje,
+                    'buz_date_origen'=>date('Y-m-d H:i:s'),
+                ]);
+            }
+        }else{
+            $nuevo=$estado;
+        }
+        SpUrlCedulaModel::where('ced_id',$cedId)->update(['ced_edo'=>$nuevo]);
+        redirect('/editaCedula/'.$cedId);
+    }
+
     public function VerCrearNuevaCedula(){
         $this->VerCrearCedula='1';
     }
@@ -271,6 +348,7 @@ class CatalogoDeCedulasComponent extends Component
         $this->VerNuevoTema='1';
         $this->VerCrearCedula='0';
 
+        $this->urlId='0';
         $this->urlUrl='';
         $this->urlNombre='';
         $this->urlReino='';
@@ -286,25 +364,33 @@ class CatalogoDeCedulasComponent extends Component
         $this->VerCrearCedula='0';
     }
 
-    public function BuscaSpPlanta(){
-        $this->urlGeneros=CatKewModel::where('ckew_genus','ilike','%'.$this->urlGenero.'%')
-            ->select('ckew_taxonid','ckew_scientfiicname')
-            ->orderBy('ckew_scientfiicname','asc')
-            ->get();
-    }
-
     public function GuardarNuevoTema(){
+        ##### Valida cuestionario
         $this->validate([
             'urlNombre'=>'required',
-            'urlUrl'=>'required|unique:sp_url,url_url',
+            'urlUrl'=>'required|unique:sp_url,url_url,'.$this->urlId.',url_id',
             'urlReino'=>'required',
         ]);
+        ##### Si es planta, busca el número de catálogo del ejemplar
         if($this->urlReino=='pl'){
             $NomSci=CatKewModel::where('ckew_taxonid',$this->urlSp)->value('ckew_scientfiicname');
         }else{
             $NomSci=$this->urlSciname;
         }
-        SpUrlModel::create([
+        ##### Si el rol cédula tiene privilegio "todos", activa el nuevo tema, de lo contrario, lo deja en inactivo
+        $rolesCed=UserRolesModel::where('rol_act','1')
+            ->where('rol_usrid',Auth::id())
+            ->where('rol_crolrol','cedulas')
+            ->where('rol_tipo1','todas')
+            ->count();
+        if($rolesCed > 0 ){
+            $activo='1';
+            $mensaje="El usuario ".Auth::user()->email." creó el nuevo tema: '".$this->urlNombre."' en la url '/".$this->urlUrl."'";
+        }else{
+            $activo='0';
+        }
+        SpUrlModel::updateOrCreate(['url_url'=>$this->urlUrl], [
+            'url_act'=> $activo,
             'url_url'=>$this->urlUrl,
             'url_nombre'=>$this->urlNombre,
             'url_reino'=>$this->urlReino,
@@ -315,13 +401,67 @@ class CatalogoDeCedulasComponent extends Component
         ]);
         $this->VerNuevoTema='0';
         $this->VerCrearCedula='0';
+
+        ##### Busca destinatarios de buzón
+        $destinos=UserRolesModel::where('rol_act','1')->where('rol_crolrol','cedulas')->orWhere('rol_crolrol','traduce')->distinct('rol_usrid')->pluck('rol_usrid')->toArray();
+        ##### Manda mensaje a buzón
+        foreach($destinos as $dest){
+            SistBuzonMensajesModel::create([
+                'buz_modulo'=>'cedulas',
+                'buz_usr_origen'=>Auth::id(),
+                'buz_destino_usr'=>$dest,
+                'buz_asunto'=>'Nuevo tema de cédula',
+                'buz_mensaje'=>$mensaje,
+                'buz_date_origen'=>date('Y-m-d H:i:s'),
+            ]);
+        }
     }
 
-    public function IniciarEdicion($cedId){
-        SpUrlCedulaModel::where('ced_id',$cedId)->update(['ced_edo'=>'3']);
-        redirect('/editaCedula/'.$cedId);
+    public function EliminarNuevoTema($urlId){
+        $data=SpUrlModel::where('url_id',$urlId)
+            ->leftJoin('sp_urlcedula','url_url','=','ced_urlurl')
+            ->leftJoin('sp_cedulas','txt_cedid','=','ced_id')
+            ->get();
+        $dataTxt=$data->where('txt_cedid','>','0');
+        $dataCed=$data->where('ced_urlurl','!=','');
+
+        #dd($urlId,$data->count(),$dataTxt->count(),$dataCed->count());
+        if($dataCed->count() > 0){
+            foreach($data as $d){
+                SpCedulasModel::where('txt_id',$d->txt_id)->delete();
+            }
+        }
+        if($dataTxt->count() > 0){
+            foreach($data as $d){
+                SpUrlCedulaModel::where('ced_id',$d->ced_id)->delete();
+            }
+        }
+        foreach($data as $d){
+            SpUrlModel::where('url_id',$d->url_id)->delete();
+        }
+
+        #SpUrlCedulaModel::where('ced_urlurl')
+        #SpCedulasModel::where()
     }
 
+    public function EditarNuevoTema($TemaId){
+        ##### Abre ventana de nuevo tema
+        $this->VerCrearCedula='0';
+        $this->VerNuevoTema='1';
+        ##### Obtiene datos
+        $Datos=SpUrlModel::where('url_id',$TemaId)->first();
+        $this->urlId=$Datos->url_id;
+        $this->urlNombre = $Datos->url_nombre;
+        $this->urlUrl = $Datos->url_url;
+        $this->urlReino = $Datos->url_reino;
+        $this->urlGenero = '';
+        $this->urlSp = $Datos->url_sp;
+        $this->urlSciname = $Datos->url_sciname;
+        $this->urlNombrecomun = $Datos->url_nombrecomun;
+        $this->urlpalabras = $Datos->url_palabras;
+
+        #dd($TemaId);
+    }
     public function render(){
         ####### Obtiene listado de Jardines al que tiene acceso el admon,. de cedulas
         $Autorizados=UserRolesModel::where('rol_act','1')

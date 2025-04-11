@@ -32,12 +32,17 @@ Inicio &nbsp; &nbsp;
         @if($buzon->count() > 0)
             <table class="table table-striped" style="width:60%;border:1px solid black;">
                 <tbody>
+
                     @foreach ($buzon as $b)
-                    <tr>
-                        <td>
-                            @if($b->buz_leido == '0')
-                                <span class="PaClick m-1 p-1" wire:click="LeerMensaje('{{ $b->buz_id }}')" alt="Marcar como leído"><i class="bi bi-eye"> </i></span>
-                            @endif
+                    <tr >
+                        <td class="p-3   m-2">
+                            <span class="PaClick m-1 p-1" wire:click="LeerMensaje('{{ $b->buz_id }}')">
+                                @if($b->buz_leido == '0')
+                                    <i class="bi bi-eye"></i>
+                                @else
+                                    <i class="bi bi-eye-slash"></i>
+                                @endif
+                            </span>
                             <span style="@if($b->buz_leido =='1') color:gray; @endif">
                                 <b>{{ $b->buz_asunto }}</b><br>
                                 {{ $b->buz_mensaje }}<br>
