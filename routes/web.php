@@ -29,6 +29,7 @@ use App\Livewire\Web\ColaboradoresController;
 use App\Livewire\Web\ColeccionesController;
 use App\Livewire\Web\DirectiorioController;
 use App\Livewire\Web\EspeciesController;
+use App\Livewire\Web\EspeciesIxmController;
 use App\Livewire\Web\EventosController;
 use App\Livewire\Web\HistoriaController;
 use App\Livewire\Web\InicioController;
@@ -106,6 +107,7 @@ Route::get('/sppdf/{cedID}/{tipo}',[especies_pdf_controller::class, 'index']);
 
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
 Route::get('/especies',EspeciesController::class)->name('especies');
+Route::get('/especiesixmx',EspeciesIxmController::class)->name('especiesIxMx');
 
 /*---------- temps --------------*/
 Route::get('/elmapa',MapaComponent::class)->name('elmapa');

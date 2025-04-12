@@ -1,5 +1,3 @@
-<div>
-
 <div class="container">
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
     <!-- -------------------------------------- FRANJA SUPERIOR CLASIFICACIÓN ----------------------------------------------->
@@ -314,19 +312,152 @@
     <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
     <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
     <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
-        <div class="col-12 " style="">
-            <h4>Versión</h4>
-            {{ $version['ced_id'] }}_{{ $version['cedula'] }} V. {{ $version['ced_version'] }}  &nbsp; Última modificación: {{ $version['ced_versiondate'] }} <br><br>
-            <h4>Cita:</h4>
-            {!! $version['ced_cita'] !!}
-            <br><br>
-            {{-- <h4>Fuentes:</h4>
-            <ul>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </li>
-                <li>Dicta quasi consectetur quo itaque sit? Repudiandae maxime ipsam, </li>
-                <li>Eebitis eligendi, dolore animi, error necessitatibus minus hic sit ducimus corrupti!</li>
-            </ul> --}}
+        <!-- Cita -->
+        <div class="col-12" style="margin:20px;">
+            <h4>Forma de citar:</h4>
+            <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>.
+            <!-- año -->        {{ date('Y', strtotime($version['ced_versiondate'])) }}.
+            <!-- nombre/lengua --> <u>{{ $version['ced_nombre'] }} / {{ $idioma }}</u>
+            <!-- version -->    (V. {{ $version['ced_version'] }}).
+            <!-- jardin --> Cédulas de {{ $version['jardin'] }}<br>
+            <!-- registro doi-->
+            <!-- url --> {{ url()->current() }} accesado el {{ date('d') }} de {{ ['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][date('n')] }} de {{ date('Y') }}
+        </div>
+
+        <div class="col-12" style="margin:20px;">
+            <!-- Yo tengo algo que aportar -->
+            <a href="#AporteUsrs" class="nolink">
+                <div class=""style="margin-left:20px; display:inline-block;" >
+                    <img src="/cedulas/BotonAportar.png" wire:click="VerMensaje('1')" class="PaClick" style="height:90px;border:2px solid rgb(61, 41, 33);border-radius:15px;">
+                </div>
+            </a>
+
+            <!-- Redes sociales -->
+            <div style="width:300px; display:inline-block;margin:15px;vertical-align:middle;text-align:center;">
+                <div style="background-color: rgb(66, 42, 20);color:white;padding:4px;padding:2px; font-size:90%;text-align:center;" class="center">
+                    Compartir en redes sociales
+                </div>
+                <?php $MyUrl=url('/').'/sp/'.$url.'/'.$jardin; $MyTitle=$version['ced_nombre'];?>
+                <div style="font-size:150%;">
+                    <!-- redes facebook-->
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ $MyUrl }}&text=jaja" target="_blank" class="nolink" style="margin:7px; pading:5px;">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <!-- redes instagra -->
+                    <i class="bi bi-instagram"></i>
+                    <!-- redes X -->
+                    <a href="https://x.com/intent/tweet?text={{ $MyTitle }}&url={{$MyUrl }}" target="_blank" class="nolink"  style="margin:7px; pading:5px;">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+                    <!-- redes linkedin -->
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ $MyUrl }}&title={{ $MyTitle }}"  target="_blank" class="nolink"  style="margin:7px; pading:5px;">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <!-- redes reddit -->
+                    <!--a href="https://www.reddit.com/submit?url={{ $MyUrl }}&title={{ $MyTitle }}" target="_blank" class="nolink"  style="margin:7px; pading:5px;">
+                        <img src="https://icon.png" alt="Share on Reddit">
+                    </a-->
+                    <!-- redes Whatsapp-->
+                    <a href="https://wa.me/?text={{ $MyTitle }}%20{{ $MyUrl }}" target="_blank" class="nolink"  style="margin:7px; pading:5px;">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                    <!-- redes Tumblr-->
+                    <!--a href="https://www.tumblr.com/share/link?url={{ $MyUrl }}&name={{ $MyTitle }}&description=Mira lo que encontré" target="_blank" class="nolink"  style="margin:7px; pading:5px;">
+                    <img src="https://icon.png" alt="Share on Tumblr">
+                    </a-->
+                    <!-- redes Pinterest-->
+                    <a href="https://pinterest.com/pin/create/button/?url=[{{ $MyUrl }}]&media=[{{ $MyUrl }}]&description=[$MyTitle]" target="_blank" class="nolink"  style="margin:7px; pading:5px;">
+                        <i class="bi bi-pinterest"></i>
+                    </a>
+
+                    <!-- redes google+-->
+                    <!--script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+                    <a href="https://plus.google.com/share?url=<URL>" target="_blank">
+                    Share on Google+
+                    </a-->
+                    <!-- redes Mail-->
+                    <a href="mailto:?subject={{ $MyTitle }}&body=Mira lo que encontré: {{ $MyUrl }}" class="nolink">
+                        <i class="bi bi-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Código QR -->
+            <div  style="display: inline;">
+                <span wire:click="VerQR()" class="PaClick">
+                    {!! QrCode::margin(2)
+                        ->size($qrSize)
+                        ->backgroundColor(205,198,185)
+                        ->color(32,45,45)
+                        ->generate( url('/').'/sp/'.$url.'/'.$jardin)
+                        !!}
+                </span>
+                <span wire:click="BajarQR()" class="PaClick" style="margin:5px;vertical-align:bottom;">
+                    <i class="bi bi-cloud-download"> </i>
+                </span>
+            </div>
         </div>
     </div>
-</div>
+
+
+    <div>
+        @if($verMsg=='1')
+            <a name="AporteUsrs"> </a>
+            @if(Auth::user())
+                <div class="row">
+                    <div class="col-12 col-md-4 form-group">
+                        <label class="form-label">Usuario <red>*</red>:</label>
+                        <input type="text" value="{{ Auth::user()->usrname }}" class="form-control" readonly>
+                    </div>
+                    <div class="col-12 col-md-4 form-group">
+                        <label class="form-label">Soy originario de (opcional): </label>
+                        <input wire:model="MsgOrigen" type="text" class="form-control">
+                    </div>
+                    <div class="col-12 col-md-4 form-group">
+                        <label class="form-label">Edad (opcional):</label>
+                        <input wire:model="MsgEdad"  type="text" class="form-control">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="form-label">Sobre este tema, quiero aportar lo siguiente<red>*</red>:</label>
+                        <textarea wire:model="MsgMensaje" class="form-control" placeholder="En mi comunidad, esta planta se utiliza para ..."></textarea>
+                        @error('MsgMensaje')<error>{{ $message }}</error>@enderror
+                        <span>Tu aporte debe ser revisado por los editores antes de ser publicado.</span>
+                    </div>
+                    <div class="col-12 form-group my-4">
+                        <buton type="button" wire:click="EntraMensajeUsr()" class="btn btn-primary">Enviar mi aporte</buton>
+                        <buton type="button" wire:click="CancelaMensajeUsr()" onclick="VerNoVer('ver','Aportes')" class="btn btn-secondary">Cancelar</buton>
+                    </div>
+                </div>
+            @else
+                Para poder aportar o ver los comentarios aportados, debes registrarte primero  en el sitio.<br>
+                <a href="/ingreso">Ingresar con mi cuenta</a> &nbsp; &nbsp; <a href="/nuevousr">Crear una cuenta</a>
+            @endif
+        @endif
+    </div>
+
+    <div>
+        @if($aportes->count() > 0)
+            @foreach ($aportes as $a)
+                <div style="padding:15px;">
+                    @if($a->msg_edo < '3')
+                        <span style="color:red">En espera de autorización</span>
+                    @endif
+                    <p style="@if($a->msg_edo <'3') color:gray; @endif">
+                        {{ $a->msg_mensaje }}<br>
+                        <b>{{ $a->msg_usuario }}</b>
+
+                        @if($a->msg_origen != '') de {{ $a->msg_origen }} @endif
+                        @if($a->msg_edad != '') ({{ $a->msg_edad }} años) @endif
+                        <span style="font-size:90%;">{{ $a->msg_date }}</span>
+                    </p>
+                    <hr>
+                </div>
+            @endforeach
+            <!-- botón  Yo tengo algo que aportar -->
+            <a href="#AporteUsrs" class="nolink">
+                <div class="" style="margin-left:20px;float:right;">
+                    <img src="/cedulas/BotonAportar.png" wire:click="VerMensaje('1')" class="PaClick" style="height:90px;border:2px solid rgb(61, 41, 33);border-radius:15px;">
+                </div>
+            </a>
+        @endif
+    </div>
 </div>

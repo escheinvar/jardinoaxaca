@@ -184,9 +184,9 @@ function VerMapaJardin(IDreceptor){
 
 
 // In your Javascript (external .js resource or <script> tag)
-$(document).ready(function() {
-    $('.select2').select2();
-});
+// $(document).ready(function() {
+//     $('.select2').select2();
+// });
 
 function EscuchaAudio(soundFile){
     $("#sound").html("<embed src=\"" + soundFile + "\" hidden=\"true\" autostart=\"true\" />");

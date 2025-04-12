@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\cedulas;
 
 use App\Http\Controllers\Controller;
+use App\Models\CatJardinesModel;
 use App\Models\CatKewModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
+use App\Models\SpUrlModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -81,6 +83,8 @@ class especies_pdf_controller extends Controller{
             'ced_version'=>$datoUrl->ced_version,
             'ced_versiondate'=>$datoUrl->ced_versiondate,
             'ced_cita'=>$datoUrl->ced_cita,
+            'ced_nombre'=>SpUrlModel::where('url_url',$datoUrl->ced_urlurl)->value('url_nombre'),
+            'jardin'=>CatJardinesModel::where('cjar_siglas',$datoUrl->ced_)->value('cjar_nombre'),
         ];
 
         ######################################################################

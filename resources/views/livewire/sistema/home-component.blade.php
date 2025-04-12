@@ -35,7 +35,7 @@ Inicio &nbsp; &nbsp;
 
                     @foreach ($buzon as $b)
                     <tr >
-                        <td class="p-3   m-2">
+                        <td class="p-3 m-2">
                             <span class="PaClick m-1 p-1" wire:click="LeerMensaje('{{ $b->buz_id }}')">
                                 @if($b->buz_leido == '0')
                                     <i class="bi bi-eye"></i>
@@ -60,6 +60,14 @@ Inicio &nbsp; &nbsp;
         @else
             -- No tienes mensajes en tu buzón --
         @endif
+    </div>
+
+
+
+    <div>
+    <li> Si soy cedula: Gestor de aportaciones de mi jardín: Mostrar aportaciones a cédulas (edo < 3) y aprobar (o no) cedulas de su jardín</li>
+    <li> Si soy usr: ver mis aportaciones</li>
+
     </div>
 
 

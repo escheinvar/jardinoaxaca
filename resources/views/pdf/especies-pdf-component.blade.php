@@ -284,22 +284,25 @@
     <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
     <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
         <div class="col-12" style="">
-            <h4>Versión</h4>
-            <div style="padding:5px;">
-                ID: {{ $version['ced_id'] }}_{{ $version['cedula'] }} V. {{ $version['ced_version'] }}  &nbsp; Última modificación: {{ $version['ced_versiondate'] }} <br>
-                <span style="font-size:80%;">Impreso el día {{ date('d') }} de {{ ['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][date('n')] }} de {{ date('Y') }} a las {{ date('H:i') }} hrs.</span>
-                <br><br>
+            <div class="col-12" style="margin:20px;">
+                <h4>Forma de citar:</h4>
+                <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>.
+                <!-- año -->        {{ date('Y', strtotime($version['ced_versiondate'])) }}.
+                <!-- nombre/lengua --> <u>{{ $version['ced_nombre'] }} / {{ $idioma }}</u>
+                <!-- version -->    (V. {{ $version['ced_version'] }}).
+                <!-- jardin --> Cédulas de {{ $version['jardin'] }}<br>
+                <!-- registro doi-->
+                <!-- url --> {{ url()->current() }} accesado el {{ date('d') }} de {{ ['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][date('n')] }} de {{ date('Y') }}
             </div>
-
-            <h4>Cita:</h4>
-            {!! $version['ced_cita'] !!}
-            <br><br>
-            {{-- <h4>Fuentes:</h4>
-            <ul>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </li>
-                <li>Dicta quasi consectetur quo itaque sit? Repudiandae maxime ipsam, </li>
-                <li>Eebitis eligendi, dolore animi, error necessitatibus minus hic sit ducimus corrupti!</li>
-            </ul> --}}
+            <div class="col-12 " style="margin-left:20px; ">
+                <span wire:click="VerQR()" class="PaClick">
+                    {!! QrCode::margin(2)
+                        ->size(100)
+                        ->backgroundColor(205,198,185)
+                        ->color(32,45,45)
+                        ->generate( url('/').'/sp/'.$url.'/'.$jardin)
+                        !!}
+                </span>
         </div>
     </div>
 </div>

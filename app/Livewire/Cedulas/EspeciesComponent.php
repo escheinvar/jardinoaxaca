@@ -3,20 +3,29 @@
 namespace App\Livewire\Cedulas;
 
 use App\Models\CatCampusModel;
+use App\Models\CatJardinesModel;
 use App\Models\CatKewModel;
+use App\Models\SistBuzonMensajesModel;
+use App\Models\SpAporteUsrsModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
+use App\Models\SpUrlModel;
+use App\Models\UserRolesModel;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 
 #[Layout('plantillas.PlantillaWebSinScroll')]
 class EspeciesComponent extends Component
 {
 
-    public $url, $jardin, $idioma, $CedId;
+    public $url, $jardin, $idioma, $CedId, $qrSize;
+    public $verMsg, $MsgOrigen, $MsgEdad, $MsgMensaje;
 
     public function mount($url, $jardin){
         ##### Guarda en variable la lengua, url y el jardín
@@ -31,8 +40,32 @@ class EspeciesComponent extends Component
             ->where('ced_cjarsiglas',$jardin)
             ->where('ced_clencode',$this->idioma)
             ->value('ced_id');
+        $this->qrSize='80';
+        $this->verMsg='0';
     }
 
+    public function VerQR(){
+        if( $this->qrSize=='80'){
+        $this->qrSize='200';
+        }elseif( $this->qrSize=='200'){
+            $this->qrSize='600';
+        }elseif( $this->qrSize=='600'){
+            $this->qrSize='80';
+        }
+    }
+
+    public function BajarQR(){
+        return response()->streamDownload(
+            function(){
+                echo QrCode::size($this->qrSize)->margin(2)
+                    ->generate( url('/').'/sp/'.$this->url.'/'.$this->jardin );
+            },
+            'CodigoQR.png',
+            [
+                'Content-Type'=>'image/png'
+            ]
+            );
+    }
 
     public function idiomas(){
         ##### Actualiza idioma en sesión
@@ -43,7 +76,66 @@ class EspeciesComponent extends Component
         redirect('/sp/'.$this->url.'/'.$this->jardin);
     }
 
+    public function EntraMensajeUsr(){
+        ##### Valida campos
+        $this->validate([
+            'MsgMensaje'=>'required|min:10',
+        ]);
+        ##### Guarda mensaje
+        SpAporteUsrsModel::create([
+            'msg_act'=>'1',
+            'msg_edo'=>'0',
+            'msg_cedid'=>$this->CedId,
+            'msg_usr'=>Auth::user()->id,
+            'msg_usuario'=>Auth::user()->usrname,
+            'msg_origen'=>$this->MsgOrigen,
+            'msg_edad'=>$this->MsgEdad,
+            'msg_mensaje'=>$this->MsgMensaje,
+            'msg_date'=>date('Y-m-d'),
+        ]);
+        ##### Envía mensaje a cedula y traduce
+        ##### Obtiene lista de revisores a los que se envía mensaje (traductores del jardin y de la lengua)
+        $revisores=UserRolesModel::where('rol_act','1')
+            ->where(function($q){
+                return $q
+                ->where('rol_crolrol','traduce')
+                ->where('rol_tipo1', SpUrlCedulaModel::where('ced_id',$this->CedId)->value('ced_cjarsiglas'))
+                ->where('rol_tipo2', SpUrlCedulaModel::where('ced_id',$this->CedId)->value('ced_clencode'));
+            })
+            ->orWhere(function($q){
+                return $q
+                ->where('rol_crolrol','cedulas')
+                ->where('rol_tipo1',SpUrlCedulaModel::where('ced_id',$this->CedId)->value('ced_cjarsiglas') )
+                ->orWhere('rol_tipo1','todas');
+            })
+            ->pluck('rol_usrid')
+            ->toArray();
+        ##### Envía mensaje a cada encargado
+        foreach($revisores as $i){
+            SistBuzonMensajesModel::create([
+                'buz_modulo'=>'cedulas/usuarios',
+                'buz_usr_origen'=>Auth::user()->id,
+                'buz_destino_usr'=>$i,
+                'buz_notas'=>$this->MsgMensaje,
+                'buz_asunto'=>'Usuario público ingresón información a cédula',
+                'buz_mensaje'=>'El usuario '.$this->MsgOrigen.'aportó información a la cédula "'.$this->url.'" en lengua "'.$this->idioma.'" del jardín "'.$this->jardin.'(Id: '.$this->CedId.').',
+                'buz_date_origen'=>date('Y-m-d H:i:s'),
 
+            ]);
+        }
+        $this->CancelaMensajeUsr();
+    }
+
+    public function VerMensaje($edo){
+        $this->verMsg=$edo;
+    }
+
+    public function CancelaMensajeUsr(){
+        $this->verMsg='0';
+        $this->MsgOrigen='';
+        $this->MsgEdad='';
+        $this->MsgMensaje='';
+    }
 
     public function render(){
         ##### Confirma url, lengua y jardín
@@ -142,6 +234,7 @@ class EspeciesComponent extends Component
             #dd('No existe la URL');
             die();
         }
+
         ##### Obtiene datos de versión
         $version=[
             'ced_id'=>$datoUrl->ced_id,
@@ -149,7 +242,29 @@ class EspeciesComponent extends Component
             'ced_version'=>$datoUrl->ced_version,
             'ced_versiondate'=>$datoUrl->ced_versiondate,
             'ced_cita'=>$datoUrl->ced_cita,
+            'ced_nombre'=>SpUrlModel::where('url_url',$this->url)->value('url_nombre'),
+            'jardin'=>CatJardinesModel::where('cjar_siglas',$this->jardin)->value('cjar_nombre'),
         ];
+
+        #### Obtiene tabla de aporte de usuarios con estado 5 o estado <5Pero de usr
+        $usrAuto='0';
+        if(Auth::user()==true){
+            $usrAuto = Auth::user()->id;
+        }else{
+            $usrAuto='0';
+        }
+        $aportes=SpAporteUsrsModel::where('msg_act','1')
+            ->where('msg_cedid',$this->CedId)
+            ->where(function($r) use($usrAuto){
+                return $r
+                ->where('msg_edo', '3')
+                ->orWhere(function($q)use($usrAuto){
+                    return $q
+                    ->where('msg_edo','<','3')
+                    ->where('msg_usr',$usrAuto);
+                });
+            })
+            ->get();
 
         return view('livewire.cedulas.especies-component',[
             'taxo'=>$taxo,
@@ -162,6 +277,7 @@ class EspeciesComponent extends Component
             'herbario'=>$herbario,
             'otrosJardines'=>$otrosJardines,
             'version'=>$version,
+            'aportes'=>$aportes,
         ]);
     }
 }

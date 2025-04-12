@@ -556,7 +556,7 @@
                 &nbsp; &nbsp;
                 @if($cedulas=='1')
                     <span onclick="VerNoVer('ver','Versionar')" class="PaClick"><i class="bi bi-git"></i> Versionar</span>  &nbsp;
-                    <span wire:click="CreaPdf()" class="PaClick">pdf</span>
+                    <a href="{{ '/sppdf/'.$urlced->ced_id.'/pdf' }}" target="new">pdf</a>
                     <button wire:click="NuevaVersion()" class="btn btn-primary" id="sale_verVersionar" style="display:none;">
                         Avanzar versión
                     </button>

@@ -28,6 +28,9 @@ class CatalogoDeCedulasComponent extends Component
 
 
     public function mount(){
+        if( !in_array('cedulas',session('rol')) OR !in_array('traduce',session('rol')) ){
+            return redirect('/home');
+        }
         #dd(session()->all());
         $this->NvoCopia='0';
         $this->VerCrearCedula='0';

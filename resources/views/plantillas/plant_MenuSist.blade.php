@@ -48,13 +48,20 @@
                     @endif
 
                     <!--dropdown 1-->
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Cédulas
                         </a>
+                        @if(in_array('cedulas',session('rol')) or in_array('traduce',session('rol')))
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item @if(request()->path() == 'catCedulas') active @endif" href="/catCedulas">Catálogo de Cédulas</a></li>
+                            </ul>
+                        @endif
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item @if(request()->path() == 'catCedulas') active @endif" href="/catCedulas">Catálogo de Cédulas</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'especies') active @endif" href="/especies">Especies del jardín</a></li>
+                            <li><a class="dropdown-item @if(request()->path() == 'especiesixmx') active @endif" href="/especiesixmx">Especies de IxMx</a></li>
                         </ul>
                     </li>
 

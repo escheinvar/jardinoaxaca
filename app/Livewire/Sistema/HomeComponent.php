@@ -15,7 +15,6 @@ class HomeComponent extends Component
 {
     public function LeerMensaje($id){
         $estado=SistBuzonMensajesModel::where('buz_id',$id)->value('buz_leido');
-
         if($estado=='1'){
             $nuevo='0';
         }else{
@@ -24,7 +23,7 @@ class HomeComponent extends Component
         SistBuzonMensajesModel::where('buz_id',$id)->update([
             'buz_leido'=>$nuevo,
         ]);
-        redirect('/home');
+        #redirect('/home');
     }
 
     public function BorrarMensaje($id){
