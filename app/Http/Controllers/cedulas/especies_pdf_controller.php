@@ -5,13 +5,16 @@ namespace App\Http\Controllers\cedulas;
 use App\Http\Controllers\Controller;
 use App\Models\CatJardinesModel;
 use App\Models\CatKewModel;
+use App\Models\CatLenguasModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
+use App\Models\SpUrlCedulaVersionModel;
 use App\Models\SpUrlModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
 
@@ -84,12 +87,13 @@ class especies_pdf_controller extends Controller{
             'ced_versiondate'=>$datoUrl->ced_versiondate,
             'ced_cita'=>$datoUrl->ced_cita,
             'ced_nombre'=>SpUrlModel::where('url_url',$datoUrl->ced_urlurl)->value('url_nombre'),
-            'jardin'=>CatJardinesModel::where('cjar_siglas',$datoUrl->ced_)->value('cjar_nombre'),
+            'jardin'=>CatJardinesModel::where('cjar_siglas',$datoUrl->ced_cjarsiglas)->value('cjar_nombre'),
         ];
 
         ######################################################################
         ##################################### Genera gran variable para enviar
-        $variables=['jardin'=>$datoUrl->ced_cjarsiglas,
+        $variables=[
+            'jardin'=>$datoUrl->ced_cjarsiglas,
             'url'=>$datoUrl->ced_urlurl,
             'taxo'=>$taxo,
             'titulos'=>$titulos,
@@ -98,6 +102,8 @@ class especies_pdf_controller extends Controller{
             'lenguas'=>$lenguas,
             'jardinData'=>$jardinData,
             'version'=>$version,
+            'idioma'=>$datoUrl->ced_clencode,
+            'idioma2'=>CatLenguasModel::where('clen_code',$datoUrl->ced_clencode)->value('clen_lengua'),
         ];
 
         ######################################################################
@@ -105,27 +111,27 @@ class especies_pdf_controller extends Controller{
         if($tipo=='pdf'){
 
             $pdf=PDF::LoadView('pdf.especies-pdf-component',$variables);
-            #$pdf = PDFbla::loadView('pdf.especies-pdf-component',$variables);
-            return $pdf->stream('ja.pdf');
-
-            // $pdf = Pdf::setOptions([
-            //     'isHtml5ParserEnabled' => true,
-            //     'isRemoteEnabled' => true,
-            //     'chroot'=>public_path(),
-            // ]);
-
-            // $pdf->setPaper('letter','poirtrait');
-            // $namePDF='Cedula_'.$datoUrl->ced_urlurl.'_'.$datoUrl->ced_cjarsiglas.'_'.$datoUrl->ced_clencode.'_V'.$datoUrl->ced_version.'.pdf';
-            // return $pdf->stream($namePDF);
-            #return $pdf->download($namePDF);
-            // return response()->streamDownload(function () use ($pdf) {
-            //     echo $pdf->stream();
-            // }, $namePDF);
+            return $pdf->stream('CedulaParaImprimir.pdf');
 
         ######################################################################
         ######################################################### Genera vista
         }elseif($tipo=='b64'){
-            dd($datoUrl->ced_urlurl, $datoUrl->ced_cjarsiglas, $datoUrl->ced_clencode, $datoUrl->ced_version);
+            ##### Si no hay permiso, lo regresa
+            if(!in_array('cedulas',session('rol'))){
+                return redirect()->back();
+            }
+
+            ##### Crea pdf en Base64
+            $pdf=PDF::LoadView('pdf.especies-pdf-component',$variables);
+            $pdf64='data:application/pdf;base64,'.base64_encode($pdf->stream());
+            ##### Guarda versión en base de datos
+            SpUrlCedulaVersionModel::firstOrCreate(['cedv_cedid'=>$cedID,'cedv_cedversion'=>$version['ced_version']],[
+                'cedv_cedid'=>$cedID,
+                'cedv_cedversion'=>$version['ced_version'],
+                'cedv_usr'=>Auth::user()->id,
+                'cedv_pdf'=>$pdf64,
+            ]);
+            return redirect()->back();
         }else{
 
             return view('pdf.especies-pdf-component',$variables);

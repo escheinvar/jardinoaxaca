@@ -58,40 +58,31 @@
             <!-- ------------------------- Nombre Común ------------------------>
             <div style="color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center; font-weight:100;" >
                 <div class="py-4 d-block d-md-none"          style="font-size:120%;">{{ $taxo['nombrecomun'] }}</div>
+                <div class="" style="font-size:90%;">{{ $idioma2}}</div>
             </div>
 
             <!-- ------------------------- Otras cédulas de otros jardines ------------------------>
+            <!-- ------------------------- Otras cédulas de otros jardines ------------------------>
             @if($jardinData->where('cjar_siglas','!=',$jardin)->count() > 0)
-                {{-- <div style=" position: absolute; bottom:0; width:100%;text-align:center;"> --}}
-                <div style="width:100%;text-align:center;">
-                    <br><br>
-                    <div class="container-fluid my-4" >
-                        <h5 >Otros jardines</h5>
-                        <div class="row pb-2" style="">
+                {{-- <div style="position: absolute; bottom:0; width:100%;text-align:center;"> --}}
+                <br>
+                <div class="py-5" style="width:100%;text-align:center;">
+                    <div style="font-size: 120%;font-weight:bold;" >Otros jardines</div>
+                    <div class="row" style="">
+                        <div class="col-12" style="text-align: center; color:#64383E;font-size:90%;">
                             @foreach ($jardinData->where('cjar_siglas','!=',$jardin) as $jar)
-                                <div class="col-12 py-2" style="text-align: center; color:#64383E;font-size:90%;"">
-                                    <a href="/sp/{{ $url }}/{{ $jar->cjar_siglas }}" class="nolink">
-                                        {{ $jar->cjar_nombre }}<br>
-                                        {{-- {{ $jar->ccam_nombre }}<br> --}}
+                                <div class="px-1" style="display: inline-block;"><br>
+                                    {{-- <a href="/sp/{{ $url }}/{{ $jar->cjar_siglas }}" class="nolink"> --}}
+                                        {{ $jar->cjar_siglas }}<br>
                                         @if($jar->cjar_logo=='')
-                                            <img src="{{ public_path('/avatar/jardines/default.png') }}" style="width:30px;"><br>
+                                            <img src="{{ public_path('/avatar/jardines/default.png')}}" style="width:40px;">
                                         @else
-                                            <img src="{{ public_path('/avatar/jardines/'.$jar->cjar_logo) }}" style="width:30px;"><br>
+                                            <img src="{{ public_path('/avatar/jardines/'.$jar->cjar_logo)}}" style="width:40px;">
                                         @endif
-
-                                    </a>
+                                        <br>
+                                    {{-- </a> --}}
                                 </div>
                             @endforeach
-                            {{--
-                            <div class="col-4" style="">
-                                Id :
-                            </div>
-                            <div class="col-8" style="">
-                                @foreach ($clavos as $cla)
-                                    {{ $cla }},
-                                @endforeach
-                            </div>
-                            --}}
                         </div>
                     </div>
                 </div>
@@ -240,7 +231,8 @@
                 @endif
             @endforeach
         </div>
-
+    </div>
+    <div class="row" style="margin:5px; border-bottom-left-radius:8px;">
 
         <!-- -------------- Imágenes derecha ----------------->
         <div class="col-12" style="background-color:#CDC6B9;">
@@ -284,7 +276,7 @@
     <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
     <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
         <div class="col-12" style="">
-            <div class="col-12" style="margin:20px;">
+            <div style="padding:20px;">
                 <h4>Forma de citar:</h4>
                 <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>.
                 <!-- año -->        {{ date('Y', strtotime($version['ced_versiondate'])) }}.
@@ -292,17 +284,23 @@
                 <!-- version -->    (V. {{ $version['ced_version'] }}).
                 <!-- jardin --> Cédulas de {{ $version['jardin'] }}<br>
                 <!-- registro doi-->
-                <!-- url --> {{ url()->current() }} accesado el {{ date('d') }} de {{ ['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][date('n')] }} de {{ date('Y') }}
+                <!-- url --> {{ url('/').'/sp/'.$url.'/'.$jardin }} accesado el {{ date('d') }} de {{ ['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][date('n')] }} de {{ date('Y') }} {{ date('H:i') }} hrs.
             </div>
-            <div class="col-12 " style="margin-left:20px; ">
-                <span wire:click="VerQR()" class="PaClick">
-                    {!! QrCode::margin(2)
+
+            <div class="col-12 " style="padding:20px;">
+                <div style="display: inline-block;">
+                    <img src="data:image/png;base64, {!! base64_encode(
+                        QrCode::margin(2)
                         ->size(100)
                         ->backgroundColor(205,198,185)
                         ->color(32,45,45)
                         ->generate( url('/').'/sp/'.$url.'/'.$jardin)
-                        !!}
-                </span>
+                    ) !!}">
+                </div>
+                <div style="display: inline-block;">
+                    {{ url('/').'/sp/'.$url.'/'.$jardin }}<br>
+                    En lengua {{ $idioma2 }}
+                </div>
         </div>
     </div>
 </div>

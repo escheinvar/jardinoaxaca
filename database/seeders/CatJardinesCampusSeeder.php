@@ -31,12 +31,23 @@ class CatJardinesCampusSeeder extends Seeder
                 'cjar_name'=>'Matatlan',
                 'cjar_nombre'=>'Jardín Comunitario de Matatlán',
                 'cjar_siglas'=>'JM',
-                'cjar_tipo'=>'Etnobiológico',
+                'cjar_tipo'=>'Etnobotánico',
                 'cjar_direccion'=>'Reforma s/n, Independencia, Centro, Oaxaca de Juárez, Oaxaca. C.P. 68000 ',
                 'cjar_tel'=>' 951 516 5325',
                 'cjar_mail'=>'etnobotanico@infinitummail.com',
                 'cjar_edo'=>'Oaxaca',
                 'cjar_logo'=>'Matatlan.png',
+            ],[
+                'cjar_id'=>'3',
+                'cjar_name'=>'IxMx en JebOax',
+                'cjar_nombre'=>'Investigadores por México en el Jardín Etnobiológico de Oaxaca',
+                'cjar_siglas'=>'IxMxJebOax',
+                'cjar_tipo'=>'Etnobiológico',
+                'cjar_direccion'=>'SN',
+                'cjar_tel'=>'5515139080',
+                'cjar_mail'=>'jardinetnobiologicodeoaxaca@gmail.com',
+                'cjar_edo'=>'Oaxaca',
+                'cjar_logo'=>'IxMxJebOax.png',
             ]
         ];
         if(CatJardinesModel::count()=='0'){
@@ -67,6 +78,13 @@ class CatJardinesCampusSeeder extends Seeder
                 'ccam_name'=>'Presa',
                 'ccam_nombre'=>'Presa',
                 'ccam_direccion'=>'',
+            ],[
+                'ccam_id'=>'4',
+                'ccam_act'=>'1',
+                'ccam_cjarid'=>'3',
+                'ccam_name'=>'IxMx JebOax',
+                'ccam_nombre'=>'Investigadores por México en el Jardín Etnobiológico de Oaxaca',
+                'ccam_direccion'=>'S/N',
             ]
         ];
         if(CatCampusModel::count()=='0'){

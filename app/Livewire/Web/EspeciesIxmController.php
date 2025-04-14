@@ -15,6 +15,7 @@ class EspeciesIxmController extends Component
         ->where('ced_cjarsiglas','IxMxJebOax')
         ->leftJoin('sp_url','url_url','=','ced_urlurl')
         ->get();
+
         return view('livewire.web.especies-ixm-controller',[
             'cedulas'=>$cedulas,
         ]);

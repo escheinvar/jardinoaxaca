@@ -5,12 +5,14 @@ namespace App\Livewire\Cedulas;
 use App\Models\CatEtiquetasImgModel;
 use App\Models\CatJardinesModel;
 use App\Models\CatKewModel;
+use App\Models\CatLenguasModel;
 use App\Models\SistBuzonMensajesModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
 use App\Models\SpUrlModel;
 use App\Models\UserRolesModel;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Layout;
@@ -34,7 +36,7 @@ class EditaCedulasComponent extends Component
         $this->TxtIdEnEdicion='0';
         $this->NvaVersion=true;
         $this->NvaVersionCedula=false;
-        $this->NvaCita=SpUrlCedulaModel::where('ced_id',$cedID)->first()->value('ced_cita');
+        $this->NvaCita=SpUrlCedulaModel::where('ced_id',$cedID)->value('ced_cita');
         $this->NotasDeCorreccion='';
 
         // ###################################################
@@ -352,96 +354,6 @@ class EditaCedulasComponent extends Component
         ]);
     }
 
-    public function CreaPdf(){
-        #dd($this->cedID);
-        ######################################################################
-        #################################################### Obtiene variables
-        $datoUrl=SpUrlCedulaModel::where('ced_id',$this->cedID)
-            ->join('sp_url','ced_urlurl','=','url_url')
-            ->first();
-
-        ##### Obtiene datos taxonómicos principales de la especie
-        if($datoUrl->url_reino =='pl'){
-            $taxo['id']=$datoUrl->url_sp;
-            $taxo['nombrecomun']=$datoUrl->url_nombrecomun;
-            $taxo['reino']='Plantae';
-            $taxo['familia']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_family');
-            $taxo['sp']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_scientfiicname');
-            $taxo['autor']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_scientfiicnameautorship');
-        }elseif($datoUrl->url_reino =='an'){  #### en tanto no exista catálogo de plantas u hongos....
-            $taxo['id']=$datoUrl->url_sp;
-            $taxo['nombrecomun']=$datoUrl->url_nombrecomun;
-            $taxo['reino']='Animalia';
-            $taxo['familia']='';
-            $taxo['sp']='';
-            $taxo['autor']='';
-        }else{
-            $taxo['id']='0';
-            $taxo['nombrecomun']=$datoUrl->url_nombrecomun;
-            $taxo['reino']=$datoUrl->url_reino;
-            $taxo['familia']='';
-            $taxo['sp']='';
-            $taxo['autor']='';
-        }
-
-        ##### Obtiene datos de los jardín que cuentan con esta misma cédula
-        $jardinData=SpUrlCedulaModel::where('ced_urlurl',$datoUrl->ced_urlurl)
-            ->where('ced_act','1')
-            ->where('ced_edo','5')
-            ->join('cat_jardines','cjar_siglas','=','ced_cjarsiglas')
-            ->distinct('cjar_nombre')
-            ->get();
-
-        ##### obtiene las fotos de la cédula
-        $fotos=SpFotosModel::where('imgsp_act','1')
-            ->where('imgsp_urlurl',$datoUrl->ced_urlurl)
-            ->where('imgsp_cjarsiglas',$datoUrl->ced_cjarsiglas)
-            ->get();
-
-        #####  Obtiene las lenguas disponibles para esta cédula
-        $lenguas = SpUrlCedulaModel::join('cat_lenguas','clen_code','=','ced_clencode')
-        ->where('ced_id',$this->cedID)
-        ->get();
-
-        ###### Obtiene todo el texto de la especie, en el idioma y para el jardín seleccionado
-        $texto=SpCedulasModel::where('txt_act','1')
-            ->where('txt_cedid',$datoUrl->ced_id)
-            ->orderBy('txt_order','asc')             #### párrafos ordenados por campo order
-            ->get();
-
-        ###### De la selección de textos, extrae los títulos (para construir menú)
-        $titulos= $texto->where('txt_titulo','1');
-
-        ##### Obtiene datos de versión
-        $version=[
-        'ced_id'=>$datoUrl->ced_id,
-        'cedula'=>$datoUrl->ced_urlurl.'/'.$datoUrl->ced_cjarsiglas.'/'.$datoUrl->ced_clencode,
-        'ced_version'=>$datoUrl->ced_version,
-        'ced_versiondate'=>$datoUrl->ced_versiondate,
-        'ced_cita'=>$datoUrl->ced_cita,
-    ];
-
-        ############################################################################
-        ################################################################## Manda pdf
-        // $pdf =Pdf::loadView('livewire.cedulas.especies-component',[
-        //     'jardin'=>$datoUrl->ced_cjarsiglas,
-        //     'url'=>$datoUrl->ced_urlurl,
-        //     'taxo'=>$taxo,
-        //     'titulos'=>$titulos,
-        //     'texto'=>$texto,
-        //     'fotos'=>$fotos,
-        //     'lenguas'=>$lenguas,
-        //     'jardinData'=>$jardinData,
-        //     'version'=>$version,
-        // ]);
-        // #$pdf->setPaper('letter','poirtrait');
-
-        // return response()->streamDownload(function () use ($pdf) {
-        //     echo $pdf->stream();
-        // }, 'aaa.pdf');
-
-    }
-
     public function NuevaVersion(){
         ###### Obtiene versión previa
         $vieja=SpUrlCedulaModel::where('ced_id',$this->cedID)->value('ced_version');
@@ -454,9 +366,8 @@ class EditaCedulasComponent extends Component
         SpCedulasModel::where('txt_cedid',$this->cedID)->where('txt_act','1')->update([
             'txt_version'=> '0.01',
         ]);
+        redirect('/sppdf/'.$this->cedID.'/b64');
     }
-
-
 
     public function render() {
         $urlced=SpUrlCedulaModel::where('ced_id',$this->cedID)
@@ -480,7 +391,11 @@ class EditaCedulasComponent extends Component
             'ced_version'=>$urlced->ced_version,
             'ced_versiondate'=>$urlced->ced_versiondate,
             'ced_cita'=>$urlced->ced_cita,
+            'ced_nombre'=>SpUrlModel::where('url_url',$urlced->ced_urlurl)->value('url_nombre'),
+            'jardin'=>CatJardinesModel::where('cjar_siglas',$urlced->ced_cjarsiglas)->value('cjar_nombre'),
+            'idioma2'=>CatLenguasModel::where('clen_code',$urlced->ced_clencode)->value('clen_lengua'),
         ];
+
         ##### Obtiene el listado de posición de imágenes ya utilizado
         $YaUsados=SpFotosModel::where('imgsp_urlurl',$urlced->ced_urlurl)
             ->where('imgsp_cjarsiglas',$urlced->ced_cjarsiglas)
@@ -494,6 +409,15 @@ class EditaCedulasComponent extends Component
             ->whereNotIn('cimg_name',$YaUsados)
             ->get();
 
+        ###### Roles Involucrados
+        $roles=UserRolesModel::where('rol_act','1')
+            ->whereIn('rol_crolrol',['cedulas','traduce'])
+            ->where('rol_tipo1',$jardinData->cjar_siglas)
+            ->orWhere('rol_tipo1','todas')
+            ->join('users','rol_usrid','=','id')
+            ->select('rol_crolrol','rol_tipo1','rol_tipo2','usrname','email')
+            ->get();
+
         return view('livewire.cedulas.edita-cedulas-component',[
             'urlced'=>$urlced,
             'texto'=>$textos,
@@ -502,6 +426,7 @@ class EditaCedulasComponent extends Component
             'jardinData'=>$jardinData,
             'version'=>$version,
             'tipoImgs'=>$tipoImgs,
+            'roles'=>$roles,
         ]);
     }
 }

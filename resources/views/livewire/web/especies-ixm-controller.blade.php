@@ -12,7 +12,7 @@
     @endsection
 
     @section('banner-title')
-    Las especies<br> de los IxMx del Jardín
+    Las cédulas<br> de los IxMx del Jardín
     @endsection
 
 
@@ -26,7 +26,7 @@
 
                 <div class="row subtitulo justify-content-end px-4">
                     <div class="col-sm-12 col-md-9 col-lg-8 col-xl-6">
-                        <h2 class="subtitulo">Las especies de los Investigadores por México del Jardín</h2>
+                        <h2 class="subtitulo">Las cédulas de los Investigadores por México del Jardín</h2>
                     </div>
                 </div>
 
@@ -39,7 +39,6 @@
                                         {{ $i->url_nombre }}
                                     </a>
                                 </li>
-
                             @endforeach
                         </ul>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Livewire\Cedulas;
 use App\Models\CatCampusModel;
 use App\Models\CatJardinesModel;
 use App\Models\CatKewModel;
+use App\Models\CatLenguasModel;
 use App\Models\SistBuzonMensajesModel;
 use App\Models\SpAporteUsrsModel;
 use App\Models\SpCedulasModel;
@@ -244,6 +245,7 @@ class EspeciesComponent extends Component
             'ced_cita'=>$datoUrl->ced_cita,
             'ced_nombre'=>SpUrlModel::where('url_url',$this->url)->value('url_nombre'),
             'jardin'=>CatJardinesModel::where('cjar_siglas',$this->jardin)->value('cjar_nombre'),
+
         ];
 
         #### Obtiene tabla de aporte de usuarios con estado 5 o estado <5Pero de usr
@@ -253,6 +255,7 @@ class EspeciesComponent extends Component
         }else{
             $usrAuto='0';
         }
+
         $aportes=SpAporteUsrsModel::where('msg_act','1')
             ->where('msg_cedid',$this->CedId)
             ->where(function($r) use($usrAuto){
@@ -278,6 +281,7 @@ class EspeciesComponent extends Component
             'otrosJardines'=>$otrosJardines,
             'version'=>$version,
             'aportes'=>$aportes,
+            'idioma2'=>CatLenguasModel::where('clen_code',$datoUrl->ced_clencode)->value('clen_lengua'),
         ]);
     }
 }

@@ -552,32 +552,69 @@
         <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
             <div class="col-12 " style="">
                 <h4>Versión</h4>
-                id {{ $version['ced_id'] }} {{ $version['cedula'] }} <b>V. {{ $version['ced_version'] }}</b>  &nbsp; Última modificación: {{ $version['ced_versiondate'] }}
+                id {{ $version['ced_id'] }} {{ $version['cedula'] }}<br>
+                Versión {{ $version['ced_version'] }}<br>
+                Última modificación: {{ $version['ced_versiondate'] }}
                 &nbsp; &nbsp;
                 @if($cedulas=='1')
-                    <span onclick="VerNoVer('ver','Versionar')" class="PaClick"><i class="bi bi-git"></i> Versionar</span>  &nbsp;
-                    <a href="{{ '/sppdf/'.$urlced->ced_id.'/pdf' }}" target="new">pdf</a>
-                    <button wire:click="NuevaVersion()" class="btn btn-primary" id="sale_verVersionar" style="display:none;">
-                        Avanzar versión
-                    </button>
-                @endif
-                <br><br>
-
-
-                <h4>Cita @if($cedulas=='1')<span class="PaClick" onclick="VerNoVer('ver','cita')"><i class="bi bi-pencil-square"></i></span> @endif :</h4>
-                {!! $version['ced_cita'] !!}
-                @if($cedulas=='1')
-                    <div id="sale_vercita" style="display: none;">
-                        <textarea wire:model="NvaCita" class="form-control" style="width:100%;"></textarea>
-                        <div style="font-size: 90%;">
-                            Apellido, A.,  &nbsp;  Apellido, B.,  &nbsp;  y  &nbsp;  Apellido, C.  &nbsp;  Título del artículo de la página web,  &nbsp;  lengua,  &nbsp;  Versión.  Nombre del sitio web. {{ url('/') }}/sp/{{ $urlced->ced_urlurl }}/{{ $urlced->ced_cjarsiglas }}
-                        </div>
-                        <button wire:click="NuevaCita()" class="btn btn-primary">
-                            Guardar nueva cita
+                    <span onclick="VerNoVer('ver','Versionar')" class="PaClick"><i class="bi bi-git"></i> Versionar</span>  &nbsp; &nbsp; &nbsp;
+                    <a href="{{ '/sppdf/'.$urlced->ced_id.'/pdf' }}" target="new" class="nolink"><i class="bi bi-filetype-pdf"></i> pdf</a>
+                    <div id="sale_verVersionar" style="display:none;">
+                        <button wire:click="NuevaVersion()" wire:loadding.attr="disabled" wire:confirm="Vas a generar una nueva versión pública de la Cédula y los contadores de versión de cada párrafo se van a regresar al inicio. ¿Quieres continuar? " class="btn btn-primary">
+                            Avanzar a versión {{ $version['ced_version'] + 0.1 }}
+                        </button>
+                        <button class="btn btn-secondary" onclick="VerNoVer('ver','Versionar')">
+                            Cancelar
                         </button>
                     </div>
                 @endif
+            </div>
+
+            <div class="col-12">
+                <br>
+                <h4>Forma de citar:</h4>
+                @if($cedulas=='1')
+                    <div id="sale_NuevoAutor" style="display:none;">
+                        <label>Autor(es):</label><br>
+                        <input type="text" wire:model="NvaCita" class="form-control" style="width:400px;display:inline-block;">
+                        <button wire:click="NuevaCita()" class="btn btn-primary btn-sm">
+                            Guardar autor
+                        </button>
+                        <button class="btn btn-secondary btn-sm" onclick="VerNoVer('Nuevo','Autor')">
+                            Cancelar
+                        </button>
+                    </div>
+                @else
+                    <b>{{ $NvaCita }}</b>
+                @endif
+
+                @if($cedulas=='1') <i class="bi bi-pencil-square PaClick" onclick="VerNoVer('Nuevo','Autor')"></i> @endif
+                <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>.
+                <!-- año -->        {{ date('Y', strtotime($version['ced_versiondate'])) }}.
+                <!-- nombre/lengua --> <u>{{ $version['ced_nombre'] }} / {{ $urlced->ced_clencode }}</u>
+                <!-- version -->    (V. {{ $version['ced_version'] }}).
+                <!-- jardin --> Cédulas de {{ $version['jardin'] }}
+                <!-- lengua --> en {{ $version['idioma2'] }}<br>
+                <br>
+                Formato de cita:<br>
+                <b>Apellido1, N1.</b>, <b>Apellido2, N2. </b> y <b> Apellido3, N3.</b> &nbsp; &nbsp; Año  &nbsp; &nbsp; <u> Tema &nbsp; / &nbsp; Lengua </u>  &nbsp; &nbsp; (Versión)  &nbsp; &nbsp; Cédulas del -Nombre del jardín-  &nbsp; &nbsp; en lengua.
                 <br><br>
+
+                <h4>Personas involucradas con la cédula:</h4>
+                Rol <b>cedula general</b>:
+                @foreach($roles->where('rol_crolrol','cedulas')->where('rol_tipo1','todas') as $r)
+                    {{ $r->usrname }}: {{ $r->email }} &nbsp; |
+                @endforeach
+                <br>
+                Rol <b>cedula</b> en {{ $jardinData->cjar_siglas  }}:
+                @foreach($roles->where('rol_crolrol','cedulas')->where('rol_tipo1',$jardinData->cjar_siglas) as $r)
+                    {{ $r->usrname }}: {{ $r->email }} &nbsp; |
+                @endforeach
+                <br>
+                Rol <b>traduce</b> en {{$jardinData->cjar_siglas }} y lengua {{ $urlced->ced_clencode }}:</b>
+                @foreach($roles->where('rol_crolrol','traduce')->where('rol_tipo1',$jardinData->cjar_siglas)->where('rol_tipo2',$urlced->ced_clencode) as $r)
+                    {{ $r->usrname }}: {{ $r->email }} &nbsp; |
+                @endforeach
             </div>
         </div>
     </div>

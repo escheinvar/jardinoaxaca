@@ -28,14 +28,14 @@ class CatalogoDeCedulasComponent extends Component
 
 
     public function mount(){
-        if( !in_array('cedulas',session('rol')) OR !in_array('traduce',session('rol')) ){
+        if( in_array('cedulas',session('rol')) OR in_array('traduce',session('rol')) ){
+            $this->NvoCopia='0';
+            $this->VerCrearCedula='0';
+            $this->VerNuevoTema='0';
+            $this->urlGeneros=collect();
+        }else {
             return redirect('/home');
         }
-        #dd(session()->all());
-        $this->NvoCopia='0';
-        $this->VerCrearCedula='0';
-        $this->VerNuevoTema='0';
-        $this->urlGeneros=collect();
     }
 
     public function GeneraCedula(){
