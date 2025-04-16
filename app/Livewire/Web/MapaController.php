@@ -11,8 +11,9 @@ class MapaController extends Component
     public $mapa;
 
     public function mount(){
-      $this->idioma= session('locale');
-      $this->mapa="/imagenes/mapa/mapa-pre-01.png";
+        $this->idioma= session('locale');
+        $this->mapa="/imagenes/mapa/mapa-pre-01.png";
+        MyRegistraVisita('web_mapa');
     }
 
     public function cambiaFoto($section){
@@ -28,16 +29,16 @@ class MapaController extends Component
         }else{
             $this->mapa = "/imagenes/mapa/mapa-pre-01.png";
         }
-        
+
     }
 
     public function idiomas(){
         session(['locale'=> $this->idioma]);
         App::setLocale($this->idioma);
-    
+
         redirect('/mapa');
     }
-    
+
     public function render() {
         return view('livewire.web.mapa-controller');
     }

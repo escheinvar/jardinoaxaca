@@ -12,15 +12,16 @@ class ColeccionesController extends Component
 
     public function mount(){
         $this->idioma= session('locale');
+        MyRegistraVisita('web_colecciones');
     }
 
     public function idiomas(){
         session(['locale'=> $this->idioma]);
         App::setLocale($this->idioma);
-    
+
         redirect('/mapa');
     }
-    
+
     public function render()
     {
         return view('livewire.web.colecciones-controller');

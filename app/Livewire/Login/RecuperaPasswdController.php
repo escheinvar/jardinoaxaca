@@ -15,7 +15,9 @@ class RecuperaPasswdController extends Component
     public $correo, $mensaje, $ver, $ver2;
 
     public function mount(){
+        MyRegistraVisita('web_login-RecuperaPassword');
         $this->ver='1';
+
     }
 
     public function validador(){
@@ -23,7 +25,7 @@ class RecuperaPasswdController extends Component
         $this->validate([
             'correo'=>'email|required',
         ]);
-        
+
         $celda=User::where('email',$this->correo)->get();
 
         if($celda->count() == 0){
@@ -38,7 +40,7 @@ class RecuperaPasswdController extends Component
                 $this->ver='0';
             }
         }
-       
+
         ###### ELIMINA POSIBLES REGISTROS PREEXISTENTES
         TokensModel::where('tok_mail',$this->correo)->update([
             'tok_act'=>'0',
@@ -47,7 +49,7 @@ class RecuperaPasswdController extends Component
         ######## GENERA TOCKEN Y LO GUARDA EN BASE DE DATOS
         function GeneraTocken($n) {
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $randomString = '';            
+            $randomString = '';
             for ($i = 0; $i < $n; $i++) {
                 $index = rand(0, strlen($characters) - 1);
                 $randomString .= $characters[$index];
@@ -66,7 +68,7 @@ class RecuperaPasswdController extends Component
                 'tok_ini'=>$hoy,
                 'tok_fin'=>$fin,
             ]);
-        
+
             ##### ENVÍA CORREO ELECTRÓNICO CON TOCKEN
             $Datos=['correo'=>$this->correo,'token'=>$token, 'fin'=>$fin];
             Mail::to($this->correo)->send(new solicitoPasswordMail($Datos));

@@ -10,13 +10,14 @@ class ServiciosController extends Component
     public $idioma, $lenguas=[];
 
     public function mount(){
-      $this->idioma= session('locale');
+        $this->idioma= session('locale');
+        MyRegistraVisita('web_servicios');
     }
 
     public function idiomas(){
         session(['locale'=> $this->idioma]);
         App::setLocale($this->idioma);
-    
+
         redirect('/recorridos');
     }
 

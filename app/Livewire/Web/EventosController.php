@@ -16,6 +16,7 @@ class EventosController extends Component
     public $titulo, $lugar, $descripcion, $descripcion2, $tipo, $fechaIni, $horaIni, $fechaFin, $horaFin, $costo, $imagen;
 
     public function mount(){
+        MyRegistraVisita('web_eventos');
         $this->Cantidad='3';
         $this->lugar='Biblioteca del Jardín Etnobiológico de Oaxaca';
         $this->costo='Actividad gratuita';

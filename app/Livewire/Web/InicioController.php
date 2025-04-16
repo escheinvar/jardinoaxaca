@@ -11,13 +11,14 @@ class InicioController extends Component
     public $idioma, $lenguas=['pt','en','es_mix_bj'];
 
     public function mount(){
-      $this->idioma= session('locale');
+        $this->idioma= session('locale');
+        MyRegistraVisita('web_inicio');
     }
 
     public function idiomas(){
         session(['locale'=> $this->idioma]);
         App::setLocale($this->idioma);
-    
+
         redirect('/');
     }
 

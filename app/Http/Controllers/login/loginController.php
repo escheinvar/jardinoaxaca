@@ -20,7 +20,6 @@ class loginController extends Controller
     }
 
     public function store(Request $request){
-
         $request->session()->regenerate();
         ##### Valida cuestionario
         $this->validate($request,[
@@ -44,7 +43,7 @@ class loginController extends Controller
                 'locale'=>'es',
                 'locale2'=>'spa',
             ]);
-
+            MyRegistraVisita('login');
             #### Redirecciona
             return redirect('/home');
 

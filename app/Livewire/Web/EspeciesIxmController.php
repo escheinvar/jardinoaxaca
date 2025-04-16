@@ -8,6 +8,9 @@ use Livewire\Component;
 
 class EspeciesIxmController extends Component
 {
+    public function mount(){
+        MyRegistraVisita('web_especies_IxMx');
+    }
     public function render() {
         #$cedulas=SpUrlModel::where('url_act','1')->orderBy('url_nombre','asc')->get();
         $cedulas=SpUrlCedulaModel::where('ced_act','1')

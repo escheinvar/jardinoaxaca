@@ -29,6 +29,7 @@ class EspeciesComponent extends Component
     public $verMsg, $MsgOrigen, $MsgEdad, $MsgMensaje;
 
     public function mount($url, $jardin){
+
         ##### Guarda en variable la lengua, url y el jardín
         if(session('locale2')==''){
             session(['locale2'=>'spa']);
@@ -43,6 +44,8 @@ class EspeciesComponent extends Component
             ->value('ced_id');
         $this->qrSize='80';
         $this->verMsg='0';
+
+        MyRegistraVisita(['ced_'.$url.'_'.$jardin.'_'.$this->idioma, $this->CedId]);
     }
 
     public function VerQR(){

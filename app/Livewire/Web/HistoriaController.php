@@ -11,12 +11,13 @@ class HistoriaController extends Component
 
     public function mount(){
         $this->idioma= session('locale');
+        MyRegistraVisita('web_historia');
     }
 
     public function idiomas(){
         session(['locale'=> $this->idioma]);
         App::setLocale($this->idioma);
-    
+
         redirect('/mapa');
     }
 

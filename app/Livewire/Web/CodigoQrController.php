@@ -10,6 +10,7 @@ class CodigoQrController extends Component
     public $qr;
 
     public function mount($codigoQR){
+        MyRegistraVisita('web_codigoQR');
         if($codigoQR == 'bienvenida' OR $codigoQR=='despedida'){
 
         }else{
