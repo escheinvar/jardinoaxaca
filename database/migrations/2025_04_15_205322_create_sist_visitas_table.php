@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('vis_locale2')->nullable();
             $table->string('vis_tocken')->nullable();
             $table->string('vis_pais')->nullable();
-            $table->string('vis_regionName')->nullable();
+            $table->string('vis_regionname')->nullable();
             $table->string('vis_ciudad')->nullable();
             $table->decimal('vis_x',10,7)->nullable();
             $table->decimal('vis_y',10,7)->nullable();

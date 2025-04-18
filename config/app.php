@@ -70,8 +70,9 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-    #'timezone' => 'GMT-6',
+    #'timezone' => 'UTC',
+    'timezone' => 'America/Mexico_City',
+
 
 
 

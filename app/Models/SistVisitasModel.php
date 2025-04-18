@@ -22,7 +22,7 @@ class SistVisitasModel extends Model
         'vis_locale2',
         'vis_tocken',
         'vis_pais',
-        'vis_regionName',
+        'vis_regionname',
         'vis_ciudad',
         'vis_x',
         'vis_y',

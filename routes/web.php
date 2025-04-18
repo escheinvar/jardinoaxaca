@@ -25,6 +25,7 @@ use App\Livewire\Sistema\FichaParadaCompenent;
 use App\Livewire\Sistema\HomeComponent;
 use App\Livewire\Sistema\MapaComponent;
 use App\Livewire\Sistema\UsuariosComponent;
+use App\Livewire\Sistema\VisitasComponent;
 use App\Livewire\Web\ColaboradoresController;
 use App\Livewire\Web\ColeccionesController;
 use App\Livewire\Web\DirectiorioController;
@@ -86,6 +87,7 @@ Route::get('/nuevousr01/{token}',Nuevousuario01Controller::class);
 Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->group(function(){
     Route::get('/home',HomeComponent::class)->name('home');
     Route::get('/usuarios',UsuariosComponent::class)->name('usuarios');
+    Route::get('/vervisitas',VisitasComponent::class)->name('visitas');
     /* -------------------------- SECCIÓN DE PLANTAS ----------------------------- */
     /* --------------------------------------------------------------------------- */
     Route::get('/importaPlantas',ImportaPlantasComponent::class)->name('importa');
@@ -104,6 +106,8 @@ Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->grou
 /* ---------------------------------------------------------------------------- */
 Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
 Route::get('/sppdf/{cedID}/{tipo}',[especies_pdf_controller::class, 'index']);
+
+
 
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
 Route::get('/especies',EspeciesController::class)->name('especies');

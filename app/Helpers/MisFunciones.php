@@ -49,6 +49,7 @@ if(! function_exists('MyRegistraVisita')){
         }
 
         SistVisitasModel::firstOrCreate(['vis_url'=>url()->current(),   'vis_tocken'=>session('token'), 'vis_locale2'=>session('locale2')] ,[
+            'vis_id'=>SistVisitasModel::max('vis_id') +1 ,
             'vis_unique'=>$unico,
             'vis_ip'=>request()->ip(),
             'vis_url'=>url()->current(),

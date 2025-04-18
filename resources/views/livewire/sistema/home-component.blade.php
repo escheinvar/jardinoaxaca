@@ -70,7 +70,9 @@ Inicio &nbsp; &nbsp;
 
     </div>
 
-
+    <ul>
+        <li><a href="/vervisitas">Ver visitas</a></li>
+    </ul>
     <!-- ----------------------- Módulo de Admin de sistema ----------------------- -->
     @if(in_array('admin',session('rol')))
         <h3>Módulo de admin sistema</h3>
@@ -99,6 +101,7 @@ Inicio &nbsp; &nbsp;
         <ul>
             <li> <a href="/catCedulas">Catálogo de cédulas</a></li>
             <li> <a href="/especies"> Ver Cédulas publicadas</a></li>
+            <li> Módulo de admon. de aportaciones</li>
         </ul>
     @endif
 
