@@ -40,9 +40,14 @@ if(! function_exists('MyRegistraVisita')){
             $x=null;
             $y=null;
         }
+        dd(session('rol'), is_array(session('rol')), is_null(session('rol')));
         if (Auth::user()==true){
             $usr=Auth::user()->id;
-            $roles=implode(",",session('rol'));
+            if( is_array(session('rol')) ){
+                $roles=implode(",",session('rol'));
+            }else{
+                $roles=null;
+            }
         }else{
             $usr=null;
             $roles=null;
