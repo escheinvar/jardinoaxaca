@@ -14,7 +14,8 @@ class VisitasComponent extends Component
 {
     public $desde, $hasta;
     public function mount(){
-        $this->desde="2025-04-15";
+        #$this->desde="2025-04-15";
+        $this->desde=date('Y-m-d');
         $this->hasta=date('Y-m-d');
     }
 

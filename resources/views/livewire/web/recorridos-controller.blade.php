@@ -676,18 +676,17 @@ banner-recorridos
                             <p>
                                 @if(session('locale')=='en')
                                     To schedule a school tour, please send an email to <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
-                                    attaching the request letter on letterhead addressed to Dr. Alejandro de Ávila Blomberg,
+                                    attaching the request letter on letterhead addressed to Jardín Etnobiológico de Oaxaca,
                                     indicating the total number of attendees and suggesting the date and time for the tour(s).
                                     We recommend sending the request letter at least three weeks in advance, due to the high demand for requests.
                                 @elseif(session('locale')=='pt')
-                                Para agendar uma visita escolar, envie um e-mail para <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
-                                anexando a carta de solicitação em papel timbrado e endereçada ao Dr. Alejandro de Ávila Blomberg,
-                                indicando o número total de participantes e sugerindo a data e a hora em que eles solicitam o(s) passeio(s).
-                                Recomendamos que você envie sua inscrição com pelo menos três semanas de antecedência devido à alta demanda.
-                                @elseif(session('locale')=='es_mix_bj')
+                                    Para agendar uma visita escolar, envie um e-mail para <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
+                                    anexando a carta de solicitação em papel timbrado e endereçada ao Jardín Etnobiológico de Oaxaca,
+                                    indicando o número total de participantes e sugerindo a data e a hora em que eles solicitam o(s) passeio(s).
+                                    Recomendamos que você envie sua inscrição com pelo menos três semanas de antecedência devido à alta demanda.
                                 @else
                                     Para agendar un recorrido escolar, envía un correo a <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
-                                    adjuntando el oficio de solicitud en papel membretado y dirigido al Dr. Alejandro de Ávila Blomberg,
+                                    adjuntando el oficio de solicitud en papel membretado y dirigido al Jardín Etnobiológico de Oaxaca,
                                     indicando el número total de asistentes y sugiriendo la fecha y hora en la que solicitan el o los recorridos.
                                     Recomendamos enviar el oficio con al menos 3 semanas de anticipación, debido a la alta demanda de solicitudes.
                                 @endif
