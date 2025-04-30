@@ -107,7 +107,7 @@ Eventos
 
 
         <!------------------------------- AGREGAR NUEVO EVENTO ---------------------------------  -->
-        @if(isset(session('rol')))
+        @if(null !== session('rol') )
             @if(auth()->user() AND in_array('webmaster', session('rol')))
                 <div class="container px-4 py-5">
 
