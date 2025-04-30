@@ -225,7 +225,7 @@ banner-recorridos
                                             Schedules
                                         @elseif(session('locale')=='pt')
                                             Horários
-                                        @elseif(session('locale')=='es_mix_bj')
+                                           @elseif(session('locale')=='es_mix_bj')
                                             Ora kuvi kèe ndó
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','5')"></i>
                                             <audio controls  id="sale_audio5" style="display:none;">
@@ -243,13 +243,13 @@ banner-recorridos
                                         <h3>Guided tours in Spanish</h3>
                                         <h4>Duration: 1 hour</h4>
                                         <p>Monday - Friday<br>10:30, 11:00, 11:30, 12:00 and 17:00 hours</p>
-                                        <p>Saturdays<br>10:30, 11:00, 11:30 and 12:00  hours</p>
+                                        {{-- <p>Saturdays<br>10:30, 11:00, 11:30 and 12:00  hours</p> --}}
                                         <p>At the moment we only offer tours in Spanish</p>
                                     @elseif(session('locale')=='pt')
                                         <h3>Visitas guiadas em espanhol</h3>
                                         <h4>Duração: 1 hora</h4>
                                         <p>Segunda a sexta<br>10:30h, 11:00h, 11:30h, 12:00h e 17h</p>
-                                        <p>Sábados<br>10:30h, 11:00h, 11:30h y 12:00h</p>
+                                        {{-- <p>Sábados<br>10:30h, 11:00h, 11:30h y 12:00h</p> --}}
                                         <p>No momento oferecemos passeios apenas em espanhol</p>
                                     @elseif(session('locale')=='es_mix_bj')
                                         <h3>ñà kèe ndó ra koo iin na kunúú kù’ùn xí’ín ndó
@@ -270,7 +270,7 @@ banner-recorridos
                                                 <source src="audio/es_mix_bj/02_recorrido_08.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        <p>Sávàdò<br>10:30h, 11:00h, 11:30h, 12:00h<!--kàa ùxì, kàa ùxì iin xí’ín kàa xuvì ká’ñu-->
+                                        {{-- <p>Sávàdò<br>10:30h, 11:00h, 11:30h, 12:00h<!--kàa ùxì, kàa ùxì iin xí’ín kàa xuvì ká’ñu--> --}}
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','9')"></i>
                                             <audio controls  id="sale_audio9" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_09.ogg" type="audio/ogg">
@@ -287,7 +287,7 @@ banner-recorridos
                                         <h3>Recorridos guiados</h3>
                                         <h4>Duración: 1 hora</h4>
                                         <p>Lunes - viernes<br>10:30, 11:00, 11:30, 12:00 y 17:00 horas</p>
-                                        <p>Sábados<br>10:30, 11:00, 11:30 y 12:00 horas</p>
+                                        {{-- <p>Sábados<br>10:30, 11:00, 11:30 y 12:00 horas</p> --}}
                                         <p>Por el momento, los recorridos solo son en español</p>
 
                                     @endif
@@ -643,22 +643,22 @@ banner-recorridos
                                 <h3>Schedules</h3>
                                 <h4>Duration 1 hour</h4>
                                 <p>Monday to Friday<br>8:00 a.m. to 10:00 a.m. <br> 1:00 p.m. to 3:00 p.m. <br>
-                                    <br>Saturdays<br>8:00 a.m. to 10:00 a.m.</p>
+                                    {{-- <br>Saturdays<br>8:00 a.m. to 10:00 a.m.</p> --}}
                             @elseif(session('locale')=='pt')
                                 <h3>Horários</h3>
                                 <h4>Duração 1 hora</h4>
                                 <p>Segunda a sexta<br>8h00 às 10h00<br> 13h00 às 15h00<br>
-                                    <br>Sábados<br>8h00 às 10h00</p>
+                                    {{-- <br>Sábados<br>8h00 às 10h00</p> --}}
                             @elseif(session('locale')=='es_mix_bj')
                                     <h3>Óra</h3>
                                     <h4>Iin óra kúú ña kuàtyì nà kaka na ini jardîn</h4>
                                     <p>Lúne saá ndià viérne<br>kàa ùnà ña’à saá ndià kàa ùxì <br>kàa iin ká’ñu iin saá ndià kàa ùnì xìkaá<br>
-                                        <br>sávàdò<br>kàa ùnà ña’à saá ndià kàa ùxì </p>
+                                        {{-- <br>sávàdò<br>kàa ùnà ña’à saá ndià kàa ùxì </p> --}}
                             @else
                                 <h3>Horarios</h3>
                                 <h4>Duración 1 hora</h4>
                                 <p>Lunes a viernes<br>8:00 hrs, 9:00 hrs <br> 13:00 hrs y 14:00 hrs<br>
-                                <br>Sábados<br>8:00 hrs y 9:00 hrs </p>
+                                {{-- <br>Sábados<br>8:00 hrs y 9:00 hrs </p> --}}
                             @endif
                         </div>
                     </div>
