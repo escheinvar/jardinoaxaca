@@ -14,15 +14,13 @@ class EspeciesController extends Component
     }
 
     public function render(){
-        $cedulas=SpUrlModel::where('url_act','1')
-            ->where('ced_edo','5')
-            ->orderBy('url_nombre','asc')->get();
-        // $cedulas=SpUrlCedulaModel::where('ced_act','1')
-        // ->where('ced_edo','>=','3')
-        // ->where('ced_clencode','spa')
-        // ->where('ced_cjarsiglas','JebOax')
-        // ->leftJoin('sp_url','url_url','=','ced_urlurl')
-        // ->get();
+        // $cedulas=SpUrlModel::where('url_act','1')->orderBy('url_nombre','asc')->get();
+        $cedulas=SpUrlCedulaModel::where('ced_act','1')
+        ->where('ced_edo','>=','3')
+        ->where('ced_clencode','spa')
+        ->where('ced_cjarsiglas','JebOax')
+        ->leftJoin('sp_url','url_url','=','ced_urlurl')
+        ->get();
 
         return view('livewire.web.especies-controller',[
             'cedulas'=>$cedulas,
