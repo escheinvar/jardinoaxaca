@@ -31,6 +31,7 @@ class CatKewModel extends Model
         'ckew_scientificnameid',
         'ckew_dynamicproperties',
         'ckew_reference',
+        'ckew_references',
         //'Version',  ### Campo agregado por mi para indicar la versión de kew (o si es JEB)
     ];
 }

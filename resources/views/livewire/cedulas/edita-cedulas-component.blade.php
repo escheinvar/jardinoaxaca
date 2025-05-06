@@ -553,11 +553,10 @@
             <div class="col-12 " style="">
                 <h4>Versión</h4>
                 id {{ $version['ced_id'] }} {{ $version['cedula'] }}<br>
-                Versión {{ $version['ced_version'] }}<br>
                 Última modificación: {{ $version['ced_versiondate'] }}
                 &nbsp; &nbsp;
                 @if($cedulas=='1')
-                    <span onclick="VerNoVer('ver','Versionar')" class="PaClick"><i class="bi bi-git"></i> Versionar</span>  &nbsp; &nbsp; &nbsp;
+                    <span onclick="VerNoVer('ver','Versionar')" class="PaClick"><i class="bi bi-git"></i> Versionar/DOI</span>  &nbsp; &nbsp; &nbsp;
                     <a href="{{ '/sppdf/'.$urlced->ced_id.'/pdf' }}" target="new" class="nolink"><i class="bi bi-filetype-pdf"></i> pdf</a>
                     <div id="sale_verVersionar" style="display:none;">
                         <button wire:click="NuevaVersion()" wire:loadding.attr="disabled" wire:confirm="Vas a generar una nueva versión pública de la Cédula y los contadores de versión de cada párrafo se van a regresar al inicio. ¿Quieres continuar? " class="btn btn-primary">
@@ -595,6 +594,7 @@
                 <!-- version -->    (V. {{ $version['ced_version'] }}).
                 <!-- jardin --> Cédulas de {{ $version['jardin'] }}
                 <!-- lengua --> en {{ $version['idioma2'] }}<br>
+                <!-- registro doi-->
                 <br>
                 Formato de cita:<br>
                 <b>Apellido1, N1.</b>, <b>Apellido2, N2. </b> y <b> Apellido3, N3.</b> &nbsp; &nbsp; Año  &nbsp; &nbsp; <u> Tema &nbsp; / &nbsp; Lengua </u>  &nbsp; &nbsp; (Versión)  &nbsp; &nbsp; Cédulas del -Nombre del jardín-  &nbsp; &nbsp; en lengua.
