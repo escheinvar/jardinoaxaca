@@ -18,6 +18,7 @@ use App\Livewire\Plantas\CatalogoCamellonesYJardinesComponent2;
 use App\Livewire\Plantas\CatalogoJardinesYcampusComponent;
 use App\Livewire\Plantas\ImportaPlantasComponent2;
 use App\Livewire\Plantas\ImportaPlantasComponent;
+use App\Livewire\Sistema\BuzonComponent;
 use App\Livewire\Sistema\ErrorComponent;
 use App\Livewire\Sistema\FichaClavoComponent;
 use App\Livewire\Sistema\FichaEspecieComponent;
@@ -86,6 +87,7 @@ Route::get('/nuevousr01/{token}',Nuevousuario01Controller::class);
 #Route::middleware(['auth.basic'])->group(function(){
 Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->group(function(){
     Route::get('/home',HomeComponent::class)->name('home');
+    Route::get('/buzon',BuzonComponent::class)->name('buzon');
     Route::get('/usuarios',UsuariosComponent::class)->name('usuarios');
     Route::get('/vervisitas',VisitasComponent::class)->name('visitas');
     /* -------------------------- SECCIÓN DE PLANTAS ----------------------------- */
@@ -111,6 +113,7 @@ Route::get('/sppdf/{cedID}/{tipo}',[especies_pdf_controller::class, 'index']);
 
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
 Route::get('/especies',EspeciesController::class)->name('especies');
+Route::get('/cedulas',EspeciesController::class)->name('cedulas');
 Route::get('/especiesixmx',EspeciesIxmController::class)->name('especiesIxMx');
 
 /*---------- temps --------------*/

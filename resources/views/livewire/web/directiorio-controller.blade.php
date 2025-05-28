@@ -38,29 +38,27 @@ Directorio
                 <div class="col">
                     <div class="row subtitulo justify-content-end">
                         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 ">
-                            <h3 class="subtitulo">Responsables</h3>
+                            <h3 class="subtitulo">Responsables del Jardín</h3>
                         </div>
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                            <h4>Dirección</h4>
-                            <p>Dr. Alejandro de Ávila Blomberg
+                            <h4>Dirección del Jardín</h4>
+                            <p>Francisco Javier Andrés Pacheco, <small><br><A HREF="https://www.oaxaca.gob.mx/occe/" class="nolink">Director general de la Oficina de Convenciones, Congresos y Eventos de Oaxaca (OCCE)</A>*<br>
+                                *<small>Por decreto en el Periódico Oficial del <a href="/imagenes/250228_DiarioOficialOaxaca_Jardin.pdf" target="new" class="nolink">28 de febrero</a> y <a href="/imagenes/250303_DiarioOficialOaxaca_occe.pdf" target="new" class="nolink">3 de marzo</a> de 2025</small></small></p>
 
-                            <h4>Administración</h4>
-                            <p>Lic. Guadalupe Ortega Aguilar</p>
-
-                            <h4>Biblioteca</h4>
-                            <p> Sra. Mariana Hortencia Muñoz Herrera</p>
 
                         </div>
 
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                            <h4>Colecciones</h4>
-                            <!--p>Ing. César Chávez-Rendón</p-->
-                            <p>Biól. Geovanni Martínez Guerra</p>
+                            <h4>Coordinación de Conservación y Preservación Etnobiológica</h4>
+                            <p>Geovanni Martínez Guerra</p>
 
-                            <h4>Infraestructura y Eventos</h4>
-                            <p>Maestro Jorge Juárez García</p>
+                            <h4>Departamento de Estudios Etnobiológicos</h4>
+                            <p> Viannay Hernández Gómez</p>
+
+                            <h4>Departamento de Difusión Etnobiológica</h4>
+                            <p>Javier Bustamante San Juan</p>
                         </div>
                     </div>
                 </div>
@@ -70,27 +68,40 @@ Directorio
                 <div class="col">
                     <div class="row subtitulo justify-content-end">
                         <div class="col-sm-12 col-md-10 col-lg-8 col-xl-6 ">
-                            <h3 class="subtitulo">Auxiliares docentes</h3>
+                            <h3 class="subtitulo">Auxiliares </h3>
                         </div>
                     </div>
 
                     <div class="row justify-content-end">
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                            <ul>
+                            <h4>Infraestructura y Eventos</h4>
+                            <p>Jorge Juárez García</p>
+
+                            <h4>Biblioteca</h4>
+                            <p> Mariana Hortencia Muñoz Herrera</p>
+                            <p> Jacqueline Itzel Jiménez López</p>
+
+                            {{-- <ul>
                                 <li>Ing. Vianney Hernández Gómez</li>
                                 <li>Biol. David Alejandro Velasco Filio</li>
-                                <!--li>Lic. Tania Araliz Hernández Velasco</li-->
-                                <!--li>Biól. Issis Quetzali Moreno López</li-->
                                 <li>.</li>
-                            </ul>
+                            </ul> --}}
                         </div>
 
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                            <ul>
-                                {{-- <li>Arq. Valeria Rubio García</li> --}}
+                             <h4>Administración</h4>
+                            <p>Guadalupe Ortega Aguilar</p>
+
+                            <h4>Recorridos escolares</h4>
+                            <p>Miriam Beatríz Contreras Ramírez</p>
+
+                            <h4>Colecciones</h4>
+                            <p>David Alejandro Velasco Filio</p>
+                            {{-- <ul>
+                                <li>Arq. Valeria Rubio García</li>
                                 <li>Biol. Geovanni Martínez Guerra</li>
                                 <li>Biol. Jacqueline Itzel Jiménez López</li>
-                            </ul>
+                            </ul> --}}
                         </div>
                     </div>
                 </div>

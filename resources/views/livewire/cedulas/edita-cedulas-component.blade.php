@@ -30,14 +30,16 @@
                                 <div style="">
                                     @if($urlced->ced_edo=='0')
                                         <i class="bi bi-0-circle-fill" style="color:red;"> En elaboración</i><br>
-                                        <button wire:click="EnviarCedula('2')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
-                                            Terminar edición
+                                        <button wire:click="EnviarCedula('2')" wire:confirm="Estás por iniciar el proceso de edición. ¿Deseas continuar?" class="btn btn-primary my-2">
+                                            Terminar elaboración
                                         </button>
-                                    @elseif($urlced->ced_edo=='1') <i class="bi bi-1-circle-fill" style="color: #CD7B34;">En corrección</i><br>
+                                    @elseif($urlced->ced_edo=='1')
+                                        <i class="bi bi-1-circle-fill" style="color: #CD7B34;">En corrección</i><br>
                                         <button wire:click="EnviarCedula('2')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Terminar corrección
                                         </button>
-                                    @elseif($urlced->ced_edo=='2'  OR $urlced->ced_edo=='4') <i class="bi bi-2-circle-fill" style="color:purple;">En revisión</i><br>
+                                    @elseif($urlced->ced_edo=='2'  OR $urlced->ced_edo=='4')
+                                        @if($urlced->ced_edo=='2') <i class="bi bi-2-circle-fill" style="color:purple;"> @else <i class="bi bi-4-circle-fill" style="color:purple;"> @endif En revisión</i><br>
                                         <button wire:click="EnviarCedula('5')" wire:confirm="Estás por liberar al público esta cédula. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Publicar
                                         </button>
@@ -48,21 +50,22 @@
                                         <div id="sale_NotasCorreccion" style="display:none;">
                                             <span style="font-size: 80%">Describe las correcciones solicitadas</span><br>
                                             <textarea wire:model="NotasDeCorreccion" class="form-control"></textarea>
-                                            <button wire:click="EnviarCedula('1')"  class="btn btn-primary my-2">
+                                            <button wire:click="@if($urlced->ced_edo=='2') EnviarCedula('1') @else EnviarCedula('3') @endif"  class="btn btn-primary my-2">
                                                 Solicitar corrección
                                             </button>
                                         </div>
-                                    @elseif($urlced->ced_edo=='3') <i class="bi bi-3-circle-fill" style="color:#CD7B34;">En edición</i>
+                                    @elseif($urlced->ced_edo=='3')
+                                        <i class="bi bi-3-circle-fill" style="color:#CD7B34;">En edición</i>
                                         <button wire:click="EnviarCedula('4')" wire:confirm="Estás por iniciar el proceso de publicación. No podrás ver la cédula hasta que concluya este proceso. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Terminar edición
                                         </button>
-                                    {{-- @elseif($urlced->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorización</i>
+                                    @elseif($urlced->ced_edo=='4') <i class="bi bi-4-circle-fill" style="color:purple;">En autorización</i>
                                         <button wire:click="EnviarCedula('5')" wire:confirm="Estás por liberar al público esta cédula. ¿Deseas continuar?" class="btn btn-primary my-2">
                                             Publicar
                                         </button>
                                         <button onclick="VerNoVer('Notas','Correccion')" class="btn btn-primary my-2">
                                             Corregir
-                                        </button> --}}
+                                        </button>
                                     @elseif($urlced->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>
                                     @endif
 
@@ -74,7 +77,7 @@
                 </div>
 
                 <div class="row">
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <div class="col-12 ">
                             <h5>Imágenes</h5>
                             <input type="file" wire:model="NvaImagen" class="form-control my-2" style="width:100%;" accept="image/*, video/*"  enctype="multipart/form-data" >
@@ -82,7 +85,7 @@
                         </div>
                         <div class="col-9">
                             <select wire:model="NvaImagenTipo" class="form-select">
-                                <option value="">Indica el lugar en el que va la imágen</option>
+                                <option value="">Indica el lugar en el que va la imagen</option>
                                 @foreach ($tipoImgs as $img)
                                     <option value="{{ $img->cimg_name }}">{{ $img->cimg_name }}</option>
                                 @endforeach
@@ -110,7 +113,7 @@
                             <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}"
                             class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="height:580px; center">
                         </a>
-                        @if($cedulas=='1')
+                        @if($cedulas >'0')
                             <!-- botón borrar -->
                             <div class="PaClick" wire:click="BorraFoto('portada')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline;vertical-align:bottom;">
                                 <i class="bi bi-trash"></i>
@@ -134,7 +137,7 @@
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
                     </div>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('ppal1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -152,7 +155,7 @@
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
                     </div>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('ppal2')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -170,7 +173,7 @@
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
                     </div>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('ppal3')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -188,7 +191,7 @@
                             <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                         </a>
                     </div>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('ppal4')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -360,12 +363,12 @@
                                             {{-- @if($NvoTitulo=='1') <br>Se sugiere no crear audios en los títulos y leer el título como parte del primer párrafo siguiente @endif --}}
                                         </div>
 
-                                        @if($cedulas=='1')
+                                        @if($cedulas >'0')
                                             <!-- video -->
                                             <div class="col-12 col-md-6 form-group">
                                                 @if($text->txt_video != '')
                                                     <!-- ver video-->
-                                                    <label class="label">{{ $text->txt_video }}</label>
+                                                    <label class="label" style="font-size: 60%;">{{ $text->txt_video }}</label>
                                                     <video width='95%' controls wire:ignore>
                                                         <source src='/cedulas/{{ $text->txt_video }}' type='video/mp4'>
                                                     </video>
@@ -385,7 +388,7 @@
                                             <div class="col-12 col-md-4 form-group">
                                                 @if($text->txt_img1 != '')
                                                     <!-- ver img1 -->
-                                                    <label class="label">{{ $text->txt_img1 }}</label>
+                                                    <label class="label" style="font-size: 60%;">{{ $text->txt_img1 }}</label>
                                                     <img src="/cedulas/{{ $text->txt_img1 }}" style="width:95%;">
                                                     <!-- eliminar img1-->
                                                     <div class="form-check" style="display:inline-block;">
@@ -403,7 +406,7 @@
                                             <div class="col-12 col-md-4 form-group">
                                                 @if($text->txt_img2 != '')
                                                     <!-- ver img2 -->
-                                                    <label class="form-label">{{ $text->txt_img2 }}</label>
+                                                    <label class="form-label" style="font-size: 60%;">{{ $text->txt_img2 }}</label>
                                                     <img src="/cedulas/{{ $text->txt_img2 }}" style="width:95%;">
                                                     <!-- eliminar img2-->
                                                     <div class="form-check" style="display:inline-block;">
@@ -430,7 +433,7 @@
                                                     </div>
                                                 @else
                                                     <!-- nueva img3 -->
-                                                    <label class="form-label">Imagen 3</label>
+                                                    <label class="form-label" style="font-size: 60%;">Imagen 3</label>
                                                     <input type="file" wire:model="NvoImg3" class="form-control">
                                                 @endif
                                             </div>
@@ -481,7 +484,7 @@
                         <source src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateralvideo1')->value('imgsp_file') }} }}" type="video/ogg">
                         Tu navegador no soporta el video
                     </video>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('lateralvideo1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -498,7 +501,7 @@
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                     </a>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('lateral1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -515,7 +518,7 @@
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                     </a>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('lateral2')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -532,7 +535,7 @@
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
                     </a>
-                    @if($cedulas=='1')
+                    @if($cedulas >'0')
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('lateral3')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
@@ -551,28 +554,59 @@
         <!-- -------------------------------------- BLOQUE INFERIOR AUTORÍAS ----------------------------------------------->
         <div class="row my-4 p-3" style="margin:5px; border-radius:8px; background-color:#87796d;">
             <div class="col-12 " style="">
+                <!-- -------------------------------- Versión ------------------------------->
                 <h4>Versión</h4>
                 id {{ $version['ced_id'] }} {{ $version['cedula'] }}<br>
-                Última modificación: {{ $version['ced_versiondate'] }}
+                Versión: {{  $version['ced_version'] }}  ({{ $version['ced_versiondate'] }})
                 &nbsp; &nbsp;
-                @if($cedulas=='1')
+                @if($cedulas >'0')
                     <span onclick="VerNoVer('ver','Versionar')" class="PaClick"><i class="bi bi-git"></i> Versionar/DOI</span>  &nbsp; &nbsp; &nbsp;
                     <a href="{{ '/sppdf/'.$urlced->ced_id.'/pdf' }}" target="new" class="nolink"><i class="bi bi-filetype-pdf"></i> pdf</a>
                     <div id="sale_verVersionar" style="display:none;">
-                        <button wire:click="NuevaVersion()" wire:loadding.attr="disabled" wire:confirm="Vas a generar una nueva versión pública de la Cédula y los contadores de versión de cada párrafo se van a regresar al inicio. ¿Quieres continuar? " class="btn btn-primary">
+                        <button wire:click="NuevaVersion()" wire:loadding.attr="disabled" wire:confirm="Vas a generar una nueva versión pública de la Cédula. Esto afecta la referencia bibliográfica (cambiará el año al de la nueva versión). Como parte del proceso, los contadores de versión de cada párrafo se van a reiniciar. ¿Quieres continuar? " class="btn btn-primary">
                             Avanzar a versión {{ $version['ced_version'] + 0.1 }}
                         </button>
                         <button class="btn btn-secondary" onclick="VerNoVer('ver','Versionar')">
                             Cancelar
                         </button>
+                        @if($cedulas =='2')
+                            <div style="">
+                                <label class="form-label">DOI:</label>
+                                <input wire:model="NvoDoi" type="text" class="form-control" style="width:50%;">
+                                @error('NvoDoi')<error>{{ $message }}</error>@enderror
+                                <button wire:click="NuevoDoi()" class="btn btn-primary">Registra DOI</button>
+                                <button class="btn btn-secondary" onclick="VerNoVer('ver','Versionar')">
+                                    Cancelar
+                                </button>
+                            </div>
+                        @else
+                            <div>
+                                Solo el admin. global de cédulas puede ingresar un DOI<br>
+                                doi: {{ $NvoDoi }}
+                            </div>
+                        @endif
                     </div>
                 @endif
             </div>
+            <!-- -------------------------------- Versiones previas ------------------------------->
+            <div class="col-12 " style="">
+                <div>
+                    <b>Versiones previas:</b>
+                        @if(count($version['versiones']) > 0)
+                            @foreach ($version['versiones'] as $i)
+                                {{ $i->cedv_cedversion }},
+                            @endforeach
+                        @else
+                            Aún no hay versiones.
+                        @endif
+                    </div>
+                    <br>
+                </div>
 
             <div class="col-12">
                 <br>
                 <h4>Forma de citar:</h4>
-                @if($cedulas=='1')
+                @if($cedulas >'0')
                     <div id="sale_NuevoAutor" style="display:none;">
                         <label>Autor(es):</label><br>
                         <input type="text" wire:model="NvaCita" class="form-control" style="width:400px;display:inline-block;">
@@ -587,19 +621,21 @@
                     <b>{{ $NvaCita }}</b>
                 @endif
 
-                @if($cedulas=='1') <i class="bi bi-pencil-square PaClick" onclick="VerNoVer('Nuevo','Autor')"></i> @endif
+                @if($cedulas >'0') <i class="bi bi-pencil-square PaClick" onclick="VerNoVer('Nuevo','Autor')"></i> @endif
                 <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>.
                 <!-- año -->        {{ date('Y', strtotime($version['ced_versiondate'])) }}.
                 <!-- nombre/lengua --> <u>{{ $version['ced_nombre'] }} / {{ $urlced->ced_clencode }}</u>
                 <!-- version -->    (V. {{ $version['ced_version'] }}).
                 <!-- jardin --> Cédulas de {{ $version['jardin'] }}
                 <!-- lengua --> en {{ $version['idioma2'] }}<br>
-                <!-- registro doi-->
+                <!-- registro doi--> @if($version['ced_doi'] != '') https://doi.org/{{ $version['ced_doi'] }} @endif
                 <br>
                 Formato de cita:<br>
                 <b>Apellido1, N1.</b>, <b>Apellido2, N2. </b> y <b> Apellido3, N3.</b> &nbsp; &nbsp; Año  &nbsp; &nbsp; <u> Tema &nbsp; / &nbsp; Lengua </u>  &nbsp; &nbsp; (Versión)  &nbsp; &nbsp; Cédulas del -Nombre del jardín-  &nbsp; &nbsp; en lengua.
                 <br><br>
+            </div>
 
+            <div class="col-12 " style="">
                 <h4>Personas involucradas con la cédula:</h4>
                 Rol <b>cedula general</b>:
                 @foreach($roles->where('rol_crolrol','cedulas')->where('rol_tipo1','todas') as $r)

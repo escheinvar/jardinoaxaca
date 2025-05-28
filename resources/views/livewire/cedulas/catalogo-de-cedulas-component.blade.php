@@ -45,7 +45,9 @@
                             <select wire:model.live="NvoTema" class="form-select" style="width:80%; display:inline;">
                                 <option value="">Indicar un tema</option>
                                 @foreach ($temas as $t)
-                                    <option value="{{ $t->url_url }}">{{ $t->url_nombre }}</option>
+                                    @if($t->url_act == '1')
+                                        <option value="{{ $t->url_url }}">{{ $t->url_nombre }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <!-- botón agregar nuevo tema-->
@@ -307,6 +309,7 @@
                                                         @elseif($c->ced_edo=='5') <i class="bi bi-5-circle-fill" style="color:darkgreen;"> Públicada</i>   <!-- 5 -->
                                                         @endif
 
+                                                        @if($c->ced_doi !='') &nbsp; &nbsp;  <b> doi {{ $c->ced_doi }} </b>@endif
                                                     </div>
                                                     <!-- url, lengua y siglas de jardin -->
                                                     <div>
@@ -318,21 +321,24 @@
                                                     </div>
                                                     <div>
                                                         <!-- botón de editar para rol cedula -->
-                                                        @if(
-                                                            in_array($c->ced_cjarsiglas, $roles_ced->pluck('rol_tipo1')->toArray())
+                                                        @if(in_array($c->ced_cjarsiglas, $roles_ced->pluck('rol_tipo1')->toArray())
                                                             OR    in_array('todas',  $roles_ced->pluck('rol_tipo1')->toArray())
                                                             OR   ($roles_tra->where('rol_tipo1', $c->ced_cjarsiglas)->where('rol_tipo2',$c->ced_clencode)->count() > 0 AND ($c->ced_edo < 2 OR $c->ced_edo == 3) )   )
                                                             <div style="display:inline-block;margin:10px;">
-                                                                <i wire:click="IniciarEdicion('{{ $c->ced_id }}')" @if($c->ced_edo == '5') wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" @endif class="bi bi-pencil-square PaClick" style="margin:7px;">
-                                                                    editar
-                                                                </i>
+                                                                @if($c->ced_doi != '' AND !in_array('todas',  $roles_ced->pluck('rol_tipo1')->toArray()))
+                                                                    DOI
+                                                                @else
+                                                                    <i wire:click="IniciarEdicion('{{ $c->ced_id }}')" @if($c->ced_edo == '5') wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" @endif class="bi bi-pencil-square PaClick" style="margin:7px;">
+                                                                        editar
+                                                                    </i>
+                                                                @endif
                                                             </div>
                                                         @endif
 
                                                         <!-- botón iniciar edición para rol traduce -->
                                                         @if($c->ced_edo =='5' AND ($roles_tra->where('rol_tipo1', $c->ced_cjarsiglas)->where('rol_tipo2',$c->ced_clencode)->count() > 0) )
                                                             <div style="display:inline-block;margin:10px;">
-                                                                <i  wire:click="IniciarEdicion('{{ $c->ced_id }}')" wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" class="bi bi-pencil-square PaClick" style="margin:7px;" class="PaClick">
+                                                                <i  wire:click="IniciarEdicion('{{ $c->ced_id }}')" @if($c->ced_edo == '5')  wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" @endif class="bi bi-pencil-square PaClick" style="margin:7px;" class="PaClick">
                                                                     Iniciar edición
                                                                 </i>
                                                             </div>
@@ -343,7 +349,7 @@
                                                         </div>
                                                         <!-- botón de borrar-->
                                                         @if(in_array($c->ced_cjarsiglas, $roles_ced->pluck('rol_tipo1')->toArray())   OR   in_array('todas',  $roles_ced->pluck('rol_tipo1')->toArray()) )
-                                                            <div style="display:inline-block;margin:10px;" onclick="VerNoVer('Borrar','{{ $c->ced_id }}')" wire:click="" wire:confirm="Estás por eliminar PERMANENTEMENTE la cédula, sus textos, imágenes y videos. ¿Seguro que quieres continuar?">
+                                                            <div style="display:inline-block;margin:10px;" onclick="VerNoVer('Borrar','{{ $c->ced_id }}')" wire:click="" wire:confirm="Estás por eliminar PERMANENTEMENTE la cédula, sus textos, imágenes y videos. Como esto es irreversible, vas a tener que confirmar esta acción haciendo clic en el botón que dice Si, borrar.¿Seguro que quieres continuar?.">
                                                                 <i class="bi bi-trash" style="padding:7px; cursor: pointer;" class="PaClick">eliminar</i>
                                                             </div>
                                                         @endif

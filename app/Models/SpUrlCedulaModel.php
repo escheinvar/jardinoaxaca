@@ -23,5 +23,6 @@ class SpUrlCedulaModel extends Model
         'ced_version',
         'ced_versiondate',
         'ced_cita',
+        'ced_doi',
     ];
 }

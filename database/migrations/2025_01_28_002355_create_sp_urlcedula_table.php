@@ -35,6 +35,7 @@ return new class extends Migration
                 $table->date('ced_versiondate')->default(date('Y-m-d'));  ##### Fecha de la última versión
 
                 $table->longText('ced_cita')->nullable(); ###### Texto de la cita de la ficha: Scheinvar GE y Gámez T, 2003. Algo....
+                $table->text('ced_doi')->nullable();  ##### número doi
 
                 $table->timestamps();
             });

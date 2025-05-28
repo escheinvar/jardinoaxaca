@@ -8,6 +8,8 @@ use Stevebauman\Location\Facades\Location;
 
 
 if(! function_exists('MyRegistraVisita')){
+    ##### registra la visita de un usuario
+    ##### en la base de datos. Se ejecuta desde back.
     function MyRegistraVisita($url2) {
         ##### Prepara variable
         if(is_array($url2)){

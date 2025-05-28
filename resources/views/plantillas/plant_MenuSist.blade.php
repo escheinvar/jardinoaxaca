@@ -32,7 +32,6 @@
                             Home
                         </a>
                     </li>
-
                     <!--dropdown 1-->
                     @if(in_array('admin',session('rol')))
                         <li class="nav-item dropdown">

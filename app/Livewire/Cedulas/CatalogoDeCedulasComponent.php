@@ -82,6 +82,7 @@ class CatalogoDeCedulasComponent extends Component
                 'txt_titulo'=>'1',
                 'txt_order'=>'1',
                 'txt_codigo'=>'Titulo',
+                'txt_version'=>'0.0',
                 'txt_resp'=>Auth::id(),
             ]);
 
@@ -102,7 +103,8 @@ class CatalogoDeCedulasComponent extends Component
                     'txt_codigo'=>$o->txt_codigo,
                     'txt_audio'=>$o->txt_audio,
                     'txt_autor'=>$o->txt_autor,
-                    'txt_version'=>$o->txt_version,
+                    #'txt_version'=>$o->txt_version,
+                    'txt_version'=>'0.0',
                     'txt_resp'=>Auth::id(),
                 ]);
                 ##### copia audios del texto

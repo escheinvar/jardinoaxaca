@@ -10,6 +10,7 @@ use App\Models\SistBuzonMensajesModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
+use App\Models\SpUrlCedulaVersionModel;
 use App\Models\SpUrlModel;
 use App\Models\UserRolesModel;
 use Barryvdh\DomPDF\PDF;
@@ -29,7 +30,7 @@ class EditaCedulasComponent extends Component
     public $NvoTitulo, $NvoOrder, $NvoCodigo,$NvoAudio, $NvaImagen, $NvaImagenTipo;
     public $NvoVideo, $NvoImg1, $NvoImg2, $NvoImg3, $NvaVersion;
     public $DelAudio, $DelVideo, $DelImg1, $DelImg2, $DelImg3;
-    public $cedulas, $traductor, $NvaVersionCedula,$NvaCita, $NotasDeCorreccion;
+    public $cedulas, $traductor, $NvaVersionCedula,$NvaCita, $NvoDoi, $NotasDeCorreccion;
 
     public function mount($cedID){
         $this->cedID=$cedID;
@@ -38,6 +39,10 @@ class EditaCedulasComponent extends Component
         $this->NvaVersionCedula=false;
         $this->NvaCita=SpUrlCedulaModel::where('ced_id',$cedID)->value('ced_cita');
         $this->NotasDeCorreccion='';
+        $this->NvoDoi=SpUrlCedulaModel::where('ced_id',$cedID)->value('ced_doi');
+
+
+        ##### OJO: si tiene doi y no soy cedulas/todas, no debería poder editar.
 
         // ###################################################
         // ###### Determina permisos. Atn: esta página puede tener permisos por 2 vías:
@@ -45,13 +50,19 @@ class EditaCedulasComponent extends Component
         // ###### traduce le brinda privilegios (solo de edición de texto) a un jardín y una lengua
         // ###################################################
         // ##### Obtiene jardines a los que tiene permiso el editor
+        $this->cedulas='0';
         $JardinesQueEdita=UserRolesModel::where('rol_act','1')
             ->where('rol_usrid',Auth::id())
             ->where('rol_crolrol','cedulas')
             ->pluck('rol_tipo1')
             ->toArray();
-        if(in_array('todas',$JardinesQueEdita)){
-            $JardinesQueEdita=CatJardinesModel::pluck('cjar_siglas')->toArray();
+
+        if(count($JardinesQueEdita) > 0 ) {
+            $this->cedulas='1';
+            if(in_array('todas',$JardinesQueEdita)){
+                $JardinesQueEdita=CatJardinesModel::pluck('cjar_siglas')->toArray();
+                $this->cedulas='2';
+            }
         }
 
         ##### Obtiene array de lenguas por jardín a los que tiene permiso el traductor
@@ -72,11 +83,12 @@ class EditaCedulasComponent extends Component
             ->value('ced_clencode');
 
         ##### Revisa si otorga permiso de editor
-        if( (in_Array('cedulas',session('rol')) AND (in_array($JardinDeCedula,$JardinesQueEdita) OR in_array('todas',$JardinesQueEdita) ) ) ){
-            $this->cedulas='1';
-        }else{
-            $this->cedulas='0';
-        }
+        // if( (in_Array('cedulas',session('rol')) AND (in_array($JardinDeCedula,$JardinesQueEdita) OR in_array('todas',$JardinesQueEdita) ) ) ){
+        //     $this->cedulas='1';
+        // }else{
+        //     $this->cedulas='0';
+        // }
+
 
         ##### Revisa si otorga permiso de traductor
         if(in_array('traduce',session('rol'))  AND $LenguasQueTraduce->where('rol_tipo1', $JardinDeCedula)->where('rol_tipo2',$LenguaDeCedula)->count() > 0   ){
@@ -259,7 +271,7 @@ class EditaCedulasComponent extends Component
         'txt_codigo'=>'Lorem Ipsum...',
         #'txt_audio'=>null,
         'txt_autor'=>Auth::id(),
-        'txt_version'=>'0.01',
+        'txt_version'=>'0.0',
         'txt_resp'=>Auth::id(),
       ]);
     }
@@ -288,8 +300,8 @@ class EditaCedulasComponent extends Component
         $Notas='';
 
         ##### Prepara variables
-        if($valor=='1' OR $valor=='5'){
-            if($valor=='1'){
+        if($valor=='1' OR $valor=='5' or $valor=='3'){
+            if($valor=='1' or $valor=='3'){
                 $asunto='Corregir cédula';
                 $mensaje="Se solicitaron correcciones a la cédula \"".$cedula."\" del jardín \"".$jardin."\" en lengua \"".$lengua."\"";
             }else{
@@ -323,7 +335,7 @@ class EditaCedulasComponent extends Component
                 ->pluck('rol_usrid')
                 ->toArray();
             #dd($revisores);
-        }elseif($valor=='0' OR $valor=='3'){
+        }elseif($valor=='0'){
             //
         }
 
@@ -364,9 +376,18 @@ class EditaCedulasComponent extends Component
         ]);
         ###### Resetea todas las versiones de párrafo
         SpCedulasModel::where('txt_cedid',$this->cedID)->where('txt_act','1')->update([
-            'txt_version'=> '0.01',
+            'txt_version'=> '0.0',
         ]);
         redirect('/sppdf/'.$this->cedID.'/b64');
+    }
+
+    public function NuevoDoi(){
+        // $this->validate([
+        //     'NvoDoi'=>'required',
+        // ]);
+        SpUrlCedulaModel::where('ced_id',$this->cedID)->update([
+            'ced_doi'=>$this->NvoDoi,
+        ]);
     }
 
     public function render() {
@@ -391,9 +412,11 @@ class EditaCedulasComponent extends Component
             'ced_version'=>$urlced->ced_version,
             'ced_versiondate'=>$urlced->ced_versiondate,
             'ced_cita'=>$urlced->ced_cita,
+            'ced_doi'=>$urlced->ced_doi,
             'ced_nombre'=>SpUrlModel::where('url_url',$urlced->ced_urlurl)->value('url_nombre'),
             'jardin'=>CatJardinesModel::where('cjar_siglas',$urlced->ced_cjarsiglas)->value('cjar_nombre'),
             'idioma2'=>CatLenguasModel::where('clen_code',$urlced->ced_clencode)->value('clen_lengua'),
+            'versiones'=>SpUrlCedulaVersionModel::where('cedv_cedid',$urlced->ced_id)->select('cedv_id','cedv_cedversion','created_at')->get(),
         ];
 
         ##### Obtiene el listado de posición de imágenes ya utilizado

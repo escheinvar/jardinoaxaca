@@ -1,89 +1,135 @@
 @section('title')
-Inicio
+    Inicio
 @endsection
 @section('cintillo')
-Inicio &nbsp; &nbsp;
-<!-- Buzón -->
-<span class="PaClick" onclick="VerNoVer('ver','Buzon')" style="@if($buzon->where('buz_leido','0')->count() > 0) color:#CD7B34; font-weight:bold; @endif padding:5px; ">
-    @if($buzon->where('buz_leido','0')->count() > 0 )
-        <span style="border:1px solid #CD7B34;padding:1px;">
-            <i class="bi bi-envelope-fill"></i>
-            {{ $cuenta=$buzon->where('buz_leido','0')->count() }}
-            @if($cuenta =='1')mensaje @else mensajes @endif
-        </span>
+    Inicio &nbsp; &nbsp;
+    <!-- Indicador de Buzón -->
+    @if($buzon > 0 )
+        <a href="/buzon" class="nolink">
+            <span style="border:1px solid #CD7B34;padding:1px;color:#CD7B34; font-weight:bold">
+                <i class="bi bi-envelope-fill"></i>
+                {{ $buzon }}
+                @if($buzon =='1')mensaje @else mensajes @endif
+            </span>
+        </a>
     @else
-        <i class="bi bi-envelope"></i> Buzón
+        <a href="/buzon" class="nolink">
+            <i class="bi bi-envelope"></i> Buzón
+        </a>
     @endif
-
-</span>
+    <!-- Indicador de  Aportes -->
+    @if(in_array('cedulas',session('rol')) and $revisa > 0)
+    <span style="border:1px solid #64383E;padding:1px;color:#64383E; font-weight:bold" class="mx-3">
+        <a href="#" class="nolink">
+            <i class="bi bi-hand-index-fill"></i> {{ $revisa }} Aportes
+        </a>
+    </span>
+    @endif
 @endsection
+
+
 <div>
-    Hola <b>{{auth()->user()->usrname}}</b><BR>
-    <b>Usuario</b>: {{auth()->user()->email}}<BR>
 
-    <!-- ----------------------- Ver Roles ----------------------- -->
-    <b>Tus roles</b>:
-    @foreach (array_unique(session('rol')) as $i)
-        {{$i}},
-    @endforeach
-    <!-- ----------------------- Buzón ----------------------- -->
-    <div id="sale_verBuzon" style="display:none; margin:20px; ">
-        <h3>Buzón</h3>
-        @if($buzon->count() > 0)
-            <table class="table table-striped" style="width:60%;border:1px solid black;">
-                <tbody>
+    <!-- -- DATOS DEL USUARIO -->
+    <div class="my-4">
+        Hola <b>{{auth()->user()->usrname}}</b><BR>
+        <b>Usuario</b>: {{auth()->user()->email}}<BR>
 
-                    @foreach ($buzon as $b)
-                    <tr >
-                        <td class="p-3 m-2">
-                            <span class="PaClick m-1 p-1" wire:click="LeerMensaje('{{ $b->buz_id }}')">
-                                @if($b->buz_leido == '0')
-                                    <i class="bi bi-eye"></i>
-                                @else
-                                    <i class="bi bi-eye-slash"></i>
-                                @endif
-                            </span>
-                            <span style="@if($b->buz_leido =='1') color:gray; @endif">
-                                <b>{{ $b->buz_asunto }}</b><br>
-                                {{ $b->buz_mensaje }}<br>
-                                <span style="font-size:80%;">
-                                    @if($b->buz_notas != '') {{ $b->buz_notas }} <br> @endif
-                                    ({{ $b->buz_date_origen }})
-                                </span>
-                            </span>
-                            <span class="PaClick m-1 p-1" wire:click="BorrarMensaje('{{ $b->buz_id }}')"> <i class="bi bi-trash"> </i></span>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            -- No tienes mensajes en tu buzón --
+        <!-- ----------------------- Ver Roles ----------------------- -->
+        <b>Tus roles</b>:
+        @foreach (array_unique(session('rol')) as $i)
+            {{$i}},
+        @endforeach
+        @if($MisAportes=='0')<br>
+        <button wire:click="VerNoverAportes()" class="btn btn-primary">
+            Ver mis aportes
+            {{-- <img src="/cedulas/BotonAportar.png" style="width:90px;border:2px solid rgb(61, 41, 33);border-radius:15px;"> --}}
+        </button>
+        @endif
+    </div>
+
+    <!-- ---------- Módulo de  aportes --------------->
+    <div class="m-4">
+        @if($MisAportes=='1')
+            <h3 wire:click="VerNoverAportes()" class="PaClick"><img src="/cedulas/BotonAportar.png" style="width:90px;border:2px solid rgb(61, 41, 33);border-radius:15px;">
+                &nbsp; Mis aportes
+            </h3>
+            @if($aporta->count()> 0)
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Jardín / Tema / lengua</th>
+                            <th>Fecha | Estado</th>
+                            <th>Mensaje [Origen, Edad]</th>
+                            <th></th><th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($aporta as $a)
+                            <tr>
+                                <td>
+                                    {{ $a->ced_cjarsiglas }} / {{ $a->ced_urlurl }} / {{ $a->ced_clencode }}
+                                </td>
+                                <td>
+                                    {{ $a->msg_date }}  |
+                                    @if($a->msg_edo=='0')
+                                        <i class="bi bi-0-circle-fill" style="color:#CD7B34"></i> En revisión
+                                    @elseif($a->msg_edo=='1')
+                                        <i class="bi bi-1-circle-fill" style="color:rgb(0, 162, 255)"></i> Pausado por usuario
+
+                                    @elseif($a->msg_edo=='2')
+                                        <i class="bi bi-2-circle-fill" style="color:red"></i> Cancelado por admin.
+                                    @elseif($a->msg_edo=='3')
+                                        <i class="bi bi-3-circle-fill"  style="color:darkgreen"></i> Publicado
+
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $a->msg_mensaje }} [Origen: {{ $a->msg_origen }}; Edad: {{ $a->msg_edad }}]
+                                </td>
+                                <td>
+                                    <!-- Pausar / Publicar (por el pripietario de mensajes) -->
+                                    @if($a->msg_edo=='3' )
+                                        <span class="PaClick">
+                                            <i wire:click="CambiaEdoMsg('{{ $a->msg_id }}','1')" class="bi bi-pause-circle mx-3"> Pausar</i>
+                                        </span>
+                                    @elseif($a->msg_edo=='1' )
+                                        <span class="PaClick">
+                                            <i wire:click="CambiaEdoMsg('{{ $a->msg_id }}','3')" class="bi bi-play-btn mx-3"> Publicar</i>
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if( $a->msg_usr == Auth::user()->id  )
+                                        <span class="PaClick">
+                                            <i wire:click="BorrarMsg('{{ $a->msg_id }}')" wire:confirm="Estás por eliminar tu aportación del sistema y no se podrá recuperar ¿Seguro que quieres continuar?" class="bi bi-trash m-2"> Borrar</i>
+                                        </span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                -- Aún no tengo aportes -->
+            @endif
         @endif
     </div>
 
 
 
-    <div>
-    <li> Si soy cedula: Gestor de aportaciones de mi jardín: Mostrar aportaciones a cédulas (edo < 3) y aprobar (o no) cedulas de su jardín</li>
-    <li> Si soy usr: ver mis aportaciones</li>
 
-    </div>
-
-    <ul>
-        <li><a href="/vervisitas">Ver visitas</a></li>
-    </ul>
     <!-- ----------------------- Módulo de Admin de sistema ----------------------- -->
     @if(in_array('admin',session('rol')))
         <h3>Módulo de admin sistema</h3>
         <ul>
             <li> <a href="/usuarios">Catálogo de usuarios (solo rol: admin)</a></li>
+            <li><a href="/vervisitas">Ver visitas</a></li>
             <li> Catálogo de instituciones (de personas que se registran)</li>
             <li> <a href="/catalogo/campus">Catálogo de jardines y campus =ModuJardines</a></li>
         </ul>
-    @endif
 
-    @if(in_array('admin',session('rol')))
+        <!-- ----------------------- Módulo de Jardines ----------------------- -->
         <h3>Módulo de jardines</h3>
         <ul>
             <li><a href="/importaPlantas">Carga masiva de ejemplares de jardín</a> (solo resp-jardin)</li>
@@ -96,20 +142,28 @@ Inicio &nbsp; &nbsp;
         </ul>
     @endif
 
-    @if(in_array('traduce',session('rol')) OR in_array('cedulas',session('rol')))
+    <!-- ----------------------- Módulo de Cédulas Audibles ----------------------- -->
+    @if(array_intersect(['traduce','cedulas'],session('rol')))
         <h3>Módulo de cédulas audibles</h3>
         <ul>
             <li> <a href="/catCedulas">Catálogo de cédulas</a></li>
             <li> <a href="/especies"> Ver Cédulas publicadas</a></li>
-            <li> Módulo de admon. de aportaciones</li>
         </ul>
     @endif
 
+    <!-- ----------------------- Faltantes ----------------------- -->
     @if(in_array('admin',session('rol')))
         <h3>Faltantes</h3>
         <ol>
-            <li>Jardines: Módulo para vaciar las imágenes de carpeta /cargaMasiva que no están en la tabla pl_import (campos de fotos)</li>
+            <li>Cédulas: Buscador de cédulas. Vincular cédulas por tema(s)</li>
+            <li>Cédulas: ver pdf en lugar de generar al vuelo.</li>
+            <li>Cédulas: cambiar versión + pdf: al meter cita, al pasar a edo 5 (desde 0->2->5 o desde 5->3->5)</li>
+            <br>
+
             <li>Cédulas: Módulo para vaciar imágenes que no estan en sp_cedulas (txt_audio, txt_img1-3, txt_video) o en sp_fotos
+            <br>
+
+            <li>Jardines: Módulo para vaciar las imágenes de carpeta /cargaMasiva que no están en la tabla pl_import (campos de fotos)</li>
         </ol>
 
         <a href="/pruebillas_php">Php info</a>

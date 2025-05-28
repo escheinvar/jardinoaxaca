@@ -1,17 +1,17 @@
 
-@section('title') 
+@section('title')
 Colecciones
 @endsection
 
 @section('meta-description')
-Brindamos apoyo a iniciativas comunitarias y a la formación de profesionistas relacionados a la etnobotánica. Contamos con una biblioteca especializada y un Herbario. 
+Brindamos apoyo a iniciativas comunitarias y a la formación de profesionistas relacionados a la etnobotánica. Contamos con una biblioteca especializada y un Herbario.
 @endsection
 
 @section('banner')
 banner-servicios
 @endsection
 
-@section('banner-title') 
+@section('banner-title')
 Colecciones
 @endsection
 
@@ -80,7 +80,7 @@ Colecciones
                 </div>
             </div>
 
-            {{-- 
+            {{--
             <div class="row justify-content-end">
                 <div class="col-sm-12 col-md-9 col-lg-8 col-xl-6 pt-5 px-4">
                     <h2 class="subtitulo">Apoyo comunitario</h2>
@@ -102,7 +102,7 @@ Colecciones
                         ducimus.
                     </p>
                 </div>
-            </div> 
+            </div>
             --}}
         </div>
     </section>
@@ -117,17 +117,17 @@ Colecciones
                 <div class="slide">
                     <div class="content">
                         <h2 class="subtitulo">Colección viva</h2>
-                        <p> Contamos con una importante colección de ejemplares de plantas vivas nativas de Oaxaca que fueron 
-                            donadas por las comunidades del estado por tener algún tipo de valor cultural o de uso. 
+                        <p> Contamos con una importante colección de ejemplares de plantas vivas nativas de Oaxaca que fueron
+                            donadas por las comunidades del estado por tener algún tipo de valor cultural o de uso.
                         </p>
                         <p>Todas las especies que observamos se relacionan de alguna forma con la vida humana en Oaxaca, desde los cazadores
                             recolectores de hace 12,000 años, hasta las comunidades rurales y urbanas actuales.
-                        </p>                        
+                        </p>
                         <p>El estado de Oaxaca, no solamente presenta la flora más diversa de México, cuenta también con la mayor diversidad
-                            cultural en el país: aquí se hablan más lenguas indígenas, conviven más pueblos originarios y más 
+                            cultural en el país: aquí se hablan más lenguas indígenas, conviven más pueblos originarios y más
                             comunidades políticamente autónomas que en ninguna otra área de México.
                         </p>
-                        <p>El Jardín busca resguardar una pequeña parte del patrimonio representado en las relaciones 
+                        <p>El Jardín busca resguardar una pequeña parte del patrimonio representado en las relaciones
                             que hay entre la diversidad natural y la complejidad cultural de Oaxaca.
                         </p>
                         {{-- <h3>Horarios</h3>
@@ -160,7 +160,7 @@ Colecciones
                     <div class="image">
                         <a href="imagenes/slider-7_colecciones/img-02.jpg" data-fancybox="gallery7">
                             <img src="imagenes/slider-7_colecciones/img-pre-02.jpg" alt="Ficha del herbario">
-                            <h4 class="w-100">Ejemplar de <i>Sambucus nigra</i> del <Hdr></Hdr>erbario del Jardín Etnobiológico de Oaxaca</h4>
+                            <h4 class="w-100">Ejemplar de <i>Sambucus nigra</i> del herbario del Jardín Etnobiológico de Oaxaca</h4>
                         </a>
                     </div>
                 </div>
@@ -173,12 +173,12 @@ Colecciones
                         <h2 class="subtitulo">Colección <br>de semillas</h2>
                         <p> Contamos con una
                             colección de semillas obtenidas de nuestros propios ejemplares y que renovamos
-                            de manera periódica  
-                            con el objeto de dar continuidad a nuestra propia colección viva, así como poder surtir de 
+                            de manera periódica
+                            con el objeto de dar continuidad a nuestra propia colección viva, así como poder surtir de
                             germoplasma a los proyectos asociados al Jardín, cuando existen excedentes.
                         </p>
-                        <p> Para 2024, resguardamos en nuestra colección, más de 1000 accesiones correspondientes a 
-                            más de 300 especies de flora nativa oaxaqueña. 
+                        <p> Para 2024, resguardamos en nuestra colección, más de 1000 accesiones correspondientes a
+                            más de 300 especies de flora nativa oaxaqueña.
                         </p>
                         <p>La colección está disponible para instituiciones, investigadores o comunidades que lo requieran,
                             mediante solicitud oficial por correo electrónico</p>
@@ -197,14 +197,14 @@ Colecciones
                 <div class="slide">
                     <div class="content">
                         <h2 class="subtitulo">Colección <br>de hongos</h2>
-                        <p>Muy recientemente y con apoyo de nuestros colaboradores de la Universidad de Tlaxcala, es que 
+                        <p>Muy recientemente y con apoyo de nuestros colaboradores de la Universidad de Tlaxcala, es que
                             estamos iniciando con nuestra nueva colección de ejemplares de herbario de hongos
                             del estado de Oaxaca.
                         </p>
-                        
+
                         <p>El herbario está abierto tanto a estudiantes como a promotores comunitarios e investigadores
                             académicos, previa cita por teléfono o correo electrónico.</p>
-                            
+
                     </div>
                     <div class="image">
                         <a href="imagenes/slider-7_colecciones/img-03.jpg" data-fancybox="gallery7">
@@ -271,7 +271,7 @@ Colecciones
 
 
 
-        //<!--slider educacion--> 
+        //<!--slider educacion-->
 
         let slides = document.querySelectorAll('.slide-container');
         let index = 0;
@@ -289,7 +289,7 @@ Colecciones
             slides[index].classList.add('active');
         }
 
-  
+
 
     </script>
 @endsection

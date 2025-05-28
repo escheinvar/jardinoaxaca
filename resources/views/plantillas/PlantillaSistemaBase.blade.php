@@ -15,9 +15,9 @@
     </header>
 
     <!-- ---------------------- Barra de sistema -------------------------->
-    <div style="background-color:#CDC6B9;  padding-left:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;">
-        <b>Sistema del JEB Oax</b> |
-        @include('plantillas.plant_tamanios') |
+    <div style="background-color:#CDC6B9;  padding-left:15px; color: #87796d; font-family: 'Roboto Condensed', sans-serif;padding:3px;">
+        <b>Sistema del Jardín</b> &nbsp; | &nbsp; <b>{{ Auth::user()->usrname }}</b> &nbsp; | &nbsp;
+        {{-- @include('plantillas.plant_tamanios') | --}}
         @yield('cintillo')
     </div>
 

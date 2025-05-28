@@ -311,15 +311,28 @@
         <!-- Cita -->
         <div class="col-12" style="margin:20px;">
             <h4>Forma de citar:</h4>
-            <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>.
+            <!-- autores -->    <b> @if($version['ced_cita']!=''){{ $version['ced_cita'] }} @else {{ $version['jardin'] }}@endif</b>.
             <!-- año -->        {{ date('Y', strtotime($version['ced_versiondate'])) }}.
             <!-- nombre/lengua --> <u>{{ $version['ced_nombre'] }} / {{ $idioma }}</u>
             <!-- version -->    (V. {{ $version['ced_version'] }}).
             <!-- jardin --> Cédulas de {{ $version['jardin'] }}
             <!-- lengua --> en {{ $idioma2 }}<br>
             <!-- registro doi-->
-            <!-- url --> {{ url()->current() }} accesado el {{ date('d') }} de {{ ['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][date('n')] }} de {{ date('Y') }}
+            <!-- url --> @if($version['ced_doi'] != '') https://doi.org/{{ $version['ced_doi'] }} @else {{ url()->current() }} @endif accesado el {{ date('d') }} de {{ ['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][date('n')] }} de {{ date('Y') }}
         </div>
+        <div class="col-12" style="margin:20px;">
+            <b>Versiones previas:</b>
+                @if(count($version['versiones']) > 0)
+                    @foreach ($version['versiones'] as $i)
+                        {{ $i->cedv_cedversion }},
+                    @endforeach
+                @else
+                    Aún no existen versiones previas.
+                @endif
+
+        </div>
+
+
 
         <div class="col-12" style="margin:20px;">
             <!-- Yo tengo algo que aportar -->
@@ -391,6 +404,16 @@
                 <span wire:click="BajarQR()" class="PaClick" style="margin:5px;vertical-align:bottom;">
                     <i class="bi bi-cloud-download"> </i>
                 </span>
+            </div>
+            <!-- Licencia GNU -->
+            <div class="col-12" style="margin:20px; font-size:80%;">
+                Copyright(C), {{ date('Y', strtotime($version['ced_versiondate'])) }} @if($version['ced_cita']!=''){{ $version['ced_cita'] }} @else {{ $version['jardin'] }}@endif.
+                Se concede permiso para copiar, distribuir y/o modificar este documento
+                bajo los términos de la <a href="https://www.gnu.org/licenses/fdl-1.3.html" target="new" class="nolink"><u>Licencia de Documentación Libre de GNU</u></a>, Versión 1.3
+                o cualquier versión posterior publicada por la Free Software Foundation;
+                sin Secciones Invariantes, Textos de Portada y Textos de Contraportada.<br>
+                <!--Se incluye una copia de la licencia en la sección titulada "Licencia de Documentación Libre de GNU". -->
+
             </div>
         </div>
     </div>

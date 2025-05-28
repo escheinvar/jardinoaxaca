@@ -56,7 +56,7 @@ class CatEtiquetasImgSeeder extends Seeder
             // ['cimg_gral'=>'especie', 'cimg_tipo'=>'cedula',      'cimg_name'=>'cinta3',            'cimg_descripcion'=>'Tercer  cinta de imágenes en texto de cédula de especie'],
             // ['cimg_gral'=>'especie', 'cimg_tipo'=>'cedula',      'cimg_name'=>'cinta4',            'cimg_descripcion'=>'Cuarta  cinta de imágenes en texto de cédula de especie'],
             // ['cimg_gral'=>'especie', 'cimg_tipo'=>'cedula',      'cimg_name'=>'cinta5',            'cimg_descripcion'=>'Quinta  cinta de imágenes en texto de cédula de especie'],
-            ['cimg_gral'=>'especie', 'cimg_tipo'=>'cedula',      'cimg_name'=>'parrafo',            'cimg_descripcion'=>'Sexta  cinta de imágenes en texto de cédula de especie'],
+            // ['cimg_gral'=>'especie', 'cimg_tipo'=>'cedula',      'cimg_name'=>'parrafo',            'cimg_descripcion'=>'Sexta  cinta de imágenes en texto de cédula de especie'],
 
             // ['cimg_gral'=>'planta', 'cimg_tipo'=>'proceso',  'cimg_name'=>'',            'cimg_descripcion'=>''],
             // ['cimg_gral'=>'planta', 'cimg_tipo'=>'uso',      'cimg_name'=>'',            'cimg_descripcion'=>''],

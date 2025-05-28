@@ -11,6 +11,7 @@ use App\Models\SpAporteUsrsModel;
 use App\Models\SpCedulasModel;
 use App\Models\SpFotosModel;
 use App\Models\SpUrlCedulaModel;
+use App\Models\SpUrlCedulaVersionModel;
 use App\Models\SpUrlModel;
 use App\Models\UserRolesModel;
 use Illuminate\Support\Facades\App;
@@ -246,8 +247,10 @@ class EspeciesComponent extends Component
             'ced_version'=>$datoUrl->ced_version,
             'ced_versiondate'=>$datoUrl->ced_versiondate,
             'ced_cita'=>$datoUrl->ced_cita,
+            'ced_doi'=>$datoUrl->ced_doi,
             'ced_nombre'=>SpUrlModel::where('url_url',$this->url)->value('url_nombre'),
             'jardin'=>CatJardinesModel::where('cjar_siglas',$this->jardin)->value('cjar_nombre'),
+            'versiones'=>SpUrlCedulaVersionModel::where('cedv_cedid',$datoUrl->ced_id)->select('cedv_id','cedv_cedversion','created_at')->get(),
 
         ];
 

@@ -248,20 +248,20 @@
                 <!-- lateral1 -->
                 @if($fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') != '')
                     {{-- <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" target="new"> --}}
-                        <img src="{{ public_path('/cedulas/'.$fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file')) }}" style="max-width:500px; max-height:250px;  padding:15px;">
+                        <img src="{{ public_path('/cedulas/'.$fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file')) }}" style="max-width:300px; max-height:150px;  padding:15px;">
                     {{-- </a> --}}
                 @endif
                 <!-- lateral2 -->
                 @if($fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') != '')
                     {{-- <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" target="new"> --}}
-                        <img src="{{ public_path('/cedulas/'.$fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file')) }}" style="max-width:500px; max-height:250px;  padding:15px;">
+                        <img src="{{ public_path('/cedulas/'.$fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file')) }}" style="max-width:300px; max-height:150px;  padding:15px;">
                     {{-- </a> --}}
                 @endif
 
                 <!-- lateral3 -->
                 @if($fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') != '')
                     {{-- <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" target="new"> --}}
-                        <img src="{{ public_path('/cedulas/'.$fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file')) }}" style="max-width:500px; max-height:250px;  padding:15px;">
+                        <img src="{{ public_path('/cedulas/'.$fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file')) }}" style="max-width:300px; max-height:150px;  padding:15px;">
                     {{-- </a> --}}
                 @endif
 
@@ -278,7 +278,7 @@
         <div class="col-12" style="">
             <div style="padding:20px;">
                 <h4>Forma de citar:</h4>
-                <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>.
+                <!-- autores -->    <b>{{ $version['ced_cita'] }}</b>
                 <!-- año -->        {{ date('Y', strtotime($version['ced_versiondate'])) }}.
                 <!-- nombre/lengua --> <u>{{ $version['ced_nombre'] }} / {{ $idioma }}</u>
                 <!-- version -->    (V. {{ $version['ced_version'] }}).
@@ -301,6 +301,11 @@
                     {{ url('/').'/sp/'.$url.'/'.$jardin }}<br>
                     En lengua {{ $idioma2 }}
                 </div>
+        </div>
+        <div class="col-12" style="font-size:80%; padding:10px;">
+            Copyright(C), {{ date('Y', strtotime($version['ced_versiondate'])) }}
+            {{ $version['ced_cita'] }}
+            Se concede permiso para copiar, distribuir y/o modificar este documento bajo los términos de la Licencia de Documentación Libre de GNU, Versión 1.3 o cualquier versión posterior publicada por la Free Software Foundation; sin Secciones Invariantes, Textos de Portada y Textos de Contraportada.
         </div>
     </div>
 </div>
