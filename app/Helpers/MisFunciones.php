@@ -27,7 +27,7 @@ if(! function_exists('MyRegistraVisita')){
         }
         ##### Obtiene datos de ip
         $ip=request()->ip();
-        #$ip='45.90.223.160';
+
         $datos=Location::get( $ip );
         if($datos != false){
             $pais=$datos->countryName;
@@ -55,6 +55,7 @@ if(! function_exists('MyRegistraVisita')){
             $roles=null;
         }
 
+        ##### Crea registro por token/url/lenguaLocal (si el usuario cambia una de estas variables, se genera un nuevo registro)
         SistVisitasModel::firstOrCreate(['vis_url'=>url()->current(),   'vis_tocken'=>session('token'), 'vis_locale2'=>session('locale2')] ,[
             'vis_id'=>SistVisitasModel::max('vis_id') +1 ,
             'vis_unique'=>$unico,

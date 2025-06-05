@@ -641,8 +641,8 @@ banner-recorridos
                         <div class="col">
                             @if(session('locale')=='en')
                                 <h3>Schedules</h3>
-                                <h4>Duration 1 hour</h4>
-                                <p>Monday to Friday<br>8:00 a.m. to 10:00 a.m. <br> 1:00 p.m. to 3:00 p.m. <br>
+                                <h4>Duration 1 hour</h4>+
+                                 a.m. <br> 1:00 p.m. to 3:00 p.m. <br>
                                     {{-- <br>Saturdays<br>8:00 a.m. to 10:00 a.m.</p> --}}
                             @elseif(session('locale')=='pt')
                                 <h3>Horários</h3>
@@ -676,17 +676,17 @@ banner-recorridos
                             <p>
                                 @if(session('locale')=='en')
                                     To schedule a school tour, please send an email to <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
-                                    attaching the request letter on letterhead addressed to Jardín Etnobiológico de Oaxaca,
+                                    attaching the request letter on letterhead addressed to  C. Geovanni Martínez Guerra,  Coordinador de Conservación y Preservación Etnobiológica,
                                     indicating the total number of attendees and suggesting the date and time for the tour(s).
                                     We recommend sending the request letter at least three weeks in advance, due to the high demand for requests.
                                 @elseif(session('locale')=='pt')
                                     Para agendar uma visita escolar, envie um e-mail para <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
-                                    anexando a carta de solicitação em papel timbrado e endereçada ao Jardín Etnobiológico de Oaxaca,
+                                    anexando a carta de solicitação em papel timbrado e endereçada ao C. Geovanni Martínez Guerra,  Coordinador de Conservación y Preservación Etnobiológica,
                                     indicando o número total de participantes e sugerindo a data e a hora em que eles solicitam o(s) passeio(s).
                                     Recomendamos que você envie sua inscrição com pelo menos três semanas de antecedência devido à alta demanda.
                                 @else
                                     Para agendar un recorrido escolar, envía un correo a <a href="mailto:escuelas@jardinoaxaca.mx" class="nolink">escuelas@jardinoaxaca.mx</a>
-                                    adjuntando el oficio de solicitud en papel membretado y dirigido al Jardín Etnobiológico de Oaxaca,
+                                    adjuntando el oficio de solicitud en papel membretado y dirigido al C. Geovanni Martínez Guerra,  Coordinador de Conservación y Preservación Etnobiológica,
                                     indicando el número total de asistentes y sugiriendo la fecha y hora en la que solicitan el o los recorridos.
                                     Recomendamos enviar el oficio con al menos 3 semanas de anticipación, debido a la alta demanda de solicitudes.
                                 @endif

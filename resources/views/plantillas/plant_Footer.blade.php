@@ -74,14 +74,13 @@
                 <div class="row">
                     <div class="col">
                         <h5>Horario de oficinas</h5>
-                        <p>Oficina<br>Lunes - Viernes: 10:00 a 17:00 horas<br>Sábados: 10:00 a 12:00
-                            horas</p>
+                        <p>Oficina<br>Lunes - Viernes: 10:00 a 17:00 horas<br></p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <p>Biblioteca<br>Lunes-Viernes: 9:00 a 17:00 horas<br>Sábados: 9:00 a 13:00 horas</p>
+                        <p>Biblioteca<br>Lunes-Viernes: 9:00 a 17:00 horas<br></p>
                     </div>
                 </div>
             </div>

@@ -35,6 +35,7 @@ use App\Livewire\Web\EspeciesIxmController;
 use App\Livewire\Web\EventosController;
 use App\Livewire\Web\HistoriaController;
 use App\Livewire\Web\InicioController;
+use App\Livewire\Web\Ixmx\EnriqueController;
 use App\Livewire\Web\MapaController;
 use App\Livewire\Web\RecorridosController;
 use App\Livewire\Web\ServiciosController;
@@ -65,8 +66,8 @@ Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradore
 Route::get('/actividades',EventosController::class)->name('actividades');
 #Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 Route::get('/pruebillas_php',function(){ dd(phpinfo());});
-
-
+/* ------------------------------------ PÁGINA WEB PÚBLICA IXMx ------------------------ */
+Route::get('/enrique',EnriqueController::class)->name('enrique');
 
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */

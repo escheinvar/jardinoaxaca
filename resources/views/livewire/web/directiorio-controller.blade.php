@@ -55,7 +55,7 @@ Directorio
                             <p>Geovanni Martínez Guerra</p>
 
                             <h4>Departamento de Estudios Etnobiológicos</h4>
-                            <p> Viannay Hernández Gómez</p>
+                            <p> Vianney Hernández Gómez</p>
 
                             <h4>Departamento de Difusión Etnobiológica</h4>
                             <p>Javier Bustamante San Juan</p>
@@ -153,15 +153,15 @@ Directorio
                     <div class="row justify-content-end">
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                             <ul>
-                                <li><a href="#" class="nolink">Dra. Xitlali Aguirre Dugua</a></li>
-                                <li><a href="#" class="nolink">Dra. Niza Gámez Tamariz</a></li>
+                                <li><a href="#" class="nolink">Dra. Xitlali Aguirre Dugua</a><br><!-- xitlali.aguirre@secihti.mx --><br></li><br>
+                                <li><a href="#" class="nolink">Dra. Niza Gámez Tamariz</a><br>niza.gamez@secihti.mx</li>
                             </ul>
                         </div>
 
                         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                             <ul>
-                                <li><a href="#" class="nolink">Dra. Mariana Zarazúa</a></li>
-                                <li><a href="#" class="nolink">Dr. Enrique Scheinvar</a></li>
+                                <li><a href="#" class="nolink">Dra. Mariana Zarazúa</a><br>mariana.zarazua@secihti.mx</li><br>
+                                <li><a href="/enrique" class="nolink">Dr. Enrique Scheinvar</a><br>enrique.scheinvar@secihti.mx</li>
                             </ul>
                         </div>
                     </div>
