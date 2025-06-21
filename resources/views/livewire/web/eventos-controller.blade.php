@@ -1,44 +1,46 @@
 <div>
+    @section('title')
+    Actividades
+    @endsection
 
+    @section('meta-description')
+    ¿Tienes interés en la botánica, la ecología o la historia de Oaxaca? Conoce las diversas conferencias, talleres y actividades que tenemos para ti.
+    @endsection
 
+    @section('banner')
+    banner-actividades
+    @endsection
 
-@section('title')
-Actividades
-@endsection
-
-@section('meta-description')
-¿Tienes interés en la botánica, la ecología o la historia de Oaxaca? Conoce las diversas conferencias, talleres y actividades que tenemos para ti.
-@endsection
-
-@section('banner')
-banner-actividades
-@endsection
-
-@section('banner-title')
-Eventos
-@endsection
+    @section('banner-title')
+    Eventos
+    @endsection
 
 
 
 
     <!--S1 PROXIMAMENTE-->
     <section class="proximamente pt-4 pb-3">
+        <!-- ############################################################################################# -->
+        <!-- ################################ FICHAS DE EVENTOS FUTUROS ################################## -->
         @if(count($eventosProx) > 0)
             <div class="container px-4 py-5" id="bienvenido">
                 <h2 class="subtitulo">Próximamente </h2>
                 @foreach ($eventosProx as $i)
                     <article class="evento">
                         <div class="row justify-content-around p-5">
+                            <!-- cartel portada -->
                             <div class="col-sm-5 col-md-5 col-lg-3 cartel">
-                                <img src="{{$i->wwevs_img}}" alt="Cartel {{$i->wwevs_titulo}}"
-                                    class="img-fluid">
+                                <a href="{{$i->wwevs_img}}" target="new" class="nolink">
+                                    <img src="{{$i->wwevs_img}}" alt="Cartel {{$i->wwevs_titulo}}"
+                                        class="img-fluid">
+                                </a>
                             </div>
                             <div class="col-sm-7 col-md-7 col-lg-5 descripcion">
                                 <h3 class="evento-nombre">
                                     {{$i->wwevs_titulo}}
                                 </h3>
                                 <div class="etiquetas">
-                                    <ul class="tags">
+                                    <ul class="tags" >
                                         <?php
                                             $etiqs=explode(',',$i->wwevs_label)
                                         ?>
@@ -94,7 +96,10 @@ Eventos
                                             <h5>{{$i->wwevs_costo}}</h5>
                                         </div>
                                         @if(auth()->user() AND in_array('webmaster', session('rol')))
-                                            <i class="bi bi-trash" wire:click="Borrar({{$i->wwevs_id}})" wire:confirm="Estás por eliminar el evento '{{$i->wwevs_titulo}}' ¿Quieres seguir?" style="cursor: pointer;"></i>
+                                            <i class="bi bi-trash" wire:click="Borrar({{$i->wwevs_id}})" wire:confirm="Estás por eliminar el evento '{{$i->wwevs_titulo}}' ¿Quieres seguir?" style="cursor: pointer;"></i> &nbsp; &nbsp;
+                                            <a href="#editor" class="nolink">
+                                                <i class="bi bi-pencil-square" wire:click="EditaEvento('{{ $i->wwevs_id }}')"></i>
+                                            </a>
                                         @endif
                                     </div>
                                 </div>
@@ -105,118 +110,119 @@ Eventos
             </div>
         @endif
 
-
-        <!------------------------------- AGREGAR NUEVO EVENTO ---------------------------------  -->
+        <!-- ############################################################################################# -->
+        <!-- ################################ FORMULARIO DE NUEVO EVENTO ################################# -->
         @if(null !== session('rol') )
             @if(auth()->user() AND in_array('webmaster', session('rol')))
                 <div class="container px-4 py-5">
-
-                            <div style="float: right;">
-                                <botton class="boton" onclick="VerNoVer('nuevo','evento')">
-                                    <i class="bi bi-plus-circle"></i> Nuevo evento
-                                </botton>
+                    <div style="float: right;">
+                        <button wire:click="MostrarNuevoEvento()" class="boton">
+                            <i class="bi bi-plus-circle"></i> Nuevo evento
+                        </button>
+                    </div>
+                    <a name="editor"> &nbsp; </a>
+                    @if($VerNuevoEvento=='1')
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>Título <red>*</red></label>
+                                <input wire:model="titulo" type="text" class="form-control">
+                                @error('titulo')<error>{{$message}}</error>@enderror
                             </div>
 
-
-                        <div id="sale_nuevoevento" style="display:none">
-                            <div class="row">
-                                <div class="col-md-4 form-group">
-                                    <label>Título <red>*</red></label>
-                                    <input wire:model="titulo" type="text" class="form-control">
-                                    @error('titulo')<error>{{$message}}</error>@enderror
-                                </div>
-
-                                <div class="col-md-8 form-group">
-                                    <label>Lugar <red>*</red></label>
-                                    <input wire:model="lugar" type="text" class="form-control">
-                                    @error('lugar')<error>{{$message}}</error>@enderror
-                                </div>
+                            <div class="col-md-8 form-group">
+                                <label>Lugar <red>*</red></label>
+                                <input wire:model="lugar" type="text" class="form-control">
+                                @error('lugar')<error>{{$message}}</error>@enderror
                             </div>
-                            <div class="row">
-                                <div class="col-md-8 form-group">
-                                    <label for="correo">Descripción <red>*</red></label>
-                                    <input wire:model="descripcion" type="text" class="form-control">
-                                    @error('descripcion')<error>{{$message}}<br></error>@enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 form-group">
+                                <label for="correo">Descripción <red>*</red></label>
+                                <input wire:model="descripcion" type="text" class="form-control">
+                                @error('descripcion')<error>{{$message}}<br></error>@enderror
 
-                                    <label for="correo">Descripción línea 2 (opcional)</label>
-                                    <input wire:model="descripcion2" type="text" class="form-control">
-                                    @error('descripcion2')<error>{{$message}}</error>@enderror
-                                </div>
-
-                                <div class="col-md-4 form-group">
-                                    <label>Tipo de evento <red>*</red></label>
-                                    <select wire:model="tipo" multiple type="text" class="form-control">
-                                        <option value="Comunicado">Comunicado</option>
-                                        <option value="Recorrido">Recorrido</option>
-                                        <option value="Taller">Taller</option>
-                                        <option value="Conferencia">Conferencia</option>
-                                        <option value="Cultural">Cultural</option>
-                                        <option value="Presentacion">Presentacion</option>
-                                    </select>
-                                    @error('tipo')<error>{{$message}}</error>@enderror
-                                </div>
+                                <label for="correo">Descripción línea 2 (opcional)</label>
+                                <input wire:model="descripcion2" type="text" class="form-control">
+                                @error('descripcion2')<error>{{$message}}</error>@enderror
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-3 col-lg-2 form-group">
-                                    <label>Fecha de inicio <red>*</red></label>
-                                    <input wire:model="fechaIni" min="{{date('Y-m-d')}}" type="date" class="form-control">
-                                    @error('fechaIni')<error>{{$message}}</error>@enderror
-                                </div>
-                                <div class="col-md-3 col-lg-2 form-group">
-                                    <label>Hora de inicio <red>*</red></label>
-                                    <input wire:model="horaIni" type="time"  class="form-control">
-                                    @error('horaIni')<error>{{$message}}</error>@enderror
-                                </div>
-
-                                <div class="col-md-3 col-lg-2 form-group">
-                                    <label>Fecha de finalización </label>
-                                    <input wire:model="fechaFin" min="{{date('Y-m-d')}}" type="date" class="form-control">
-                                    @error('fechaFin')<error>{{$message}}</error>@enderror
-                                </div>
-                                <div class="col-md-3 col-lg-2 form-group">
-                                    <label>Hora de finalización </label>
-                                    <input wire:model="horaFin" type="time" class="form-control">
-                                    @error('horaFin')<error>{{$message}}</error>@enderror
-                                </div>
+                            <div class="col-md-4 form-group">
+                                <label>Tipo de evento <red>*</red></label>
+                                <select wire:model="tipo" multiple type="text" class="form-control">
+                                    <option value="Comunicado">Comunicado</option>
+                                    <option value="Recorrido">Recorrido</option>
+                                    <option value="Taller">Taller</option>
+                                    <option value="Conferencia">Conferencia</option>
+                                    <option value="Cultural">Cultural</option>
+                                    <option value="Presentacion">Presentacion</option>
+                                </select>
+                                @error('tipo')<error>{{$message}}</error>@enderror
                             </div>
-                            <div class="row">
-                                <div class="col-md-3 col-lg-2 form-group">
-                                    <label>Costo (texto) </label>
-                                    <input wire:model="costo" type="text" class="form-control">
-                                    @error('costo')<error>{{$message}}</error>@enderror
-                                </div>
-
-                                <div class="col-md-4 col-lg-5 form-group">
-                                    <label>Imagen </label>
-                                    <input wire:model="imagen" type="file" class="form-control">
-                                    @error('imagen')<error>{{$message}}</error>@enderror
-                                </div>
-                                <div class="col-md-5 col-lg-5">
-                                    @if($imagen)
-                                    <span wire:loading wire:target="imagen"> Cargando archivo...</span>
-                                        <img src="{{$imagen->temporaryUrl()}}" style="width:90%;">
-                                    @endif
-                                </div>
-                            </div>
-                            <br>
-
-                            <botton wire:click="Guardar()" class="boton3" style="display:inline-block;">
-                                Guardar
-                            </botton>
-                            <botton class="boton2" style="display:inline-block;" onclick="VerNoVer('nuevo','evento')">
-                                Cancelar
-                            </botton>
-
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-3 col-lg-2 form-group">
+                                <label>Fecha de inicio <red>*</red></label>
+                                <input wire:model="fechaIni" min="{{date('Y-m-d')}}" type="date" class="form-control">
+                                @error('fechaIni')<error>{{$message}}</error>@enderror
+                            </div>
+                            <div class="col-md-3 col-lg-2 form-group">
+                                <label>Hora de inicio <red>*</red></label>
+                                <input wire:model="horaIni" type="time"  class="form-control">
+                                @error('horaIni')<error>{{$message}}</error>@enderror
+                            </div>
+
+                            <div class="col-md-3 col-lg-2 form-group">
+                                <label>Fecha de finalización </label>
+                                <input wire:model="fechaFin" min="{{date('Y-m-d')}}" type="date" class="form-control">
+                                @error('fechaFin')<error>{{$message}}</error>@enderror
+                            </div>
+                            <div class="col-md-3 col-lg-2 form-group">
+                                <label>Hora de finalización </label>
+                                <input wire:model="horaFin" type="time" class="form-control">
+                                @error('horaFin')<error>{{$message}}</error>@enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-lg-2 form-group">
+                                <label>Costo (texto) </label>
+                                <input wire:model="costo" type="text" class="form-control">
+                                @error('costo')<error>{{$message}}</error>@enderror
+                            </div>
+
+                            <div class="col-md-4 col-lg-5 form-group">
+                                <label>Imagen </label>
+                                <input wire:model="imagen" type="file" class="form-control">
+                                @error('imagen')<error>{{$message}}</error>@enderror
+                            </div>
+                            <div class="col-md-5 col-lg-5">
+                                @if($TipoFormulario > '0' and $imagen =='')
+                                    <img src="{{$imagen2}}" style="width:70%;">
+                                @endif
+                                @if($imagen)
+                                    <span wire:loading wire:target="imagen"> Cargando archivo...</span>
+                                    <img src="{{$imagen->temporaryUrl()}}" style="width:90%;">
+                                @endif
+
+                            </div>
+                        </div>
+                        <br>
+
+                        <botton wire:click="Guardar()" class="boton3" style="display:inline-block;">
+                            Guardar @if($TipoFormulario=='0') nuevo @else cambios @endif
+                            {{ $TipoFormulario }}
+                        </botton>
+                        <botton  wire:click="CancelarNuevoEvento();" class="boton2" style="display:inline-block;">
+                            Cancelar
+                        </botton>
+                    @endif
                 </div>
             @endif
         @endif
     </section>
 
-
-    <!--S2 EVENTOS ANTERIORES-->
+    <!-- ############################################################################################# -->
+    <!-- ################################ FICHAS DE EVENTOS PASADOS ################################## -->
     <a name="SeccionAnteriores"></a>
     <section class="eventos-anteriores pt-4 pb-3">
         <div class="container px-4 py-5" id="bienvenido">
@@ -229,8 +235,10 @@ Eventos
                 <article class="evento">
                     <div class="row justify-content-around p-5">
                         <div class="col-sm-5 col-md-5 col-lg-3 cartel">
-                            <img src="{{$i->wwevs_img}}" alt="Cartel {{$i->wwevs_titulo}}"
-                                class="img-fluid">
+                            <a href="{{$i->wwevs_img}}" target="new" class="nolink">
+                                <img src="{{$i->wwevs_img}}" alt="Cartel {{$i->wwevs_titulo}}"
+                                    class="img-fluid">
+                            </a>
                         </div>
                         <div class="col-sm-7 col-md-7 col-lg-5 descripcion">
                             <h3 class="evento-nombre">
@@ -291,6 +299,15 @@ Eventos
                                 <div class="col-sm-6 col-md-12 col-lg-12 p-0">
                                     <div class="row">
                                         <h5>{{$i->wwevs_costo}}</h5>
+                                        @if(auth()->user() AND in_array('webmaster', session('rol')))
+                                            <div>
+                                                <i class="bi bi-trash" wire:click="Borrar({{$i->wwevs_id}})" wire:confirm="Estás por eliminar el evento '{{$i->wwevs_titulo}}' ¿Quieres seguir?" style="cursor: pointer;"></i>
+                                                &nbsp; &nbsp;
+                                                <a href="#editor" class="nolink">
+                                                    <i class="bi bi-pencil-square" wire:click="EditaEvento('{{ $i->wwevs_id }}')"></i>
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
