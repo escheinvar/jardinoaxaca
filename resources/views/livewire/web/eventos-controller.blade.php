@@ -195,10 +195,15 @@
                                 <input wire:model="imagen" type="file" class="form-control">
                                 @error('imagen')<error>{{$message}}</error>@enderror
                             </div>
+
+                            <!-- Muestra Imágen de portada -->
                             <div class="col-md-5 col-lg-5">
+                                <!-- Muestra Imágen de portada si proviene de edición (ya hay imagen)-->
                                 @if($TipoFormulario > '0' and $imagen =='')
                                     <img src="{{$imagen2}}" style="width:70%;">
+                                    <i wire:click="BorrarImagen()" class="bi bi-trash PaClick"></i>
                                 @endif
+                                <!-- Muestra Imágen nueva -->
                                 @if($imagen)
                                     <span wire:loading wire:target="imagen"> Cargando archivo...</span>
                                     <img src="{{$imagen->temporaryUrl()}}" style="width:90%;">
@@ -210,7 +215,6 @@
 
                         <botton wire:click="Guardar()" class="boton3" style="display:inline-block;">
                             Guardar @if($TipoFormulario=='0') nuevo @else cambios @endif
-                            {{ $TipoFormulario }}
                         </botton>
                         <botton  wire:click="CancelarNuevoEvento();" class="boton2" style="display:inline-block;">
                             Cancelar

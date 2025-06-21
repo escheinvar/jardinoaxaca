@@ -19,15 +19,18 @@ class EventosController extends Component
     ### Boostrap: iconos (bi bi-trash, bi bi-pencil-square, bi bi-plus-circle)
     ###
     ### View-Controller:
-    ###   El view muestra las fichas de eventos futuros y fichas de eventos pasados contenidos en el modelo WebEventosModel
-    ###   Para mostrar las fichas, en funcion_render, carga la tabla de eventos futuros (eventosProx) y eventos pasados (eventosPast) y los manda a view.
-    ###   El view tiene un formulario de "Nuevo Evento" el cual muestra un botón "Nuevo Evento" (que solo se mustra si session(rol)=webmaster
-    ###   y que al ser picado, activa funcion "VerNuevoEvento", la cual cambia flag VerNuevoEvento=1 para mostrar el formulario de "Nuevos Eventos".
-    ###   Cada ficha de evento en el view, cuenta con un ícono de editar y uno de tirar que solo se muestran cuando se tiene el session(rol)=webmaster.
+    ###   El view muestra las fichas de eventos futuros y fichas de eventos pasados contenidos en el modelo WebEventosModel.
+    ###   Para mostrar las fichas, la funcion_render, carga la tabla de eventos futuros (eventosProx) y eventos pasados (eventosPast) y los manda a view.
+    ###   El view tiene un botón_"Nuevo Evento" que solo se mustra si session(rol)=webmaster.
     ###   La variable VerNuevoEvento es un flag que cuando =0 view oculta la sección de formulario de nuevo evento y cuando =1 lo muestra.
     ###   La variable TipoFormulario es otro flag que cuando =0 está ingresando nuevo evento y cuando>0 indica el id del evento que se edita.
-    ###   Cuando se pica botón "Nuevo evento", se activa fun_VerNuevoEvento que activa flag VerNuevoEvento=1 (para muestra formulario)
-    ###   Cuando se pica ícono de "editar evento" se activa fun_EditaEvento, que carga los datos para el
+    ###   Al  picar el botón_"Nuevo Evento" se activa la funcion_"MostrarNuevoEvento", la cual cambia flag_VerNuevoEvento=1 (para mostrar el formulario_"Nuevos Evento")
+    ###   y flag_TipoFormulario='0' para indicar que es un nuevo evento.
+    ###   Cada ficha de evento en el view, cuenta con un ícono de editar y uno de tirar que solo se muestran cuando se tiene el session(rol)=webmaster.
+    ###   Cuando se pica ícono de "editar evento" se activa fun_EditaEvento, que carga los datos preexistentes y cambia flag_VerNuevoEvento=1 (para mostrar el formulario_"Nuevo Evento")
+    ###   y el flag_TipoFormulario con el id de la ficha en edición (que siempre será > 0 para indicar que se está editando la ficha existente.
+    ###   El formulario_"Nuevo evento" carga un archivo temporal de imágen, lo cual es conflictivo cuando se carga desde base de datos (cuando se edita),
+    ###   ya que no cuenta con $imagen->temporaryUrl(), por lo que se generó la variable $imagen2 (para mostrar la imágen desde base de datos) y dejar $imagen para las cargadas desde formulario.
     ###########################################################################################################################
     public $Cantidad;
     public $VerNuevoEvento, $TipoFormulario;
@@ -134,28 +137,32 @@ class EventosController extends Component
             'wwevs_costo'=>$this->costo,
             'wwevs_img'=>$img,
         ]);
-        #return redirect('/actividades');
 
-
-        $this->TipoFormulario='0';
-        $this->CancelarNuevoEvento();
-        $this->VerNuevoEvento='0';
+        $this->TipoFormulario='0'; ##### Para ocultar el formulario
+        $this->CancelarNuevoEvento();  ##### Para limpiar las variables
+        $this->VerNuevoEvento='0'; ##### Para regresar a formulario vacío (nuevo)
     }
 
     public function Borrar($id){
+        ##### Inactiva el registro (act=>0)
         WebEventosModel::where('wwevs_id',$id)->update([
             'wwevs_act'=>'0',
         ]);
     }
 
+    public function BorrarImagen(){
+        ##### Elimina los valores de variables de imágen
+        $this->imagen='';
+        $this->imagen2='';
+    }
+
     public function render() {
-        // $eventos=WebEventosModel::where('wwevs_act','1')->OrderBy('wwevs_dateini')->get();
         $mes=['no','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
         $prox=WebEventosModel::where('wwevs_act','1')
             ->OrderBy('wwevs_dateini','asc')->where('wwevs_datefin','>=',now())->get();
         $past=WebEventosModel::where('wwevs_act','1')
             ->OrderBy('wwevs_dateini','desc')->where('wwevs_datefin','<',now())->paginate($this->Cantidad);
-        #dd($prox);
+
         return view('livewire.web.eventos-controller',[
             'eventosProx'=>$prox,
             'eventosPast'=>$past,
