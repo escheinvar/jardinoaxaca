@@ -8,6 +8,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\UsuarioLogeadoConRolMiddle;
 use App\Livewire\Admin\Nuevousuario01Controller;
 use App\Livewire\Admin\NuevoUsuarioController;
+use App\Livewire\Cedulas\BuscadorCedulasComponent;
 use App\Livewire\Cedulas\CatalogoDeCedulasComponent;
 use App\Livewire\Cedulas\EditaCedulasComponent;
 use App\Livewire\Cedulas\EspeciesComponent;
@@ -68,6 +69,8 @@ Route::get('/actividades',EventosController::class)->name('actividades');
 Route::get('/pruebillas_php',function(){ dd(phpinfo());});
 /* ------------------------------------ PÁGINA WEB PÚBLICA IXMx ------------------------ */
 Route::get('/enrique',EnriqueController::class)->name('enrique');
+/* ------------------------------------ Búsqueda de cédulas ------------------------ */
+Route::get('/buscar', BuscadorCedulasComponent::class)->name('buscadorDeCedulas');
 
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */
@@ -113,8 +116,8 @@ Route::get('/sppdf/{cedID}/{tipo}',[especies_pdf_controller::class, 'index']);
 
 
 /*------------------------------ CÉDULAS DE ESPECIES --------------------------------------- */
-Route::get('/especies',EspeciesController::class)->name('especies');
-Route::get('/cedulas',EspeciesController::class)->name('cedulas');
+#Route::get('/especies',EspeciesController::class)->name('especies');
+Route::get('/especies', BuscadorCedulasComponent::class)->name('buscadorDeCedulas');
 Route::get('/especiesixmx',EspeciesIxmController::class)->name('especiesIxMx');
 
 /*---------- temps --------------*/

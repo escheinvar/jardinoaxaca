@@ -164,7 +164,7 @@
                         </a>
                     </li> --}}
                     <!-- ----- Las especies ----- -->
-{{--
+
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/especies">
                             @if(session('locale')=='en')
@@ -178,7 +178,7 @@
                             @endif
                         </a>
                     </li>
---}}
+
                     <!-- ----- Eventos ----- -->
                     <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/actividades">
