@@ -121,8 +121,8 @@ class UsuariosComponent extends Component{
             ->orderBy('rol_tipo1','asc')
             ->orderBy('rol_tipo2','asc')
             ->get();
-
-        $catLenguas=CatLenguasModel::orderBy('clen_lengua','asc')->get();
+            $catLenguas=CatLenguasModel::orderBy('clen_lengua','asc')->get();
+            #dd($roles,$catLenguas);
 
         return view('livewire.sistema.usuarios-component',[
             'usuarios'=>$usuarios,

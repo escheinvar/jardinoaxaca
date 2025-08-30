@@ -274,7 +274,7 @@ class EspeciesComponent extends Component
                 });
             })
             ->get();
-
+#dd($jardinData);
         return view('livewire.cedulas.especies-component',[
             'taxo'=>$taxo,
             'titulos'=>$titulos,

@@ -28,6 +28,7 @@ use App\Livewire\Sistema\HomeComponent;
 use App\Livewire\Sistema\MapaComponent;
 use App\Livewire\Sistema\UsuariosComponent;
 use App\Livewire\Sistema\VisitasComponent;
+use App\Livewire\Web\BaseDatosController;
 use App\Livewire\Web\ColaboradoresController;
 use App\Livewire\Web\ColeccionesController;
 use App\Livewire\Web\DirectiorioController;
@@ -67,6 +68,7 @@ Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradore
 Route::get('/actividades',EventosController::class)->name('actividades');
 #Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 Route::get('/pruebillas_php',function(){ dd(phpinfo());});
+Route::get('/baseDeDatos',BaseDatosController::class)->name('baseDeDatos');
 /* ------------------------------------ PÁGINA WEB PÚBLICA IXMx ------------------------ */
 Route::get('/enrique',EnriqueController::class)->name('enrique');
 /* ------------------------------------ Búsqueda de cédulas ------------------------ */

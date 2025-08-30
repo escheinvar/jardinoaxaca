@@ -1,4 +1,4 @@
-<!--NAVBAR-->
+    <!--NAVBAR-->
 <nav class="navbar navbar-expand-lg texto-nav fondo-nav" aria-label="Offcanvas navbar large">
     <div class="container-fluid px-4 py-1" id="header">
 
@@ -198,6 +198,12 @@
 
                     @if(auth()->user())
                         <li class="nav-item">
+                            <a class="nav-link @if(request()->path() == 'baseDeDatos') active @endif" href="/baseDeDatos">
+                                BD
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link @if(request()->path() == 'home') active @endif" href="/home">
                                 @if(session('locale')=='en')
                                     System
@@ -210,6 +216,8 @@
                                 @endif
                             </a>
                         </li>
+
+
 
 
                         <!-- ----- Salir ----- -->

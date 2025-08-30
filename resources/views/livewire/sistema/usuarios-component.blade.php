@@ -80,7 +80,7 @@
                                     </td>
                                     <td>
                                         {{ $r->rol_tipo1 }}
-                                        @if($r->rol_tipo2 != "") : {{ $r->rol_tipo2 }} @endif
+                                        @if($r->rol_tipo2 != "") : <b>{{ $r->rol_tipo2 }}</b>   {{ $catLenguas->where('clen_code',$r->rol_tipo2)->value('clen_lengua') }}@endif
                                     </td>
                                     <td>
                                         <button  wire:click="BorraRol({{ $r->rol_id }})" wire:confirm="Estás por quitarle definitivamente el rol de {{ $r->rol_crolrol }} a este usuario ¿Deseas continuar?" class="btn btn-secondary btn-sm">
@@ -125,7 +125,7 @@
                         <select wire:model="NewRolLengua" class="form-select">
                             <option value="">Indica una lengua</option>
                             @foreach ($catLenguas as $cat)
-                                <option value="{{ $cat->clen_code }}"> {{ $cat->clen_lengua }}</option>
+                                <option value="{{ $cat->clen_code }}"> {{ strtolower($cat->clen_lengua) }}</option>
                             @endforeach
                         </select>
                         @error('NewRolLengua')<error>{{ $mesagge }}</error>@enderror
@@ -134,17 +134,23 @@
             </div>
 
             <div class="row my-4">
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-3">
+                    <a href="/usuarios" class="nolink"> <i class="bi bi-arrow-return-left"></i> Regresar a Usuarios</a>
+                </div>
+
+                <div class="col-12 col-sm-3">
                     <button wire:click="GuardaEdit()" class="btn btn-primary">
-                        Guardar
+                        <span wire:loading.remove> Guardar </span>
+                        <span wire:loading style="display:none;"> <red> ..guardando...</red> </span>
                     </button>
                 </div>
 
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-3">
                     <button wire:click="CancelaEdit()" class="btn btn-secondary">
                         Cancelar
                     </button>
                 </div>
+
             </div>
         </div>
     @endif

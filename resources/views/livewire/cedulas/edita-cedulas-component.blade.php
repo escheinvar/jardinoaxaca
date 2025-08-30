@@ -442,8 +442,9 @@
 
                                         <!-- botón de guardar-->
                                         <div class="col-4 my-4">
-                                            <button wire:click="GuardarCambios()" class="btn btn-primary"><i class="bi bi-save"></i>
-                                                Guardar cambios
+                                            <button wire:click="GuardarCambios()" wire:loading.attr="disabled" class="btn btn-primary"><i class="bi bi-save"></i>
+                                                <span wire:loading.remove>Guardar cambios</span>
+                                                <span wire:loading style="display:none;"> <red> ... guardando ...</red> </span>
                                             </button>
                                         </div>
                                         <div class="col-4 my-4">
@@ -453,7 +454,9 @@
                                         </div>
                                         <div class="col-4 my-4">
                                             <button wire:click="BorrarParrafo('{{ $text->txt_id }}')" wire:confirm="Estas por eliminar PERMANENTEMENTE este párrafo. ¿Quieres continuar?" class="btn btn-danger">
-                                                <i class="bi bi-trash"></i> Eliminar párrafo
+                                                <span wire:loading.remove> <i class="bi bi-trash"></i> Eliminar párrafo </span>
+                                                <span wire:loading style="display:none;"> <red> ... eliminando ...</red> </span>
+
                                             </button>
                                         </div>
                                         <span style="font-size: 80%;">Versión del párrafo: {{ $text->txt_version }} &nbsp; &nbsp;
@@ -469,8 +472,9 @@
                 @endforeach
 
                 <div class="row m-4">
-                    <button wire:click="NuevoParrafo()" class="boton2" style="height:90px;font-size:150%;">
-                        Crear Nuevo Párrrafo
+                    <button wire:click="NuevoParrafo()" wire:loadding.attr="disabled" class="boton2" style="height:90px;font-size:150%;">
+                        <span wire:loading.remove>Crear Nuevo Párrrafo</span>
+                        <span wire:loading style="display:none;"> <red> ... creando ...</red> </span>
                     </button>
                 </div>
             </div>

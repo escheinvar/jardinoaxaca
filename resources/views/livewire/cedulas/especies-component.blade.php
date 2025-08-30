@@ -40,7 +40,7 @@
     <div class="row" style="margin:5px; border-radius:8px; ">
         <!-- ------------------------- FICHA GENERAL IZQUIERDA ------------------------>
         <div class="col-12 col-md-4 col-lg-3 text-wrap" style="position:relative; padding:10px; border-top-left-radius:8px; background-color:#CDC6B9;">
-            <!-- ------------------------- Logo del Jardín propietario de la cédula ------------------------>
+            <!-- ------------------------- Nombre y Logo del Jardín propietario de la cédula ------------------------>
             <div class="row pb-2" style="">
                 @foreach ($jardinData->where('cjar_siglas',$jardin) as $jar)
                     <div class="col-12 py-2" style="text-align: center; color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center; font-size:130%; font-weigth:bold;">
@@ -65,7 +65,7 @@
                 <div class="py-4 d-none d-md-block d-lg-none"style="font-size:80%;"><b>{{ $taxo['nombrecomun'] }}</b></div>
                 <div class="py-4 d-none d-lg-block"          style="font-size:110%;"><b>{{ $taxo['nombrecomun'] }}</b></div> --}}
                 <div class="py-1" style="font-size:120%;">{{ $taxo['nombrecomun'] }}</div>
-                <div class="" style="font-size:90%;">{{ $idioma2}}</div>
+                <div class="" style="font-size:90%;">{{ $idioma2 }}</div>
             </div>
 
             <!-- ------------------------- Categoría de riesgo ------------------------>
@@ -94,7 +94,7 @@
             </div>
             --}}
             @if(Auth::user() )
-                <center>
+                {{-- <center>
                 <div style="display:inline-block;"> &nbsp; | &nbsp;
                     <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
                     <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
@@ -102,7 +102,7 @@
                     <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
                     <span class="d-xs-block d-sm-none">xs Extrachico</span>
                 </div>
-                </center>
+                </center> --}}
             @endif
 
             <!-- ------------------------- Otras cédulas de otros jardines ------------------------>
@@ -127,11 +127,11 @@
         </div>
 
         <!-- ------------------------- FOTO DE LA PORTADA ------------------------>
-        <div class="col-sm-12 col-md-6 col-lg-7" style="height:600px;">
+        <div class="col-sm-12 col-md-6 col-lg-7" style="height:600px; vertical-align:middle;">
             <center>
                 @if($fotos->where('imgsp_cimgname','portada')->value('imgsp_file') != '')
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="max-height:80%; max-width:80%;center">
+                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="max-height:80%; max-width:80%; center">
                     </a>
                 @endif
             </center>

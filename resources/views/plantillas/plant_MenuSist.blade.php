@@ -77,6 +77,18 @@
                         </li>
                     @endif
 
+                    <li class="nav-item">
+                        <a class="nav-link @if(request()->path() == 'baseDeDatos') active @endif" href="/baseDeDatos">
+                            BD
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                    <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/especies">
+                        Las especies
+                    </a>
+                </li>
+
                     <!--dropdown 1-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle @if(in_array(request()->path(),['recorridos','mapa'])) active @endif" href="#" role="button" data-bs-toggle="dropdown"
