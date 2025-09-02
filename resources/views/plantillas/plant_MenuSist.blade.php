@@ -102,6 +102,14 @@
                         </ul>
                     </li>
 
+                     <li class="nav-item">
+                        <a class="nav-link @if(request()->path() == 'acercade') active @endif" href="/acercade">
+                            Info
+                        </a>
+
+                    </li>
+
+
                     {{-- <li class="nav-item">
                         <a class="nav-link @if(request()->path() == 'elclavo') active @endif" href="/elclavo/busca">
                             Clavo

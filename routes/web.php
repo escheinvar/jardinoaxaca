@@ -20,6 +20,7 @@ use App\Livewire\Plantas\CatalogoCamellonesYJardinesComponent2;
 use App\Livewire\Plantas\CatalogoJardinesYcampusComponent;
 use App\Livewire\Plantas\ImportaPlantasComponent2;
 use App\Livewire\Plantas\ImportaPlantasComponent;
+use App\Livewire\Sistema\AcercadeComponent;
 use App\Livewire\Sistema\BuzonComponent;
 use App\Livewire\Sistema\ErrorComponent;
 use App\Livewire\Sistema\FichaClavoComponent;
@@ -70,6 +71,7 @@ Route::get('/actividades',EventosController::class)->name('actividades');
 #Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 Route::get('/pruebillas_php',function(){ dd(phpinfo());});
 Route::get('/baseDeDatos',BaseDatosController::class)->name('baseDeDatos');
+Route::get('/acercade', AcercadeComponent::class)->name('acercade');
 /* ------------------------------------ PÁGINA WEB PÚBLICA IXMx ------------------------ */
 Route::get('/enrique',EnriqueController::class)->name('enrique');
 /* ------------------------------------ Búsqueda de cédulas ------------------------ */
