@@ -2,29 +2,7 @@
     Inicio
 @endsection
 @section('cintillo')
-    Inicio &nbsp; &nbsp;
-    <!-- Indicador de Buzón -->
-    @if($buzon > 0 )
-        <a href="/buzon" class="nolink">
-            <span style="border:1px solid #CD7B34;padding:1px;color:#CD7B34; font-weight:bold">
-                <i class="bi bi-envelope-fill"></i>
-                {{ $buzon }}
-                @if($buzon =='1')mensaje @else mensajes @endif
-            </span>
-        </a>
-    @else
-        <a href="/buzon" class="nolink">
-            <i class="bi bi-envelope"></i> Buzón
-        </a>
-    @endif
-    <!-- Indicador de  Aportes -->
-    @if(in_array('cedulas',session('rol')) and $revisa > 0)
-    <span style="border:1px solid #64383E;padding:1px;color:#64383E; font-weight:bold" class="mx-3">
-        <a href="#" class="nolink">
-            <i class="bi bi-hand-index-fill"></i> {{ $revisa }} Aportes
-        </a>
-    </span>
-    @endif
+    &nbsp; Home &nbsp; &nbsp;
 @endsection
 
 

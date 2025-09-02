@@ -8,6 +8,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\UsuarioLogeadoConRolMiddle;
 use App\Livewire\Admin\Nuevousuario01Controller;
 use App\Livewire\Admin\NuevoUsuarioController;
+use App\Livewire\Cedulas\AportesComponent;
 use App\Livewire\Cedulas\BuscadorCedulasComponent;
 use App\Livewire\Cedulas\CatalogoDeCedulasComponent;
 use App\Livewire\Cedulas\EditaCedulasComponent;
@@ -94,6 +95,7 @@ Route::get('/nuevousr01/{token}',Nuevousuario01Controller::class);
 Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->group(function(){
     Route::get('/home',HomeComponent::class)->name('home');
     Route::get('/buzon',BuzonComponent::class)->name('buzon');
+    Route::get('/aportes',AportesComponent::class)->name('aportes');
     Route::get('/usuarios',UsuariosComponent::class)->name('usuarios');
     Route::get('/vervisitas',VisitasComponent::class)->name('visitas');
     /* -------------------------- SECCIÓN DE PLANTAS ----------------------------- */

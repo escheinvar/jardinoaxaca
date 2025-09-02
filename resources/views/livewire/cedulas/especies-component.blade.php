@@ -131,7 +131,7 @@
             <center>
                 @if($fotos->where('imgsp_cimgname','portada')->value('imgsp_file') != '')
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="max-height:80%; max-width:80%; center">
+                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="center">
                     </a>
                 @endif
             </center>
@@ -146,7 +146,7 @@
 
             <!-- img ppal1-->
             @if($fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') != '' )
-                <div class="center"><center>
+                <div class="center" style="valign:middle"><center>
                     <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') }}" target="new">
                         <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
                     </a>
@@ -445,7 +445,7 @@
                     <div class="col-12 form-group my-4">
                         <buton type="button" wire:click="EntraMensajeUsr()" class="btn btn-primary">Enviar mi aporte</buton>
                         <buton type="button" wire:click="CancelaMensajeUsr()" onclick="VerNoVer('ver','Aportes')" class="btn btn-secondary">Cancelar</buton>
-                    </div>
+                    </div>aaa{{ $CedId }}
                 </div>
             @else
                 Para poder aportar o ver los comentarios aportados, debes registrarte primero  en el sitio.<br>
