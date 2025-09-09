@@ -11,6 +11,7 @@ use App\Livewire\Admin\NuevoUsuarioController;
 use App\Livewire\Cedulas\AportesComponent;
 use App\Livewire\Cedulas\BuscadorCedulasComponent;
 use App\Livewire\Cedulas\CatalogoDeCedulasComponent;
+use App\Livewire\Cedulas\DistribuidorDeCedulasComponent;
 use App\Livewire\Cedulas\EditaCedulasComponent;
 use App\Livewire\Cedulas\EspeciesComponent;
 use App\Livewire\Login\RecuperaPasswd01Controller;
@@ -68,14 +69,12 @@ Route::get('/colecciones', ColeccionesController::class)->name('colecciones');
 Route::get('/directorio', DirectiorioController::class)->name('directorio');
 Route::get('/colaboradores', ColaboradoresController::class)->name('colaboradores');
 Route::get('/actividades',EventosController::class)->name('actividades');
-#Route::get('/qr/{codigoQR}',CodigoQrController::class)->name('qr');
 Route::get('/pruebillas_php',function(){ dd(phpinfo());});
 Route::get('/baseDeDatos',BaseDatosController::class)->name('baseDeDatos');
 Route::get('/acercade', AcercadeComponent::class)->name('acercade');
 /* ------------------------------------ PÁGINA WEB PÚBLICA IXMx ------------------------ */
 Route::get('/enrique',EnriqueController::class)->name('enrique');
-/* ------------------------------------ Búsqueda de cédulas ------------------------ */
-Route::get('/buscar', BuscadorCedulasComponent::class)->name('buscadorDeCedulas');
+
 
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */
@@ -118,6 +117,8 @@ Route::middleware([UsuarioLogeadoConRolMiddle::class,Authenticate::class])->grou
 /* ---------------------------------------------------------------------------- */
 Route::get('/sp/{url}/{jardin}', EspeciesComponent::class)->name('cedula');
 Route::get('/sppdf/{cedID}/{tipo}',[especies_pdf_controller::class, 'index']);
+Route::get('/buscar', BuscadorCedulasComponent::class)->name('buscadorDeCedulas');
+Route::get('/len/{url}/{jardin}/{lengua}', DistribuidorDeCedulasComponent::class)->name('distrilengua');
 
 
 

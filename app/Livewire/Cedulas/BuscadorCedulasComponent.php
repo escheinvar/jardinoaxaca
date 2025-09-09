@@ -15,7 +15,7 @@ class BuscadorCedulasComponent extends Component
     public function mount(){
         MyRegistraVisita('web_buscaCedulas');
         $this->buscaText='';
-        $this->buscaJardin='JebOax';
+        $this->buscaJardin='%';
         $this->buscaLengua='%';
     }
 
@@ -28,6 +28,7 @@ class BuscadorCedulasComponent extends Component
         $ruta="/sp/".$dato->ced_urlurl."/".$dato->ced_cjarsiglas;
         redirect($ruta);
     }
+
     public function render() {
         if($this->buscaText==''){
             $texto='%';
