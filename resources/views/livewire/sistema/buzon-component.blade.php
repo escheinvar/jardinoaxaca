@@ -21,7 +21,17 @@
         {{ $buzon->where('buz_leido','1')->count() }}
         @if($buzon->where('buz_leido','1')->count() =='1')mensaje leído @else mensajes leídos @endif
     </span>
+    <span style="margin:5px; padding:1px;" >
+        <button wire:click="LeerMensajes()" type="button" class="btn btn-sm btn-primary" style="display:inline-block" @if(count($ganonesLee)==0) disabled @endif)>
+            <i class="bi bi-envelope-open"></i> Leer {{ count($ganonesLee) }} @if(count($ganonesLee)==1)mensaje @else mensajes @endif
+        </button>
+        <span style="float: right;">
 
+        <button wire:click="BorrarMensajes()" type="button" class="btn btn-sm btn-primary" style="display:inline-block" @if(count($ganonesBorra)==0) disabled @endif wire:confirm="Estás por eliminar definitivamente este mensaje. Esta acción no puede ser revertida. ¿Deseas continuar?">
+            <i class="bi bi-trash"></i> Borrar {{ count($ganonesBorra) }} @if(count($ganonesBorra)==1)mensaje @else mensajes @endif
+        </button>
+        </span>
+    </span>
 
     <!-- -------------------------------------------- inicia buzón -------------------------- -->
     @if($buzon->count() > 0)
@@ -31,11 +41,15 @@
                 <tr>
                     <td class="p-3 m-2">
                         <div>
-                            <span class="PaClick m-1 p-1" wire:click="LeerMensaje('{{ $b->buz_id }}')">
+
+                            {{-- <span class="PaClick m-1 p-1" wire:click="LeerMensaje('{{ $b->buz_id }}')"> --}}
+                            <span class="m-1 p-1" >
                                 @if($b->buz_leido == '0')
+                                    <input type="checkbox" wire:model.live="ganonesLee" id="ch{{ $b->buz_id }}" value="{{ $b->buz_id }}">
                                     <i class="bi bi-envelope-fill"></i>
                                 @else
                                     <i class="bi bi-envelope-open"></i>
+                                    <input type="checkbox" wire:model.live="ganonesLee" id="ch{{ $b->buz_id }}" value="{{ $b->buz_id }}">
                                 @endif
                             </span>
                             <span style="@if($b->buz_leido =='1') color:gray; @endif">
@@ -61,8 +75,10 @@
                                 {{ preg_replace('/:..$/','',     preg_replace('/.* /', '',$b->buz_date_origen) )}}
                             </span>
                             <!-- botón de borrar -->
-                            <span class="PaClick m-1 p-1" wire:click="BorrarMensaje('{{ $b->buz_id }}')" wire:confirm="Estás por eliminar definitivamente este mensaje. Esta acción no puede ser revertida. ¿Deseas continuar?">
+                            {{-- <span class="PaClick m-1 p-1" wire:click="BorrarMensaje('{{ $b->buz_id }}')" wire:confirm="Estás por eliminar definitivamente este mensaje. Esta acción no puede ser revertida. ¿Deseas continuar?"> --}}
+                            <span class="m-1 p-1">
                                 <i class="bi bi-trash"> </i>
+                                <input type="checkbox" wire:model.live="ganonesBorra" id="ch{{ $b->buz_id }}" value="{{ $b->buz_id }}">
                             </span>
                         </div>
                     </td>

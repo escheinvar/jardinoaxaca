@@ -212,10 +212,9 @@
         <div class="col-12 col-sm-12 col-md-2" style="color:#efebe8;padding:40px;font-size:1.3em;background-color:#CDC6B9;">
             <H3>
                 {{ $lenguas->where('clen_code',session('locale2'))->value('clen_autonimias') }}
-                {{-- $lenguas->where('clen_code',session('locale2'))->value('clen_lengua') --}}
             </H3>
 
-            <nav class="navbar navbar-expand-md" >
+            <nav class="navbar navbar-expand-md">
 
                 <!-- --------- Menú Hamburguesa -------------- -->
                 <button class="navbar-toggler"
@@ -516,6 +515,7 @@
                 }
             })
         </script>
+
     @endsection
 
 </div>
