@@ -7,7 +7,9 @@
             <!-- ------------------------- FICHA GENERAL IZQUIERDA ------------------------>
             <div class="col-12 col-md-4 col-lg-3 text-wrap" style="position:relative; padding:10px; border-top-left-radius:8px; background-color:#CDC6B9;">
                 <center>
-                    <a href="/catCedulas" class="nolink"> <i class="bi bi-arrow-left"></i> Catálogo </a>
+                    <a href="/catCedulas" class="nolink"> <i class="bi bi-arrow-left"></i>
+                        Regresar al catálogo
+                    </a>
                     <h1>Editor de cédulas</a></h1>
                 </center>
                 <!-- ------------------------- Logo del Jardín propietario de la cédula ------------------------>
@@ -23,10 +25,10 @@
                     <div class="col-12">
                         <center>
                             <!-- Datos de cédlula: nombre y lengua -->
-                            <h3>{{ $urlced->url_nombre }}</h3>
-                            <h3>{{ $urlced->clen_lengua }} ({{ $urlced->ced_clencode }})</h3>
+                            <h3>{{ $urlced->url_nombre }}<br>
+                            {{ $urlced->clen_lengua }} ({{ $urlced->ced_clencode }})</h3>
                             <!-- Datos y botón de estado -->
-                            <h3>
+                            <h3 class="my-4">
                                 <div style="">
                                     @if($urlced->ced_edo=='0')
                                         <i class="bi bi-0-circle-fill" style="color:red;"> En elaboración</i><br>
@@ -130,78 +132,26 @@
 
             <!-- ------------------------- GALERÍA DE FOTOGRAFÍAS ------------------------>
             <div class="col-sm-12 col-md-2 col-lg-2 center">
-                <!-- img ppal1-->
-                @if($fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') != '' )
-                    <div class="center" style="display:inline-block;width:80%;">
-                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') }}" target="new">
-                            <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                        </a>
-                    </div>
-                    @if($cedulas >'0')
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('ppal1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
+                <!-- Imágenes principales -->
+                @foreach (['ppal1','ppal2','ppal3','ppal4','ppal5','ppal6'] as $ppal)
+                    @if($fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') != '' )
+                        <div class="center" style="display:inline-block;width:80%;">
+                            <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') }}" target="new">
+                                <img src="/cedulas/{{$fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
+                            </a>
+                        </div>
+                        @if($cedulas >'0')
+                            <!-- botón borrar -->
+                            <div class="PaClick" wire:click="BorraFoto('{{ $ppal }}')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:block;vertical-align:bottom;color:gray;">
+                                <i class="bi bi-trash"><small>{{ $ppal }}</small></i>
+                            </div>
+                        @endif
+                    @else
+                        <div class="form-group" style="border:1px dotted gray;color:gray; padding:10px;">
+                            Imagen {{ $ppal }}
                         </div>
                     @endif
-                @else
-                    <div class="form-group">
-                        <label class="form-label">Imagen ppal1</label>
-                    </div>
-                @endif
-                <!-- img ppal2 -->
-                @if($fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') != '' )
-                    <div class="center" style="display:inline-block;width:80%;">
-                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') }}" target="new">
-                            <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                        </a>
-                    </div>
-                    @if($cedulas >'0')
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('ppal2')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
-                        </div>
-                    @endif
-                @else
-                    <div class="form-group">
-                        <label class="form-label">Imagen ppal2</label>
-                    </div>
-                @endif
-                <!-- img ppal3 -->
-                @if($fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') != '' )
-                    <div class="center" style="display:inline-block;width:80%;">
-                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') }}" target="new">
-                            <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                        </a>
-                    </div>
-                    @if($cedulas >'0')
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('ppal3')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
-                        </div>
-                    @endif
-                @else
-                    <div class="form-group">
-                        <label class="form-label">Imagen ppal3</label>
-                    </div>
-                @endif
-                <!-- img ppal4-->
-                @if($fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') != '' )
-                    <div class="center" style="display:inline-block;width:80%;">
-                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') }}" target="new">
-                            <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                        </a>
-                    </div>
-                    @if($cedulas >'0')
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('ppal4')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
-                        </div>
-                    @endif
-                @else
-                    <div class="form-group">
-                        <label class="form-label">Imagen ppal4</label>
-                    </div>
-                @endif
+                @endforeach
             </div>
         </div>
 
@@ -489,67 +439,39 @@
                         Tu navegador no soporta el video
                     </video>
                     @if($cedulas >'0')
+                    <!-- botón borrar -->
+                            <div class="PaClick" wire:click="BorraFoto('{{ $ppal }}')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:block;vertical-align:bottom;color:gray;">
+                                <i class="bi bi-trash"><small>{{ $ppal }}</small></i>
+                            </div>
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('lateralvideo1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
                             <i class="bi bi-trash"></i>
                         </div>
                     @endif
                 @else
-                    <div class="form-group">
-                        <label class="form-label">Video lateralvideo1</label>
+                    <div class="form-group" style="border:1px dotted gray;color:gray; padding:10px;margin:5px;">
+                        Video lateralvideo1
                     </div>
                 @endif
 
-                <!-- lateral1 -->
-                @if($fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') != '')
-                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                    </a>
-                    @if($cedulas >'0')
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('lateral1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
+                <!-- Imágenes laterales -->
+                @foreach (['lateral1','lateral2','lateral3','lateral4','lateral5','lateral6','lateral7','lateral8','lateral9','lateral10'] as $lat)
+                    @if($fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') != '')
+                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" target="new">
+                            <img src="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" style="width:100%;  padding:15px;">
+                        </a>
+                        @if($cedulas >'0')
+                            <!-- botón borrar -->
+                            <div class="PaClick" wire:click="BorraFoto('{{ $lat }}')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:block;vertical-align:bottom;color:gray;">
+                                <i class="bi bi-trash"><small>{{ $lat }}</small></i>
+                            </div>
+                        @endif
+                    @else
+                        <div class="form-group" style="border:1px dotted gray;color:gray; padding:10px;">
+                            Imagen {{ $lat }}
                         </div>
                     @endif
-                @else
-                    <div class="form-group">
-                        <label class="form-label">Imagen lateral1</label>
-                    </div>
-                @endif
-
-                <!-- lateral2 -->
-                @if($fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') != '')
-                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                    </a>
-                    @if($cedulas >'0')
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('lateral2')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:inline-block;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
-                        </div>
-                    @endif
-                @else
-                    <div class="form-group">
-                        <label class="form-label">Imagen lateral2</label>
-                    </div>
-                @endif
-
-                <!-- lateral3 -->
-                @if($fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') != '')
-                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                    </a>
-                    @if($cedulas >'0')
-                        <!-- botón borrar -->
-                        <div class="PaClick" wire:click="BorraFoto('lateral3')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
-                        </div>
-                    @endif
-                @else
-                    <div class="form-group">
-                        <label class="form-label">Imagen lateral3</label>
-                    </div>
-                @endif
+                @endforeach
             </div>
         </div>
 

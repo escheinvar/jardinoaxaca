@@ -314,16 +314,18 @@ error, red {
 .PaClick{
     cursor:pointer;
 }
-/* .etiqueta:after{
-    content: '';
-    background:url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSj3XfIpf-OOJRCcWz4iN2CU3qMKVVbj0p0bRvKNGVo1U9pk_8ZIlyR8pWreA');
-    background-size:cover;
-        position:absolute;
-    width:20px;
-    height:20px;
-    margin-left:-20px;
-} */
 
 .TipoTabla{
     display:inline-block;
+}
+
+.ContenedorImg{
+    margin-left:auto;
+    margin-right: auto;
+    position: relative; /* Referencia para los elementos internos */
+    display: inline-block; /* O un div con width y height */
+    margin-top:0px;
+    padding:15px;
+    color:#87796d;
+    width:100%;
 }

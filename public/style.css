@@ -61,7 +61,7 @@ h4.autor-cita {
     font-family: 'Noto Serif JP', serif;
     font-size: 12px;
     color: #87796dbe;
- 
+
 }
 
 p.autor-cita {
@@ -1099,7 +1099,7 @@ footer .logo {
     margin: 0 30px;
 }
 
-/*S1 PROXIMOS EVENTOS 
+/*S1 PROXIMOS EVENTOS
 S2 EVENTOS ANTERIORES*/
 .proximamente,
 .eventos-anteriores {
@@ -1217,15 +1217,15 @@ S2 EVENTOS ANTERIORES*/
         font-size: 28px;
     }
 
-  
+
     h4.autor-cita {
         font-size: 10px;
     }
-    
+
     p.autor-cita {
         font-size: 10px;
     }
-    
+
 }
 
 
@@ -1292,7 +1292,7 @@ S2 EVENTOS ANTERIORES*/
     }
 }
 
-/*Imagenes del banner small*/ 
+/*Imagenes del banner small*/
 
 @media (max-width: 449px) {
 

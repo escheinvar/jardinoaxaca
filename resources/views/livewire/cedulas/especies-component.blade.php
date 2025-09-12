@@ -40,7 +40,7 @@
     <div class="row" style="margin:5px; border-radius:8px; ">
         <!-- ------------------------- FICHA GENERAL IZQUIERDA ------------------------>
         <div class="col-12 col-md-4 col-lg-3 text-wrap" style="position:relative; padding:10px; border-top-left-radius:8px; background-color:#CDC6B9;">
-            <!-- ------------------------- Nombre y Logo del Jardín propietario de la cédula ------------------------>
+            <!-- ------------------------- GralIzq: Nombre y Logo del Jardín propietario de la cédula ------------------------>
             <div class="row pb-2" style="">
                 @foreach ($jardinData->where('cjar_siglas',$jardin) as $jar)
                     <div class="col-12 py-2" style="text-align: center; color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center; font-size:130%; font-weigth:bold;">
@@ -51,18 +51,18 @@
                     </div>
                 @endforeach
             </div>
-            <!-- ------------------------- Nombre científico ------------------------>
+            <!-- ------------------------- GralIzq: Nombre científico ------------------------>
             <div style="color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center;font-weigth:bold;" >
                 <div class="py-4" style="font-size:140%;">{{ $taxo['sp'] }}</div>
             </div>
 
-            <!-- ------------------------- Nombre Común / lengua ------------------------>
+            <!-- ------------------------- GralIzq: Nombre Común / lengua ------------------------>
             <div style="color:#202d2d; font-family: 'Noto Serif JP', serif; text-align:center; font-weight:100;" >
                 <div class="py-1" style="font-size:120%;">{{ $taxo['nombrecomun'] }}</div>
                 <div class="" style="font-size:90%;">{{ $idioma2 }}</div>
             </div>
 
-            <!-- ------------------------- Categoría de riesgo ------------------------>
+            <!-- ------------------------- GralIzq: Categoría de riesgo ------------------------>
             {{--
             <div style="text-align: center;">
                 <button class="btn" style="background-color:#B1153F; color:#efebe8;
@@ -99,7 +99,7 @@
                 </center> --}}
             @endif
 
-            <!-- ------------------------- Otras cédulas de otros jardines ------------------------>
+            <!-- ------------------------- GralIzq: Otras cédulas de otros jardines ------------------------>
             @if($jardinData->where('cjar_siglas','!=',$jardin)->count() > 0)
                 <div class="py-5" style="width:100%;text-align:center;">
                     <div style="font-size: 120%;font-weight:bold;" >
@@ -122,81 +122,49 @@
         </div>
 
         <!-- ------------------------- FOTO DE LA PORTADA ------------------------>
-        <div class="col-sm-12 col-md-4 col-lg-5" style="vertical-align:middle;">
+        <div class="col-sm-12 col-md-4 col-lg-5" style="vertical-align:middle;center">
             <center>
                 @if($fotos->where('imgsp_cimgname','portada')->value('imgsp_file') != '')
-                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}"
-                         class="img-fluid" style="max-height:30%;">
-                    </a>
+                    <div class="ContenedorImg" style="width:100%">
+                        <img class="img-fluid PaClick" style="max-height:30%;" src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" onclick="VerNoVer('foto','{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_id') }}')">
+                        <div style="display:none; font-size:90%;" id="sale_foto{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_id') }}">
+                            <b style="padding:3px;">{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_titulo') }}</b><br>
+                            <p>{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_pie') }}</p>
+                            <b>Autor:</b> {{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_autor') }}<br>
+                            <b>Fecha:</b> {{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_date') }} &nbsp;
+                            <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">Abrir imagen</a>
+                        </div>
+                    </div>
                 @endif
             </center>
         </div>
 
         <!-- ------------------------- GALERÍA DE FOTOGRAFÍAS ------------------------>
         <div class="col-12 col-md-3 col-lg-3 center">
-            <!-- ----------------------------------- INICIO DE JUEGO ----------------------------------------->
-            {{-- <div class="owl-carousel owl-theme">
-                @if($fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') != '' )
-                    @foreach ($fotos->where('imgsp_cimgname','ppal1') as $f)
-                        <div class="item">
-                            <a href="/cedulas/{{ $f->imgsp_file }}" target="new" class="nolink">
-                                <h4>{{ $f->imgsp_cimgname }}</h4>
-                                <img src="/cedulas/{{ $f->imgsp_file }}" style="cursor: pointer; width:100%;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                            </a>
-                        </div>
-                    @endforeach
-                @endif
-            </div> --}}
-            <!-- ----------------------------------- FIN DE JUEGO ----------------------------------------->
-
-
-            {{-- <!-- flecha -->
-            <div class="center" style="text-align: center;">
-                <i class="bi bi-arrow-up-circle" style="font-size: 170%; color:#87796d;; cursor: pointer;"></i>
-            </div> --}}
-            <!-- img ppal1 -->
-            @if($fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') != '' )
-                <div class="center" style="valign:middle">
-                    <center>
-                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file') }}" target="new">
-                            <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal1')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                        </a>
-                    </center>
-                </div>
-            @endif
-
-            <!-- img ppal2 -->
-            @if($fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') != '' )
-                <div class="center"><center>
-                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal2')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                    </a>
-                </center></div>
-            @endif
-
-            <!-- img ppal3 -->
-            @if($fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') != '' )
-                <div class="center"><center>
-                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal3')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                    </a>
-                </center></div>
-            @endif
-
-            <!-- img ppal4 -->
-            @if($fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') != '' )
-                <div class="center"><center>
-                    <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file') }}" target="new">
-                        <img src="/cedulas/{{$fotos->where('imgsp_cimgname','ppal4')->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                    </a>
-                </center></div>
-            @endif
-
+            <!-- ----------------------------------- Inicia imágenes superiores izquierdas ------------------------------------------------------ -->
             <!-- flecha -->
-            {{-- <div class="center" style="text-align: center;">
+            <!--div class="center" style="text-align: center;">
+                <i class="bi bi-arrow-up-circle" style="font-size: 170%; color:#87796d;; cursor: pointer;"></i>
+            </div-->
+            @foreach (['ppal1','ppal2','ppal3','ppal4','ppal5'] as $ppal)
+                @if($fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') != '' )
+                    <div class="ContenedorImg">
+                        <img class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1 PaClick" src="/cedulas/{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') }}" onclick="VerNoVer('foto','{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_id') }}')" style="width:100%;">
+                        <div style="display:none; font-size:90%;" id="sale_foto{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_id') }}">
+                            <b style="padding:3px;">{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_titulo') }}</b><br>
+                            <p>{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_pie') }}</p>
+                            <b>Autor:</b> {{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_autor') }}<br>
+                            <b>Fecha:</b> {{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_date') }} &nbsp;
+                            <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') }}" target="new">Abrir imagen</a>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+            <!-- flecha -->
+            <!--div class="center" style="text-align: center;">
                 <i class="bi bi-arrow-down-circle" style="font-size: 170%; color:#87796d;; cursor: pointer;"></i>
-            </div> --}}
+            </div-->
+            <!-- ----------------------------------- Termina imágenes superiores izquierdas ------------------------------------------------------ -->
         </div>
     </div>
 
@@ -208,7 +176,7 @@
     <!-- -------------------------------------- BLOQUE MEDIO FICHA E IMAGENES ----------------------------------------------->
     <div class="row" style="margin:5px; border-bottom-left-radius:8px;">
 
-        <!-- -------------- Menú izquierdo ----------------->
+        <!-- -------------- CentroIzq: Menú izquierdo ----------------->
         <div class="col-12 col-sm-12 col-md-2" style="color:#efebe8;padding:40px;font-size:1.3em;background-color:#CDC6B9;">
             <H3>
                 {{ $lenguas->where('clen_code',session('locale2'))->value('clen_autonimias') }}
@@ -216,13 +184,13 @@
 
             <nav class="navbar navbar-expand-md">
 
-                <!-- --------- Menú Hamburguesa -------------- -->
+                <!-- --------- CentroIzq:  Menú Hamburguesa -------------- -->
                 <button class="navbar-toggler"
                     data-toggle="collapse" type="button" data-bs-toggle="offcanvas" data-bs-target="#MenuEspecifico">
                     <span style="font-size:50%;">Menú</span><span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- --------- Menú Extendido -------------- -->
+                <!-- --------- CentroIzq: Menú Extendido -------------- -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="MenuEspecifico">
                     <div class="offcanvas-header">
                         <a class="offcanvas-logo" href="index.html" id="offcanvasNavbar2Label">
@@ -242,7 +210,7 @@
             </nav>
         </div>
 
-        <!-- -------------- Texto central ----------------->
+        <!-- -------------- CentroCtro: Texto central ----------------->
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" style="background-color:#CDC6B9;">
             <?php $num=0; ?>
             @foreach($texto as $text)
@@ -276,12 +244,7 @@
             @endforeach
         </div>
 
-
-
-
-
-
-        <!-- -------------- Imágenes derecha ----------------->
+        <!-- -------------- CentroDerecha: Imágenes derecha ----------------->
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="background-color:#CDC6B9;">
             <!-- lateralvideo1 -->
             @if($fotos->where('imgsp_cimgname','lateralvideo1')->value('imgsp_file') != '')
@@ -292,28 +255,21 @@
 
             @endif
 
-            <!-- lateral1 -->
-            @if($fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') != '')
-                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" target="new">
-                    <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral1')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                </a>
-            @endif
-            <!-- lateral2 -->
-            @if($fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') != '')
-                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" target="new">
-                    <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral2')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                </a>
-            @endif
-
-            <!-- lateral3 -->
-            @if($fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') != '')
-                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" target="new">
-                    <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','lateral3')->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                </a>
-            @endif
-
-            {{-- <img src="/MapaTemp.png"
-                style="width:100%;  padding:15px;"> --}}
+            <!-- Imágenes laterales -->
+            @foreach (['lateral1','lateral2','lateral3','lateral4','lateral5','lateral6','lateral7','lateral8','lateral9','lateral10'] as $lat)
+                @if($fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') != '')
+                    <div class="ContenedorImg">
+                        <img class="PaClick" src="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" onclick="VerNoVer('foto','{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_id') }}')" style="width:100%;">
+                        <div style="display:none; font-size:90%;" id="sale_foto{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_id') }}">
+                            <b style="padding:3px;">{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_titulo') }}</b><br>
+                            <p>{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_pie') }}</p>
+                            <b>Autor:</b> {{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_autor') }}<br>
+                            <b>Fecha:</b> {{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_date') }} &nbsp;
+                            <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" target="new">Abrir imagen</a>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
         </div>
 
 

@@ -17,9 +17,10 @@
                 loop: true,
                 margin: 10,
                 dotsEach: 1,
-                autoplay: true,
-                autoplayTimeout: 8000,
-                autoplaySpeed: 5000,
+                nav:true
+                // autoplay: true,
+                // autoplayTimeout: 8000,
+                // autoplaySpeed: 5000,
                 responsive: {
                     0: {
                         items: 1
