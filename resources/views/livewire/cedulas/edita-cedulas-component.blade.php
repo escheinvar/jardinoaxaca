@@ -79,14 +79,18 @@
                 </div>
 
                 <div class="row">
+                    <!-- ---------- subir nueva imagen --------------------- -->
                     @if($cedulas >'0')
+                        <h5>Imágenes</h5>
                         <div class="col-12 ">
-                            <h5>Imágenes</h5>
                             <input type="file" wire:model="NvaImagen" class="form-control my-2" style="width:100%;" accept="image/*, video/*"  enctype="multipart/form-data" >
                             @error('NvaImagen')<error>{{ $message }}</error>@enderror
+                            <div wire:loading.attr="block" wire:target="NvaImagen" style="display: none;">
+                                Cargando imágen...
+                            </div>
                         </div>
-                        <div class="col-9">
-                            <select wire:model="NvaImagenTipo" class="form-select">
+                        <div class="col-12">
+                            <select wire:model.live="NvaImagenTipo" class="form-select">
                                 <option value="">Indica el lugar en el que va la imagen</option>
                                 @foreach ($tipoImgs as $img)
                                     <option value="{{ $img->cimg_name }}">{{ $img->cimg_name }}</option>
@@ -94,51 +98,78 @@
                             </select>
                             @error('NvaImagenTipo')<error>{{ $message }}</error>@enderror
                         </div>
-                        <div class="col-3">
-                            <button wire:click="SubirFoto()" wire:loadding.attr="disabled" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button>
-                        </div>
-                        <div class="col-12">
-                            <div wire:loading.attr="block" wire:target="NvaImagen" style="display: none;">
-                                Cargando imágen...
+
+                        <!-- Metadatos de imagen -->
+                        @if($NvaImagen != '' AND $NvaImagenTipo != '')
+                            <div class="col-6">
+                                <label class="form-label">Fecha</label>
+                                <input wire:model='NvaImgDate' type="date" class="form-control">
                             </div>
-                        </div>
+                            <div class="col-6">
+                                <label class="form-label">Autor</label>
+                                <input wire:model='NvaImgAutor' type="text" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Titulo</label>
+                                <input wire:model='NvaImgTitulo' type="text" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Descripción</label>
+                                <textarea wire:model='NvaImgDescr' class="form-control"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button wire:click="SubirFoto()" wire:loadding.attr="disabled" class="btn btn-sm btn-secondary" style="margin:5px;">Subir</button>
+                            </div>
+                        @endif
                     @endif
                 </div>
             </div>
 
             <!-- ------------------------- FOTO DE LA PORTADA ------------------------>
-            <div class="col-sm-12 col-md-6 col-lg-7" style="height:600px;">
+            <div class="col-sm-12 col-md-4 col-lg-5" style="vertical-align:middle;center">
                 <center>
                     @if($fotos->where('imgsp_cimgname','portada')->value('imgsp_file') != '')
                         <!-- foto -->
-                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">
-                            <img src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}"
-                            class="py-2 py-sm-2 py-md-0 py-lg-0 img-fluid" style="height:580px; center">
-                        </a>
+                        <div class="ContenedorImg" style="width:100%">
+                            <img class="img-fluid PaClick" style="max-height:30%;" src="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" onclick="VerNoVer('foto','{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_id') }}')">
+                            <div style="display:none; font-size:90%;" id="sale_foto{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_id') }}">
+                                <b style="padding:3px;">{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_titulo') }}</b><br>
+                                <p>{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_pie') }}</p>
+                                <b>Autor:</b> {{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_autor') }}<br>
+                                <b>Fecha:</b> {{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_date') }} &nbsp;
+                                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname','portada')->value('imgsp_file') }}" target="new">Abrir imagen</a>
+                            </div>
+                        </div>
+
                         @if($cedulas >'0')
                             <!-- botón borrar -->
                             <div class="PaClick" wire:click="BorraFoto('portada')" wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline;vertical-align:bottom;">
-                                <i class="bi bi-trash"></i>
+                                <i class="bi bi-trash" style="color:gray;"><small>portada</small></i>
                             </div>
                         @endif
                     @else
                         <!-- subir nueva imagen -->
-                        <div class="form-group">
-                            <label class="form-label">Imagen portada</label>
+                        <div class="form-group" style="border:1px dotted gray;color:gray; padding:10px;">
+                            Imagen portada
                         </div>
                     @endif
                 </center>
             </div>
 
             <!-- ------------------------- GALERÍA DE FOTOGRAFÍAS ------------------------>
-            <div class="col-sm-12 col-md-2 col-lg-2 center">
-                <!-- Imágenes principales -->
+            <div class="col-sm-12 col-md-3 col-lg-3 center">
+                <!-- ----------------------------------- Inicia imágenes superiores izquierdas ------------------------------------------------------ -->
                 @foreach (['ppal1','ppal2','ppal3','ppal4','ppal5','ppal6'] as $ppal)
                     @if($fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') != '' )
-                        <div class="center" style="display:inline-block;width:80%;">
-                            <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') }}" target="new">
-                                <img src="/cedulas/{{$fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file')  }}" style="cursor: pointer;" class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1">
-                            </a>
+                        <div class="ContenedorImg">
+                            <img class="img-fluid mt-1 mt-sm-1 mt-md-1 mt-lg-1 PaClick" src="/cedulas/{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') }}" onclick="VerNoVer('foto','{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_id') }}')" style="width:100%;">
+                            <div style="display:none; font-size:90%;" id="sale_foto{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_id') }}">
+                                <b style="padding:3px;">{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_titulo') }}</b><br>
+                                <p>{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_pie') }}</p>
+                                <b>Autor:</b> {{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_autor') }}<br>
+                                <b>Fecha:</b> {{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_date') }} &nbsp;
+                                <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$ppal)->value('imgsp_file') }}" target="new">Abrir imagen</a>
+                            </div>
                         </div>
                         @if($cedulas >'0')
                             <!-- botón borrar -->
@@ -152,6 +183,7 @@
                         </div>
                     @endif
                 @endforeach
+                <!-- ----------------------------------- Termina imágenes superiores izquierdas ------------------------------------------------------ -->
             </div>
         </div>
 
@@ -163,11 +195,11 @@
         <!-- -------------------------------------- BLOQUE MEDIO FICHA E IMAGENES ----------------------------------------------->
         <div class="row" style="margin:5px; border-bottom-left-radius:8px;">
             <!-- -------------- Menú izquierdo ----------------->
-            <div class="col-12 col-sm-12 col-md-2 col-lg-2" style="color:#efebe8;  padding:20px; font-size:1.3em; background-color:#CDC6B9;">
-                <H3>
-                    {{-- {{ $lenguas->where('clen_code',session('localeid'))->value('clen_autonimias') }}
-                    {{ $lenguas->where('clen_code',session('localeid'))->value('clen_lengua') }} --}}
-                </H3>
+            <div class="col-12 col-sm-12 col-md-2" style="color:#efebe8;  padding:20px; font-size:1.3em; background-color:#CDC6B9;">
+                {{-- <H3>
+                    {{ $lenguas->where('clen_code',session('locale2'))->value('clen_autonimias') }}
+                </H3> --}}
+
                 <nav class="navbar navbar-expand-md" >
 
                     <!-- --------- Menú Hamburguesa -------------- -->
@@ -432,6 +464,7 @@
 
             <!-- -------------- Imágenes derecha ----------------->
             <div class="col-12 col-sm-12 col-md-3 col-lg-3" style="background-color:#CDC6B9;">
+
                 <!-- lateralvideo1 -->
                 @if($fotos->where('imgsp_cimgname','lateralvideo1')->value('imgsp_file') != '')
                     <video width="100%"  controls wire:ignore>
@@ -439,27 +472,30 @@
                         Tu navegador no soporta el video
                     </video>
                     @if($cedulas >'0')
-                    <!-- botón borrar -->
-                            <div class="PaClick" wire:click="BorraFoto('{{ $ppal }}')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:block;vertical-align:bottom;color:gray;">
-                                <i class="bi bi-trash"><small>{{ $ppal }}</small></i>
-                            </div>
                         <!-- botón borrar -->
                         <div class="PaClick" wire:click="BorraFoto('lateralvideo1')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?" style="display:inline-block;vertical-align:bottom;">
-                            <i class="bi bi-trash"></i>
+                            <i class="bi bi-trash"><small>lateralvideo1</i>
                         </div>
                     @endif
                 @else
                     <div class="form-group" style="border:1px dotted gray;color:gray; padding:10px;margin:5px;">
-                        Video lateralvideo1
+                        lateralvideo1 (sólo video)
                     </div>
                 @endif
 
                 <!-- Imágenes laterales -->
                 @foreach (['lateral1','lateral2','lateral3','lateral4','lateral5','lateral6','lateral7','lateral8','lateral9','lateral10'] as $lat)
                     @if($fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') != '')
-                        <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" target="new">
-                            <img src="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" style="width:100%;  padding:15px;">
-                        </a>
+                        <div class="ContenedorImg">
+                        <img class="PaClick" src="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" onclick="VerNoVer('foto','{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_id') }}')" style="width:100%;">
+                        <div style="display:none; font-size:90%;" id="sale_foto{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_id') }}">
+                            <b style="padding:3px;">{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_titulo') }}</b><br>
+                            <p>{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_pie') }}</p>
+                            <b>Autor:</b> {{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_autor') }}<br>
+                            <b>Fecha:</b> {{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_date') }} &nbsp;
+                            <a href="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" target="new">Abrir imagen</a>
+                        </div>
+                    </div>
                         @if($cedulas >'0')
                             <!-- botón borrar -->
                             <div class="PaClick" wire:click="BorraFoto('{{ $lat }}')"  wire:confirm="Estás por elminar PERMANENTEMENTE una foto para todo el Jardín. ¿Deseas continuar?"  style="display:block;vertical-align:bottom;color:gray;">
@@ -581,4 +617,9 @@
         </div>
     </div>
 
+    <!-- ------------------------- Modal de imágenes ---------------------------------- -->
+    <livewire:cedulas.edita-ceds-agregaimagen-modal-component imgId='{{$NvaImagenTipo}}' />
+
 </div>
+
+

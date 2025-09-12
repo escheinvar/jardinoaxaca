@@ -27,10 +27,12 @@ class EditaCedulasComponent extends Component
     use WithFileUploads;
 
     public $cedID, $TxtIdEnEdicion, $codedit;
-    public $NvoTitulo, $NvoOrder, $NvoCodigo,$NvoAudio, $NvaImagen, $NvaImagenTipo;
+    public $NvoTitulo, $NvoOrder, $NvoCodigo,$NvoAudio;
+    public $NvaImagen, $NvaImagenTipo, $NvaImgDate, $NvaImgAutor,$NvaImgTitulo, $NvaImgDescr ;
     public $NvoVideo, $NvoImg1, $NvoImg2, $NvoImg3, $NvaVersion;
     public $DelAudio, $DelVideo, $DelImg1, $DelImg2, $DelImg3;
     public $cedulas, $traductor, $NvaVersionCedula,$NvaCita, $NvoDoi, $NotasDeCorreccion;
+
 
     public function mount($cedID){
         $this->cedID=$cedID;
@@ -144,6 +146,10 @@ class EditaCedulasComponent extends Component
             'imgsp_cjarsiglas'=>$urlced->ced_cjarsiglas,
             'imgsp_file'=>$nombre,
             'imgsp_cimgname'=>$this->NvaImagenTipo,
+            'imgsp_date'=>$this->NvaImgDate,
+            'imgsp_autor'=>$this->NvaImgAutor,
+            'imgsp_titulo'=>$this->NvaImgTitulo,
+            'imgsp_pie'=>$this->NvaImgDescr,
         ]);
         $this->NvaImagen="";
         $this->NvaImagenTipo="";
