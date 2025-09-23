@@ -274,7 +274,17 @@ colores{
 }
 
 
-
+.CategoriaDeRiesgo{
+    border:1px solid #64383E;
+    color:#64383E;
+    border-radius:0.5rem;
+    text-align: center;
+    padding:3px;
+    margin:3px;
+    font-size:60%;
+    display:inline-block;
+    line-height: 1.1em;
+}
 /* ------------ Botón de audio ---------*/
 /* .audio {
     background-image: url('/iconos/voz.png') !important;

@@ -6,6 +6,7 @@ use App\Models\CatCampusModel;
 use App\Models\CatJardinesModel;
 use App\Models\CatKewModel;
 use App\Models\CatLenguasModel;
+use App\Models\nom054semarnat;
 use App\Models\SistBuzonMensajesModel;
 use App\Models\SpAporteUsrsModel;
 use App\Models\SpCedulasModel;
@@ -16,6 +17,7 @@ use App\Models\SpUrlModel;
 use App\Models\UserRolesModel;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -150,7 +152,8 @@ class EspeciesComponent extends Component
             ->where('ced_urlurl',$this->url)
             ->where('ced_clencode',session('locale2'))
             ->where('ced_cjarsiglas',$this->jardin)
-            ->first();
+        ->first();
+
         ##### Si no existe idioma de ficha para session(locale2),
         ##### Cambia session(locale2)  al primer idioma o jardín existente para esa ficha
         if(is_null($datoUrl)){
@@ -181,6 +184,9 @@ class EspeciesComponent extends Component
             $taxo['familia']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_family');
             $taxo['sp']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_scientfiicname');
             $taxo['autor']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_scientfiicnameautorship');
+            $taxo['genero']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_genus');
+            $taxo['especie']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_specificepithet');
+            $taxo['infrasp']=CatKewModel::where('ckew_taxonid',$datoUrl->url_sp)->get()->value('ckew_infraspecificepithet');
         }elseif($datoUrl->url_reino =='an'){  #### en tanto no exista catálogo de plantas u hongos....
             $taxo['id']=$datoUrl->url_sp;
             $taxo['nombrecomun']=$datoUrl->url_nombrecomun;
@@ -188,6 +194,9 @@ class EspeciesComponent extends Component
             $taxo['familia']='';
             $taxo['sp']='';
             $taxo['autor']='';
+            $taxo['genero']='';
+            $taxo['especie']='';
+            $taxo['infrasp']='';
         }else{
             $taxo['id']='0';
             $taxo['nombrecomun']=$datoUrl->url_nombrecomun;
@@ -195,7 +204,67 @@ class EspeciesComponent extends Component
             $taxo['familia']='';
             $taxo['sp']='';
             $taxo['autor']='';
+            $taxo['genero']='';
+            $taxo['especie']='';
+            $taxo['infrasp']='';
         }
+
+        ################## Inicia Token RedList y Cites
+        $RedListToken='V6NT8Woe3ZnPcRZxiALB54eaedAMjkQMjDEV';
+        $RedListApi = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . $RedListToken, // Or 'Token ' for some APIs
+        ])->get('https://api.iucnredlist.org/api/v4/taxa/scientific_name',[
+            'genus_name'=>$taxo['genero'],
+            'species_name'=>$taxo['especie'],
+            'infra_name'=>$taxo['infrasp'],
+        ]);
+        if ($RedListApi->successful()) {
+            $RedList=[
+                'estatus'=>$RedListApi->status(),
+                'dato'=>$RedListApi->json()['assessments'][0]
+            ];
+        } else {
+            $RedList=[
+                'estatus'=>$RedListApi->status(),
+                'dato'=>$RedListApi->body()
+            ];
+        }
+        ############################# Api de Cites
+        $CitesToken='wooIyHq5e7kH8DIsA8YxDgtt';
+        $CitesApi = Http::withHeaders([
+            'Accept' => 'application/json',
+            'X-Authentication-Token'=>$CitesToken,
+        ])->get('https://api.speciesplus.net/api/v1/taxon_concepts',[
+            'name'=>$taxo['sp'],
+            // 'name'=>'Loxodonta africana',
+            // 'name'=>'Vicugna vicugna'
+        ]);
+
+        if ($CitesApi->successful()) {
+            $Cites=[
+                'estatus'=>$CitesApi->status(),
+                'dato'=>$CitesApi->json(),
+            ];
+        } else {
+            $Cites=[
+                'estatus'=>$CitesApi->status(),
+                'dato'=>$CitesApi->body(),
+            ];
+        }
+        #dd($CitesApi,$Cites, $taxo['sp']);
+        ############################# Búsqueda de NOM-054-Semarnat
+
+        $Nom054sem=nom054semarnat::where('nom_genero',$taxo['genero'])
+            ->where('nom_especie',$taxo['especie'])
+            ->get();
+        #dd($Nom054sem, $Nom054sem->count());
+        // $Nom054sem=nom054semarnat::where('nom_genero','Agave')
+        //     ->where('nom_especie','abisaii')
+        //     ->get();
+        #dd($Nom054sem, $Nom054sem->count());
+        ################## Fin de Token de RedList y Cites
+
 
         ###### Obtiene todo el texto de la especie, en el idioma y para el jardín seleccionado
         $texto=SpCedulasModel::where('txt_act','1')
@@ -228,10 +297,10 @@ class EspeciesComponent extends Component
             ->distinct('cjar_nombre')
             ->get();
 
-        ##### Obtiene datos de los clavos del jardín
-        $clavos=['695', '698', '966', '2525'];
-        $herbario=[ '1050', '1099', '1085', '1045', '1398', '1765'];
-        $otrosJardines=['Jardín Comunitario de Matatlán','Parque Primavera'];
+        // ##### Obtiene datos de los clavos del jardín
+        // $clavos=['695', '698', '966', '2525'];
+        // $herbario=[ '1050', '1099', '1085', '1045', '1398', '1765'];
+        // $otrosJardines=['Jardín Comunitario de Matatlán','Parque Primavera'];
 
         ###### Redirecciona enficha caso de no existir  o url válida
         if(is_null($texto) OR $texto->count() < 1 OR is_null($jardinData) ){
@@ -273,9 +342,8 @@ class EspeciesComponent extends Component
                     ->where('msg_usr',$usrAuto);
                 });
             })
-            ->get();
-#dd($jardinData);
-#dd($fotos->all());
+        ->get();
+#dd($RedList['estatus'],$RedList['dato'],$taxo);
         return view('livewire.cedulas.especies-component',[
             'taxo'=>$taxo,
             'titulos'=>$titulos,
@@ -283,12 +351,15 @@ class EspeciesComponent extends Component
             'fotos'=>$fotos,
             'lenguas'=>$lenguas,
             'jardinData'=>$jardinData,
-            'clavos'=>$clavos,
-            'herbario'=>$herbario,
-            'otrosJardines'=>$otrosJardines,
+            // 'clavos'=>$clavos,
+            // 'herbario'=>$herbario,
+            // 'otrosJardines'=>$otrosJardines,
             'version'=>$version,
             'aportes'=>$aportes,
             'idioma2'=>CatLenguasModel::where('clen_code',$datoUrl->ced_clencode)->value('clen_lengua'),
+            'redList'=>$RedList,
+            'cites'=>$Cites,
+            'nom054sem'=>$Nom054sem,
         ]);
     }
 }

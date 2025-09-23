@@ -63,30 +63,53 @@
             </div>
 
             <!-- ------------------------- GralIzq: Categoría de riesgo ------------------------>
-            {{--
+
             <div style="text-align: center;">
-                <button class="btn" style="background-color:#B1153F; color:#efebe8;
-                    border-radius:0.5rem; text-align:center; padding:1px 10px; margin:5px;"
-                    data-bs-toggle="tooltip" data-bs-placement="right" title="E: Probablemente Extinta en Medio Silvestre">
-                    <div style="font-size:60%; padding:-10px;">NOM-059</div>
-                    <div style="font-size:80%;">- No -</div>
-                </button>
+                @if($nom054sem->count() =='1')
+                    <div class="CategoriaDeRiesgo">
+                        NOM-059-Sem
+                        <BR>
+                        {{ $nom054sem->value('nom_distri') }}
+                        @if($nom054sem->value('nom_cat')=='P') En Peligro de Extinción
+                        @elseif($nom054sem->value('nom_cat')=='A') Amenazada
+                        @elseif($nom054sem->value('nom_cat')=='Pr') Sujeta a Protección Especial
+                        @endif
+                        {{ $nom054sem->value('nom_cat') }}
+                    {{-- @else
+                        No en<br>NOM-059-Sem --}}
+                    </div>
+                @endif
 
-                <button class="btn" style="background-color:#CD7B34; color:#efebe8;
-                    border-radius:0.5rem; text-align:center; padding:1px 10px; margin:5px;"
-                    data-bs-toggle="tooltip" data-bs-placement="right" title="II: Apéndice">
-                    <div style="font-size:60%; padding:-10px;">CITES</div>
-                    <div style="font-size:80%;">- No -</div>
-                </button>
 
-                <button class="btn" style="background-color:#919C1B;; color:#efebe8;
-                    border-radius:0.5rem; text-align:center; padding:1px 10px; margin:5px;"
-                    data-bs-toggle="tooltip" data-bs-placement="right" title="No evaluado">
-                    <div style="font-size:60%; padding:-10px;">UICN</div>
-                    <div style="font-size:80%;">Preocupación Menor</div>
-                </button>
+                @if($cites['estatus']=='200' & count($cites['dato']['taxon_concepts']) > '0')
+                    <div class="CategoriaDeRiesgo">
+                        Apéndice {{ $cites['dato']['taxon_concepts'][0]['cites_listing'] }}
+                    {{-- @else
+                        No en<br>CITES --}}
+                    </div>
+                @endif
+
+                <!-- ------------------ API DE UICN RED LIST ------------- -->
+                @if($redList['estatus']=='200')
+                    <div class="CategoriaDeRiesgo">
+                        <a href="{{ $redList['dato']['url'] }}" class="nolink" target="new">
+                            UICN Red List:
+                            {{ $redList['dato']['red_list_category_code'] }}<br>
+                            @if( $redList['dato']['red_list_category_code'] == 'NE' ) No evaluado
+                            @elseif($redList['dato']['red_list_category_code']=='DD') Datos deficientes
+                            @elseif($redList['dato']['red_list_category_code']=='LC') Preocupación menor
+                            @elseif($redList['dato']['red_list_category_code']=='NT') Casi amenazada
+                            @elseif($redList['dato']['red_list_category_code']=='VU') Vulnerable
+                            @elseif($redList['dato']['red_list_category_code']=='EN') En peligro
+                            @elseif($redList['dato']['red_list_category_code']=='CR') Peligro crítico
+                            @elseif($redList['dato']['red_list_category_code']=='EW') Extinto en silvestre
+                            @elseif($redList['dato']['red_list_category_code']=='EX') Extinto
+                            @endif
+                        </a>
+                    </div>
+                @endif
             </div>
-            --}}
+
             @if(Auth::user() )
                 {{-- <center>
                 <div style="display:inline-block;"> &nbsp; | &nbsp;
@@ -258,7 +281,7 @@
             <!-- Imágenes laterales -->
             @foreach (['lateral1','lateral2','lateral3','lateral4','lateral5','lateral6','lateral7','lateral8','lateral9','lateral10'] as $lat)
                 @if($fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') != '')
-                    <div class="ContenedorImg">
+                    <div class="ContenedorImg" style="padding:15px;">
                         <img class="PaClick" src="/cedulas/{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_file') }}" onclick="VerNoVer('foto','{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_id') }}')" style="width:100%;">
                         <div style="display:none; font-size:90%;" id="sale_foto{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_id') }}">
                             <b style="padding:3px;">{{ $fotos->where('imgsp_cimgname',$lat)->value('imgsp_titulo') }}</b><br>

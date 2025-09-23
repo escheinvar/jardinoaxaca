@@ -49,6 +49,8 @@ class DatabaseSeeder extends Seeder
             SpUrlCedulaSeeder::class, ##### En producción
             SpCedulaSeeder::class, ##### En producción
             SpFotosSeeder::class, ##### En producción
+
+            Nom054semarnatSeeder::class,
         ]);
     }
 }

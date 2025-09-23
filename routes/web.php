@@ -21,6 +21,7 @@ use App\Livewire\Plantas\CatalogoCamellonesYJardinesComponent2;
 use App\Livewire\Plantas\CatalogoJardinesYcampusComponent;
 use App\Livewire\Plantas\ImportaPlantasComponent2;
 use App\Livewire\Plantas\ImportaPlantasComponent;
+use App\Livewire\Prueba;
 use App\Livewire\Sistema\AcercadeComponent;
 use App\Livewire\Sistema\BuzonComponent;
 use App\Livewire\Sistema\ErrorComponent;
@@ -132,5 +133,7 @@ Route::get('/elmapa',MapaComponent::class)->name('elmapa');
 Route::get('/laespecie',FichaEspecieComponent::class)->name('laespecie');
 Route::get('/elclavo/{clavo}',FichaClavoComponent::class)->name('elclavo');
 Route::get('/parada/{parada}',FichaParadaCompenent::class)->name('laparada');
+
+Route::get ('/prueba',Prueba::class)->name('prueba');
 
 
