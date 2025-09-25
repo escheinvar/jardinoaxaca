@@ -75,17 +75,19 @@
                         @elseif($nom054sem->value('nom_cat')=='Pr') Sujeta a Protección Especial
                         @endif
                         {{ $nom054sem->value('nom_cat') }}
-                    {{-- @else
-                        No en<br>NOM-059-Sem --}}
+                    </div>
+                @else
+                    <div class="CategoriaDeRiesgo">
+                        No en<br>NOM-059-Sem
                     </div>
                 @endif
 
 
-                @if($cites['estatus']=='200' & count($cites['dato']['taxon_concepts']) > '0')
+                @if($cites['estatus']=='200' & count($cites['dato']['taxon_concepts']) > 0  )
                     <div class="CategoriaDeRiesgo">
+                        CITES <br>
                         Apéndice {{ $cites['dato']['taxon_concepts'][0]['cites_listing'] }}
-                    {{-- @else
-                        No en<br>CITES --}}
+
                     </div>
                 @endif
 

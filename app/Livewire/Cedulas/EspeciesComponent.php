@@ -236,23 +236,24 @@ class EspeciesComponent extends Component
             'Accept' => 'application/json',
             'X-Authentication-Token'=>$CitesToken,
         ])->get('https://api.speciesplus.net/api/v1/taxon_concepts',[
-            'name'=>$taxo['sp'],
+            // 'name'=>$taxo['sp'],
             // 'name'=>'Loxodonta africana',
-            // 'name'=>'Vicugna vicugna'
+            'name'=>'Taxodium mucrunatum'
         ]);
 
         if ($CitesApi->successful()) {
             $Cites=[
                 'estatus'=>$CitesApi->status(),
                 'dato'=>$CitesApi->json(),
+                #'ja'=$CitesApi->
             ];
         } else {
             $Cites=[
                 'estatus'=>$CitesApi->status(),
-                'dato'=>$CitesApi->body(),
+                'dato'=>[$CitesApi->body()],
             ];
         }
-        #dd($CitesApi,$Cites, $taxo['sp']);
+        #dd($CitesApi,$Cites, count($Cites['dato']['taxon_concepts']));
         ############################# Búsqueda de NOM-054-Semarnat
 
         $Nom054sem=nom054semarnat::where('nom_genero',$taxo['genero'])
