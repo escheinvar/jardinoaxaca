@@ -236,9 +236,9 @@ class EspeciesComponent extends Component
             'Accept' => 'application/json',
             'X-Authentication-Token'=>$CitesToken,
         ])->get('https://api.speciesplus.net/api/v1/taxon_concepts',[
-            // 'name'=>$taxo['sp'],
+            'name'=>$taxo['sp'],
             // 'name'=>'Loxodonta africana',
-            'name'=>'Taxodium mucrunatum'
+            // 'name'=>'Taxodium mucrunatum'
         ]);
 
         if ($CitesApi->successful()) {
