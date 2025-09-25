@@ -76,10 +76,10 @@
                         @endif
                         {{ $nom054sem->value('nom_cat') }}
                     </div>
-                @else
+                {{-- @else
                     <div class="CategoriaDeRiesgo">
                         No en<br>NOM-059-Sem
-                    </div>
+                    </div> --}}
                 @endif
 
 
