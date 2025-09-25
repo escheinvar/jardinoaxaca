@@ -245,7 +245,6 @@ class EspeciesComponent extends Component
             $Cites=[
                 'estatus'=>$CitesApi->status(),
                 'dato'=>$CitesApi->json(),
-                #'ja'=$CitesApi->
             ];
         } else {
             $Cites=[
@@ -253,7 +252,7 @@ class EspeciesComponent extends Component
                 'dato'=>[$CitesApi->body()],
             ];
         }
-        #dd($CitesApi,$Cites, count($Cites['dato']['taxon_concepts']));
+        #dd($CitesApi,$Cites, );
         ############################# Búsqueda de NOM-054-Semarnat
 
         $Nom054sem=nom054semarnat::where('nom_genero',$taxo['genero'])

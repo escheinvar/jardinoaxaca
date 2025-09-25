@@ -76,19 +76,16 @@
                         @endif
                         {{ $nom054sem->value('nom_cat') }}
                     </div>
-                {{-- @else
-                    <div class="CategoriaDeRiesgo">
-                        No en<br>NOM-059-Sem
-                    </div> --}}
                 @endif
 
 
-                @if($cites['estatus']=='200' & count($cites['dato']['taxon_concepts']) > 0  )
-                    <div class="CategoriaDeRiesgo">
-                        CITES <br>
-                        Apéndice {{ $cites['dato']['taxon_concepts'][0]['cites_listing'] }}
-
-                    </div>
+                @if($cites['estatus']=='200' & in_array('taxon_concepts',$cites['dato'])  )
+                    @if(count($cites['dato']['taxon_concepts']) > 0 )
+                        <div class="CategoriaDeRiesgo">
+                            CITES <br>
+                            Apéndice {{ $cites['dato']['taxon_concepts'][0]['cites_listing'] }}
+                        </div>
+                    @endif
                 @endif
 
                 <!-- ------------------ API DE UICN RED LIST ------------- -->
