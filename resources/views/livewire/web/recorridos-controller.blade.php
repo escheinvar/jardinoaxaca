@@ -115,14 +115,14 @@ banner-recorridos
                             <p>Consulte o <a href="https://www.oaxaca.gob.mx/occe/">referido escritório</a> para quaisquer questões relacionadas a passeios turísticos ou escolares.</p>
                     @else
                         <p class="texto-principal">
-                            Derivado del Decreto publicado en el Extra Periódico Oficial, del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca
-                            el 28 de febrero de 2025, que a la letra dice:
+                            Derivado del <a href="https://jardinoaxaca.mx/imagenes/250228_DiarioOficialOaxaca_Jardin.pdf" target="new" class="nolink">Decreto publicado en el Extra Periódico Oficial, del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca
+                            el 28 de febrero de 2025</a>    , que a la letra dice:
                         </p>
                         <p class="texto-principal" style="border:1px solid black;">
                             <b>Único</b>. Se extingue el Jardín Etnobotánico de Oaxaca como Órgano Desconcentrado de la Secretaría de Administración.
                         </p>
                         <p class="texto-principal">
-                            Y derivado del similar publicado en el mismo medio con fecha 3 de marzo de 2025, que dice:
+                            Y derivado del similar publicado en el <a href="https://jardinoaxaca.mx/imagenes/250303_DiarioOficialOaxaca_occe.pdf" target="new" class="nolink">mismo medio con fecha 3 de marzo de 2025</a>, que dice:
                         </p>
                         <p class="texto-principal">
                             <b>Artículo 3</b>: El objeto de la Oficina de Convenciones, Congresos y Eventos de Oaxaca "OCCE Oaxaca"
