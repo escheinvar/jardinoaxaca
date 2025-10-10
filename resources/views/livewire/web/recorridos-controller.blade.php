@@ -119,7 +119,7 @@ banner-recorridos
                             el 28 de febrero de 2025, que a la letra dice:
                         </p>
                         <p class="texto-principal">
-                            <b>Único</b>. Se extingue el Jardín Etnobotánico de Oaxca como Órgano Desoncentrado de la Secretaría de Administración.
+                            <b>Único</b>. Se extingue el Jardín Etnobotánico de Oaxaca como Órgano Desconcentrado de la Secretaría de Administración.
                         </p>
                         <p class="texto-principal">
                             Y derivado del similar publicado en el mismo medio con fecha 3 de marzo de 2025, que dice:
