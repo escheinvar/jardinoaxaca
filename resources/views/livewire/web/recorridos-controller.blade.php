@@ -52,6 +52,7 @@ banner-recorridos
                             Visitas guiadas
                         @endif
                     </h2>
+                    {{--
                     <p class="texto-principal">
                         @if(session('locale')=='en')
                             We appreciate your interest in the Garden and our work.
@@ -76,9 +77,65 @@ banner-recorridos
                             No contamos con reservaciones  ni venta de boletos con anticipación
                         @endif
                     </p>
+                    --}}
+                    @if(session('locale')=='en')
+                        <p class="texto-principal">
+                            Derived from the Decree published in the Extra of the Periódico Oficial, del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca,,
+                            published on February 28, 2025, which reads:
+                        </p>
+                        <p class="texto-principal">
+                            <b>Sole</b>. The Oaxaca Ethnobotanical Garden is hereby dissolved as a Decentralized Body of the Secretariat of Administration.
+                        </p>
+                        <p class="texto-principal">
+                            And derived from the similar document published in the same media on March 3, 2025, which states:
+                        </p>
+                        <p class="texto-principal">
+                            <b>Article 3</b>: The purpose of the Oficina de Convencines, Congresos y Eventos de Oaxaca "OCCE Oaxaca"
+                            is to advise, develop, and encourage plans, programs, and actions implemented to promote the State of Oaxaca in the field of tourism activities for meetings and romance at the international and national level, <br>
+                            as well as the traditional and scientific knowledge of the Oaxacan flora.
+                        </p>
+                        <p>Please refer to <a href="https://www.oaxaca.gob.mx/occe/">said office</a> for any matters related to tourist or school tours.</p>
+
+                    @elseif(session('locale')=='pt')
+                        <p class="main-text">
+                            Decorrente do Decreto publicado no Extra do Periódico Oficial del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca,
+                            publicado em 28 de fevereiro de 2025, que dispõe:
+                        </p>
+                        <p class="main-text">
+                            <b>Único</b>. O Jardim Etnobotânico de Oaxaca fica extinto como Órgão Descentralizado da Secretaria de Administração.
+
+                        </p>
+                        <p class="main-text">
+                            E derivado de documento similar publicado na mesma mídia em 3 de março de 2025, que declara:
+                        </p>
+                        <p class="main-text">
+                            <b>Artigo 3</b>: O Oficina de Convenciones, Congresos y Eventos de Oaxaca "OCCE Oaxaca" tem como objetivo assessorar, desenvolver e incentivar planos, programas e ações implementados para promover o Estado de Oaxaca no campo das atividades turísticas para reuniões e romance em nível internacional e nacional, <br>
+                            bem como o conhecimento tradicional e científico da flora oaxaca.
+                        </p>
+                            <p>Consulte o <a href="https://www.oaxaca.gob.mx/occe/">referido escritório</a> para quaisquer questões relacionadas a passeios turísticos ou escolares.</p>
+                    @else
+                        <p class="texto-principal">
+                            Derivado del Decreto publiado en el Extra Periódico Oficial, del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca,
+                            publicado el 28 de febrero de 2025 que a la letra dice:
+                        </p>
+                        <p class="texto-principal">
+                            <b>Único</b>. Se extingue el Jardín Etnobotánico de Oaxca como Órgano Desoncentrado de la Secretaría de Administración.
+                        </p>
+                        <p class="texto-principal">
+                            Y derivado del similar publicado en el mismo medio con fecha 3 de marzo de 2025, que dice:
+                        </p>
+                        <p class="texto-principal">
+                            <b>Artículo 3</b>: El objeto de la Oficina de Convenciones, Congresos y Eventos de Oaxaca "OCCE Oaxaca"
+                            es asesorar, desarrollar e incentivar los planes progamas y acciones que se instrumenten para la promoción del Estado de Oaxaca en el ramo de la actividad
+                            turística de reuniones y romance en el ámbito internacional o nacional, <br>
+                            así como del conocimiento tradicional y científico de la flora oaxaqueña.
+                        </p>
+                        <p>Favor de remitirse a <a href="https://www.oaxaca.gob.mx/occe/">dicha oficina</a> para cualquier asunto relacionado a recorridos turísticos o escolares</p>
+                    @endif
                 </div>
             </div>
 
+            {{--
             <div class="row justify-content-center text-center pt-4 pb-5">
                 <div class="col-sm-12 col-md-auto pb-5">
                     <a href="#horarios" class="horarios">
@@ -206,11 +263,12 @@ banner-recorridos
                     </div>
                 </div>
             </div>
+            --}}
         </div>
     </section>
 
     <!--S2 RECORRIDOS-->
-    <section class="recorridos" id="horarios">
+    {{-- <section class="recorridos" id="horarios">
         <div class="container pb-5">
             <div class="row justify-content-between py-5 px-4">
                 <div class="col-md-12 col-xl-6 info-horarios">
@@ -243,13 +301,13 @@ banner-recorridos
                                         <h3>Guided tours in Spanish</h3>
                                         <h4>Duration: 1 hour</h4>
                                         <p>Monday - Friday<br>10:30, 11:00, 11:30, 12:00 and 17:00 hours</p>
-                                        {{-- <p>Saturdays<br>10:30, 11:00, 11:30 and 12:00  hours</p> --}}
+
                                         <p>At the moment we only offer tours in Spanish</p>
                                     @elseif(session('locale')=='pt')
                                         <h3>Visitas guiadas em espanhol</h3>
                                         <h4>Duração: 1 hora</h4>
                                         <p>Segunda a sexta<br>10:30h, 11:00h, 11:30h, 12:00h e 17h</p>
-                                        {{-- <p>Sábados<br>10:30h, 11:00h, 11:30h y 12:00h</p> --}}
+
                                         <p>No momento oferecemos passeios apenas em espanhol</p>
                                     @elseif(session('locale')=='es_mix_bj')
                                         <h3>ñà kèe ndó ra koo iin na kunúú kù’ùn xí’ín ndó
@@ -270,7 +328,6 @@ banner-recorridos
                                                 <source src="audio/es_mix_bj/02_recorrido_08.ogg" type="audio/ogg">
                                             </audio>
                                         </p>
-                                        {{-- <p>Sávàdò<br>10:30h, 11:00h, 11:30h, 12:00h<!--kàa ùxì, kàa ùxì iin xí’ín kàa xuvì ká’ñu--> --}}
                                             <i class="bi bi-volume-up-fill" onclick="VerNoVer('audio','9')"></i>
                                             <audio controls  id="sale_audio9" style="display:none;">
                                                 <source src="audio/es_mix_bj/02_recorrido_09.ogg" type="audio/ogg">
@@ -287,19 +344,13 @@ banner-recorridos
                                         <h3>Recorridos guiados</h3>
                                         <h4>Duración: 1 hora</h4>
                                         <p>Lunes - viernes<br>10:30, 11:00, 11:30, 12:00 y 17:00 horas</p>
-                                        {{-- <p>Sábados<br>10:30, 11:00, 11:30 y 12:00 horas</p> --}}
+
                                         <p>Por el momento, los recorridos solo son en español</p>
 
                                     @endif
-                                    {{-- <h3>Recorridos en inglés</h3>
-                                    <h4>Duración: 2 horas</h4>
-                                    <p>Sábados<br>10:00, 11:00 y 12:00 horas</p> --}}
+
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5 col-xl-6 py-4">
-                                    {{-- <h3>Recorridos en frances</h3>
-                                    <h4>Se reapertura hasta nuevo aviso</h4>
-                                    <h3>Recorridos en alemán</h3>
-                                    <h4>Se reapertura hasta nuevo aviso</h4> --}}
                                 </div>
                             </div>
                         </div>
@@ -381,9 +432,6 @@ banner-recorridos
                                     @endif
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-5 col-xl-6 py-4">
-                                    {{-- <h3>Recorridos en inglés</h3>
-                                    <p>Adultos - $50.00 pesos</p>
-                                    <p>Niños de 0 a 12 años - Gratis</p> --}}
                                 </div>
                             </div>
                         </div>
@@ -585,13 +633,14 @@ banner-recorridos
             </div>
         </div>
     </section>
+    --}}
 
 
 
 
 
     <!--S3 RECORRIDOS-ESCOLARES-->
-    <section class="recorridos-escolares" id="escolares">
+    {{-- <section class="recorridos-escolares" id="escolares">
         <div class="container pt-4">
             <div class="row justify-content-around py-5 px-4">
                 <div class="col-sm-12 col-md-9 col-lg-8 col-xl-5 col-xxl-4 escuelas-texto py-5">
@@ -643,22 +692,18 @@ banner-recorridos
                                 <h3>Schedules</h3>
                                 <h4>Duration 1 hour</h4>+
                                  a.m. <br> 1:00 p.m. to 3:00 p.m. <br>
-                                    {{-- <br>Saturdays<br>8:00 a.m. to 10:00 a.m.</p> --}}
                             @elseif(session('locale')=='pt')
                                 <h3>Horários</h3>
                                 <h4>Duração 1 hora</h4>
                                 <p>Segunda a sexta<br>8h00 às 10h00<br> 13h00 às 15h00<br>
-                                    {{-- <br>Sábados<br>8h00 às 10h00</p> --}}
                             @elseif(session('locale')=='es_mix_bj')
                                     <h3>Óra</h3>
                                     <h4>Iin óra kúú ña kuàtyì nà kaka na ini jardîn</h4>
                                     <p>Lúne saá ndià viérne<br>kàa ùnà ña’à saá ndià kàa ùxì <br>kàa iin ká’ñu iin saá ndià kàa ùnì xìkaá<br>
-                                        {{-- <br>sávàdò<br>kàa ùnà ña’à saá ndià kàa ùxì </p> --}}
                             @else
                                 <h3>Horarios</h3>
                                 <h4>Duración 1 hora</h4>
                                 <p>Lunes a viernes<br>8:00 hrs, 9:00 hrs <br> 13:00 hrs y 14:00 hrs<br>
-                                {{-- <br>Sábados<br>8:00 hrs y 9:00 hrs </p> --}}
                             @endif
                         </div>
                     </div>
@@ -767,5 +812,6 @@ banner-recorridos
             </div>
         </div>
     </section>
+    --}}
 
 </div>
