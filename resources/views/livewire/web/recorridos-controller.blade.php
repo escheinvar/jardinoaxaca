@@ -83,7 +83,7 @@ banner-recorridos
                             Derived from the Decree published in the Extra of the Periódico Oficial, del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca
                             on February 28, 2025, which reads:
                         </p>
-                        <p class="texto-principal">
+                        <p class="texto-principal" style="border:1px solid black;">
                             <b>Sole</b>. The Oaxaca Ethnobotanical Garden is hereby dissolved as a Decentralized Body of the Secretariat of Administration.
                         </p>
                         <p class="texto-principal">
@@ -101,7 +101,7 @@ banner-recorridos
                             Decorrente do Decreto publicado no Extra do Periódico Oficial del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca
                             em 28 de fevereiro de 2025, que dispõe:
                         </p>
-                        <p class="main-text">
+                        <p class="main-text" style="border:1px solid black;">
                             <b>Único</b>. O Jardim Etnobotânico de Oaxaca fica extinto como Órgão Descentralizado da Secretaria de Administração.
 
                         </p>
@@ -118,7 +118,7 @@ banner-recorridos
                             Derivado del Decreto publicado en el Extra Periódico Oficial, del Gobierno del Estado del Poder Ejecutivo del Estado de Oaxaca
                             el 28 de febrero de 2025, que a la letra dice:
                         </p>
-                        <p class="texto-principal">
+                        <p class="texto-principal" style="border:1px solid black;">
                             <b>Único</b>. Se extingue el Jardín Etnobotánico de Oaxaca como Órgano Desconcentrado de la Secretaría de Administración.
                         </p>
                         <p class="texto-principal">
