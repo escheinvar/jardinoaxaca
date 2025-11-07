@@ -220,16 +220,29 @@ class EspeciesComponent extends Component
             'infra_name'=>$taxo['infrasp'],
         ]);
         if ($RedListApi->successful()) {
-            $RedList=[
-                'estatus'=>$RedListApi->status(),
-                'dato'=>$RedListApi->json()['assessments'][0]
-            ];
+            #dd('exito',count($RedListApi->json()['assessments']));
+            if(count($RedListApi->json()['assessments']) > 0){
+                $RedList=[
+                    'estatus'=>$RedListApi->status(),
+                    'dato'=>$RedListApi->json()['assessments'][0]
+                ];
+            }else{
+                $RedList=[
+                    #'estatus'=>$RedListApi->status(),
+                    #'dato'=>$RedListApi->body()
+                    'estatus'=>'400',
+                    'dato'=>''
+                ];
+            }
+
         } else {
+            #dd('NoExito', $RedListApi->body());
             $RedList=[
                 'estatus'=>$RedListApi->status(),
                 'dato'=>$RedListApi->body()
             ];
         }
+
         ############################# Api de Cites
         $CitesToken='wooIyHq5e7kH8DIsA8YxDgtt';
         $CitesApi = Http::withHeaders([
@@ -343,7 +356,7 @@ class EspeciesComponent extends Component
                 });
             })
         ->get();
-#dd($RedList['estatus'],$RedList['dato'],$taxo);
+        #dd($RedList['estatus'],$RedList['dato'],$taxo);
         return view('livewire.cedulas.especies-component',[
             'taxo'=>$taxo,
             'titulos'=>$titulos,
