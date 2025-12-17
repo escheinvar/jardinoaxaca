@@ -30,7 +30,7 @@ return new class extends Migration
                 $table->string('ckew_taxonremarks')->nullable();
                 $table->string('ckew_scientificnameid')->nullable();
                 $table->string('ckew_dynamicproperties')->nullable();
-                $table->string('ckew_reference')->nullable();
+                // $table->string('ckew_reference')->nullable();
                 $table->string('ckew_references')->nullable();
                 //$table->string('Version')->default('Kew_2024-06-12');
 

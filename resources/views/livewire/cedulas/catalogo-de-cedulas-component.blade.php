@@ -328,9 +328,11 @@
                                                                 @if($c->ced_doi != '' AND !in_array('todas',  $roles_ced->pluck('rol_tipo1')->toArray()))
                                                                     DOI
                                                                 @else
+
                                                                     <i wire:click="IniciarEdicion('{{ $c->ced_id }}')" @if($c->ced_edo == '5') wire:confirm="La cédula no estará disponible al público durante la edición. ¿Deseas comenzar a editar?" @endif class="bi bi-pencil-square PaClick" style="margin:7px;">
                                                                         editar
                                                                     </i>
+
                                                                 @endif
                                                             </div>
                                                         @endif
