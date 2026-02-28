@@ -203,7 +203,7 @@ class EditaCedulasComponent extends Component
         ##### Genera nombre de audio y guarda el archivo Y bd
         if($this->NvoAudio !=''){
             $nombre2=$nombre."_".$nuevo->txt_id."_audio.".$this->NvoAudio->getClientOriginalExtension();
-            $this->NvoAudio->storeAs('/aPublic/cedulas/audios/', $nombre2);
+            $this->NvoAudio->storeAs('/Public/cedulas/audios/', $nombre2);
             SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_audio'=>$nombre2]);
         }else{
             SpCedulasModel::where('txt_id',$nuevo->txt_id)->update(['txt_audio'=>$datos->txt_audio]);
