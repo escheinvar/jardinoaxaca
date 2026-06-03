@@ -166,7 +166,7 @@
                     <!-- ----- Las especies ----- -->
 
                     <li class="nav-item">
-                        <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="/especies">
+                        <a class="nav-link @if(request()->path() == 'actividades') active @endif" href="https://cedulasdeljardin.mx">
                             @if(session('locale')=='en')
                                 The species
                             @elseif(session('locale')=='pt')
